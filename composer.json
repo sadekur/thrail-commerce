@@ -1,0 +1,22 @@
+{
+	"name": "chrail/commerce",
+	"description": "A plugin for Woocommerce",
+	"type": "wordpress-plugin",
+	"license": "GPLv2",
+	"authors": [
+		{
+			"name": "Sadekur Rahman",
+			"email": "shadekur.rahman60@gmail.com"
+		}
+	],
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Thrail\\Commerce\\": "app/",
+			"Thrail\\Commerce\\Classes\\": "classes/"
+		},
+		"files": [
+			"includes/functions.php"
+		]
+	}
+}
