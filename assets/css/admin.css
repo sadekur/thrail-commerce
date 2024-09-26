@@ -1,10 +1,17 @@
 .main {
-    position: relative;
-    height: auto;
-    width: 350px;
-    top: -485.75px;
-    left: 777.5px;
-    background-color: #fff;
-    padding: 10px;
+	position: relative;
+	height: auto;
+	width: 350px;
+	top: -485.75px;
+	left: 777.5px;
+	background-color: #fff;
+	padding: 10px;
 }
-
+.notice.notice-success {
+	background-color: #fff;
+	border-left: 4px solid #46b450;
+	color: #000;
+	padding: 10px;
+	margin: 10px;
+	margin-bottom: 10%;
+}
