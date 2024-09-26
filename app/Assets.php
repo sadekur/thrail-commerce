@@ -92,7 +92,7 @@ class Assets {
 		wp_register_script('thrail-commerce-admin-tailwind-script', $scripts['thrail-commerce-admin-tailwind-script']['src'], [], $scripts['thrail-commerce-admin-tailwind-script']['version'], true);
 		
 		wp_localize_script('thrail-commerce-admin-script', 'THRAILCOMMERCE', [
-			'nonce'   => wp_create_nonce('rest_nonce'),
+			'nonce'   => wp_create_nonce('wp_rest'),
 			'ajaxurl' => admin_url('admin-ajax.php'),
 			// 'apiurl' => home_url('/wp-json/'),
 			'apiurl' => untrailingslashit( rest_url( 'thrail/v1' ) ),
