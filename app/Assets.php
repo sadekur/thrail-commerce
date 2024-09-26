@@ -1,7 +1,6 @@
 <?php
 namespace Thrail\Commerce;
-use Thrail\Commerce\Classes\Hookable;
-require_once __DIR__ . '/../classes/Trait/Trait.php';
+use Thrail\Commerce\Classes\Trait\Hookable;
 
 class Assets {
 	use Hookable;
@@ -19,8 +18,8 @@ class Assets {
 		// $this->version	= $this->plugin['Version'];
 		// $this->assets 	= TRAIL_COMMERCE_ASSETS;
 
-		$this->action('wp_enqueue_scripts', [$this, 'register_frontend_assets']);
-		$this->action('admin_enqueue_scripts', [$this, 'register_admin_assets']);
+		$this->action('wp_enqueue_scripts', [ $this, 'register_frontend_assets' ] );
+		$this->action('admin_enqueue_scripts', [ $this, 'register_admin_assets' ] );
 	}
 
 	public function get_scripts() {
@@ -92,9 +91,11 @@ class Assets {
 
 		wp_register_script('thrail-commerce-admin-tailwind-script', $scripts['thrail-commerce-admin-tailwind-script']['src'], [], $scripts['thrail-commerce-admin-tailwind-script']['version'], true);
 		
-		wp_localize_script('thrail-commerce-admin-script', 'THRAIL', [
-			'nonce'   => wp_create_nonce('nonce'),
+		wp_localize_script('thrail-commerce-admin-script', 'THRAILCOMMERCE', [
+			'nonce'   => wp_create_nonce('rest_nonce'),
 			'ajaxurl' => admin_url('admin-ajax.php'),
+			// 'apiurl' => home_url('/wp-json/'),
+			'apiurl' => untrailingslashit( rest_url( 'thrail/v1' ) ),
 			'error'   => __('Something went wrong', 'thrail-commerce')
 		]);
 	

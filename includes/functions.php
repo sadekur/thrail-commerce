@@ -3,7 +3,6 @@
 if ( !defined('ABSPATH' ) ) {
 	exit;
 }
-
 /**
  * Function to set up the database table for Thrail CRM
  */
@@ -25,4 +24,3 @@ if ( !defined('ABSPATH' ) ) {
 // 		dbDelta($sql);
 // 	}
 // endif;
-

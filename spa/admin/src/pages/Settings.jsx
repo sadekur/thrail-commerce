@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Settings = () => {
@@ -6,19 +6,51 @@ const Settings = () => {
 	const [firstname, setFirstname] = useState("");
 	const [lastname, setLastname] = useState("");
 	const [email, setEmail] = useState("");
+	const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
+	console.log("url: ", url);
+	const [loader, setLoader] = useState("Save Setting");
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log({
-			firstname,
-			lastname,
-			email,
-		});
+		setLoader("Saving...");
+		axios
+			.post(
+				url,
+				{
+					firstname: firstname,
+					lastname: lastname,
+					email: email,
+				},
+				{
+					headers: {
+						"Content-Type": "application/json",
+						"X-WP-Nonce": THRAILCOMMERCE.nonce,
+					},
+				}
+			)
+			.then((response) => {
+				setLoader("Saved");
+			})
+			.catch((error) => {
+				console.log("error: ", error);
+			});
 	};
+	useEffect(() => {
+		axios
+			.get(`${THRAILCOMMERCE.apiurl}/get-settings`)
+			.then((response) => {
+				setFirstname(response.data.firstname);
+				setLastname(response.data.lastname);
+				setEmail(response.data.email);
+			})
+			.catch((error) => {
+				console.log("error: ", error);
+			});
+	}, []);
 
 	return (
 		<div>
-			<form id='work-settings-form' onSubmit={handleSubmit}>
+			<form id='work-settings-form' onSubmit={(e) => handleSubmit(e)}>
 				<table className='form-table' role='presentation'>
 					<tbody>
 						<tr>
@@ -30,7 +62,9 @@ const Settings = () => {
 									id='firstname'
 									name='firstname'
 									value={firstname}
-									onChange={(e) => setFirstname(e.target.value)}
+									onChange={(e) => {
+										setFirstname(e.target.value);
+									}}
 									className='regular-text h-[40px]'
 								/>
 							</td>
@@ -44,7 +78,9 @@ const Settings = () => {
 									id='lastname'
 									name='lastname'
 									value={lastname}
-									onChange={(e) => setLastname(e.target.value)}
+									onChange={(e) =>
+										setLastname(e.target.value)
+									}
 									className='regular-text h-[40px]'
 								/>
 							</td>
@@ -67,7 +103,7 @@ const Settings = () => {
 				</table>
 				<p className='submit'>
 					<button type='submit' className='button button-primary'>
-						Submit
+						{loader}
 					</button>
 				</p>
 			</form>
