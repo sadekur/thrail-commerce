@@ -77,16 +77,28 @@ const Settings = () => {
 									</label>
 								</th>
 								<td>
-									<label className='switch'>
+									<label className='relative inline-block w-12 h-6'>
 										<input
 											type='checkbox'
 											id={`toggle-${toggle.id}`}
+											className='opacity-0 w-0 h-0'
 											checked={toggle.value}
 											onChange={() =>
 												handleToggleChange(toggle.id)
 											}
 										/>
-										<span className='slider'></span>
+										<span
+											className={`slider block bg-gray-400 rounded-full w-[50px] h-[28px] cursor-pointer transition-all duration-300 ${
+												toggle.value
+													? "bg-green-500"
+													: "bg-gray-400"
+											}`}></span>
+										<span
+											className={`dot absolute left-1 top-6 w-4 h-4 bg-white rounded-full transition-transform duration-300 transform ${
+												toggle.value
+													? "translate-x-6"
+													: ""
+											}`}></span>
 									</label>
 								</td>
 							</tr>
