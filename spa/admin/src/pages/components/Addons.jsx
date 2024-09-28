@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const Settings = () => {
+const Addons = () => {
 	const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
 	const [loader, setLoader] = useState("Save Settings");
 
@@ -9,21 +9,31 @@ const Settings = () => {
 	const [toggles, setToggles] = useState([
 		{
 			id: 1,
-			label: "Enable Footer Hook",
+			label: "Woocommerce Tip",
+			name: "woocommerce_tips",
 			description:
 				"Enable the footer hook to show additional content in the footer.",
 			value: false,
 		},
 		{
 			id: 2,
-			label: "Enable Custom Functionality 1",
+			label: "Woocommerce Faq",
+			name: "woocommerce_faq",
 			description: "Enable custom functionality 1 for advanced features.",
 			value: false,
 		},
 		{
 			id: 3,
-			label: "Enable Custom Functionality 2",
+			label: "Woocommerce Product Barcode",
+			name: "woocommerce_product_barcode",
 			description: "Enable custom functionality 2 for more options.",
+			value: false,
+		},
+		{
+			id: 4,
+			label: "Woocommerce Tips2",
+			name: "woocommerce_tips2",
+			description: "Enable custom functionality 3 for more options.",
 			value: false,
 		},
 	]);
@@ -43,7 +53,7 @@ const Settings = () => {
 
 		// Prepare the toggle values to send to the backend
 		const toggleValues = toggles.reduce((acc, toggle) => {
-			acc[toggle.label] = toggle.value ? "on" : "off";
+			acc[toggle.name] = toggle.value ? "on" : "off";
 			return acc;
 		}, {});
 
@@ -72,7 +82,7 @@ const Settings = () => {
 				setToggles((prevToggles) =>
 					prevToggles.map((toggle) => ({
 						...toggle,
-						value: response.data[toggle.label] === "on",
+						value: response.data[toggle.name] === "on",
 					}))
 				);
 			})
@@ -84,7 +94,7 @@ const Settings = () => {
 	return (
 		<div>
 			<form id='work-settings-form' onSubmit={handleSubmit}>
-				<div className='grid grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-6'>
+				<div className='grid grid-cols-4 md:grid-cols-4 sm:grid-cols-1 gap-6'>
 					{toggles.map((toggle) => (
 						<div
 							key={toggle.id}
@@ -109,13 +119,13 @@ const Settings = () => {
 										}
 									/>
 									<span
-										className={`slider block bg-gray-400 rounded-full w-[50px] h-[28px] cursor-pointer transition-all duration-300 ${
+										className={`slider block bg-gray-400 rounded-full w-[50px] h-[28px] cursor-pointer transition-all duration-100 ${
 											toggle.value
 												? "bg-[#5e3500]"
-												: "bg-[#d9d9d9]"
+												: "bg-[#867c7c]"
 										}`}></span>
 									<span
-										className={`dot absolute left-1 top-6 w-4 h-4 bg-white rounded-full transition-transform duration-300 transform ${
+										className={`dot absolute left-1 top-6 w-4 h-4 bg-white rounded-full transition-transform duration-100 transform ${
 											toggle.value ? "translate-x-6" : ""
 										}`}></span>
 								</label>
@@ -133,4 +143,4 @@ const Settings = () => {
 	);
 };
 
-export default Settings;
+export default Addons;

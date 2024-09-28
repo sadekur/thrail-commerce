@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Settings from "./pages/Settings";
+import Tabs from "./pages/Tabs";
 
 const App = () => {
 	return (
 		<>
 			<h2>Hello Soikut</h2>
-			<Settings />
+			<Tabs />
 		</>
 	);
 };

@@ -28,11 +28,11 @@ class RestAPI {
 
     // Fetch settings as an array
     public function get_settings() {
-        // Get all settings from the database (default to an empty array if not set)
         $settings = get_option( $this->settings_option_name, [
-            'Enable Footer Hook' => 'off',
-            'Enable Custom Functionality 1' => 'off',
-            'Enable Custom Functionality 2' => 'off',
+            'woocommerce_tips' => 'off',
+            'woocommerce_faq' => 'off',
+            'woocommerce_product_barcode' => 'off',
+            'woocommerce_tips2' => 'off',
         ]);
 
         return rest_ensure_response( $settings );
@@ -42,17 +42,14 @@ class RestAPI {
         return true;
     }
 
-    // Save settings as an array
     public function save_settings( $req ) {
-        // Get current settings
         $current_settings = get_option( $this->settings_option_name, [] );
+        $current_settings['woocommerce_tips'] = sanitize_text_field( $req['woocommerce_tips'] );
+        $current_settings['woocommerce_faq'] = sanitize_text_field( $req['woocommerce_faq'] );
+        $current_settings['woocommerce_product_barcode'] = sanitize_text_field( $req['woocommerce_product_barcode'] );
+        $current_settings['woocommerce_tips2'] = sanitize_text_field( $req['woocommerce_tips2'] );
 
-        // Update the settings array with new values from the request
-        $current_settings['Enable Footer Hook'] = sanitize_text_field( $req['Enable Footer Hook'] );
-        $current_settings['Enable Custom Functionality 1'] = sanitize_text_field( $req['Enable Custom Functionality 1'] );
-        $current_settings['Enable Custom Functionality 2'] = sanitize_text_field( $req['Enable Custom Functionality 2'] );
-
-        // Save the updated settings array back to the database
+        // Save settings
         update_option( $this->settings_option_name, $current_settings );
 
         return rest_ensure_response( 'success' );
