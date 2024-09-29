@@ -26,36 +26,36 @@ class RestAPI {
         ] );
     }
 
-    // Fetch settings as an array
     public function get_settings() {
-        $settings = get_option( $this->settings_option_name, [
+        $default_settings = [
             'woocommerce_tips' => 'off',
             'woocommerce_faq' => 'off',
             'woocommerce_product_barcode' => 'off',
             'woocommerce_tips2' => 'off',
-        ]);
-
+        ];
+        $settings = get_option( $this->settings_option_name, $default_settings );
+    
         return rest_ensure_response( $settings );
     }
-
+    
     public function get_settings_permission() {
         return true;
     }
-
+    
     public function save_settings( $req ) {
         $current_settings = get_option( $this->settings_option_name, [] );
-        $current_settings['woocommerce_tips'] = sanitize_text_field( $req['woocommerce_tips'] );
-        $current_settings['woocommerce_faq'] = sanitize_text_field( $req['woocommerce_faq'] );
-        $current_settings['woocommerce_product_barcode'] = sanitize_text_field( $req['woocommerce_product_barcode'] );
-        $current_settings['woocommerce_tips2'] = sanitize_text_field( $req['woocommerce_tips2'] );
-
-        // Save settings
+        foreach ( $req->get_params() as $key => $value ) {
+            if ( in_array( $key, ['woocommerce_tips', 'woocommerce_faq', 'woocommerce_product_barcode', 'woocommerce_tips2'] ) ) {
+                $current_settings[ $key ] = sanitize_text_field( $value );
+            }
+        }
         update_option( $this->settings_option_name, $current_settings );
 
         return rest_ensure_response( 'success' );
     }
-
+    
     public function save_settings_permission() {
         return current_user_can( 'manage_options' );
     }
+    
 }

@@ -23,9 +23,9 @@ class Menu {
     // Function to display the content of the admin page
     public function admin_page_content() {
         ?>
-<div class="wrap">
-    <div id="thrail_commerce_render"></div>
-</div>
-<?php
+        <div class="wrap">
+            <div id="thrail_commerce_render"></div>
+        </div>
+        <?php
     }
 }

@@ -74,7 +74,6 @@ const Addons = () => {
 	};
 
 	useEffect(() => {
-		// Fetch initial values from the backend
 		axios
 			.get(`${THRAILCOMMERCE.apiurl}/get-settings`)
 			.then((response) => {
