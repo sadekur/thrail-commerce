@@ -38,6 +38,10 @@ class Assets {
 				'version' => filemtime( TRAIL_COMMERCE_PATH . '/assets/js/admin.js' ),
 				'deps'    => [ 'jquery', 'wp-util', 'jquery-ui-dialog' ]
 			],
+			'thrail-commerce-init-script' => [
+				'src'     => TRAIL_COMMERCE_ASSETS . '/js/init.js',
+				'version' => filemtime( TRAIL_COMMERCE_PATH . '/assets/js/init.js' ),
+			],
 			'thrail-commerce-admin-tailwind-script' =>[
 				'src' => TRAIL_COMMERCE_URL . 'spa/build/tailwind.build.js',
 				'version' => time(),
@@ -50,6 +54,10 @@ class Assets {
 			'thrail-commerce-frontend-style' => [
 				'src'     => TRAIL_COMMERCE_ASSETS . '/css/frontend.css',
 				'version' => filemtime( TRAIL_COMMERCE_PATH . '/assets/css/frontend.css' )
+			],
+			'thrail-commerce-init-style' => [
+				'src'     => TRAIL_COMMERCE_ASSETS . '/css/init.css',
+				'version' => filemtime( TRAIL_COMMERCE_PATH . '/assets/css/init.css' )
 			],
 			'thrail-commerce-admin-style' => [
 				'src'     => TRAIL_COMMERCE_ASSETS . '/css/admin.css',
@@ -86,6 +94,7 @@ class Assets {
 		$styles = $this->get_styles();
 	
 		wp_register_script('thrail-commerce-menu-script', $scripts['thrail-commerce-menu-script']['src'], [], $scripts['thrail-commerce-menu-script']['version'], true);
+		wp_register_script('thrail-commerce-init-script', $scripts['thrail-commerce-init-script']['src'], [], $scripts['thrail-commerce-init-script']['version'], true);
 
 		wp_register_script('thrail-commerce-admin-script', $scripts['thrail-commerce-admin-script']['src'], $scripts['thrail-commerce-admin-script']['deps'], $scripts['thrail-commerce-admin-script']['version'], true);
 
@@ -101,9 +110,13 @@ class Assets {
 	
 		wp_register_style('thrail-commerce-admin-style', 
 			$styles['thrail-commerce-admin-style']['src'], 
-			[], 
+			[],
 			$styles['thrail-commerce-admin-style']['version']
 		);
+		wp_register_style( 'thrail-commerce-init-style',
+			$styles[ 'thrail-commerce-init-style' ][ 'src' ],
+			[],
+			$styles[ 'thrail-commerce-init-style' ]['version' ] );
 		wp_register_style('jquery-ui', 
 			$styles['jquery-ui']['src'], 
 			[], 
@@ -111,9 +124,11 @@ class Assets {
 		);
 	
 		wp_enqueue_script('thrail-commerce-admin-script');
+		wp_enqueue_script('thrail-commerce-init-script');
 		wp_enqueue_script('thrail-commerce-menu-script');
 		wp_enqueue_script('thrail-commerce-admin-tailwind-script');
 		wp_enqueue_style('thrail-commerce-admin-style');
+		wp_enqueue_style('thrail-commerce-init-style');
 		wp_enqueue_style('jquery-ui');
 	}	
 }

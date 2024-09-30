@@ -50,6 +50,7 @@ const Addons = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setLoader("Saving...");
+		thrail_commerce_modal(true);
 
 		// Prepare the toggle values to send to the backend
 		const toggleValues = toggles.reduce((acc, toggle) => {
@@ -58,18 +59,25 @@ const Addons = () => {
 		}, {});
 
 		axios
-			.post(url, toggleValues, {
-				headers: {
-					"Content-Type": "application/json",
-					"X-WP-Nonce": THRAILCOMMERCE.nonce,
-				},
-			})
+			.post(
+				url,
+				{ settings: toggleValues },
+				{
+					headers: {
+						"Content-Type": "application/json",
+						"X-WP-Nonce": THRAILCOMMERCE.nonce,
+					},
+				}
+			)
 			.then((response) => {
 				setLoader("Saved");
-				// window.location.reload();
+				window.location.reload();
 			})
 			.catch((error) => {
 				console.log("error: ", error);
+			})
+			.finally(() => {
+				thrail_commerce_modal(false);
 			});
 	};
 
@@ -77,7 +85,6 @@ const Addons = () => {
 		axios
 			.get(`${THRAILCOMMERCE.apiurl}/get-settings`)
 			.then((response) => {
-				// Update toggle state based on response
 				setToggles((prevToggles) =>
 					prevToggles.map((toggle) => ({
 						...toggle,
@@ -97,9 +104,9 @@ const Addons = () => {
 					{toggles.map((toggle) => (
 						<div
 							key={toggle.id}
-							className='p-4 bg-white shadow-md rounded-lg border border-gray-200'>
-							<div className='flex items-center justify-between'>
-								<div>
+							className='p-4 bg-white shadow-md rounded-lg border border-gray-200 relative'>
+							<div className='flex flex-col h-full'>
+								<div className='mb-auto'>
 									<h3 className='text-lg font-semibold'>
 										{toggle.label}
 									</h3>
@@ -107,27 +114,31 @@ const Addons = () => {
 										{toggle.description}
 									</p>
 								</div>
-								<label className='relative inline-block w-12 h-6'>
-									<input
-										type='checkbox'
-										id={`toggle-${toggle.id}`}
-										className='opacity-0 w-0 h-0'
-										checked={toggle.value}
-										onChange={() =>
-											handleToggleChange(toggle.id)
-										}
-									/>
-									<span
-										className={`slider block bg-gray-400 rounded-full w-[50px] h-[28px] cursor-pointer transition-all duration-100 ${
-											toggle.value
-												? "bg-[#5e3500]"
-												: "bg-[#867c7c]"
-										}`}></span>
-									<span
-										className={`dot absolute left-1 top-6 w-4 h-4 bg-white rounded-full transition-transform duration-100 transform ${
-											toggle.value ? "translate-x-6" : ""
-										}`}></span>
-								</label>
+								<div className='mt-auto flex justify-end'>
+									<label className='relative inline-block w-12'>
+										<input
+											type='checkbox'
+											id={`toggle-${toggle.id}`}
+											className='opacity-0 w-0 h-0'
+											checked={toggle.value}
+											onChange={() =>
+												handleToggleChange(toggle.id)
+											}
+										/>
+										<span
+											className={`slider block bg-gray-400 rounded-full w-[50px] h-[28px] cursor-pointer transition-all duration-100 ${
+												toggle.value
+													? "bg-[#452b0a]"
+													: "bg-[#867c7c]"
+											}`}></span>
+										<span
+											className={`dot absolute left-1 top-6 w-4 h-4 bg-white rounded-full transition-transform duration-100 transform ${
+												toggle.value
+													? "translate-x-6"
+													: ""
+											}`}></span>
+									</label>
+								</div>
 							</div>
 						</div>
 					))}

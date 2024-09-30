@@ -77,6 +77,7 @@ final class TRAIL_COMMERCE{
 		new Thrail\Commerce\Assets();
 		new Thrail\Commerce\Email();
 		new Thrail\Commerce\RestAPI();
+		new Thrail\Commerce\Common\Init();
 
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 			new Thrail\Commerce\Ajax();

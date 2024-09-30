@@ -5,7 +5,6 @@ import Tabs from "./pages/Tabs";
 const App = () => {
 	return (
 		<>
-			<h2>Hello Soikut</h2>
 			<Tabs />
 		</>
 	);
