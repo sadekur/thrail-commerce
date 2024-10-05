@@ -126,7 +126,7 @@ const Addons = () => {
 											}
 										/>
 										<span
-											className={`slider block bg-gray-400 rounded-full w-[50px] h-[28px] cursor-pointer transition-all duration-100 ${
+											className={`slider block rounded-full w-[50px] h-[28px] cursor-pointer transition-all duration-100 ${
 												toggle.value
 													? "bg-[#452b0a]"
 													: "bg-[#867c7c]"
