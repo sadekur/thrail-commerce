@@ -48,7 +48,7 @@ class Menu {
         ?>
         <div class="wrap">
             <h1>Thrail Commerce Settings</h1>
-            <p>Settings for Thrail Commerce can be managed here.</p>
+            <p>Settings for Thrail dsadasCommerce can be managed here.</p>
         </div>
         <?php
     }
