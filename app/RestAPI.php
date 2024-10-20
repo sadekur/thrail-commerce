@@ -40,11 +40,10 @@ class RestAPI {
     }
     
     public function save_settings( $request ) {
-        $settings = $request->get_param('settings');
+        $settings = $request->get_param( 'settings' );
         if ( is_array( $settings ) ) {
             update_option( 'thrail_commerce_settings', $settings );
         }
-    
         return rest_ensure_response( 'success' );
     }
     
