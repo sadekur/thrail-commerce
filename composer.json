@@ -1,5 +1,5 @@
 {
-	"name": "chrail/commerce",
+	"name": "thrail/commerce",
 	"description": "A plugin for Woocommerce",
 	"type": "wordpress-plugin",
 	"license": "GPLv2",

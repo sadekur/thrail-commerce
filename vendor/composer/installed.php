@@ -1,19 +1,19 @@
 <?php return array(
     'root' => array(
-        'name' => 'chrail/commerce',
+        'name' => 'thrail/commerce',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '6e09419b262c3ad5e976c3814f50059651aac6eb',
+        'reference' => '48d8419c288398219147b5192ebd7df48ec8f378',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'chrail/commerce' => array(
+        'thrail/commerce' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '6e09419b262c3ad5e976c3814f50059651aac6eb',
+            'reference' => '48d8419c288398219147b5192ebd7df48ec8f378',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -19,7 +19,7 @@ class Init {
 	public function modal() {
 		echo '
 		<div id="thrail-commerce-modal" style="display: none">
-			<img id="thrail-commerce-modal-loader" src="' . esc_attr( TRAIL_COMMERCE_ASSETS . '/img/loader.gif' ) . '" />
+			<img id="thrail-commerce-modal-loader" src="' . esc_attr( THRAIL_COMMERCE_ASSETS . '/img/loader.gif' ) . '" />
 		</div>';
 	}
 

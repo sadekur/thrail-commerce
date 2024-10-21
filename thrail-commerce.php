@@ -26,7 +26,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 /**
  * The main plugin class
  */
-final class TRAIL_COMMERCE{
+final class THRAIL_COMMERCE{
 
 	/**
 	 * Plugin version
@@ -60,11 +60,11 @@ final class TRAIL_COMMERCE{
 	 * @return void
 	 */
 	public function define_constants() {
-		define( 'TRAIL_COMMERCE_VERSION', self::version );
-		define( 'TRAIL_COMMERCE_FILE', __FILE__ );
-		define('TRAIL_COMMERCE_PATH', plugin_dir_path(__FILE__));
-		define('TRAIL_COMMERCE_URL', plugin_dir_url(__FILE__));
-		define( 'TRAIL_COMMERCE_ASSETS', TRAIL_COMMERCE_URL . '/assets' );
+		define( 'THRAIL_COMMERCE_VERSION', self::version );
+		define( 'THRAIL_COMMERCE_FILE', __FILE__ );
+		define('THRAIL_COMMERCE_PATH', plugin_dir_path(__FILE__));
+		define('THRAIL_COMMERCE_URL', plugin_dir_url(__FILE__));
+		define( 'THRAIL_COMMERCE_ASSETS', THRAIL_COMMERCE_URL . '/assets' );
 	}
 
 	/**
@@ -78,6 +78,7 @@ final class TRAIL_COMMERCE{
 		new Thrail\Commerce\Email();
 		new Thrail\Commerce\RestAPI();
 		new Thrail\Commerce\Common\Init();
+		new Thrail\Commerce\Block();
 
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 			new Thrail\Commerce\Ajax();
@@ -92,7 +93,7 @@ final class TRAIL_COMMERCE{
 	}
 }
 function thrail_commerce() {
-	return TRAIL_COMMERCE::init();
+	return THRAIL_COMMERCE::init();
 }
 
 thrail_commerce();
