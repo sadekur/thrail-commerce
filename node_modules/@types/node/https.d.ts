@@ -10,9 +10,7 @@ declare module "https" {
     import { URL } from "node:url";
     type ServerOptions<
         Request extends typeof http.IncomingMessage = typeof http.IncomingMessage,
-        Response extends typeof http.ServerResponse<InstanceType<Request>> = typeof http.ServerResponse<
-            InstanceType<Request>
-        >,
+        Response extends typeof http.ServerResponse<InstanceType<Request>> = typeof http.ServerResponse,
     > = tls.SecureContextOptions & tls.TlsOptions & http.ServerOptions<Request, Response>;
     type RequestOptions =
         & http.RequestOptions
@@ -36,9 +34,7 @@ declare module "https" {
     }
     interface Server<
         Request extends typeof http.IncomingMessage = typeof http.IncomingMessage,
-        Response extends typeof http.ServerResponse<InstanceType<Request>> = typeof http.ServerResponse<
-            InstanceType<Request>
-        >,
+        Response extends typeof http.ServerResponse<InstanceType<Request>> = typeof http.ServerResponse,
     > extends http.Server<Request, Response> {}
     /**
      * See `http.Server` for more information.
@@ -46,9 +42,7 @@ declare module "https" {
      */
     class Server<
         Request extends typeof http.IncomingMessage = typeof http.IncomingMessage,
-        Response extends typeof http.ServerResponse<InstanceType<Request>> = typeof http.ServerResponse<
-            InstanceType<Request>
-        >,
+        Response extends typeof http.ServerResponse<InstanceType<Request>> = typeof http.ServerResponse,
     > extends tls.Server {
         constructor(requestListener?: http.RequestListener<Request, Response>);
         constructor(
@@ -276,8 +270,8 @@ declare module "https" {
     /**
      * ```js
      * // curl -k https://localhost:8000/
-     * const https = require('node:https');
-     * const fs = require('node:fs');
+     * import https from 'node:https';
+     * import fs from 'node:fs';
      *
      * const options = {
      *   key: fs.readFileSync('test/fixtures/keys/agent2-key.pem'),
@@ -293,8 +287,8 @@ declare module "https" {
      * Or
      *
      * ```js
-     * const https = require('node:https');
-     * const fs = require('node:fs');
+     * import https from 'node:https';
+     * import fs from 'node:fs';
      *
      * const options = {
      *   pfx: fs.readFileSync('test/fixtures/test_cert.pfx'),
@@ -312,15 +306,11 @@ declare module "https" {
      */
     function createServer<
         Request extends typeof http.IncomingMessage = typeof http.IncomingMessage,
-        Response extends typeof http.ServerResponse<InstanceType<Request>> = typeof http.ServerResponse<
-            InstanceType<Request>
-        >,
+        Response extends typeof http.ServerResponse<InstanceType<Request>> = typeof http.ServerResponse,
     >(requestListener?: http.RequestListener<Request, Response>): Server<Request, Response>;
     function createServer<
         Request extends typeof http.IncomingMessage = typeof http.IncomingMessage,
-        Response extends typeof http.ServerResponse<InstanceType<Request>> = typeof http.ServerResponse<
-            InstanceType<Request>
-        >,
+        Response extends typeof http.ServerResponse<InstanceType<Request>> = typeof http.ServerResponse,
     >(
         options: ServerOptions<Request, Response>,
         requestListener?: http.RequestListener<Request, Response>,
@@ -338,7 +328,7 @@ declare module "https" {
      * upload a file with a POST request, then write to the `ClientRequest` object.
      *
      * ```js
-     * const https = require('node:https');
+     * import https from 'node:https';
      *
      * const options = {
      *   hostname: 'encrypted.google.com',
@@ -411,9 +401,9 @@ declare module "https" {
      * Example pinning on certificate fingerprint, or the public key (similar to`pin-sha256`):
      *
      * ```js
-     * const tls = require('node:tls');
-     * const https = require('node:https');
-     * const crypto = require('node:crypto');
+     * import tls from 'node:tls';
+     * import https from 'node:https';
+     * import crypto from 'node:crypto';
      *
      * function sha256(s) {
      *   return crypto.createHash('sha256').update(s).digest('base64');
@@ -521,7 +511,7 @@ declare module "https" {
      * string, it is automatically parsed with `new URL()`. If it is a `URL` object, it will be automatically converted to an ordinary `options` object.
      *
      * ```js
-     * const https = require('node:https');
+     * import https from 'node:https';
      *
      * https.get('https://encrypted.google.com/', (res) => {
      *   console.log('statusCode:', res.statusCode);

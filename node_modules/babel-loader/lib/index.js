@@ -41,6 +41,9 @@ function makeLoader(callback) {
 }
 async function loader(source, inputSourceMap, overrides) {
   const filename = this.resourcePath;
+  const logger = typeof this.getLogger === "function" ? this.getLogger("babel-loader") : {
+    debug: () => {}
+  };
   let loaderOptions = this.getOptions();
   validateOptions(schema, loaderOptions, {
     name: "Babel loader"
@@ -55,15 +58,18 @@ async function loader(source, inputSourceMap, overrides) {
     if (overrides) {
       throw new Error("babel-loader's 'customize' option is not available when already " + "using a customized babel-loader wrapper.");
     }
+    logger.debug(`loading customize override: '${loaderOptions.customize}'`);
     let override = require(loaderOptions.customize);
     if (override.__esModule) override = override.default;
     if (typeof override !== "function") {
       throw new Error("Custom overrides must be functions.");
     }
+    logger.debug("applying customize override to @babel/core");
     overrides = override(babel);
   }
   let customOptions;
   if (overrides && overrides.customOptions) {
+    logger.debug("applying overrides customOptions() to loader options");
     const result = await overrides.customOptions.call(this, loaderOptions, {
       source,
       map: inputSourceMap
@@ -79,7 +85,7 @@ async function loader(source, inputSourceMap, overrides) {
   if (typeof loaderOptions.babelrc === "string") {
     console.warn("The option `babelrc` should not be set to a string anymore in the babel-loader config. " + "Please update your configuration and set `babelrc` to true or false.\n" + "If you want to specify a specific babel config file to inherit config from " + "please use the `extends` option.\nFor more information about this options see " + "https://babeljs.io/docs/core-packages/#options");
   }
-
+  logger.debug("normalizing loader options");
   // Standardize on 'sourceMaps' as the key passed through to Webpack, so that
   // users may safely use either one alongside our default use of
   // 'this.sourceMap' below without getting error about conflicting aliases.
@@ -106,10 +112,12 @@ async function loader(source, inputSourceMap, overrides) {
   delete programmaticOptions.cacheIdentifier;
   delete programmaticOptions.cacheCompression;
   delete programmaticOptions.metadataSubscribers;
+  logger.debug("resolving Babel configs");
   const config = await babel.loadPartialConfigAsync(injectCaller(programmaticOptions, this.target));
   if (config) {
     let options = config.options;
     if (overrides && overrides.config) {
+      logger.debug("applying overrides config() to Babel config");
       options = await overrides.config.call(this, config, {
         source,
         map: inputSourceMap,
@@ -137,20 +145,27 @@ async function loader(source, inputSourceMap, overrides) {
     } = loaderOptions;
     let result;
     if (cacheDirectory) {
+      logger.debug("cache is enabled");
       result = await cache({
         source,
         options,
         transform,
         cacheDirectory,
         cacheIdentifier,
-        cacheCompression
+        cacheCompression,
+        logger
       });
     } else {
+      logger.debug("cache is disabled, applying Babel transform");
       result = await transform(source, options);
     }
-    config.files.forEach(configFile => this.addDependency(configFile));
+    config.files.forEach(configFile => {
+      this.addDependency(configFile);
+      logger.debug(`added '${configFile}' to webpack dependencies`);
+    });
     if (result) {
       if (overrides && overrides.result) {
+        logger.debug("applying overrides result() to Babel transform results");
         result = await overrides.result.call(this, result, {
           source,
           map: inputSourceMap,
@@ -165,9 +180,13 @@ async function loader(source, inputSourceMap, overrides) {
         metadata,
         externalDependencies
       } = result;
-      externalDependencies == null ? void 0 : externalDependencies.forEach(dep => this.addDependency(dep));
+      externalDependencies?.forEach(dep => {
+        this.addDependency(dep);
+        logger.debug(`added '${dep}' to webpack dependencies`);
+      });
       metadataSubscribers.forEach(subscriber => {
         subscribe(subscriber, metadata, this);
+        logger.debug(`invoked metadata subscriber '${String(subscriber)}'`);
       });
       return [code, map];
     }

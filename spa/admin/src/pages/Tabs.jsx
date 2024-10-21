@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Addons from "./components/Addons";
+import Feature from "./components/Feature";
 import Dashboard from "./components/Dashboard";
 import Help from "./components/Help";
 import Settings from "./components/Settings";
@@ -8,7 +8,7 @@ import Settings from "./components/Settings";
 const Tabs = () => {
 	const [activeTab, setActiveTab] = useState("dashboard");
 
-	const tabs = ["dashboard", "addons", "help", "settings"];
+	const tabs = ["dashboard", "feature", "help", "settings"];
 	return (
 		<>
 			<div>
@@ -33,7 +33,7 @@ const Tabs = () => {
 				{/* Tab Content */}
 				<div className='mt-6'>
 					{activeTab === "dashboard" && <Dashboard />}
-					{activeTab === "addons" && <Addons />}
+					{activeTab === "feature" && <Feature />}
 					{activeTab === "help" && <Help />}
 					{activeTab === "settings" && <Settings />}
 				</div>

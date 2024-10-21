@@ -1,5 +1,33 @@
 # Changelog
 
+## v5.36.0
+
+ - Support import attributes `with` syntax
+
+## v5.35.0
+
+ - Ensure parent directory exists when using --output on CLI (#1530)
+
+## v5.34.1
+
+ - bump the rollup devDependency to disable CVE warnings (Terser was not affected)
+
+## v5.34.0
+
+ - internal: stop assigning properties to objects they don't belong in
+ - internal: run compress tests in parallel
+ - `drop_console`: emit an empty function if the return value of `console.METHOD(...)` may be called.
+
+## v5.33.0
+
+ - `reduce_vars` improved when dealing with hoisted function definitions (#1544)
+
+## v5.32.0
+
+ - `import("module")` can now be input and output from ESTree AST (#1557)
+ - `BigInt` literals can now be input and output from ESTree AST (#1555)
+ - `typeof` an object or array (`typeof {}` and `typeof []`) can now be statically evaluated. (#1546)
+
 ## v5.31.6
  - Retain side effects in a `case` when the expression is a sequence (comma) expression
 
