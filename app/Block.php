@@ -44,7 +44,7 @@ class Block {
 
         foreach ( $this->categories as $id => $label ) {
             $new_categories[] = [
-                'slug'  => "easycommerce-{$id}",
+                'slug'  => "thrail-commerce-{$id}",
                 'title' => $label,
             ];
         }

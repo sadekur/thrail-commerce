@@ -1,0 +1,13 @@
+{
+    "apiVersion": 2,
+    "name": "thrail-commerce/faqs",
+    "title": "Generic FAQ",
+    "category": "thrail-commerce-product",
+    "icon": "editor-help",
+    "description": "A block to display a generic FAQ accordion.",
+    "supports": {
+        "html": false
+    },
+    "editorScript": "file:index.js",
+    "render": "file:render.php"
+}
