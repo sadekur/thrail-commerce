@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Feature from "./components/Feature";
 import Dashboard from "./components/Dashboard";
-import Help from "./components/Help";
+import Blocks from "./components/Blocks";
 import Settings from "./components/Settings";
 
 const Tabs = () => {
 	const [activeTab, setActiveTab] = useState("dashboard");
 
-	const tabs = ["dashboard", "feature", "help", "settings"];
+	const tabs = ["dashboard", "feature", "blocks", "settings"];
 	return (
 		<>
 			<div>
@@ -34,7 +34,7 @@ const Tabs = () => {
 				<div className='mt-6'>
 					{activeTab === "dashboard" && <Dashboard />}
 					{activeTab === "feature" && <Feature />}
-					{activeTab === "help" && <Help />}
+					{activeTab === "blocks" && <Blocks />}
 					{activeTab === "settings" && <Settings />}
 				</div>
 			</div>

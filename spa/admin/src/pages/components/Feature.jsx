@@ -4,6 +4,7 @@ import axios from "axios";
 const Features = () => {
 	const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
 	const [loader, setLoader] = useState("Save Settings");
+	const [isLoading, setIsLoading] = useState(true);
 
 	// Create state for toggle buttons
 	const [toggles, setToggles] = useState([
@@ -39,7 +40,6 @@ const Features = () => {
 	]);
 
 	const handleToggleChange = (id) => {
-		// Toggle the switch value based on the id
 		setToggles((prevToggles) =>
 			prevToggles.map((toggle) =>
 				toggle.id === id ? { ...toggle, value: !toggle.value } : toggle
@@ -82,6 +82,7 @@ const Features = () => {
 	};
 
 	useEffect(() => {
+		setIsLoading(true);
 		axios
 			.get(`${THRAILCOMMERCE.apiurl}/get-settings`)
 			.then((response) => {
@@ -94,11 +95,17 @@ const Features = () => {
 			})
 			.catch((error) => {
 				console.log("error: ", error);
+			})
+			.finally(() => {
+				setIsLoading(false);
 			});
 	}, []);
 
 	return (
 		<div>
+		{isLoading ? (
+			<div>Loading...</div>
+		) : (
 			<form id='work-settings-form' onSubmit={handleSubmit}>
 				<div className='grid grid-cols-4 md:grid-cols-4 sm:grid-cols-1 gap-6'>
 					{toggles.map((toggle) => (
@@ -149,6 +156,7 @@ const Features = () => {
 					</button>
 				</p>
 			</form>
+		)}
 		</div>
 	);
 };
