@@ -7,6 +7,7 @@ class RestAPI {
 
     public function __construct() {
         $this->action( 'rest_api_init', [ $this, 'create_rest_routes' ] );
+        $this->action( 'rest_api_init', [ $this, 'block_register_routes' ] );
     }
 
     public function create_rest_routes() {
@@ -51,5 +52,44 @@ class RestAPI {
     public function save_settings_permission() {
         return current_user_can( 'manage_options' );
     }
+
+    public function block_register_routes() {
+        $this->register_route( '/get-block-register', [
+            'methods' => 'GET',
+            'callback' => [ $this, 'get_block_register' ],
+            'permission_callback' => [ $this, 'get_block_register_permission' ]
+        ]);
+        $this->register_route( '/block-register-save', [
+            'methods' => 'POST',
+            'callback' => [ $this, 'block_register' ],
+            'permission_callback' => [ $this, 'block_register_permission' ]
+        ] );
+    }
+
+    public function get_block_register() {
+        $default_settings = [
+            'generic_faq' => 'off',
+            'generic_faq2' => 'off',
+            'generic_faq3' => 'off',
+            'generic_faq4' => 'off',
+        ];
+        $settings = get_option( 'thrail_commerce_block_settings', $default_settings );
     
+        return rest_ensure_response( $settings );
+    }
+    public function get_block_register_permission() {
+        return true;
+    }
+
+    public function block_register( $request ) {
+        $settings = $request->get_param( 'settings' );
+        if ( is_array( $settings ) ) {
+            update_option( 'thrail_commerce_block_settings', $settings );
+        }
+        return rest_ensure_response( 'success' );
+    }
+
+    public function block_register_permission() {
+        return current_user_can( 'manage_options' );
+    }
 }

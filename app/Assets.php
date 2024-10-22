@@ -94,8 +94,8 @@ class Assets {
 	}
 
 	public function register_admin_assets() {
-		$scripts = $this->get_scripts();
-		$styles = $this->get_styles();
+		$scripts 	= $this->get_scripts();
+		$styles 	= $this->get_styles();
 	
 		wp_register_script('thrail-commerce-menu-script', $scripts['thrail-commerce-menu-script']['src'], [], $scripts['thrail-commerce-menu-script']['version'], true);
 		wp_register_script('thrail-commerce-block-script', $scripts['thrail-commerce-block-script']['src'], [], $scripts['thrail-commerce-block-script']['version'], true);
@@ -106,11 +106,11 @@ class Assets {
 		wp_register_script('thrail-commerce-admin-tailwind-script', $scripts['thrail-commerce-admin-tailwind-script']['src'], [], $scripts['thrail-commerce-admin-tailwind-script']['version'], true);
 		
 		wp_localize_script('thrail-commerce-admin-script', 'THRAILCOMMERCE', [
-			'nonce'   => wp_create_nonce('wp_rest'),
-			'ajaxurl' => admin_url('admin-ajax.php'),
+			'nonce'   	=> wp_create_nonce('wp_rest'),
+			'ajaxurl' 	=> admin_url('admin-ajax.php'),
 			// 'apiurl' => home_url('/wp-json/'),
-			'apiurl' => untrailingslashit( rest_url( 'thrail/v1' ) ),
-			'error'   => __('Something went wrong', 'thrail-commerce')
+			'apiurl' 	=> untrailingslashit( rest_url( 'thrail/v1' ) ),
+			'error'   	=> __('Something went wrong', 'thrail-commerce')
 		]);
 	
 		wp_register_style('thrail-commerce-admin-style', 
