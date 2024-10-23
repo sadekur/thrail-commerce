@@ -30,11 +30,11 @@ class Assets {
 				'deps'    => ['jquery']
 			],
 			'thrail-commerce-block-script' => [
-				'src'     => THRAIL_COMMERCE_URL . 'spa/build/block.build.js',
+				'src'     => THRAIL_COMMERCE_URL . 'build/block.build.js',
 				'version' => time(),
 			],
 			'thrail-commerce-menu-script' => [
-				'src'     => THRAIL_COMMERCE_URL . 'spa/build/admin.build.js',
+				'src'     => THRAIL_COMMERCE_URL . 'build/admin.build.js',
 				'version' => time(),
 			],
 			'thrail-commerce-admin-script' => [
@@ -47,7 +47,7 @@ class Assets {
 				'version' => filemtime( THRAIL_COMMERCE_PATH . '/assets/js/init.js' ),
 			],
 			'thrail-commerce-admin-tailwind-script' =>[
-				'src' => THRAIL_COMMERCE_URL . 'spa/build/tailwind.build.js',
+				'src' => THRAIL_COMMERCE_URL . 'build/tailwind.build.js',
 				'version' => time(),
 			],
 		];

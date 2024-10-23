@@ -1,0 +1,1 @@
+{"version":3,"file":"block.build.js","mappings":";;;;AAAA;;AAEA,iD","sources":["webpack://thrail-commerce/./spa/block/App.jsx"],"sourcesContent":["// const requireContext = require.context(\".\", true, /\\.(js|jsx|tsx)$/);\r\n\r\n// requireContext.keys().forEach(requireContext);"],"names":[],"sourceRoot":""}

@@ -76,7 +76,7 @@ final class THRAIL_COMMERCE{
 
 		new Thrail\Commerce\Assets();
 		new Thrail\Commerce\Email();
-		new Thrail\Commerce\RestAPI();
+		new Thrail\Commerce\API();
 		new Thrail\Commerce\Common\Init();
 		new Thrail\Commerce\Block();
 

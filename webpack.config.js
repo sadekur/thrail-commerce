@@ -11,7 +11,7 @@ module.exports = (env, argv) => {
     },
     output: {
       filename: "[name].build.js",
-      path: path.resolve(__dirname, "spa/build"),
+      path: path.resolve(__dirname, "build"),
     },
     module: {
       rules: [
@@ -53,5 +53,20 @@ module.exports = (env, argv) => {
     resolve: {
       extensions: [".js", ".jsx", ".json"],
     },
+    devServer: {
+      static: {
+        directory: path.join(__dirname, "build"),
+      },
+      compress: true,
+      port: 9000,
+    },
+    devtool: "source-map",
+    // externals: {
+    //     react: "React",
+    //     "react-dom": "ReactDOM",
+    //     "@wordpress/blocks": ["wp", "blocks"],
+    //     "@wordpress/block-editor": ["wp", "blockEditor"],
+    //     "@wordpress/element": ["wp", "element"],
+    // },
   };
 };
