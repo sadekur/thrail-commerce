@@ -1,3 +1,3 @@
-// const requireContext = require.context(".", true, /\.(js|jsx|tsx)$/);
+const requireContext = require.context(".", true, /\.(js|jsx|tsx)$/);
 
-// requireContext.keys().forEach(requireContext);
+requireContext.keys().forEach(requireContext);

@@ -1,7 +1,14 @@
 import { registerBlockType } from '@wordpress/blocks';
-import Edit from './edit';
 
 registerBlockType('thrail-commerce/faqs', {
-    edit: Edit,
-    save: () => null, // Save is disabled because we're using PHP for rendering.
+    title: 'FAQs',
+    category: 'thrail-commerce-product',
+    icon: 'editor-help',
+    description: 'A block to display frequently asked questions.',
+    edit: (props) => {
+        // Edit function
+    },
+    save: (props) => {
+        // Save function
+    }
 });

@@ -61,12 +61,10 @@ module.exports = (env, argv) => {
       port: 9000,
     },
     devtool: "source-map",
-    // externals: {
-    //     react: "React",
-    //     "react-dom": "ReactDOM",
-    //     "@wordpress/blocks": ["wp", "blocks"],
-    //     "@wordpress/block-editor": ["wp", "blockEditor"],
-    //     "@wordpress/element": ["wp", "element"],
-    // },
+    externals: {
+      "@wordpress/blocks": ["wp", "blocks"],
+      "@wordpress/block-editor": ["wp", "blockEditor"],
+      "@wordpress/element": ["wp", "element"],
+    },
   };
 };
