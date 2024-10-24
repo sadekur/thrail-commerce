@@ -7,8 +7,6 @@
      */
     class Frontend {
         use Hookable;
-
-        // Name of the option where settings are stored
         protected $settings_option_name = 'thrail_commerce_settings';
 
         /**
@@ -21,6 +19,6 @@
             }
         }
         public function add_footer_hook() {
-            echo '<p style="color: green; text-align: center" class="notice notice-success">Footer hook has been enabled!</p>';
+            echo '<p class="notice notice-success text-center text-[20px] bg-[#f1f1f1] text-[#50d71e]">Footer hook has been enabled!</p>';
         }
     }
