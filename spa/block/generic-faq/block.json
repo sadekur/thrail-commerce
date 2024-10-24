@@ -1,0 +1,13 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "thrail-commerce/generic-faq",
+	"title": "FAQs",
+	"category": "thrail-commerce-product",
+	"icon": "list-view",
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

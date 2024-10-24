@@ -1,8 +1,10 @@
 <?php
 namespace Thrail\Commerce;
+
 use Thrail\Commerce\Classes\Trait\Hookable;
+
 class Block {
-	use Hookable;
+    use Hookable;
 
     public $categories = [];
 
@@ -15,10 +17,11 @@ class Block {
         $this->filter( 'init', [ $this, 'register' ] );
         $this->filter( 'block_categories_all', [ $this, 'register_category' ] );
     }
-
     public function register() {
         $blocks_dir = THRAIL_COMMERCE_PATH . 'spa/blocks/';
         $categories = glob( $blocks_dir . '*', GLOB_ONLYDIR );
+        $block_settings = get_option('thrail_commerce_block_settings');
+        $block_settings = maybe_unserialize($block_settings);
 
         foreach ( $categories as $category ) {
             $category_name = basename( $category );
@@ -27,8 +30,10 @@ class Block {
             foreach ( $blocks as $block ) {
                 $block_name = basename( $block );
                 $block_type = "{$category_name}/{$block_name}";
-                
-                register_block_type( $block );
+                $block_option_key = "tc{$block_name}";
+                if ( isset( $block_settings[$block_option_key] ) && $block_settings[$block_option_key] === 'on' ) {
+                    register_block_type( $block );
+                }
             }
         }
     }

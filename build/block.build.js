@@ -1770,10 +1770,10 @@ requireContext.keys().forEach(requireContext);
 
 /***/ }),
 
-/***/ "./spa/block/faqs/generic-faq/edit.js":
-/*!********************************************!*\
-  !*** ./spa/block/faqs/generic-faq/edit.js ***!
-  \********************************************/
+/***/ "./spa/block/generic-faq/edit.js":
+/*!***************************************!*\
+  !*** ./spa/block/generic-faq/edit.js ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1805,28 +1805,24 @@ function Edit() {
 
 /***/ }),
 
-/***/ "./spa/block/faqs/generic-faq/index.js":
-/*!*********************************************!*\
-  !*** ./spa/block/faqs/generic-faq/index.js ***!
-  \*********************************************/
+/***/ "./spa/block/generic-faq/index.js":
+/*!****************************************!*\
+  !*** ./spa/block/generic-faq/index.js ***!
+  \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./spa/block/generic-faq/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./spa/block/generic-faq/block.json");
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('thrail-commerce/faqs', {
-  title: 'FAQs',
-  category: 'thrail-commerce-product',
-  icon: 'editor-help',
-  description: 'A block to display frequently asked questions.',
-  edit: props => {
-    // Edit function
-  },
-  save: props => {
-    // Save function
-  }
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name, {
+  title: _block_json__WEBPACK_IMPORTED_MODULE_2__.title,
+  edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
 
 /***/ }),
@@ -6438,8 +6434,8 @@ Tannin.prototype.dcnpgettext = function( domain, context, singular, plural, n ) 
 
 var map = {
 	"./App.jsx": "./spa/block/App.jsx",
-	"./faqs/generic-faq/edit.js": "./spa/block/faqs/generic-faq/edit.js",
-	"./faqs/generic-faq/index.js": "./spa/block/faqs/generic-faq/index.js"
+	"./generic-faq/edit.js": "./spa/block/generic-faq/edit.js",
+	"./generic-faq/index.js": "./spa/block/generic-faq/index.js"
 };
 
 
@@ -6658,6 +6654,17 @@ function memize(fn, options) {
 
 
 
+
+/***/ }),
+
+/***/ "./spa/block/generic-faq/block.json":
+/*!******************************************!*\
+  !*** ./spa/block/generic-faq/block.json ***!
+  \******************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"thrail-commerce/generic-faq","title":"FAQs","category":"thrail-commerce-product","icon":"list-view","supports":{"html":false},"editorScript":"file:./index.js","render":"file:./render.php"}');
 
 /***/ })
 

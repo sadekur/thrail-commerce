@@ -85,20 +85,20 @@ const Blocks = () => {
     value: false
   }, {
     id: 2,
-    label: "Generic Faq2",
-    name: "generic_faq2",
+    label: "Variant Faq",
+    name: "variant_faq",
     description: "Enable custom functionality 1 for advanced features.",
     value: false
   }, {
     id: 3,
-    label: "Generic Faq3",
-    name: "generic_faq3",
+    label: "Accordion",
+    name: "accordion",
     description: "Enable custom functionality 2 for more options.",
     value: false
   }, {
     id: 4,
-    label: "Generic Faq4",
-    name: "generic_faq4",
+    label: "Add To Cart",
+    name: "add_to_cart",
     description: "Enable custom functionality 3 for more options.",
     value: false
   }]);

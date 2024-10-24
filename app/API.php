@@ -69,9 +69,9 @@ class API {
     public function get_block_register() {
         $default_settings = [
             'generic_faq' => 'off',
-            'generic_faq2' => 'off',
-            'generic_faq3' => 'off',
-            'generic_faq4' => 'off',
+            'variant_faq' => 'off',
+            'accordion' => 'off',
+            'add_to_cart' => 'off',
         ];
         $settings = get_option( 'thrail_commerce_block_settings', $default_settings );
     

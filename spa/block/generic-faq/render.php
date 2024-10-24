@@ -14,9 +14,11 @@ function render_faq_block( $attributes ) {
             </div>
         <?php endforeach; ?>
     </div>
-    <?php return ob_get_clean();
+    <?php 
+    return ob_get_clean();
 }
 
 register_block_type( __DIR__, array(
     'render_callback' => 'render_faq_block',
 ) );
+

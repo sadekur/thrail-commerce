@@ -18,22 +18,22 @@ const Blocks = () => {
 		},
 		{
 			id: 2,
-			label: "Generic Faq2",
-			name: "generic_faq2",
+			label: "Variant Faq",
+			name: "variant_faq",
 			description: "Enable custom functionality 1 for advanced features.",
 			value: false,
 		},
 		{
 			id: 3,
-			label: "Generic Faq3",
-			name: "generic_faq3",
+			label: "Accordion",
+			name: "accordion",
 			description: "Enable custom functionality 2 for more options.",
 			value: false,
 		},
 		{
 			id: 4,
-			label: "Generic Faq4",
-			name: "generic_faq4",
+			label: "Add To Cart",
+			name: "add_to_cart",
 			description: "Enable custom functionality 3 for more options.",
 			value: false,
 		},
@@ -103,60 +103,62 @@ const Blocks = () => {
 
 	return (
 		<div>
-		{isLoading ? (
-			<div>Loading...</div>
-		) : (
-			<form id='work-settings-form' onSubmit={handleSubmit}>
-				<div className='grid grid-cols-4 md:grid-cols-4 sm:grid-cols-1 gap-6'>
-					{toggles.map((toggle) => (
-						<div
-							key={toggle.id}
-							className='p-4 bg-white shadow-md rounded-lg border border-gray-200 relative'>
-							<div className='flex flex-col h-full'>
-								<div className='mb-auto'>
-									<h3 className='text-lg font-semibold'>
-										{toggle.label}
-									</h3>
-									<p className='text-sm text-gray-600'>
-										{toggle.description}
-									</p>
-								</div>
-								<div className='mt-auto flex justify-end'>
-									<label className='relative inline-block w-12'>
-										<input
-											type='checkbox'
-											id={`toggle-${toggle.id}`}
-											className='opacity-0 w-0 h-0'
-											checked={toggle.value}
-											onChange={() =>
-												handleToggleChange(toggle.id)
-											}
-										/>
-										<span
-											className={`slider block rounded-full w-[50px] h-[28px] cursor-pointer transition-all duration-100 ${
-												toggle.value
-													? "bg-[#452b0a]"
-													: "bg-[#867c7c]"
-											}`}></span>
-										<span
-											className={`dot absolute left-1 top-6 w-4 h-4 bg-white rounded-full transition-transform duration-100 transform ${
-												toggle.value
-													? "translate-x-6"
-													: ""
-											}`}></span>
-									</label>
+			{isLoading ? (
+				<div>Loading...</div>
+			) : (
+				<form id='work-settings-form' onSubmit={handleSubmit}>
+					<div className='grid grid-cols-4 md:grid-cols-4 sm:grid-cols-1 gap-6'>
+						{toggles.map((toggle) => (
+							<div
+								key={toggle.id}
+								className='p-4 bg-white shadow-md rounded-lg border border-gray-200 relative'>
+								<div className='flex flex-col h-full'>
+									<div className='mb-auto'>
+										<h3 className='text-lg font-semibold'>
+											{toggle.label}
+										</h3>
+										<p className='text-sm text-gray-600'>
+											{toggle.description}
+										</p>
+									</div>
+									<div className='mt-auto flex justify-end'>
+										<label className='relative inline-block w-12'>
+											<input
+												type='checkbox'
+												id={`toggle-${toggle.id}`}
+												className='opacity-0 w-0 h-0'
+												checked={toggle.value}
+												onChange={() =>
+													handleToggleChange(
+														toggle.id
+													)
+												}
+											/>
+											<span
+												className={`slider block rounded-full w-[50px] h-[28px] cursor-pointer transition-all duration-100 ${
+													toggle.value
+														? "bg-[#452b0a]"
+														: "bg-[#867c7c]"
+												}`}></span>
+											<span
+												className={`dot absolute left-1 top-6 w-4 h-4 bg-white rounded-full transition-transform duration-100 transform ${
+													toggle.value
+														? "translate-x-6"
+														: ""
+												}`}></span>
+										</label>
+									</div>
 								</div>
 							</div>
-						</div>
-					))}
-				</div>
-				<p className='submit mt-6'>
-					<button type='submit' className='button button-primary'>
-						{loader}
-					</button>
-				</p>
-			</form>
-		)}
+						))}
+					</div>
+					<p className='submit mt-6'>
+						<button type='submit' className='button button-primary'>
+							{loader}
+						</button>
+					</p>
+				</form>
+			)}
 		</div>
 	);
 };
