@@ -80,13 +80,13 @@ const Blocks = () => {
   const [toggles, setToggles] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
     id: 1,
     label: "Generic Faq",
-    name: "generic_faq",
+    name: "generic-faq",
     description: "Enable the footer hook to show additional content in the footer.",
     value: false
   }, {
     id: 2,
     label: "Variant Faq",
-    name: "variant_faq",
+    name: "variant-faq",
     description: "Enable custom functionality 1 for advanced features.",
     value: false
   }, {
@@ -98,7 +98,7 @@ const Blocks = () => {
   }, {
     id: 4,
     label: "Add To Cart",
-    name: "add_to_cart",
+    name: "add-to-cart",
     description: "Enable custom functionality 3 for more options.",
     value: false
   }]);

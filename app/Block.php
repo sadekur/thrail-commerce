@@ -30,7 +30,8 @@ class Block {
             foreach ( $blocks as $block ) {
                 $block_name = basename( $block );
                 $block_type = "{$category_name}/{$block_name}";
-                $block_option_key = "tc{$block_name}";
+                $block_option_key = "{$block_name}";
+                update_option("block_option_key", $block_option_key);
                 if ( isset( $block_settings[$block_option_key] ) && $block_settings[$block_option_key] === 'on' ) {
                     register_block_type( $block );
                 }

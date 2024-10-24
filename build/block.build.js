@@ -1759,21 +1759,21 @@ function sprintf(format, ...args) {
 
 /***/ }),
 
-/***/ "./spa/block/App.jsx":
-/*!***************************!*\
-  !*** ./spa/block/App.jsx ***!
-  \***************************/
+/***/ "./spa/blocks/App.jsx":
+/*!****************************!*\
+  !*** ./spa/blocks/App.jsx ***!
+  \****************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-const requireContext = __webpack_require__("./spa/block sync recursive \\.(js%7Cjsx%7Ctsx)$");
+const requireContext = __webpack_require__("./spa/blocks sync recursive \\.(js%7Cjsx%7Ctsx)$");
 requireContext.keys().forEach(requireContext);
 
 /***/ }),
 
-/***/ "./spa/block/generic-faq/edit.js":
-/*!***************************************!*\
-  !*** ./spa/block/generic-faq/edit.js ***!
-  \***************************************/
+/***/ "./spa/blocks/generic-faq/generic-faq/edit.js":
+/*!****************************************************!*\
+  !*** ./spa/blocks/generic-faq/generic-faq/edit.js ***!
+  \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1805,18 +1805,18 @@ function Edit() {
 
 /***/ }),
 
-/***/ "./spa/block/generic-faq/index.js":
-/*!****************************************!*\
-  !*** ./spa/block/generic-faq/index.js ***!
-  \****************************************/
+/***/ "./spa/blocks/generic-faq/generic-faq/index.js":
+/*!*****************************************************!*\
+  !*** ./spa/blocks/generic-faq/generic-faq/index.js ***!
+  \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./spa/block/generic-faq/edit.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./spa/block/generic-faq/block.json");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./spa/blocks/generic-faq/generic-faq/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./spa/blocks/generic-faq/generic-faq/block.json");
 
 
 
@@ -6426,16 +6426,16 @@ Tannin.prototype.dcnpgettext = function( domain, context, singular, plural, n ) 
 
 /***/ }),
 
-/***/ "./spa/block sync recursive \\.(js%7Cjsx%7Ctsx)$":
-/*!*********************************************!*\
-  !*** ./spa/block/ sync \.(js%7Cjsx%7Ctsx)$ ***!
-  \*********************************************/
+/***/ "./spa/blocks sync recursive \\.(js%7Cjsx%7Ctsx)$":
+/*!**********************************************!*\
+  !*** ./spa/blocks/ sync \.(js%7Cjsx%7Ctsx)$ ***!
+  \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
-	"./App.jsx": "./spa/block/App.jsx",
-	"./generic-faq/edit.js": "./spa/block/generic-faq/edit.js",
-	"./generic-faq/index.js": "./spa/block/generic-faq/index.js"
+	"./App.jsx": "./spa/blocks/App.jsx",
+	"./generic-faq/generic-faq/edit.js": "./spa/blocks/generic-faq/generic-faq/edit.js",
+	"./generic-faq/generic-faq/index.js": "./spa/blocks/generic-faq/generic-faq/index.js"
 };
 
 
@@ -6456,7 +6456,7 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = "./spa/block sync recursive \\.(js%7Cjsx%7Ctsx)$";
+webpackContext.id = "./spa/blocks sync recursive \\.(js%7Cjsx%7Ctsx)$";
 
 /***/ }),
 
@@ -6657,10 +6657,10 @@ function memize(fn, options) {
 
 /***/ }),
 
-/***/ "./spa/block/generic-faq/block.json":
-/*!******************************************!*\
-  !*** ./spa/block/generic-faq/block.json ***!
-  \******************************************/
+/***/ "./spa/blocks/generic-faq/generic-faq/block.json":
+/*!*******************************************************!*\
+  !*** ./spa/blocks/generic-faq/generic-faq/block.json ***!
+  \*******************************************************/
 /***/ ((module) => {
 
 "use strict";
@@ -6752,7 +6752,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/tru
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__("./spa/block/App.jsx");
+/******/ 	var __webpack_exports__ = __webpack_require__("./spa/blocks/App.jsx");
 /******/ 	
 /******/ })()
 ;
