@@ -1770,10 +1770,10 @@ requireContext.keys().forEach(requireContext);
 
 /***/ }),
 
-/***/ "./spa/blocks/generic-faq/generic-faq/edit.js":
-/*!****************************************************!*\
-  !*** ./spa/blocks/generic-faq/generic-faq/edit.js ***!
-  \****************************************************/
+/***/ "./spa/blocks/generic-faq/edit.js":
+/*!****************************************!*\
+  !*** ./spa/blocks/generic-faq/edit.js ***!
+  \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1793,30 +1793,83 @@ __webpack_require__.r(__webpack_exports__);
 
 function Edit() {
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     ...blockProps,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
       children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('FAQ Block (Editor View)', 'thrail-commerce')
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('FAQs will be rendered on the frontend.', 'thrail-commerce')
-    })]
+    })
   });
 }
 
 /***/ }),
 
-/***/ "./spa/blocks/generic-faq/generic-faq/index.js":
-/*!*****************************************************!*\
-  !*** ./spa/blocks/generic-faq/generic-faq/index.js ***!
-  \*****************************************************/
+/***/ "./spa/blocks/generic-faq/index.js":
+/*!*****************************************!*\
+  !*** ./spa/blocks/generic-faq/index.js ***!
+  \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./spa/blocks/generic-faq/generic-faq/edit.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./spa/blocks/generic-faq/generic-faq/block.json");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./spa/blocks/generic-faq/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./spa/blocks/generic-faq/block.json");
+
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name, {
+  title: _block_json__WEBPACK_IMPORTED_MODULE_2__.title,
+  edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"]
+});
+
+/***/ }),
+
+/***/ "./spa/blocks/variant-faq/edit.js":
+/*!****************************************!*\
+  !*** ./spa/blocks/variant-faq/edit.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Edit)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function Edit() {
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    ...blockProps,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Variant FAQ Block (Editor View)', 'thrail-commerce')
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./spa/blocks/variant-faq/index.js":
+/*!*****************************************!*\
+  !*** ./spa/blocks/variant-faq/index.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./spa/blocks/variant-faq/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./spa/blocks/variant-faq/block.json");
 
 
 
@@ -6434,8 +6487,10 @@ Tannin.prototype.dcnpgettext = function( domain, context, singular, plural, n ) 
 
 var map = {
 	"./App.jsx": "./spa/blocks/App.jsx",
-	"./generic-faq/generic-faq/edit.js": "./spa/blocks/generic-faq/generic-faq/edit.js",
-	"./generic-faq/generic-faq/index.js": "./spa/blocks/generic-faq/generic-faq/index.js"
+	"./generic-faq/edit.js": "./spa/blocks/generic-faq/edit.js",
+	"./generic-faq/index.js": "./spa/blocks/generic-faq/index.js",
+	"./variant-faq/edit.js": "./spa/blocks/variant-faq/edit.js",
+	"./variant-faq/index.js": "./spa/blocks/variant-faq/index.js"
 };
 
 
@@ -6657,14 +6712,25 @@ function memize(fn, options) {
 
 /***/ }),
 
-/***/ "./spa/blocks/generic-faq/generic-faq/block.json":
-/*!*******************************************************!*\
-  !*** ./spa/blocks/generic-faq/generic-faq/block.json ***!
-  \*******************************************************/
+/***/ "./spa/blocks/generic-faq/block.json":
+/*!*******************************************!*\
+  !*** ./spa/blocks/generic-faq/block.json ***!
+  \*******************************************/
 /***/ ((module) => {
 
 "use strict";
 module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"thrail-commerce/generic-faq","title":"FAQs","category":"thrail-commerce-product","icon":"list-view","supports":{"html":false},"editorScript":"file:./index.js","render":"file:./render.php"}');
+
+/***/ }),
+
+/***/ "./spa/blocks/variant-faq/block.json":
+/*!*******************************************!*\
+  !*** ./spa/blocks/variant-faq/block.json ***!
+  \*******************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"thrail-commerce/variant-faq","title":"Variant FAQs","category":"thrail-commerce-product","icon":"list-view","supports":{"html":false},"editorScript":"file:./index.js","render":"file:./render.php"}');
 
 /***/ })
 

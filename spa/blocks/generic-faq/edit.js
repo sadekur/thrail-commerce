@@ -8,7 +8,6 @@ export default function Edit() {
     return (
         <div {...blockProps}>
             <h3>{__('FAQ Block (Editor View)', 'thrail-commerce')}</h3>
-            <p>{__('FAQs will be rendered on the frontend.', 'thrail-commerce')}</p>
         </div>
     );
 }
