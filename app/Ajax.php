@@ -4,6 +4,6 @@ namespace Thrail\Commerce;
 class Ajax {
 
 	function __construct() {
-		echo "ajax";
+		// echo "ajax";
 	}
 }

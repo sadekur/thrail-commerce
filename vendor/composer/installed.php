@@ -3,7 +3,7 @@
         'name' => 'thrail/commerce',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '48d8419c288398219147b5192ebd7df48ec8f378',
+        'reference' => '92c8dc75e917b51dd5907c53ee03d8b796a62bf5',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'thrail/commerce' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '48d8419c288398219147b5192ebd7df48ec8f378',
+            'reference' => '92c8dc75e917b51dd5907c53ee03d8b796a62bf5',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
