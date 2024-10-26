@@ -1766,7 +1766,75 @@ function sprintf(format, ...args) {
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 const requireContext = __webpack_require__("./spa/blocks sync recursive \\.(js%7Cjsx%7Ctsx)$");
-requireContext.keys().forEach(requireContext);
+// requireContext.keys().forEach(requireContext);
+const activeBlocks = window.THRAILCOMMERCE.activeBlocks || [];
+
+// Function to check if a path matches any active block
+const isActiveBlock = path => {
+  return activeBlocks.some(block => path.includes(block));
+};
+
+// Load only the active blocks
+requireContext.keys().forEach(path => {
+  if (isActiveBlock(path)) {
+    requireContext(path);
+  }
+});
+
+/***/ }),
+
+/***/ "./spa/blocks/accordion/edit.js":
+/*!**************************************!*\
+  !*** ./spa/blocks/accordion/edit.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Edit)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function Edit() {
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    ...blockProps,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Accordion Block (Editor View)', 'thrail-commerce')
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./spa/blocks/accordion/index.js":
+/*!***************************************!*\
+  !*** ./spa/blocks/accordion/index.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./spa/blocks/accordion/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./spa/blocks/accordion/block.json");
+
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name, {
+  title: _block_json__WEBPACK_IMPORTED_MODULE_2__.title,
+  edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"]
+});
 
 /***/ }),
 
@@ -6487,6 +6555,8 @@ Tannin.prototype.dcnpgettext = function( domain, context, singular, plural, n ) 
 
 var map = {
 	"./App.jsx": "./spa/blocks/App.jsx",
+	"./accordion/edit.js": "./spa/blocks/accordion/edit.js",
+	"./accordion/index.js": "./spa/blocks/accordion/index.js",
 	"./generic-faq/edit.js": "./spa/blocks/generic-faq/edit.js",
 	"./generic-faq/index.js": "./spa/blocks/generic-faq/index.js",
 	"./variant-faq/edit.js": "./spa/blocks/variant-faq/edit.js",
@@ -6709,6 +6779,17 @@ function memize(fn, options) {
 
 
 
+
+/***/ }),
+
+/***/ "./spa/blocks/accordion/block.json":
+/*!*****************************************!*\
+  !*** ./spa/blocks/accordion/block.json ***!
+  \*****************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"thrail-commerce/accordion","title":"Accordion","category":"thrail-commerce-product","icon":"list-view","supports":{"html":false},"editorScript":"file:./index.js","render":"file:./render.php"}');
 
 /***/ }),
 

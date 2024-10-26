@@ -1,5 +1,6 @@
 <?php
 namespace Thrail\Commerce;
+
 use Thrail\Commerce\Classes\Trait\Hookable;
 
 class Assets {
@@ -11,6 +12,7 @@ class Assets {
         $this->action( 'enqueue_block_assets', [ $this, 'enqueue_block_assets' ] );
         $this->action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_assets' ] );
     }
+
     public function enqueue_common_assets() {
         wp_enqueue_script(
             'thrail-commerce-admin-tailwind-script',
@@ -30,6 +32,11 @@ class Assets {
             true
         );
         $this->enqueue_common_assets();
+
+        wp_localize_script('thrail-commerce-block-script', 'THRAILCOMMERCE', [
+            'activeBlocks' => get_active_blocks(),
+        ]);
+
         if (!is_admin()) {
             wp_enqueue_style(
                 'thrail-commerce-frontend-style',
@@ -51,7 +58,7 @@ class Assets {
         wp_localize_script('thrail-commerce-frontend-script', 'THRAILCOMMERCE', [
             'ajaxurl' => admin_url('admin-ajax.php'),
             'nonce'   => wp_create_nonce('thrail-commerce'),
-            'error'   => __('Something went wrong', 'thrail-commerce')
+            'error'   => __('Something went wrong', 'thrail-commerce'),
         ]);
 
         // Enqueue frontend styles
@@ -96,12 +103,14 @@ class Assets {
             time(),
             true
         );
+
         wp_localize_script('thrail-commerce-admin-script', 'THRAILCOMMERCE', [
             'nonce'    => wp_create_nonce('wp_rest'),
             'ajaxurl'  => admin_url('admin-ajax.php'),
             'apiurl'   => untrailingslashit(rest_url('thrail/v1')),
-            'error'    => __('Something went wrong', 'thrail-commerce')
+            'error'    => __('Something went wrong', 'thrail-commerce'),
         ]);
+
         wp_enqueue_style(
             'thrail-commerce-admin-style',
             THRAIL_COMMERCE_ASSETS . '/css/admin.css',
@@ -122,7 +131,7 @@ class Assets {
             [],
             null
         );
+
         $this->enqueue_common_assets();
     }
 }
-
