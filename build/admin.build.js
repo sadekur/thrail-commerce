@@ -251,25 +251,25 @@ const Features = () => {
   const [toggles, setToggles] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
     id: 1,
     label: "Woocommerce Tip",
-    name: "woocommerce_tips",
+    name: "woocommerce-tips",
     description: "Enable the footer hook to show additional content in the footer.",
     value: false
   }, {
     id: 2,
     label: "Woocommerce Faq",
-    name: "woocommerce_faq",
+    name: "woocommerce-faq",
     description: "Enable custom functionality 1 for advanced features.",
     value: false
   }, {
     id: 3,
     label: "Woocommerce Product Barcode",
-    name: "woocommerce_product_barcode",
+    name: "woocommerce-product-barcode",
     description: "Enable custom functionality 2 for more options.",
     value: false
   }, {
     id: 4,
     label: "Woocommerce Tips2",
-    name: "woocommerce_tips2",
+    name: "woocommerce-tips2",
     description: "Enable custom functionality 3 for more options.",
     value: false
   }]);
@@ -346,6 +346,7 @@ const Features = () => {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
                   type: "checkbox",
                   id: `toggle-${toggle.id}`,
+                  name: toggle.name,
                   className: "opacity-0 w-0 h-0",
                   checked: toggle.value,
                   onChange: () => handleToggleChange(toggle.id)
