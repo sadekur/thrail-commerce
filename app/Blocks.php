@@ -3,7 +3,7 @@ namespace Thrail\Commerce;
 
 use Thrail\Commerce\Classes\Trait\Hookable;
 
-class Block {
+class Blocks {
     use Hookable;
 
     public $categories = [];
@@ -13,11 +13,11 @@ class Block {
             'product' => __( 'Thrail - Commerce', 'thrail-commerce' ),
         ];
 
-        $this->filter('init', [ $this, 'register' ]);
+        $this->filter('init', [ $this, 'blocks_register' ]);
         $this->filter('block_categories_all', [ $this, 'add_custom_categories' ]);
     }
 
-    public function register() {
+    public function blocks_register() {
         $blocks_dir     = THRAIL_COMMERCE_PATH . 'spa/blocks/';
         $categories     = glob($blocks_dir); // Fetch directories
         $block_settings = get_option('thrail_commerce_block_settings');

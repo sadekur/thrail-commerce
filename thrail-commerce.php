@@ -62,8 +62,8 @@ final class THRAIL_COMMERCE{
 	public function define_constants() {
 		define( 'THRAIL_COMMERCE_VERSION', self::version );
 		define( 'THRAIL_COMMERCE_FILE', __FILE__ );
-		define('THRAIL_COMMERCE_PATH', plugin_dir_path(__FILE__));
-		define('THRAIL_COMMERCE_URL', plugin_dir_url(__FILE__));
+		define( 'THRAIL_COMMERCE_PATH', plugin_dir_path(__FILE__) );
+		define( 'THRAIL_COMMERCE_URL', plugin_dir_url(__FILE__) );
 		define( 'THRAIL_COMMERCE_ASSETS', THRAIL_COMMERCE_URL . '/assets' );
 	}
 
@@ -78,7 +78,8 @@ final class THRAIL_COMMERCE{
 		new Thrail\Commerce\Email();
 		new Thrail\Commerce\API();
 		new Thrail\Commerce\Common\Init();
-		new Thrail\Commerce\Block();
+		new Thrail\Commerce\Blocks();
+		new Thrail\Commerce\Features();
 
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 			new Thrail\Commerce\Ajax();
