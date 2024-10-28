@@ -26,10 +26,10 @@ class API {
 
     public function get_settings() {
         $default_settings = [
-            'woocommerce_tips' => 'off',
-            'woocommerce_faq' => 'off',
-            'woocommerce_product_barcode' => 'off',
-            'woocommerce_tips2' => 'off',
+            'woocommerce-tips' => 'off',
+            'woocommerce-faq' => 'off',
+            'woocommerce-product-barcode' => 'off',
+            'woocommerce-tips2' => 'off',
         ];
         $settings = get_option( 'thrail_commerce_settings', $default_settings );
     

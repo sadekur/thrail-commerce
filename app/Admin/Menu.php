@@ -28,7 +28,7 @@ class Menu
 
         $settings = get_option( 'thrail_commerce_settings', [] );
 
-        if (isset($settings['woocommerce_tips']) && $settings['woocommerce_tips'] === 'on') {
+        if (isset($settings['woocommerce-tips']) && $settings['woocommerce-tips'] === 'on') {
             add_submenu_page(
                 'thrail-commerce',
                 'Thrail Commerce Settings',
