@@ -8,6 +8,6 @@ class WoocommerceTips {
 
     public function footer_feature() {
         // Feature logic here
-        echo '<p class="woocommerce-tips">Tip: Remember to check out our featured products!</p>';
+        echo '<p class="woocommerce-tips text-center text-[20px] bg-[#f1f1f1] text-[#50d71e]">Tip: Remember to check out our featured products!</p>';
     }
 }
