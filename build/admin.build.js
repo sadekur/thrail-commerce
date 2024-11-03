@@ -268,8 +268,8 @@ const Features = () => {
     value: false
   }, {
     id: 4,
-    label: "Woocommerce Tips2",
-    name: "woocommerce-tips2",
+    label: "Buy Button for WooCommerce",
+    name: "buy-button-for-woocommerce",
     description: "Enable custom functionality 3 for more options.",
     value: false
   }]);

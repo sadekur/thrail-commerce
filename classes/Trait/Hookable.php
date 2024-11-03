@@ -27,6 +27,16 @@ trait Hookable {
         add_filter( $hook, $callback, $priority, $accepted_args );
     }
 
+     /**
+     * Add a WordPress shortcode.
+     *
+     * @param string   $tag      The name of the shortcode.
+     * @param callable $callback The callback function to handle the output of the shortcode.
+     */
+    public function add_shortcode($tag, $callback) {
+        add_shortcode($tag, $callback);
+    }
+
    /**
      * Register a REST route.
      *
@@ -47,4 +57,5 @@ trait Hookable {
         // Register the route with the specified namespace, path, and arguments.
         register_rest_route( $namespace, $path, $args );
     }
+    
 }
