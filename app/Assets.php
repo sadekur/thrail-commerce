@@ -27,7 +27,7 @@ class Assets {
         wp_enqueue_script(
             'thrail-commerce-block-script',
             THRAIL_COMMERCE_URL . 'build/block.build.js',
-            ['wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor'],
+            ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-block-editor'],
             time(),
             true
         );

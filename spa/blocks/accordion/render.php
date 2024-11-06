@@ -1,22 +1,18 @@
-<?php
-function render_generic_faq_block( $attributes ) {
-    $accordions = [
-        [ 'question' => 'What is Thrail Commerce?', 'answer' => 'Thrail Commerce is a plugin...' ],
-        [ 'question' => 'How to use this accordions?', 'answer' => 'Just add it to any page...' ],
-    ]
-    ?>
-    <div class="faq-block">
-        <h3>FAQs</h3>
-        <?php foreach ( $accordions as $accordion ) : ?>
-            <div class="faq-item">
-                <h4><?php echo esc_html( $accordion['question'] ); ?></h4>
-                <p><?php echo esc_html( $accordion['question'] ); ?></p>
-            </div>
-        <?php endforeach; ?>
-    </div>
-    <?php
-}
+<?php  ?>
 
-register_block_type( __DIR__, array(
-    'render_callback' => 'render_generic_faq_block',
-) );
+<!-- Toastify CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+<div>
+    <div class="flex items-center gap-6 mb-8">
+        <!-- Add to cart button  -->
+        <button type="button" class="easycommerce-add-to-cart-button font-inter font-semibold text-base leading-[26px] bg-[#7351FD] p-3 w-[220px] rounded-md">
+            <span id="buttonText" class="text-white"><?php esc_html_e( 'Add to Cart', 'easycommerce' ); ?></span>
+            <div id="loader" class="loader" style="display: none;"></div>
+        </button>
+    </div>
+
+</div>
+
+<!-- Toastify JS -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
