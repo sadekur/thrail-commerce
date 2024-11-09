@@ -50,16 +50,28 @@ class Blocks {
      * @param array $categories Existing block categories.
      * @return array Updated block categories.
      */
-    public function add_custom_categories($categories) {
-        $new_categories = [];
+    // public function add_custom_categories($categories) {
+    //     $new_categories = [];
 
-        foreach ($this->categories as $id => $label) {
-            $new_categories[] = [
+    //     foreach ($this->categories as $id => $label) {
+    //         $new_categories[] = [
+    //             'slug' => "thrail-commerce-{$id}",
+    //             'title' => $label,
+    //         ];
+    //     }
+
+    //     return array_merge($categories, $new_categories);
+    // }
+
+    public function add_custom_categories( $categories ) {
+        foreach ( $this->categories as $id => $label ) {
+            array_unshift( $categories, [
                 'slug' => "thrail-commerce-{$id}",
                 'title' => $label,
-            ];
+            ] );
         }
-
-        return array_merge($categories, $new_categories);
+    
+        return $categories;
     }
+    
 }
