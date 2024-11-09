@@ -8,6 +8,31 @@
 	"supports": {
 		"html": false
 	},
+	"attributes": {
+		"sections": {
+			"type": "array",
+			"default": [],
+			"source": "query",
+			"selector": ".accordion-section",
+			"query": {
+				"title": {
+					"type": "string",
+					"source": "text",
+					"selector": ".accordion-title"
+				},
+				"content": {
+					"type": "string",
+					"source": "html",
+					"selector": ".accordion-content"
+				},
+				"isOpen": {
+					"type": "boolean",
+					"default": false
+				}
+			}
+		}
+	},
 	"editorScript": "file:./index.js",
-	"render": "file:./render.php"
+	"render": "file:./render.php",
+	"style": "file:./style.css"
 }

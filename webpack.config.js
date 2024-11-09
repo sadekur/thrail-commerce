@@ -68,6 +68,8 @@ module.exports = (env, argv) => {
 			"@wordpress/blocks": ["wp", "blocks"],
 			"@wordpress/block-editor": ["wp", "blockEditor"],
 			"@wordpress/element": ["wp", "element"],
+			react: "React",
+			"react-dom": "ReactDOM",
 		},
 	};
 };

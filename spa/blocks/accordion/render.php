@@ -1,18 +1,20 @@
-<?php  ?>
+<?php  
+if (!function_exists('render_accordion_block')) {
+    function render_accordion_block($attributes) {
+        $title = esc_html($attributes['title']);
+        $content = apply_filters('the_content', $attributes['content']);
+        $isOpen = $attributes['isOpen'] ? 'open' : '';
 
-<!-- Toastify CSS -->
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-
-<div>
-    <div class="flex items-center gap-6 mb-8">
-        <!-- Add to cart button  -->
-        <button type="button" class="easycommerce-add-to-cart-button font-inter font-semibold text-base leading-[26px] bg-[#7351FD] p-3 w-[220px] rounded-md">
-            <span id="buttonText" class="text-white"><?php esc_html_e( 'Add to Cart', 'easycommerce' ); ?></span>
-            <div id="loader" class="loader" style="display: none;"></div>
-        </button>
+        return <<<HTML
+<div class="wp-block-thrail-commerce-accordion">
+    <div class="accordion-header" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';">
+        <h3>{$title}</h3>
     </div>
-
+    <div class="accordion-content" style="display: {$isOpen};">
+        {$content}
+    </div>
 </div>
+HTML;
+    }
+}
 
-<!-- Toastify JS -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
