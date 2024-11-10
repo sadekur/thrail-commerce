@@ -1,80 +1,34 @@
 jQuery(document).ready(function($) {
-	/*Delete Leads*/
-	$('.delete-lead').on('click', function(e) {
-		e.preventDefault();
-		var id = $(this).data('id');
+    $('#thrail-commerce-settings-form').on('submit', function(e) {
+		'alert("test");'
+        e.preventDefault();
 
-		$.ajax({
-			url: THRAIL.ajaxurl,
-			method: "POST",
-			data: {
-				action: 'delete_lead',
-				id: id
-			},
-			dataType: 'JSON',
-			success: function(response) {
-				alert(response.data.message);
-				 location.reload();
-			},
-			error: function(response) {
-				console.log(response);
-			}
-		});
+        // Gather form data
+        // let formData = {
+        //     tcwt_cart: $('input[name="tcwt_cart"]').is(':checked') ? 'on' : 'off',
+        //     tcwt_checkout: $('input[name="tcwt_checkout"]').is(':checked') ? 'on' : 'off',
+        //     tcwt_note: $('input[name="tcwt_note"]').is(':checked') ? 'on' : 'off',
+        //     tcwt_btncolor: $('input[name="tcwt_btncolor"]').val(),
+        //     tcwt_btntext: $('input[name="tcwt_btntext"]').val(),
+        //     tcwt_textcolor: $('input[name="tcwt_textcolor"]').val(),
+        // };
 
-	});
-
-	/*Edit Leads*/
-	var edit_lead_modal = $('#edit_lead');
-	edit_lead_modal.dialog({
-		autoOpen: false,
-		height: 300,
-		width: 350,
-		modal: true,
-		buttons: {
-			"Save changes": function() {
-				updateLead();
-			},
-			Cancel: function() {
-				$(this).dialog("close");
-			}
-		}
-	});
-
-	$(document).on('click', '.edit-lead', function(e) {
-		e.preventDefault();
-		var $currentRow = $(this).closest('tr');
-
-		$('#lead_id').val($(this).data('id'));
-		$('#lead_name').val($currentRow.find('.name-column').text());
-		$('#lead_email').val($currentRow.find('.email-column').text());
-		edit_lead_modal.dialog('open');
-	});
-
-	function updateLead() {
-		var postData = {
-			action: 'update_lead',
-			id: $('#lead_id').val(),
-			name: $('#lead_name').val(),
-			email: $('#lead_email').val(),
-			nonce: THRAIL.nonce
-		};
-
-		$.ajax({
-			url: THRAIL.ajaxurl,
-			method: "POST",
-			data: postData,
-			success: function(response) {
-				if (response.success) {
-					alert('Lead updated successfully');
-					location.reload();
-				} else {
-					alert('Error: ' + response.data.message);
-				}
-			},
-			error: function(xhr, status, error) {
-				alert('AJAX error: ' + error);
-			}
-		});
-	}
-
+        // // Send request to REST API
+        // $.ajax({
+        //     url: '/wp-json/thrail/v1/save_settings',
+        //     method: 'POST',
+        //     beforeSend: function(xhr) {
+        //         xhr.setRequestHeader('X-WP-Nonce', $('input[name="tcwt_wpnonce"]').val());
+        //     },
+        //     data: JSON.stringify(formData),
+        //     contentType: 'application/json',
+        //     success: function(response) {
+        //         alert('Settings saved successfully!');
+        //     },
+        //     error: function(error) {
+        //         alert('Error saving settings. Please try again.');
+        //         console.log(error);
+        //     }
+        // });
+    });
 });

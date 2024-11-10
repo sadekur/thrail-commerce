@@ -12,6 +12,7 @@ class API {
     public function register_routes() {
         $this->create_rest_routes();
         $this->block_register_routes();
+        $this->tips_routes();
     }
 
     public function create_rest_routes() {
@@ -95,6 +96,26 @@ class API {
     }
 
     public function block_register_permission() {
+        return current_user_can( 'manage_options' );
+    }
+
+    public function tips_routes() {
+        $this->register_route( '/save-tips', [
+            'methods' => 'POST',
+            'callback' => [ $this, 'thrail_save_tips' ],
+            'permission_callback' => [ $this, 'tips_permission' ]
+        ]);
+    }
+
+    public function thrail_save_tips( $request ) {
+        $tips_settings = $request->get_json_params();
+    
+        // Save settings to the options table
+        update_option('thrail_commerce_tips_settings', $tips_settings);
+        return rest_ensure_response( 'success' );
+    }
+
+    public function tips_permission() {
         return current_user_can( 'manage_options' );
     }
 }

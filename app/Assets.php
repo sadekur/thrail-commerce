@@ -75,7 +75,7 @@ class Assets {
         wp_enqueue_script(
             'thrail-commerce-admin-script',
             THRAIL_COMMERCE_ASSETS . '/js/admin.js',
-            ['jquery', 'wp-util', 'jquery-ui-dialog'],
+            ['jquery'],
             filemtime(THRAIL_COMMERCE_PATH . '/assets/js/admin.js'),
             true
         );
