@@ -6,8 +6,12 @@ class API {
     use Hookable;
 
     public function __construct() {
-        $this->action( 'rest_api_init', [ $this, 'create_rest_routes' ] );
-        $this->action( 'rest_api_init', [ $this, 'block_register_routes' ] );
+        $this->action( 'rest_api_init', [ $this, 'register_routes' ] );
+    }
+
+    public function register_routes() {
+        $this->create_rest_routes();
+        $this->block_register_routes();
     }
 
     public function create_rest_routes() {
@@ -15,13 +19,13 @@ class API {
             'methods' => 'GET',
             'callback' => [ $this, 'get_settings' ],
             'permission_callback' => [ $this, 'get_settings_permission' ]
-        ] );
+        ]);
 
         $this->register_route( '/post-settings', [
             'methods' => 'POST',
             'callback' => [ $this, 'save_settings' ],
             'permission_callback' => [ $this, 'save_settings_permission' ]
-        ] );
+        ]);
     }
 
     public function get_settings() {
@@ -35,11 +39,11 @@ class API {
     
         return rest_ensure_response( $settings );
     }
-    
+
     public function get_settings_permission() {
         return true;
     }
-    
+
     public function save_settings( $request ) {
         $settings = $request->get_param( 'settings' );
         if ( is_array( $settings ) ) {
@@ -47,8 +51,7 @@ class API {
         }
         return rest_ensure_response( 'success' );
     }
-    
-    
+
     public function save_settings_permission() {
         return current_user_can( 'manage_options' );
     }
@@ -59,11 +62,12 @@ class API {
             'callback' => [ $this, 'get_block_register' ],
             'permission_callback' => [ $this, 'get_block_register_permission' ]
         ]);
+
         $this->register_route( '/block-register-save', [
             'methods' => 'POST',
             'callback' => [ $this, 'block_register' ],
             'permission_callback' => [ $this, 'block_register_permission' ]
-        ] );
+        ]);
     }
 
     public function get_block_register() {
@@ -77,6 +81,7 @@ class API {
     
         return rest_ensure_response( $settings );
     }
+
     public function get_block_register_permission() {
         return true;
     }
