@@ -12,7 +12,8 @@ class API {
     public function register_routes() {
         $this->create_rest_routes();
         $this->block_register_routes();
-        $this->tips_routes();
+        $this->save_tips_routes();
+        $this->get_tips_routes();
     }
 
     public function create_rest_routes() {
@@ -99,8 +100,8 @@ class API {
         return current_user_can( 'manage_options' );
     }
 
-    // Tips
-    public function tips_routes() {
+    //Post Tips
+    public function save_tips_routes() {
         $this->register_route( '/save-tips', [
             'methods' => 'POST',
             'callback' => [ $this, 'thrail_save_tips' ],
@@ -109,21 +110,28 @@ class API {
     }
 
     public function thrail_save_tips( $request ) {
-        // Retrieve the settings from the request
-        $tips_settings = $request->get_json_params();
-        
-        // Fetch the existing settings and merge with the new values
-        $current_settings = get_option('thrail_commerce_tips_settings', []);
-        $updated_settings = array_merge($current_settings, $tips_settings);
-    
-        // Save the merged settings as an array in the options table
-        update_option('thrail_commerce_tips_settings', $updated_settings);
+        $tips_settings = $request->get_json_params() ?? [];
+        $current_settings = get_option( 'thrail_commerce_tips_settings', [] );
+        $updated_settings = array_merge($current_settings, $tips_settings );
+        update_option( 'thrail_commerce_tips_settings', $updated_settings );
         
         return rest_ensure_response('success');
     }
-    
-
     public function tips_permission() {
-        return current_user_can( 'manage_options' );
+        return true;
+    }
+
+    public function get_tips_routes() {
+
+        $this->register_route( '/get-tips', [
+            'methods' => 'GET',
+            'callback' => [ $this, 'thrail_get_tips' ],
+            'permission_callback' => [ $this, 'tips_permission' ]
+        ]);
+    }
+
+    public function thrail_get_tips() {
+        $tips_settings = get_option('thrail_commerce_tips_settings', []);
+        return rest_ensure_response($tips_settings);
     }
 }

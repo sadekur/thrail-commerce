@@ -2,25 +2,14 @@ jQuery(document).ready(function($) {
     $('#thrail-commerce-settings-form').on('submit', function(e) {
         e.preventDefault();
 
-        // Gather form data
-        let formData = {
-            tcwt_cart: $('input[name="tcwt_cart"]').is(':checked') ? 'on' : 'off',
-            tcwt_checkout: $('input[name="tcwt_checkout"]').is(':checked') ? 'on' : 'off',
-            tcwt_note: $('input[name="tcwt_note"]').is(':checked') ? 'on' : 'off',
-            tcwt_btncolor: $('input[name="tcwt_btncolor"]').val(),
-            tcwt_btntext: $('input[name="tcwt_btntext"]').val(),
-            tcwt_textcolor: $('input[name="tcwt_textcolor"]').val(),
-        };
+        // Use .serialize() to gather form data
+        let formData = $(this).serialize();
 
-        // Send request to REST API
-        $.ajax({
+        console.log(formData);
+
+        $.post({
             url: THRAILCOMMERCE.apiurl + '/save-tips',
-            method: 'POST',
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('X-WP-Nonce', THRAILCOMMERCE.nonce);
-            },
-            data: JSON.stringify(formData),
-            contentType: 'application/json',
+            data: formData + '&_wpnonce=' + THRAILCOMMERCE.nonce,
             success: function(response) {
                 alert('Settings saved successfully!');
             },
