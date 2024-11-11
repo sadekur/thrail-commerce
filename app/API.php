@@ -110,13 +110,20 @@ class API {
     }
 
     public function thrail_save_tips( $request ) {
+        // Get the JSON parameters from the request
         $tips_settings = $request->get_json_params() ?? [];
+        
+        // Retrieve current settings and merge with new settings
         $current_settings = get_option( 'thrail_commerce_tips_settings', [] );
         $updated_settings = array_merge($current_settings, $tips_settings );
+        
+        // Save the updated settings back to the options table
         update_option( 'thrail_commerce_tips_settings', $updated_settings );
         
+        // Return success response
         return rest_ensure_response('success');
     }
+    
     public function tips_permission() {
         return true;
     }

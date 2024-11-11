@@ -71,13 +71,12 @@ class Menu
                                 <th class="py-4 px-2 font-medium"><?php esc_html_e( 'Add on Cart Page', 'thrail-commerce' ); ?></th>
                                 <td class="py-4 px-2">
                                     <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" class="sr-only peer" name="tcwt_cart" value=<?php echo esc_attr( $tcwt_cart ); ?>>
+                                        <input type="checkbox" class="sr-only peer" name="tcwt_cart" value="on" <?php checked( $tcwt_cart, 'on' ); ?>>
                                         <div class="w-11 h-6 bg-gray-200 rounded-full peer-focus:ring-4 peer-focus:ring-blue-300 peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
                                     </label>
                                     <p class="text-sm text-gray-500 mt-1"><?php esc_html_e( 'Enable to display donation on the cart page.', 'thrail-commerce' ); ?></p>
                                     <p class="text-sm text-gray-500">
-                                        <strong><?php esc_html_e( 'Note: ', 'thrail-commerce' ); ?></strong><?php esc_html_e( 'When using WooCommerce blocks on the cart page, use the Woo donations block.
-                                        For more details ', 'thrail-commerce' ); ?><a href="https://youtube.com" target="_blank" class="text-blue-600 underline">watch the video</a>.
+                                        <strong><?php esc_html_e( 'Note: ', 'thrail-commerce' ); ?></strong><?php esc_html_e( 'When using WooCommerce blocks on the cart page, use the Woo donations block. For more details ', 'thrail-commerce' ); ?><a href="https://youtube.com" target="_blank" class="text-blue-600 underline"><?php esc_html_e( 'watch the video', 'thrail-commerce' ); ?></a>.
                                     </p>
                                 </td>
                             </tr>
@@ -87,27 +86,27 @@ class Menu
                                 <th class="py-4 px-2 font-medium"><?php esc_html_e( 'Add on Checkout Page', 'thrail-commerce' ); ?></th>
                                 <td class="py-4 px-2">
                                     <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" class="sr-only peer" name="tcwt_checkout" value=<?php echo esc_attr( $tcwt_checkout ); ?>>
+                                        <input type="checkbox" class="sr-only peer" name="tcwt_checkout" value="on" <?php checked( $tcwt_checkout, 'on' ); ?>>
                                         <div class="w-11 h-6 bg-gray-200 rounded-full peer-focus:ring-4 peer-focus:ring-blue-300 peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
                                     </label>
                                     <p class="text-sm text-gray-500 mt-1"><?php esc_html_e( 'Enable to display donation on the checkout page.', 'thrail-commerce' ); ?></p>
                                     <p class="text-sm text-gray-500">
-                                        <strong><?php esc_html_e( 'Note: ', 'thrail-commerce' ); ?></strong><?php esc_html_e( 'When using WooCommerce blocks on the checkout page, use the Woo donations block. For more details ', 'thrail-commerce' ); ?><a href="https://youtu.be/t9JjLhYcu54" target="_blank" class="text-blue-600 underline"<?php esc_html_e( 'watch the video', 'thrail-commerce' ); ?>></a>.
+                                        <strong><?php esc_html_e( 'Note: ', 'thrail-commerce' ); ?></strong><?php esc_html_e( 'When using WooCommerce blocks on the checkout page, use the Woo donations block. For more details ', 'thrail-commerce' ); ?><a href="https://youtu.be/t9JjLhYcu54" target="_blank" class="text-blue-600 underline"><?php esc_html_e( 'watch the video', 'thrail-commerce' ); ?></a>.
                                     </p>
                                 </td>
                             </tr>
-
+                            
                             <!-- Add Note Toggle -->
                             <tr class="border-b">
                                 <th class="py-4 px-2 font-medium">Add Note</th>
                                 <td class="py-4 px-2">
                                     <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" class="sr-only peer" name="tcwt_note" value=<?php echo esc_attr( $tcwt_note ); ?>>
+                                        <input type="checkbox" class="sr-only peer" name="tcwt_note" value="on" <?php checked( $tcwt_note, 'on' ); ?>>
                                         <div class="w-11 h-6 bg-gray-200 rounded-full peer-focus:ring-4 peer-focus:ring-blue-300 peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
                                     </label>
                                     <p class="text-sm text-gray-500 mt-1">Enable to display a note on the donation.</p>
                                 </td>
-                            </tr>
+                            </tr>   
 
                             <!-- Button Color Picker -->
                             <tr class="border-b">
