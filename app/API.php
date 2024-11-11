@@ -99,6 +99,7 @@ class API {
         return current_user_can( 'manage_options' );
     }
 
+    // Tips
     public function tips_routes() {
         $this->register_route( '/save-tips', [
             'methods' => 'POST',
@@ -108,12 +109,19 @@ class API {
     }
 
     public function thrail_save_tips( $request ) {
+        // Retrieve the settings from the request
         $tips_settings = $request->get_json_params();
+        
+        // Fetch the existing settings and merge with the new values
+        $current_settings = get_option('thrail_commerce_tips_settings', []);
+        $updated_settings = array_merge($current_settings, $tips_settings);
     
-        // Save settings to the options table
-        update_option('thrail_commerce_tips_settings', $tips_settings);
-        return rest_ensure_response( 'success' );
+        // Save the merged settings as an array in the options table
+        update_option('thrail_commerce_tips_settings', $updated_settings);
+        
+        return rest_ensure_response('success');
     }
+    
 
     public function tips_permission() {
         return current_user_can( 'manage_options' );
