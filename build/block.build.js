@@ -6158,8 +6158,14 @@ const Edit = ({
   attributes,
   setAttributes
 }) => {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)();
-  const [sections, setSections] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(attributes.sections);
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)({
+    style: {
+      width: "100%",
+      // Full-width accordion
+      boxSizing: "border-box" // Prevent overflow
+    }
+  });
+  const [sections, setSections] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(attributes.sections || []);
   const addSection = () => {
     const newSections = [...sections, {
       title: "",
@@ -6198,23 +6204,52 @@ const Edit = ({
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     ...blockProps,
     children: [sections.map((section, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      style: {
+        border: "2px solid blue",
+        // Individual section border
+        borderRadius: "8px",
+        marginBottom: "16px",
+        padding: "12px",
+        backgroundColor: "#f9f9f9" // Light background
+      },
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         onClick: () => toggleSection(index),
+        style: {
+          cursor: "pointer",
+          padding: "8px 0",
+          borderBottom: "1px solid blue",
+          // Separator for title
+          marginBottom: "8px"
+        },
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
           tagName: "h3",
           value: section.title,
           onChange: value => updateSection(index, "title", value),
-          placeholder: "Enter title..."
+          placeholder: "Enter title...",
+          style: {
+            margin: 0,
+            color: "#333"
+          }
         })
       }), section.isOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
         tagName: "div",
         value: section.content,
         onChange: value => updateSection(index, "content", value),
-        placeholder: "Enter content..."
+        placeholder: "Enter content...",
+        style: {
+          color: "#333",
+          padding: "8px",
+          borderRadius: "4px",
+          border: "1px solid #ddd",
+          backgroundColor: "#fff"
+        }
       })]
     }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["default"], {
       isDefault: true,
       onClick: addSection,
+      style: {
+        marginTop: "16px"
+      },
       children: "Add Section"
     })]
   });
