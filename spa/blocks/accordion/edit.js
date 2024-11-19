@@ -2,14 +2,13 @@ import { useBlockProps, RichText } from "@wordpress/block-editor";
 import { Button } from "@wordpress/components";
 
 const Edit = ({ attributes, setAttributes }) => {
+	console.log("attributes", attributes);
   const blockProps = useBlockProps();
 
-  // Update sections attribute in the block
   const updateSections = (newSections) => {
     setAttributes({ sections: newSections });
   };
 
-  // Toggle accordion section open/close
   const toggleSection = (index) => {
     const updatedSections = attributes.sections.map((section, idx) =>
       idx === index ? { ...section, isOpen: !section.isOpen } : section
@@ -17,7 +16,6 @@ const Edit = ({ attributes, setAttributes }) => {
     updateSections(updatedSections);
   };
 
-  // Update section title or content
   const updateSection = (index, field, value) => {
     const updatedSections = attributes.sections.map((section, idx) =>
       idx === index ? { ...section, [field]: value } : section
@@ -25,9 +23,8 @@ const Edit = ({ attributes, setAttributes }) => {
     updateSections(updatedSections);
   };
 
-  // Add a new section
   const addSection = () => {
-    const newSection = { title: "New Accordion", content: "", isOpen: false };
+    const newSection = { title: "", content: "", isOpen: false };
     updateSections([...attributes.sections, newSection]);
   };
 
@@ -53,17 +50,19 @@ const Edit = ({ attributes, setAttributes }) => {
           </div>
 
           {/* Accordion Content */}
-          {section.isOpen && (
-            <div className="accordion-content">
-              <RichText
-                tagName="div"
-                value={section.content}
-                onChange={(value) => updateSection(index, "content", value)}
-                placeholder="Enter content..."
-                className="text-gray-800 p-2 rounded border border-gray-300 bg-white"
-              />
-            </div>
-          )}
+          <div
+            className={`accordion-content ${
+              section.isOpen ? "block" : "hidden"
+            }`}
+          >
+            <RichText
+              tagName="div"
+              value={section.content}
+              onChange={(value) => updateSection(index, "content", value)}
+              placeholder="Enter content..."
+              className="text-gray-800 p-2 rounded border border-gray-300 bg-white"
+            />
+          </div>
         </div>
       ))}
       <Button onClick={addSection} className="mt-4">

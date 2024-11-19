@@ -6155,16 +6155,13 @@ const Edit = ({
   attributes,
   setAttributes
 }) => {
+  console.log("attributes", attributes);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)();
-
-  // Update sections attribute in the block
   const updateSections = newSections => {
     setAttributes({
       sections: newSections
     });
   };
-
-  // Toggle accordion section open/close
   const toggleSection = index => {
     const updatedSections = attributes.sections.map((section, idx) => idx === index ? {
       ...section,
@@ -6172,8 +6169,6 @@ const Edit = ({
     } : section);
     updateSections(updatedSections);
   };
-
-  // Update section title or content
   const updateSection = (index, field, value) => {
     const updatedSections = attributes.sections.map((section, idx) => idx === index ? {
       ...section,
@@ -6181,11 +6176,9 @@ const Edit = ({
     } : section);
     updateSections(updatedSections);
   };
-
-  // Add a new section
   const addSection = () => {
     const newSection = {
-      title: "New Accordion",
+      title: "",
       content: "",
       isOpen: false
     };
@@ -6205,8 +6198,8 @@ const Edit = ({
           placeholder: "Enter title...",
           className: "text-gray-800"
         })
-      }), section.isOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "accordion-content",
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: `accordion-content ${section.isOpen ? "block" : "hidden"}`,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
           tagName: "div",
           value: section.content,
