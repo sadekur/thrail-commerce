@@ -6164,7 +6164,28 @@ const Edit = ({
       boxSizing: "border-box"
     }
   });
-  const [sections, setSections] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(attributes.sections || []);
+  const defaultSections = [{
+    title: "Accordion 1",
+    content: "Content for Accordion 1",
+    isOpen: true
+  }, {
+    title: "Accordion 2",
+    content: "Content for Accordion 2",
+    isOpen: true
+  }];
+  const [sections, setSections] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
+
+  // Initialize sections with defaultSections if attributes.sections is empty
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    if (attributes.sections && attributes.sections.length > 0) {
+      setSections(attributes.sections);
+    } else {
+      setSections(defaultSections);
+      setAttributes({
+        sections: defaultSections
+      });
+    }
+  }, []);
   const addSection = () => {
     const newSections = [...sections, {
       title: "",
@@ -6179,7 +6200,10 @@ const Edit = ({
   const toggleSection = index => {
     const newSections = sections.map((section, idx) => {
       if (idx === index) {
-        section.isOpen = !section.isOpen;
+        return {
+          ...section,
+          isOpen: !section.isOpen
+        };
       }
       return section;
     });
@@ -6191,7 +6215,10 @@ const Edit = ({
   const updateSection = (index, field, value) => {
     const newSections = sections.map((section, idx) => {
       if (idx === index) {
-        section[field] = value;
+        return {
+          ...section,
+          [field]: value
+        };
       }
       return section;
     });
@@ -6203,7 +6230,7 @@ const Edit = ({
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     ...blockProps,
     children: [sections.map((section, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "border border-[#5e38e9] rounded-sm mb-4 p-3",
+      className: "border border-indigo-700 rounded-sm mb-4 p-3",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         onClick: () => toggleSection(index),
         className: "cursor-pointer py-2 border-b border-blue-500 mb-2",
@@ -6212,10 +6239,7 @@ const Edit = ({
           value: section.title,
           onChange: value => updateSection(index, "title", value),
           placeholder: "Enter title...",
-          style: {
-            margin: 0,
-            color: "#333"
-          }
+          className: "text-gray-800"
         })
       }), section.isOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
         tagName: "div",
@@ -6227,9 +6251,7 @@ const Edit = ({
     }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["default"], {
       isDefault: true,
       onClick: addSection,
-      style: {
-        marginTop: "16px"
-      },
+      className: "mt-4",
       children: "Add Section"
     })]
   });
