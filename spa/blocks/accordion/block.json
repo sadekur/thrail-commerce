@@ -11,25 +11,10 @@
 	"attributes": {
 		"sections": {
 			"type": "array",
-			"default": [],
-			"source": "query",
-			"selector": ".accordion-section",
-			"query": {
-				"title": {
-					"type": "string",
-					"source": "text",
-					"selector": ".accordion-title"
-				},
-				"content": {
-					"type": "string",
-					"source": "html",
-					"selector": ".accordion-content"
-				},
-				"isOpen": {
-					"type": "boolean",
-					"default": false
-				}
-			}
+			"default": [
+				{ "title": "Accordion 1", "content": "Content for Accordion 1", "isOpen": true },
+				{ "title": "Accordion 2", "content": "Content for Accordion 2", "isOpen": true }
+			]
 		}
 	},
 	"editorScript": "file:./index.js",

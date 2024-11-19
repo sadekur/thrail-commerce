@@ -1,73 +1,47 @@
 import { useBlockProps, RichText } from "@wordpress/block-editor";
-import { useState, useEffect } from "@wordpress/element";
 import { Button } from "@wordpress/components";
 
 const Edit = ({ attributes, setAttributes }) => {
-  const blockProps = useBlockProps({
-    style: {
-      width: "50%",
-      boxSizing: "border-box",
-    },
-  });
+  const blockProps = useBlockProps();
 
-  const defaultSections = [
-    { title: "Accordion 1", content: "Content for Accordion 1", isOpen: true },
-    { title: "Accordion 2", content: "Content for Accordion 2", isOpen: true },
-  ];
-
-  const [sections, setSections] = useState([]);
-
-  // Initialize sections with defaultSections if attributes.sections is empty
-  useEffect(() => {
-    if (attributes.sections && attributes.sections.length > 0) {
-      setSections(attributes.sections);
-    } else {
-      setSections(defaultSections);
-      setAttributes({ sections: defaultSections });
-    }
-  }, []);
-
-  const addSection = () => {
-    const newSections = [
-      ...sections,
-      { title: "", content: "", isOpen: false },
-    ];
-    setSections(newSections);
+  // Update sections attribute in the block
+  const updateSections = (newSections) => {
     setAttributes({ sections: newSections });
   };
 
+  // Toggle accordion section open/close
   const toggleSection = (index) => {
-    const newSections = sections.map((section, idx) => {
-      if (idx === index) {
-        return { ...section, isOpen: !section.isOpen };
-      }
-      return section;
-    });
-    setSections(newSections);
-    setAttributes({ sections: newSections });
+    const updatedSections = attributes.sections.map((section, idx) =>
+      idx === index ? { ...section, isOpen: !section.isOpen } : section
+    );
+    updateSections(updatedSections);
   };
 
+  // Update section title or content
   const updateSection = (index, field, value) => {
-    const newSections = sections.map((section, idx) => {
-      if (idx === index) {
-        return { ...section, [field]: value };
-      }
-      return section;
-    });
-    setSections(newSections);
-    setAttributes({ sections: newSections });
+    const updatedSections = attributes.sections.map((section, idx) =>
+      idx === index ? { ...section, [field]: value } : section
+    );
+    updateSections(updatedSections);
+  };
+
+  // Add a new section
+  const addSection = () => {
+    const newSection = { title: "New Accordion", content: "", isOpen: false };
+    updateSections([...attributes.sections, newSection]);
   };
 
   return (
     <div {...blockProps}>
-      {sections.map((section, index) => (
+      {attributes.sections.map((section, index) => (
         <div
           key={index}
-          className="border border-indigo-700 rounded-sm mb-4 p-3"
+          className="border border-indigo-700 rounded-sm mb-4 p-3 accordion-section"
         >
+          {/* Accordion Header */}
           <div
             onClick={() => toggleSection(index)}
-            className="cursor-pointer py-2 border-b border-blue-500 mb-2"
+            className="cursor-pointer py-2 border-b border-blue-500 mb-2 accordion-title"
           >
             <RichText
               tagName="h3"
@@ -77,18 +51,22 @@ const Edit = ({ attributes, setAttributes }) => {
               className="text-gray-800"
             />
           </div>
+
+          {/* Accordion Content */}
           {section.isOpen && (
-            <RichText
-              tagName="div"
-              value={section.content}
-              onChange={(value) => updateSection(index, "content", value)}
-              placeholder="Enter content..."
-              className="text-gray-800 p-2 rounded border border-gray-300 bg-white"
-            />
+            <div className="accordion-content">
+              <RichText
+                tagName="div"
+                value={section.content}
+                onChange={(value) => updateSection(index, "content", value)}
+                placeholder="Enter content..."
+                className="text-gray-800 p-2 rounded border border-gray-300 bg-white"
+              />
+            </div>
           )}
         </div>
       ))}
-      <Button isDefault onClick={addSection} className="mt-4">
+      <Button onClick={addSection} className="mt-4">
         Add Section
       </Button>
     </div>

@@ -1,20 +1,17 @@
-<?php  
-if (!function_exists('render_accordion_block')) {
-    function render_accordion_block($attributes) {
-        $title = esc_html($attributes['title']);
-        $content = apply_filters('the_content', $attributes['content']);
-        $isOpen = $attributes['isOpen'] ? 'open' : '';
-
-        return <<<HTML
-<div class="wp-block-thrail-commerce-accordion">
-    <div class="accordion-header" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';">
-        <h3>{$title}</h3>
+<?php
+    $attributes                   = $attributes;
+    ?>
+    <div class="accordion">
+        <?php foreach ( $attributes['sections'] as $section ) : ?>
+            <div class="accordion-section">
+                <h3 class="accordion-title">
+                    <?php echo esc_html( $section['title'] ); ?>
+                </h3>
+                <div class="accordion-content" style="<?php echo $section['isOpen'] ? '' : 'display:none'; ?>">
+                    <?php echo wp_kses_post( $section['content'] ); ?>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
-    <div class="accordion-content" style="display: {$isOpen};">
-        {$content}
-    </div>
-</div>
-HTML;
-    }
-}
-
+    <?php
+    return ob_get_clean();

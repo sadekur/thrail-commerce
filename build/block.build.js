@@ -6146,11 +6146,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -6158,98 +6155,67 @@ const Edit = ({
   attributes,
   setAttributes
 }) => {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)({
-    style: {
-      width: "50%",
-      boxSizing: "border-box"
-    }
-  });
-  const defaultSections = [{
-    title: "Accordion 1",
-    content: "Content for Accordion 1",
-    isOpen: true
-  }, {
-    title: "Accordion 2",
-    content: "Content for Accordion 2",
-    isOpen: true
-  }];
-  const [sections, setSections] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)();
 
-  // Initialize sections with defaultSections if attributes.sections is empty
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    if (attributes.sections && attributes.sections.length > 0) {
-      setSections(attributes.sections);
-    } else {
-      setSections(defaultSections);
-      setAttributes({
-        sections: defaultSections
-      });
-    }
-  }, []);
+  // Update sections attribute in the block
+  const updateSections = newSections => {
+    setAttributes({
+      sections: newSections
+    });
+  };
+
+  // Toggle accordion section open/close
+  const toggleSection = index => {
+    const updatedSections = attributes.sections.map((section, idx) => idx === index ? {
+      ...section,
+      isOpen: !section.isOpen
+    } : section);
+    updateSections(updatedSections);
+  };
+
+  // Update section title or content
+  const updateSection = (index, field, value) => {
+    const updatedSections = attributes.sections.map((section, idx) => idx === index ? {
+      ...section,
+      [field]: value
+    } : section);
+    updateSections(updatedSections);
+  };
+
+  // Add a new section
   const addSection = () => {
-    const newSections = [...sections, {
-      title: "",
+    const newSection = {
+      title: "New Accordion",
       content: "",
       isOpen: false
-    }];
-    setSections(newSections);
-    setAttributes({
-      sections: newSections
-    });
+    };
+    updateSections([...attributes.sections, newSection]);
   };
-  const toggleSection = index => {
-    const newSections = sections.map((section, idx) => {
-      if (idx === index) {
-        return {
-          ...section,
-          isOpen: !section.isOpen
-        };
-      }
-      return section;
-    });
-    setSections(newSections);
-    setAttributes({
-      sections: newSections
-    });
-  };
-  const updateSection = (index, field, value) => {
-    const newSections = sections.map((section, idx) => {
-      if (idx === index) {
-        return {
-          ...section,
-          [field]: value
-        };
-      }
-      return section;
-    });
-    setSections(newSections);
-    setAttributes({
-      sections: newSections
-    });
-  };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     ...blockProps,
-    children: [sections.map((section, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "border border-indigo-700 rounded-sm mb-4 p-3",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    children: [attributes.sections.map((section, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "border border-indigo-700 rounded-sm mb-4 p-3 accordion-section",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         onClick: () => toggleSection(index),
-        className: "cursor-pointer py-2 border-b border-blue-500 mb-2",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
+        className: "cursor-pointer py-2 border-b border-blue-500 mb-2 accordion-title",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
           tagName: "h3",
           value: section.title,
           onChange: value => updateSection(index, "title", value),
           placeholder: "Enter title...",
           className: "text-gray-800"
         })
-      }), section.isOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
-        tagName: "div",
-        value: section.content,
-        onChange: value => updateSection(index, "content", value),
-        placeholder: "Enter content...",
-        className: "text-gray-800 p-2 rounded border border-gray-300 bg-white"
+      }), section.isOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "accordion-content",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
+          tagName: "div",
+          value: section.content,
+          onChange: value => updateSection(index, "content", value),
+          placeholder: "Enter content...",
+          className: "text-gray-800 p-2 rounded border border-gray-300 bg-white"
+        })
       })]
-    }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      isDefault: true,
+    }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["default"], {
       onClick: addSection,
       className: "mt-4",
       children: "Add Section"
@@ -19348,7 +19314,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"thrail-commerce/accordion","title":"Accordion","category":"thrail-commerce-product","icon":"list-view","supports":{"html":false},"attributes":{"sections":{"type":"array","default":[],"source":"query","selector":".accordion-section","query":{"title":{"type":"string","source":"text","selector":".accordion-title"},"content":{"type":"string","source":"html","selector":".accordion-content"},"isOpen":{"type":"boolean","default":false}}}},"editorScript":"file:./index.js","render":"file:./render.php","style":"file:./style.css"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"thrail-commerce/accordion","title":"Accordion","category":"thrail-commerce-product","icon":"list-view","supports":{"html":false},"attributes":{"sections":{"type":"array","default":[{"title":"Accordion 1","content":"Content for Accordion 1","isOpen":true},{"title":"Accordion 2","content":"Content for Accordion 2","isOpen":true}]}},"editorScript":"file:./index.js","render":"file:./render.php","style":"file:./style.css"}');
 
 /***/ }),
 
