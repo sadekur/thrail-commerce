@@ -5,8 +5,8 @@ import { Button } from "@wordpress/components";
 const Edit = ({ attributes, setAttributes }) => {
     const blockProps = useBlockProps({
         style: {
-            width: "100%", // Full-width accordion
-            boxSizing: "border-box", // Prevent overflow
+            width: "50%",
+            boxSizing: "border-box",
         },
     });
 
@@ -46,24 +46,10 @@ const Edit = ({ attributes, setAttributes }) => {
     return (
         <div {...blockProps}>
             {sections.map((section, index) => (
-                <div
-                    key={index}
-                    style={{
-                        border: "2px solid blue", // Individual section border
-                        borderRadius: "8px",
-                        marginBottom: "16px",
-                        padding: "12px",
-                        backgroundColor: "#f9f9f9", // Light background
-                    }}
-                >
+                <div key={index} className="border border-[#5e38e9] rounded-sm mb-4 p-3" >
                     <div
                         onClick={() => toggleSection(index)}
-                        style={{
-                            cursor: "pointer",
-                            padding: "8px 0",
-                            borderBottom: "1px solid blue", // Separator for title
-                            marginBottom: "8px",
-                        }}
+						className="cursor-pointer py-2 border-b border-blue-500 mb-2"
                     >
                         <RichText
                             tagName="h3"
@@ -86,13 +72,7 @@ const Edit = ({ attributes, setAttributes }) => {
                                 updateSection(index, "content", value)
                             }
                             placeholder="Enter content..."
-                            style={{
-                                color: "#333",
-                                padding: "8px",
-                                borderRadius: "4px",
-                                border: "1px solid #ddd",
-                                backgroundColor: "#fff",
-                            }}
+							className="text-gray-800 p-2 rounded border border-gray-300 bg-white"
                         />
                     )}
                 </div>

@@ -6160,9 +6160,8 @@ const Edit = ({
 }) => {
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)({
     style: {
-      width: "100%",
-      // Full-width accordion
-      boxSizing: "border-box" // Prevent overflow
+      width: "50%",
+      boxSizing: "border-box"
     }
   });
   const [sections, setSections] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(attributes.sections || []);
@@ -6204,23 +6203,10 @@ const Edit = ({
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     ...blockProps,
     children: [sections.map((section, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      style: {
-        border: "2px solid blue",
-        // Individual section border
-        borderRadius: "8px",
-        marginBottom: "16px",
-        padding: "12px",
-        backgroundColor: "#f9f9f9" // Light background
-      },
+      className: "border border-[#5e38e9] rounded-sm mb-4 p-3",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         onClick: () => toggleSection(index),
-        style: {
-          cursor: "pointer",
-          padding: "8px 0",
-          borderBottom: "1px solid blue",
-          // Separator for title
-          marginBottom: "8px"
-        },
+        className: "cursor-pointer py-2 border-b border-blue-500 mb-2",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
           tagName: "h3",
           value: section.title,
@@ -6236,13 +6222,7 @@ const Edit = ({
         value: section.content,
         onChange: value => updateSection(index, "content", value),
         placeholder: "Enter content...",
-        style: {
-          color: "#333",
-          padding: "8px",
-          borderRadius: "4px",
-          border: "1px solid #ddd",
-          backgroundColor: "#fff"
-        }
+        className: "text-gray-800 p-2 rounded border border-gray-300 bg-white"
       })]
     }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["default"], {
       isDefault: true,
