@@ -106,7 +106,7 @@ const Features = () => {
 			{isLoading ? (
 				<div>Loading...</div>
 			) : (
-				<form id='work-settings-form' onSubmit={handleSubmit}>
+				<form id='work-feature-form' onSubmit={handleSubmit}>
 					<div className='grid grid-cols-4 md:grid-cols-4 sm:grid-cols-1 gap-6'>
 						{toggles.map((toggle) => (
 							<div

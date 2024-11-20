@@ -1,5 +1,6 @@
 jQuery(document).ready(function($) {
     $('#thrail-commerce-settings-form').on('submit', function(e) {
+        thrail_commerce_modal(true);
         e.preventDefault();
 
         // Gather form data dynamically
@@ -21,10 +22,10 @@ jQuery(document).ready(function($) {
             beforeSend: function(xhr) {
                 xhr.setRequestHeader('X-WP-Nonce', THRAILCOMMERCE.nonce);
             },
-            data: JSON.stringify(formData),  // Ensure the data is being sent as JSON
+            data: JSON.stringify(formData),
             contentType: 'application/json',
             success: function(response) {
-                alert('Settings saved successfully!');
+                thrail_commerce_modal(false);
             },
             error: function(error) {
                 alert('Error saving settings. Please try again.');
@@ -34,12 +35,8 @@ jQuery(document).ready(function($) {
     });
 });
 document.addEventListener("DOMContentLoaded", function () {
-    // Simulate a loading process (replace with your actual data fetch logic)
     setTimeout(() => {
-        // Hide the loader
         document.getElementById('settings-loader').classList.add('hidden');
-        
-        // Show the form
         document.getElementById('settings-form').classList.remove('hidden');
-    }, 1000); // Adjust delay as needed
+    }, 1000);
 });
