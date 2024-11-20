@@ -51,13 +51,17 @@ class Menu {
     }
 
     public function settings_page_content() {
-        $settings       = get_option( 'thrail_commerce_tips_settings', [] );
-        $tcwt_cart      = isset($settings['tcwt_cart']) ? $settings['tcwt_cart'] : 'off';
-        $tcwt_checkout  = isset($settings['tcwt_checkout']) ? $settings['tcwt_checkout'] : 'off';
-        $tcwt_note      = isset($settings['tcwt_note']) ? $settings['tcwt_note'] : 'off';
-        $tcwt_btncolor  = isset($settings['tcwt_btncolor']) ? $settings['tcwt_btncolor'] : '#289dcc';
-        $tcwt_btntext   = isset($settings['tcwt_btntext']) ? $settings['tcwt_btntext'] : 'Add Donation';
-        $tcwt_textcolor = isset($settings['tcwt_textcolor']) ? $settings['tcwt_textcolor'] : '#FFFFFF';
+        $settings = get_option('thrail_commerce_tips_settings', []);
+        $defaults = [
+            'tcwt_cart'      => 'off',
+            'tcwt_checkout'  => 'off',
+            'tcwt_note'      => 'off',
+            'tcwt_btncolor'  => '#289dcc',
+            'tcwt_btntext'   => 'Add Donation',
+            'tcwt_textcolor' => '#FFFFFF',
+        ];
+    
+        $settings = wp_parse_args($settings, $defaults);
         echo Helper::get_template('settings', 'settings', $settings);
-    }
+    }    
 }
