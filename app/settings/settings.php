@@ -1,7 +1,18 @@
 <div class="p-6">
-    <h2 class="text-2xl font-semibold mb-4"><?php esc_html_e('Woocommerce Tip Settings', 'thrail-commerce'); ?></h2>
-    <div class="p-6 bg-white shadow rounded-lg">
-        <form id="thrail-commerce-settings-form">
+    <h2 class="text-2xl font-semibold mb-4"><?php esc_html_e('WooCommerce Tip Settings', 'thrail-commerce'); ?></h2>
+    
+    <!-- Loader -->
+    <div id="settings-loader" class="animate-pulse p-6 bg-white shadow rounded-lg">
+        <div class="space-y-4">
+            <div class="h-4 bg-gray-300 rounded w-1/3"></div>
+            <div class="h-6 bg-gray-200 rounded w-full"></div>
+            <div class="h-6 bg-gray-200 rounded w-5/6"></div>
+        </div>
+    </div>
+
+    <!-- Settings Form -->
+    <div id="settings-form" class="hidden p-6 bg-white shadow rounded-lg">
+    <form id="thrail-commerce-settings-form">
             <table class="w-full text-left">
                 <tbody>
                     <!-- Cart Page Toggle -->

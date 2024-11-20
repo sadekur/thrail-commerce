@@ -33,3 +33,13 @@ jQuery(document).ready(function($) {
         });
     });
 });
+document.addEventListener("DOMContentLoaded", function () {
+    // Simulate a loading process (replace with your actual data fetch logic)
+    setTimeout(() => {
+        // Hide the loader
+        document.getElementById('settings-loader').classList.add('hidden');
+        
+        // Show the form
+        document.getElementById('settings-form').classList.remove('hidden');
+    }, 1000); // Adjust delay as needed
+});
