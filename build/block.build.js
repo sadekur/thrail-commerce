@@ -3536,6 +3536,258 @@ function Icon({
 
 /***/ }),
 
+/***/ "./node_modules/@wordpress/components/build-module/panel/body.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@wordpress/components/build-module/panel/body.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   PanelBody: () => (/* binding */ PanelBody),
+/* harmony export */   UnforwardedPanelBody: () => (/* binding */ UnforwardedPanelBody),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.mjs");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/compose */ "./node_modules/@wordpress/compose/build-module/hooks/use-reduced-motion/index.js");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/compose */ "./node_modules/@wordpress/compose/build-module/hooks/use-merge-refs/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/chevron-up.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/chevron-down.js");
+/* harmony import */ var _button__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../button */ "./node_modules/@wordpress/components/build-module/button/index.js");
+/* harmony import */ var _icon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../icon */ "./node_modules/@wordpress/components/build-module/icon/index.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils */ "./node_modules/@wordpress/components/build-module/utils/hooks/use-controlled-state.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils */ "./node_modules/@wordpress/components/build-module/utils/hooks/use-update-effect.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/**
+ * External dependencies
+ */
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+const noop = () => {};
+function UnforwardedPanelBody(props, ref) {
+  const {
+    buttonProps = {},
+    children,
+    className,
+    icon,
+    initialOpen,
+    onToggle = noop,
+    opened,
+    title,
+    scrollAfterOpen = true
+  } = props;
+  const [isOpened, setIsOpened] = (0,_utils__WEBPACK_IMPORTED_MODULE_3__["default"])(opened, {
+    initial: initialOpen === undefined ? true : initialOpen,
+    fallback: false
+  });
+  const nodeRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+
+  // Defaults to 'smooth' scrolling
+  // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
+  const scrollBehavior = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__["default"])() ? 'auto' : 'smooth';
+  const handleOnToggle = event => {
+    event.preventDefault();
+    const next = !isOpened;
+    setIsOpened(next);
+    onToggle(next);
+  };
+
+  // Ref is used so that the effect does not re-run upon scrollAfterOpen changing value.
+  const scrollAfterOpenRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  scrollAfterOpenRef.current = scrollAfterOpen;
+  // Runs after initial render.
+  (0,_utils__WEBPACK_IMPORTED_MODULE_5__["default"])(() => {
+    if (isOpened && scrollAfterOpenRef.current && nodeRef.current?.scrollIntoView) {
+      /*
+       * Scrolls the content into view when visible.
+       * This improves the UX when there are multiple stacking <PanelBody />
+       * components in a scrollable container.
+       */
+      nodeRef.current.scrollIntoView({
+        inline: 'nearest',
+        block: 'nearest',
+        behavior: scrollBehavior
+      });
+    }
+  }, [isOpened, scrollBehavior]);
+  const classes = (0,clsx__WEBPACK_IMPORTED_MODULE_0__["default"])('components-panel__body', className, {
+    'is-opened': isOpened
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: classes,
+    ref: (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_6__["default"])([nodeRef, ref]),
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(PanelBodyTitle, {
+      icon: icon,
+      isOpened: Boolean(isOpened),
+      onClick: handleOnToggle,
+      title: title,
+      ...buttonProps
+    }), typeof children === 'function' ? children({
+      opened: Boolean(isOpened)
+    }) : isOpened && children]
+  });
+}
+const PanelBodyTitle = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(({
+  isOpened,
+  icon,
+  title,
+  ...props
+}, ref) => {
+  if (!title) {
+    return null;
+  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
+    className: "components-panel__body-title",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_button__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      className: "components-panel__body-toggle",
+      "aria-expanded": isOpened,
+      ref: ref,
+      ...props,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+        "aria-hidden": "true",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_icon__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          className: "components-panel__arrow",
+          icon: isOpened ? _wordpress_icons__WEBPACK_IMPORTED_MODULE_9__["default"] : _wordpress_icons__WEBPACK_IMPORTED_MODULE_10__["default"]
+        })
+      }), title, icon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_icon__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        icon: icon,
+        className: "components-panel__icon",
+        size: 20
+      })]
+    })
+  });
+});
+const PanelBody = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(UnforwardedPanelBody);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PanelBody);
+//# sourceMappingURL=body.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/components/build-module/panel/header.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@wordpress/components/build-module/panel/header.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+/**
+ * Internal dependencies
+ */
+
+/**
+ * `PanelHeader` renders the header for the `Panel`.
+ * This is used by the `Panel` component under the hood,
+ * so it does not typically need to be used.
+ */
+function PanelHeader({
+  label,
+  children
+}) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+    className: "components-panel__header",
+    children: [label && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+      children: label
+    }), children]
+  });
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PanelHeader);
+//# sourceMappingURL=header.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/components/build-module/panel/index.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@wordpress/components/build-module/panel/index.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Panel: () => (/* binding */ Panel),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.mjs");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./header */ "./node_modules/@wordpress/components/build-module/panel/header.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/**
+ * External dependencies
+ */
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+function UnforwardedPanel({
+  header,
+  className,
+  children
+}, ref) {
+  const classNames = (0,clsx__WEBPACK_IMPORTED_MODULE_0__["default"])(className, 'components-panel');
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: classNames,
+    ref: ref,
+    children: [header && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_header__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      label: header
+    }), children]
+  });
+}
+
+/**
+ * `Panel` expands and collapses multiple sections of content.
+ *
+ * ```jsx
+ * import { Panel, PanelBody, PanelRow } from '@wordpress/components';
+ * import { more } from '@wordpress/icons';
+ *
+ * const MyPanel = () => (
+ * 	<Panel header="My Panel">
+ * 		<PanelBody title="My Block Settings" icon={ more } initialOpen={ true }>
+ * 			<PanelRow>My Panel Inputs and Labels</PanelRow>
+ * 		</PanelBody>
+ * 	</Panel>
+ * );
+ * ```
+ */
+const Panel = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(UnforwardedPanel);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Panel);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
 /***/ "./node_modules/@wordpress/components/build-module/popover/utils.js":
 /*!**************************************************************************!*\
   !*** ./node_modules/@wordpress/components/build-module/popover/utils.js ***!
@@ -4012,6 +4264,107 @@ const Tooltip = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(U
 
 /***/ }),
 
+/***/ "./node_modules/@wordpress/components/build-module/utils/hooks/use-controlled-state.js":
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/@wordpress/components/build-module/utils/hooks/use-controlled-state.js ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _values__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../values */ "./node_modules/@wordpress/components/build-module/utils/values.js");
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+/**
+ * @template T
+ * @typedef Options
+ * @property {T}      [initial] Initial value
+ * @property {T | ""} fallback  Fallback value
+ */
+
+/** @type {Readonly<{ initial: undefined, fallback: '' }>} */
+const defaultOptions = {
+  initial: undefined,
+  /**
+   * Defaults to empty string, as that is preferred for usage with
+   * <input />, <textarea />, and <select /> form elements.
+   */
+  fallback: ''
+};
+
+/**
+ * Custom hooks for "controlled" components to track and consolidate internal
+ * state and incoming values. This is useful for components that render
+ * `input`, `textarea`, or `select` HTML elements.
+ *
+ * https://reactjs.org/docs/forms.html#controlled-components
+ *
+ * At first, a component using useControlledState receives an initial prop
+ * value, which is used as initial internal state.
+ *
+ * This internal state can be maintained and updated without
+ * relying on new incoming prop values.
+ *
+ * Unlike the basic useState hook, useControlledState's state can
+ * be updated if a new incoming prop value is changed.
+ *
+ * @template T
+ *
+ * @param {T | undefined} currentState             The current value.
+ * @param {Options<T>}    [options=defaultOptions] Additional options for the hook.
+ *
+ * @return {[T | "", (nextState: T) => void]} The controlled value and the value setter.
+ */
+function useControlledState(currentState, options = defaultOptions) {
+  const {
+    initial,
+    fallback
+  } = {
+    ...defaultOptions,
+    ...options
+  };
+  const [internalState, setInternalState] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(currentState);
+  const hasCurrentState = (0,_values__WEBPACK_IMPORTED_MODULE_1__.isValueDefined)(currentState);
+
+  /*
+   * Resets internal state if value every changes from uncontrolled <-> controlled.
+   */
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (hasCurrentState && internalState) {
+      setInternalState(undefined);
+    }
+  }, [hasCurrentState, internalState]);
+  const state = (0,_values__WEBPACK_IMPORTED_MODULE_1__.getDefinedValue)([currentState, internalState, initial], fallback);
+
+  /* eslint-disable jsdoc/no-undefined-types */
+  /** @type {(nextState: T) => void} */
+  const setState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useCallback)(nextState => {
+    if (!hasCurrentState) {
+      setInternalState(nextState);
+    }
+  }, [hasCurrentState]);
+  /* eslint-enable jsdoc/no-undefined-types */
+
+  return [state, setState];
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useControlledState);
+//# sourceMappingURL=use-controlled-state.js.map
+
+/***/ }),
+
 /***/ "./node_modules/@wordpress/components/build-module/utils/hooks/use-cx.js":
 /*!*******************************************************************************!*\
   !*** ./node_modules/@wordpress/components/build-module/utils/hooks/use-cx.js ***!
@@ -4132,6 +4485,87 @@ function useUpdateEffect(effect, deps) {
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useUpdateEffect);
 //# sourceMappingURL=use-update-effect.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/components/build-module/utils/values.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@wordpress/components/build-module/utils/values.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ensureNumber: () => (/* binding */ ensureNumber),
+/* harmony export */   getDefinedValue: () => (/* binding */ getDefinedValue),
+/* harmony export */   isValueDefined: () => (/* binding */ isValueDefined),
+/* harmony export */   isValueEmpty: () => (/* binding */ isValueEmpty),
+/* harmony export */   stringToNumber: () => (/* binding */ stringToNumber)
+/* harmony export */ });
+/* eslint-disable jsdoc/valid-types */
+/**
+ * Determines if a value is null or undefined.
+ *
+ * @template T
+ *
+ * @param {T} value The value to check.
+ * @return {value is Exclude<T, null | undefined>} Whether value is not null or undefined.
+ */
+function isValueDefined(value) {
+  return value !== undefined && value !== null;
+}
+/* eslint-enable jsdoc/valid-types */
+
+/* eslint-disable jsdoc/valid-types */
+/**
+ * Determines if a value is empty, null, or undefined.
+ *
+ * @param {string | number | null | undefined} value The value to check.
+ * @return {value is ("" | null | undefined)} Whether value is empty.
+ */
+function isValueEmpty(value) {
+  const isEmptyString = value === '';
+  return !isValueDefined(value) || isEmptyString;
+}
+/* eslint-enable jsdoc/valid-types */
+
+/**
+ * Get the first defined/non-null value from an array.
+ *
+ * @template T
+ *
+ * @param {Array<T | null | undefined>} values        Values to derive from.
+ * @param {T}                           fallbackValue Fallback value if there are no defined values.
+ * @return {T} A defined value or the fallback value.
+ */
+function getDefinedValue(values = [], fallbackValue) {
+  var _values$find;
+  return (_values$find = values.find(isValueDefined)) !== null && _values$find !== void 0 ? _values$find : fallbackValue;
+}
+
+/**
+ * Converts a string to a number.
+ *
+ * @param {string} value
+ * @return {number} String as a number.
+ */
+const stringToNumber = value => {
+  return parseFloat(value);
+};
+
+/**
+ * Regardless of the input being a string or a number, returns a number.
+ *
+ * Returns `undefined` in case the string is `undefined` or not a valid numeric value.
+ *
+ * @param {string | number} value
+ * @return {number} The parsed number.
+ */
+const ensureNumber = value => {
+  return typeof value === 'string' ? stringToNumber(value) : value;
+};
+//# sourceMappingURL=values.js.map
 
 /***/ }),
 
@@ -4364,6 +4798,251 @@ function useInstanceId(object, prefix, preferredId) {
   }, [object, preferredId, prefix]);
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useInstanceId);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-media-query/index.js":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-media-query/index.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useMediaQuery)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * WordPress dependencies
+ */
+
+const matchMediaCache = new Map();
+
+/**
+ * A new MediaQueryList object for the media query
+ *
+ * @param {string} [query] Media Query.
+ * @return {MediaQueryList|null} A new object for the media query
+ */
+function getMediaQueryList(query) {
+  if (!query) {
+    return null;
+  }
+  let match = matchMediaCache.get(query);
+  if (match) {
+    return match;
+  }
+  if (typeof window !== 'undefined' && typeof window.matchMedia === 'function') {
+    match = window.matchMedia(query);
+    matchMediaCache.set(query, match);
+    return match;
+  }
+  return null;
+}
+
+/**
+ * Runs a media query and returns its value when it changes.
+ *
+ * @param {string} [query] Media Query.
+ * @return {boolean} return value of the media query.
+ */
+function useMediaQuery(query) {
+  const source = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => {
+    const mediaQueryList = getMediaQueryList(query);
+    return {
+      /** @type {(onStoreChange: () => void) => () => void} */
+      subscribe(onStoreChange) {
+        if (!mediaQueryList) {
+          return () => {};
+        }
+
+        // Avoid a fatal error when browsers don't support `addEventListener` on MediaQueryList.
+        mediaQueryList.addEventListener?.('change', onStoreChange);
+        return () => {
+          mediaQueryList.removeEventListener?.('change', onStoreChange);
+        };
+      },
+      getValue() {
+        var _mediaQueryList$match;
+        return (_mediaQueryList$match = mediaQueryList?.matches) !== null && _mediaQueryList$match !== void 0 ? _mediaQueryList$match : false;
+      }
+    };
+  }, [query]);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useSyncExternalStore)(source.subscribe, source.getValue, () => false);
+}
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-merge-refs/index.js":
+/*!************************************************************************************!*\
+  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-merge-refs/index.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useMergeRefs)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * WordPress dependencies
+ */
+
+
+/* eslint-disable jsdoc/valid-types */
+/**
+ * @template T
+ * @typedef {T extends import('react').Ref<infer R> ? R : never} TypeFromRef
+ */
+/* eslint-enable jsdoc/valid-types */
+
+/**
+ * @template T
+ * @param {import('react').Ref<T>} ref
+ * @param {T}                      value
+ */
+function assignRef(ref, value) {
+  if (typeof ref === 'function') {
+    ref(value);
+  } else if (ref && ref.hasOwnProperty('current')) {
+    /* eslint-disable jsdoc/no-undefined-types */
+    /** @type {import('react').MutableRefObject<T>} */ref.current = value;
+    /* eslint-enable jsdoc/no-undefined-types */
+  }
+}
+
+/**
+ * Merges refs into one ref callback.
+ *
+ * It also ensures that the merged ref callbacks are only called when they
+ * change (as a result of a `useCallback` dependency update) OR when the ref
+ * value changes, just as React does when passing a single ref callback to the
+ * component.
+ *
+ * As expected, if you pass a new function on every render, the ref callback
+ * will be called after every render.
+ *
+ * If you don't wish a ref callback to be called after every render, wrap it
+ * with `useCallback( callback, dependencies )`. When a dependency changes, the
+ * old ref callback will be called with `null` and the new ref callback will be
+ * called with the same value.
+ *
+ * To make ref callbacks easier to use, you can also pass the result of
+ * `useRefEffect`, which makes cleanup easier by allowing you to return a
+ * cleanup function instead of handling `null`.
+ *
+ * It's also possible to _disable_ a ref (and its behaviour) by simply not
+ * passing the ref.
+ *
+ * ```jsx
+ * const ref = useRefEffect( ( node ) => {
+ *   node.addEventListener( ... );
+ *   return () => {
+ *     node.removeEventListener( ... );
+ *   };
+ * }, [ ...dependencies ] );
+ * const otherRef = useRef();
+ * const mergedRefs useMergeRefs( [
+ *   enabled && ref,
+ *   otherRef,
+ * ] );
+ * return <div ref={ mergedRefs } />;
+ * ```
+ *
+ * @template {import('react').Ref<any>} TRef
+ * @param {Array<TRef>} refs The refs to be merged.
+ *
+ * @return {import('react').RefCallback<TypeFromRef<TRef>>} The merged ref callback.
+ */
+function useMergeRefs(refs) {
+  const element = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  const isAttachedRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
+  const didElementChangeRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
+  /* eslint-disable jsdoc/no-undefined-types */
+  /** @type {import('react').MutableRefObject<TRef[]>} */
+  /* eslint-enable jsdoc/no-undefined-types */
+  const previousRefsRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)([]);
+  const currentRefsRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(refs);
+
+  // Update on render before the ref callback is called, so the ref callback
+  // always has access to the current refs.
+  currentRefsRef.current = refs;
+
+  // If any of the refs change, call the previous ref with `null` and the new
+  // ref with the node, except when the element changes in the same cycle, in
+  // which case the ref callbacks will already have been called.
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+    if (didElementChangeRef.current === false && isAttachedRef.current === true) {
+      refs.forEach((ref, index) => {
+        const previousRef = previousRefsRef.current[index];
+        if (ref !== previousRef) {
+          assignRef(previousRef, null);
+          assignRef(ref, element.current);
+        }
+      });
+    }
+    previousRefsRef.current = refs;
+  }, refs);
+
+  // No dependencies, must be reset after every render so ref callbacks are
+  // correctly called after a ref change.
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+    didElementChangeRef.current = false;
+  });
+
+  // There should be no dependencies so that `callback` is only called when
+  // the node changes.
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useCallback)(value => {
+    // Update the element so it can be used when calling ref callbacks on a
+    // dependency change.
+    assignRef(element, value);
+    didElementChangeRef.current = true;
+    isAttachedRef.current = value !== null;
+
+    // When an element changes, the current ref callback should be called
+    // with the new element and the previous one with `null`.
+    const refsToAssign = value ? currentRefsRef.current : previousRefsRef.current;
+
+    // Update the latest refs.
+    for (const ref of refsToAssign) {
+      assignRef(ref, value);
+    }
+  }, []);
+}
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-reduced-motion/index.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-reduced-motion/index.js ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _use_media_query__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../use-media-query */ "./node_modules/@wordpress/compose/build-module/hooks/use-media-query/index.js");
+/**
+ * Internal dependencies
+ */
+
+
+/**
+ * Hook returning whether the user has a preference for reduced motion.
+ *
+ * @return {boolean} Reduced motion preference value.
+ */
+const useReducedMotion = () => (0,_use_media_query__WEBPACK_IMPORTED_MODULE_0__["default"])('(prefers-reduced-motion: reduce)');
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useReducedMotion);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -5882,6 +6561,66 @@ function sprintf(format, ...args) {
 
 /***/ }),
 
+/***/ "./node_modules/@wordpress/icons/build-module/library/chevron-down.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@wordpress/icons/build-module/library/chevron-down.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/primitives */ "./node_modules/@wordpress/primitives/build-module/svg/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/**
+ * WordPress dependencies
+ */
+
+
+const chevronDown = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {
+  viewBox: "0 0 24 24",
+  xmlns: "http://www.w3.org/2000/svg",
+  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.Path, {
+    d: "M17.5 11.6L12 16l-5.5-4.4.9-1.2L12 14l4.5-3.6 1 1.2z"
+  })
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (chevronDown);
+//# sourceMappingURL=chevron-down.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/icons/build-module/library/chevron-up.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@wordpress/icons/build-module/library/chevron-up.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/primitives */ "./node_modules/@wordpress/primitives/build-module/svg/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/**
+ * WordPress dependencies
+ */
+
+
+const chevronUp = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {
+  viewBox: "0 0 24 24",
+  xmlns: "http://www.w3.org/2000/svg",
+  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.Path, {
+    d: "M6.5 12.4L12 8l5.5 4.4-.9 1.2L12 10l-4.5 3.6-1-1.2z"
+  })
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (chevronUp);
+//# sourceMappingURL=chevron-up.js.map
+
+/***/ }),
+
 /***/ "./node_modules/@wordpress/primitives/build-module/svg/index.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/@wordpress/primitives/build-module/svg/index.js ***!
@@ -6146,8 +6885,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/panel/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/panel/body.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -6155,13 +6898,16 @@ const Edit = ({
   attributes,
   setAttributes
 }) => {
-  console.log("attributes", attributes);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)();
+
+  // Update the `sections` attribute
   const updateSections = newSections => {
     setAttributes({
       sections: newSections
     });
   };
+
+  // Toggle the accordion open/close state
   const toggleSection = index => {
     const updatedSections = attributes.sections.map((section, idx) => idx === index ? {
       ...section,
@@ -6169,6 +6915,8 @@ const Edit = ({
     } : section);
     updateSections(updatedSections);
   };
+
+  // Update individual section fields (title/content)
   const updateSection = (index, field, value) => {
     const updatedSections = attributes.sections.map((section, idx) => idx === index ? {
       ...section,
@@ -6176,42 +6924,55 @@ const Edit = ({
     } : section);
     updateSections(updatedSections);
   };
+
+  // Add a new section to the accordion
   const addSection = () => {
     const newSection = {
-      title: "",
+      title: "New Accordion",
       content: "",
       isOpen: false
     };
     updateSections([...attributes.sections, newSection]);
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     ...blockProps,
-    children: [attributes.sections.map((section, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Settings", "thrail-commerce"),
+          initialOpen: true,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Additional settings can be added here.", "thrail-commerce")
+          })
+        })
+      })
+    }), attributes.sections.map((section, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "border border-indigo-700 rounded-sm mb-4 p-3 accordion-section",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         onClick: () => toggleSection(index),
         className: "cursor-pointer py-2 border-b border-blue-500 mb-2 accordion-title",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
           tagName: "h3",
           value: section.title,
           onChange: value => updateSection(index, "title", value),
-          placeholder: "Enter title...",
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Enter title...", "thrail-commerce"),
           className: "text-gray-800"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: `accordion-content ${section.isOpen ? "block" : "hidden"}`,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
+      }), section.isOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "accordion-content",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
           tagName: "div",
           value: section.content,
           onChange: value => updateSection(index, "content", value),
-          placeholder: "Enter content...",
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Enter content...", "thrail-commerce"),
           className: "text-gray-800 p-2 rounded border border-gray-300 bg-white"
         })
       })]
-    }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["default"], {
       onClick: addSection,
       className: "mt-4",
-      children: "Add Section"
+      variant: "primary",
+      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Add Section", "thrail-commerce")
     })]
   });
 };

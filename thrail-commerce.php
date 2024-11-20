@@ -80,6 +80,7 @@ final class THRAIL_COMMERCE{
 		new Thrail\Commerce\Common\Init();
 		new Thrail\Commerce\Blocks();
 		new Thrail\Commerce\Features();
+		new Thrail\Commerce\Helper();
 
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 			new Thrail\Commerce\Ajax();
