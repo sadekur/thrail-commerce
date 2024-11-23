@@ -40,7 +40,7 @@ const Features = () => {
         },
     ]);
 
-    const saveSettings = (updatedToggles) => {
+    const save = (updatedToggles) => {
         const toggleValues = updatedToggles.reduce((acc, toggle) => {
             acc[toggle.name] = toggle.value ? "on" : "off";
             return acc;
@@ -80,7 +80,7 @@ const Features = () => {
             const updatedToggles = prevToggles.map((toggle) =>
                 toggle.id === id ? { ...toggle, value: !toggle.value } : toggle
             );
-            saveSettings(updatedToggles);
+            save(updatedToggles);
             return updatedToggles;
         });
     };
@@ -91,7 +91,7 @@ const Features = () => {
                 ...toggle,
                 value: false,
             }));
-            saveSettings(updatedToggles);
+            save(updatedToggles);
             return updatedToggles;
         });
     };
@@ -102,7 +102,7 @@ const Features = () => {
                 ...toggle,
                 value: true,
             }));
-            saveSettings(updatedToggles);
+            save(updatedToggles);
             return updatedToggles;
         });
     };
