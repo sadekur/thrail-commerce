@@ -135,13 +135,13 @@ const Blocks = () => {
 												}
 											/>
 											<span
-												className={`slider block rounded-full w-[50px] h-[28px] cursor-pointer transition-all duration-100 ${
+												className={`slider block rounded-full w-[50px] h-[22px] cursor-pointer transition-all duration-100 ${
 													toggle.value
-														? "bg-[#452b0a]"
+														? "bg-[#0029af]"
 														: "bg-[#867c7c]"
 												}`}></span>
 											<span
-												className={`dot absolute left-1 top-6 w-4 h-4 bg-white rounded-full transition-transform duration-100 transform ${
+												className={`dot absolute left-2 top-6 w-3 h-3 bg-white rounded-full transition-transform duration-100 transform ${
 													toggle.value
 														? "translate-x-6"
 														: ""
@@ -152,11 +152,14 @@ const Blocks = () => {
 							</div>
 						))}
 					</div>
-					<p className='submit mt-6'>
-						<button type='submit' className='button button-primary'>
-							{loader}
+					<div className="mt-8 flex justify-center">
+						<button
+						type="submit"
+						className="px-6 py-3 text-white bg-darkblue rounded-lg shadow-md bg-[#0029af] hover:bg-[#0842ff] transition-all duration-200"
+						>
+						{loader}
 						</button>
-					</p>
+					</div>
 				</form>
 			)}
 		</div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import CommonHeader from "../../../common/CommonHeader";
 
 const Features = () => {
 	const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
@@ -46,13 +47,23 @@ const Features = () => {
 			)
 		);
 	};
+	const handleDisableAll = () => {
+		setToggles((prevToggles) =>
+			prevToggles.map((toggle) => ({ ...toggle, value: false }))
+		);
+	};
+
+	const handleEnableAll = () => {
+		setToggles((prevToggles) =>
+			prevToggles.map((toggle) => ({ ...toggle, value: true }))
+		);
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setLoader("Saving...");
 		thrail_commerce_modal(true);
 
-		// Prepare the toggle values to send to the backend
 		const toggleValues = toggles.reduce((acc, toggle) => {
 			acc[toggle.name] = toggle.value ? "on" : "off";
 			return acc;
@@ -103,10 +114,15 @@ const Features = () => {
 
 	return (
 		<div>
+			<CommonHeader
+				title="Manage Features"
+				onDisableAll={handleDisableAll}
+				onEnableAll={handleEnableAll}
+			/>
 			{isLoading ? (
 				<div>Loading...</div>
 			) : (
-				<form id='work-feature-form' onSubmit={handleSubmit}>
+				<form id='work-feature-form' onSubmit={handleSubmit} className="mt-4">
 					<div className='grid grid-cols-4 md:grid-cols-4 sm:grid-cols-1 gap-6'>
 						{toggles.map((toggle) => (
 							<div
@@ -136,13 +152,13 @@ const Features = () => {
 												}
 											/>
 											<span
-												className={`slider block rounded-full w-[50px] h-[28px] cursor-pointer transition-all duration-100 ${
+												className={`slider block rounded-full w-[50px] h-[22px] cursor-pointer transition-all duration-100 ${
 													toggle.value
-														? "bg-[#452b0a]"
+														? "bg-[#0029af]"
 														: "bg-[#867c7c]"
 												}`}></span>
 											<span
-												className={`dot absolute left-1 top-6 w-4 h-4 bg-white rounded-full transition-transform duration-100 transform ${
+												className={`dot absolute left-2 top-6 w-3 h-3 bg-white rounded-full transition-transform duration-100 transform ${
 													toggle.value
 														? "translate-x-6"
 														: ""
@@ -153,11 +169,14 @@ const Features = () => {
 							</div>
 						))}
 					</div>
-					<p className='submit mt-6'>
-						<button type='submit' className='button button-primary'>
+					<div className="mt-8 flex justify-center">
+						<button
+							type="submit"
+							className="px-6 py-3 text-white bg-[#0029af] rounded-lg shadow-md hover:bg-[#0842ff] transition-all duration-200"
+						>
 							{loader}
 						</button>
-					</p>
+					</div>
 				</form>
 			)}
 		</div>

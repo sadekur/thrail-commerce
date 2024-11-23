@@ -2,6 +2,49 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./spa/admin/common/CommonHeader.jsx":
+/*!*******************************************!*\
+  !*** ./spa/admin/common/CommonHeader.jsx ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+const CommonHeader = ({
+  title,
+  onDisableAll,
+  onEnableAll
+}) => {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "bg-white px-6 py-4 rounded-lg shadow-md flex justify-between items-center",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
+      className: "text-xl font-bold text-[#0029af]",
+      children: title
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "flex space-x-4",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+        className: "px-4 py-2 bg-gray-500 border border-gray-500 text-white font-bold rounded-lg shadow hover:bg-red-600 transition-all duration-200",
+        onClick: onDisableAll,
+        children: "Disable All"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+        className: "px-4 py-2 bg-[#0029af] border-gray-500 text-white rounded-lg shadow hover:bg-[#0842ff] transition-all duration-200",
+        onClick: onEnableAll,
+        children: "Enable All"
+      })]
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CommonHeader);
+
+/***/ }),
+
 /***/ "./spa/admin/src/pages/Tabs.jsx":
 /*!**************************************!*\
   !*** ./spa/admin/src/pages/Tabs.jsx ***!
@@ -179,19 +222,19 @@ const Blocks = () => {
                   checked: toggle.value,
                   onChange: () => handleToggleChange(toggle.id)
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                  className: `slider block rounded-full w-[50px] h-[28px] cursor-pointer transition-all duration-100 ${toggle.value ? "bg-[#452b0a]" : "bg-[#867c7c]"}`
+                  className: `slider block rounded-full w-[50px] h-[22px] cursor-pointer transition-all duration-100 ${toggle.value ? "bg-[#0029af]" : "bg-[#867c7c]"}`
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                  className: `dot absolute left-1 top-6 w-4 h-4 bg-white rounded-full transition-transform duration-100 transform ${toggle.value ? "translate-x-6" : ""}`
+                  className: `dot absolute left-2 top-6 w-3 h-3 bg-white rounded-full transition-transform duration-100 transform ${toggle.value ? "translate-x-6" : ""}`
                 })]
               })
             })]
           })
         }, toggle.id))
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-        className: "submit mt-6",
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "mt-8 flex justify-center",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
           type: "submit",
-          className: "button button-primary",
+          className: "px-6 py-3 text-white bg-darkblue rounded-lg shadow-md bg-[#0029af] hover:bg-[#0842ff] transition-all duration-200",
           children: loader
         })
       })]
@@ -237,8 +280,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var _common_CommonHeader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../common/CommonHeader */ "./spa/admin/common/CommonHeader.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -279,17 +324,27 @@ const Features = () => {
       value: !toggle.value
     } : toggle));
   };
+  const handleDisableAll = () => {
+    setToggles(prevToggles => prevToggles.map(toggle => ({
+      ...toggle,
+      value: false
+    })));
+  };
+  const handleEnableAll = () => {
+    setToggles(prevToggles => prevToggles.map(toggle => ({
+      ...toggle,
+      value: true
+    })));
+  };
   const handleSubmit = e => {
     e.preventDefault();
     setLoader("Saving...");
     thrail_commerce_modal(true);
-
-    // Prepare the toggle values to send to the backend
     const toggleValues = toggles.reduce((acc, toggle) => {
       acc[toggle.name] = toggle.value ? "on" : "off";
       return acc;
     }, {});
-    axios__WEBPACK_IMPORTED_MODULE_2__["default"].post(url, {
+    axios__WEBPACK_IMPORTED_MODULE_3__["default"].post(url, {
       settings: toggleValues
     }, {
       headers: {
@@ -307,7 +362,7 @@ const Features = () => {
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     setIsLoading(true);
-    axios__WEBPACK_IMPORTED_MODULE_2__["default"].get(`${THRAILCOMMERCE.apiurl}/get-settings`).then(response => {
+    axios__WEBPACK_IMPORTED_MODULE_3__["default"].get(`${THRAILCOMMERCE.apiurl}/get-settings`).then(response => {
       setToggles(prevToggles => prevToggles.map(toggle => ({
         ...toggle,
         value: response.data[toggle.name] === "on"
@@ -318,56 +373,61 @@ const Features = () => {
       setIsLoading(false);
     });
   }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    children: isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_common_CommonHeader__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      title: "Manage Features",
+      onDisableAll: handleDisableAll,
+      onEnableAll: handleEnableAll
+    }), isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       children: "Loading..."
-    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
       id: "work-feature-form",
       onSubmit: handleSubmit,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "mt-4",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "grid grid-cols-4 md:grid-cols-4 sm:grid-cols-1 gap-6",
-        children: toggles.map(toggle => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        children: toggles.map(toggle => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "p-4 bg-white shadow-md rounded-lg border border-gray-200 relative",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
             className: "flex flex-col h-full",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
               className: "mb-auto",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
                 className: "text-lg font-semibold",
                 children: toggle.label
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
                 className: "text-sm text-gray-600",
                 children: toggle.description
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
               className: "mt-auto flex justify-end",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
                 className: "relative inline-block w-12",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
                   type: "checkbox",
                   id: `toggle-${toggle.id}`,
                   name: toggle.name,
                   className: "opacity-0 w-0 h-0",
                   checked: toggle.value,
                   onChange: () => handleToggleChange(toggle.id)
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                  className: `slider block rounded-full w-[50px] h-[28px] cursor-pointer transition-all duration-100 ${toggle.value ? "bg-[#452b0a]" : "bg-[#867c7c]"}`
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                  className: `dot absolute left-1 top-6 w-4 h-4 bg-white rounded-full transition-transform duration-100 transform ${toggle.value ? "translate-x-6" : ""}`
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                  className: `slider block rounded-full w-[50px] h-[22px] cursor-pointer transition-all duration-100 ${toggle.value ? "bg-[#0029af]" : "bg-[#867c7c]"}`
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                  className: `dot absolute left-2 top-6 w-3 h-3 bg-white rounded-full transition-transform duration-100 transform ${toggle.value ? "translate-x-6" : ""}`
                 })]
               })
             })]
           })
         }, toggle.id))
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-        className: "submit mt-6",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "mt-8 flex justify-center",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
           type: "submit",
-          className: "button button-primary",
+          className: "px-6 py-3 text-white bg-[#0029af] rounded-lg shadow-md hover:bg-[#0842ff] transition-all duration-200",
           children: loader
         })
       })]
-    })
+    })]
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Features);

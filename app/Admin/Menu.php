@@ -61,5 +61,5 @@ class Menu {
     
         $settings = wp_parse_args($settings, $defaults);
         echo Helper::get_template('settings', 'settings', $settings);
-    }    
+    }  
 }
