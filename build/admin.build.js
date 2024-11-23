@@ -289,8 +289,8 @@ __webpack_require__.r(__webpack_exports__);
 
 const Features = () => {
   const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
-  const [loader, setLoader] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("Save Settings");
   const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+  const [showSavedPopup, setShowSavedPopup] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
 
   // Create state for toggle buttons
   const [toggles, setToggles] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
@@ -318,29 +318,18 @@ const Features = () => {
     description: "Enable custom functionality 3 for more options.",
     value: false
   }]);
-  const handleToggleChange = id => {
-    setToggles(prevToggles => prevToggles.map(toggle => toggle.id === id ? {
-      ...toggle,
-      value: !toggle.value
-    } : toggle));
+
+  // Show "Saved" popup
+  const triggerSavedPopup = () => {
+    setShowSavedPopup(true);
+    setTimeout(() => {
+      setShowSavedPopup(false);
+    }, 1500);
   };
-  const handleDisableAll = () => {
-    setToggles(prevToggles => prevToggles.map(toggle => ({
-      ...toggle,
-      value: false
-    })));
-  };
-  const handleEnableAll = () => {
-    setToggles(prevToggles => prevToggles.map(toggle => ({
-      ...toggle,
-      value: true
-    })));
-  };
-  const handleSubmit = e => {
-    e.preventDefault();
-    setLoader("Saving...");
-    thrail_commerce_modal(true);
-    const toggleValues = toggles.reduce((acc, toggle) => {
+
+  // Save settings to server
+  const saveSettings = updatedToggles => {
+    const toggleValues = updatedToggles.reduce((acc, toggle) => {
       acc[toggle.name] = toggle.value ? "on" : "off";
       return acc;
     }, {});
@@ -351,15 +340,50 @@ const Features = () => {
         "Content-Type": "application/json",
         "X-WP-Nonce": THRAILCOMMERCE.nonce
       }
-    }).then(response => {
-      setLoader("Saved");
-      window.location.reload();
+    }).then(() => {
+      triggerSavedPopup();
     }).catch(error => {
-      console.log("error: ", error);
-    }).finally(() => {
-      thrail_commerce_modal(false);
+      console.error("Error saving settings:", error);
     });
   };
+
+  // Toggle individual feature
+  const handleToggleChange = id => {
+    setToggles(prevToggles => {
+      const updatedToggles = prevToggles.map(toggle => toggle.id === id ? {
+        ...toggle,
+        value: !toggle.value
+      } : toggle);
+      saveSettings(updatedToggles);
+      return updatedToggles;
+    });
+  };
+
+  // Disable all features
+  const handleDisableAll = () => {
+    setToggles(prevToggles => {
+      const updatedToggles = prevToggles.map(toggle => ({
+        ...toggle,
+        value: false
+      }));
+      saveSettings(updatedToggles);
+      return updatedToggles;
+    });
+  };
+
+  // Enable all features
+  const handleEnableAll = () => {
+    setToggles(prevToggles => {
+      const updatedToggles = prevToggles.map(toggle => ({
+        ...toggle,
+        value: true
+      }));
+      saveSettings(updatedToggles);
+      return updatedToggles;
+    });
+  };
+
+  // Load settings from server
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     setIsLoading(true);
     axios__WEBPACK_IMPORTED_MODULE_3__["default"].get(`${THRAILCOMMERCE.apiurl}/get-settings`).then(response => {
@@ -368,7 +392,7 @@ const Features = () => {
         value: response.data[toggle.name] === "on"
       })));
     }).catch(error => {
-      console.log("error: ", error);
+      console.error("Error loading settings:", error);
     }).finally(() => {
       setIsLoading(false);
     });
@@ -380,53 +404,44 @@ const Features = () => {
       onEnableAll: handleEnableAll
     }), isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       children: "Loading..."
-    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
-      id: "work-feature-form",
-      onSubmit: handleSubmit,
-      className: "mt-4",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        className: "grid grid-cols-4 md:grid-cols-4 sm:grid-cols-1 gap-6",
-        children: toggles.map(toggle => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "p-4 bg-white shadow-md rounded-lg border border-gray-200 relative",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-            className: "flex flex-col h-full",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-              className: "mb-auto",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
-                className: "text-lg font-semibold",
-                children: toggle.label
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-                className: "text-sm text-gray-600",
-                children: toggle.description
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-              className: "mt-auto flex justify-end",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-                className: "relative inline-block w-12",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                  type: "checkbox",
-                  id: `toggle-${toggle.id}`,
-                  name: toggle.name,
-                  className: "opacity-0 w-0 h-0",
-                  checked: toggle.value,
-                  onChange: () => handleToggleChange(toggle.id)
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                  className: `slider block rounded-full w-[50px] h-[22px] cursor-pointer transition-all duration-100 ${toggle.value ? "bg-[#0029af]" : "bg-[#867c7c]"}`
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                  className: `dot absolute left-2 top-6 w-3 h-3 bg-white rounded-full transition-transform duration-100 transform ${toggle.value ? "translate-x-6" : ""}`
-                })]
-              })
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "mt-4 grid grid-cols-4 md:grid-cols-4 sm:grid-cols-1 gap-6",
+      children: toggles.map(toggle => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "p-4 bg-white shadow-md rounded-lg border border-gray-200 relative",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "flex flex-col h-full",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            className: "mb-auto",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
+              className: "text-lg font-semibold",
+              children: toggle.label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+              className: "text-sm text-gray-600",
+              children: toggle.description
             })]
-          })
-        }, toggle.id))
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        className: "mt-8 flex justify-center",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-          type: "submit",
-          className: "px-6 py-3 text-white bg-[#0029af] rounded-lg shadow-md hover:bg-[#0842ff] transition-all duration-200",
-          children: loader
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "mt-auto flex justify-end",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+              className: "relative inline-block w-12",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                type: "checkbox",
+                id: `toggle-${toggle.id}`,
+                name: toggle.name,
+                className: "opacity-0 w-0 h-0",
+                checked: toggle.value,
+                onChange: () => handleToggleChange(toggle.id)
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                className: `slider block rounded-full w-[50px] h-[22px] cursor-pointer transition-all duration-100 ${toggle.value ? "bg-[#0029af]" : "bg-[#867c7c]"}`
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                className: `dot absolute left-2 top-6 w-3 h-3 bg-white rounded-full transition-transform duration-100 transform ${toggle.value ? "translate-x-6" : ""}`
+              })]
+            })
+          })]
         })
-      })]
+      }, toggle.id))
+    }), showSavedPopup && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "fixed bottom-4 right-4 px-4 py-2 bg-green-500 text-white font-semibold rounded shadow",
+      children: "Settings Saved!"
     })]
   });
 };

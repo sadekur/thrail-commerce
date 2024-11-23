@@ -4,8 +4,8 @@ import CommonHeader from "../../../common/CommonHeader";
 
 const Features = () => {
 	const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
-	const [loader, setLoader] = useState("Save Settings");
 	const [isLoading, setIsLoading] = useState(true);
+	const [showSavedPopup, setShowSavedPopup] = useState(false);
 
 	// Create state for toggle buttons
 	const [toggles, setToggles] = useState([
@@ -40,31 +40,17 @@ const Features = () => {
 		},
 	]);
 
-	const handleToggleChange = (id) => {
-		setToggles((prevToggles) =>
-			prevToggles.map((toggle) =>
-				toggle.id === id ? { ...toggle, value: !toggle.value } : toggle
-			)
-		);
-	};
-	const handleDisableAll = () => {
-		setToggles((prevToggles) =>
-			prevToggles.map((toggle) => ({ ...toggle, value: false }))
-		);
+	// Show "Saved" popup
+	const triggerSavedPopup = () => {
+		setShowSavedPopup(true);
+		setTimeout(() => {
+			setShowSavedPopup(false);
+		}, 1500);
 	};
 
-	const handleEnableAll = () => {
-		setToggles((prevToggles) =>
-			prevToggles.map((toggle) => ({ ...toggle, value: true }))
-		);
-	};
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		setLoader("Saving...");
-		thrail_commerce_modal(true);
-
-		const toggleValues = toggles.reduce((acc, toggle) => {
+	// Save settings to server
+	const saveSettings = (updatedToggles) => {
+		const toggleValues = updatedToggles.reduce((acc, toggle) => {
 			acc[toggle.name] = toggle.value ? "on" : "off";
 			return acc;
 		}, {});
@@ -80,18 +66,50 @@ const Features = () => {
 					},
 				}
 			)
-			.then((response) => {
-				setLoader("Saved");
-				window.location.reload();
+			.then(() => {
+				triggerSavedPopup();
 			})
 			.catch((error) => {
-				console.log("error: ", error);
-			})
-			.finally(() => {
-				thrail_commerce_modal(false);
+				console.error("Error saving settings:", error);
 			});
 	};
 
+	// Toggle individual feature
+	const handleToggleChange = (id) => {
+		setToggles((prevToggles) => {
+			const updatedToggles = prevToggles.map((toggle) =>
+				toggle.id === id ? { ...toggle, value: !toggle.value } : toggle
+			);
+			saveSettings(updatedToggles);
+			return updatedToggles;
+		});
+	};
+
+	// Disable all features
+	const handleDisableAll = () => {
+		setToggles((prevToggles) => {
+			const updatedToggles = prevToggles.map((toggle) => ({
+				...toggle,
+				value: false,
+			}));
+			saveSettings(updatedToggles);
+			return updatedToggles;
+		});
+	};
+
+	// Enable all features
+	const handleEnableAll = () => {
+		setToggles((prevToggles) => {
+			const updatedToggles = prevToggles.map((toggle) => ({
+				...toggle,
+				value: true,
+			}));
+			saveSettings(updatedToggles);
+			return updatedToggles;
+		});
+	};
+
+	// Load settings from server
 	useEffect(() => {
 		setIsLoading(true);
 		axios
@@ -105,7 +123,7 @@ const Features = () => {
 				);
 			})
 			.catch((error) => {
-				console.log("error: ", error);
+				console.error("Error loading settings:", error);
 			})
 			.finally(() => {
 				setIsLoading(false);
@@ -122,62 +140,49 @@ const Features = () => {
 			{isLoading ? (
 				<div>Loading...</div>
 			) : (
-				<form id='work-feature-form' onSubmit={handleSubmit} className="mt-4">
-					<div className='grid grid-cols-4 md:grid-cols-4 sm:grid-cols-1 gap-6'>
-						{toggles.map((toggle) => (
-							<div
-								key={toggle.id}
-								className='p-4 bg-white shadow-md rounded-lg border border-gray-200 relative'>
-								<div className='flex flex-col h-full'>
-									<div className='mb-auto'>
-										<h3 className='text-lg font-semibold'>
-											{toggle.label}
-										</h3>
-										<p className='text-sm text-gray-600'>
-											{toggle.description}
-										</p>
-									</div>
-									<div className='mt-auto flex justify-end'>
-										<label className='relative inline-block w-12'>
-											<input
-												type='checkbox'
-												id={`toggle-${toggle.id}`}
-												name={toggle.name}
-												className='opacity-0 w-0 h-0'
-												checked={toggle.value}
-												onChange={() =>
-													handleToggleChange(
-														toggle.id
-													)
-												}
-											/>
-											<span
-												className={`slider block rounded-full w-[50px] h-[22px] cursor-pointer transition-all duration-100 ${
-													toggle.value
-														? "bg-[#0029af]"
-														: "bg-[#867c7c]"
-												}`}></span>
-											<span
-												className={`dot absolute left-2 top-6 w-3 h-3 bg-white rounded-full transition-transform duration-100 transform ${
-													toggle.value
-														? "translate-x-6"
-														: ""
-												}`}></span>
-										</label>
-									</div>
+				<div className="mt-4 grid grid-cols-4 md:grid-cols-4 sm:grid-cols-1 gap-6">
+					{toggles.map((toggle) => (
+						<div
+							key={toggle.id}
+							className="p-4 bg-white shadow-md rounded-lg border border-gray-200 relative"
+						>
+							<div className="flex flex-col h-full">
+								<div className="mb-auto">
+									<h3 className="text-lg font-semibold">{toggle.label}</h3>
+									<p className="text-sm text-gray-600">{toggle.description}</p>
+								</div>
+								<div className="mt-auto flex justify-end">
+									<label className="relative inline-block w-12">
+										<input
+											type="checkbox"
+											id={`toggle-${toggle.id}`}
+											name={toggle.name}
+											className="opacity-0 w-0 h-0"
+											checked={toggle.value}
+											onChange={() => handleToggleChange(toggle.id)}
+										/>
+										<span
+											className={`slider block rounded-full w-[50px] h-[22px] cursor-pointer transition-all duration-100 ${
+												toggle.value ? "bg-[#0029af]" : "bg-[#867c7c]"
+											}`}
+										></span>
+										<span
+											className={`dot absolute left-2 top-6 w-3 h-3 bg-white rounded-full transition-transform duration-100 transform ${
+												toggle.value ? "translate-x-6" : ""
+											}`}
+										></span>
+									</label>
 								</div>
 							</div>
-						))}
-					</div>
-					<div className="mt-8 flex justify-center">
-						<button
-							type="submit"
-							className="px-6 py-3 text-white bg-[#0029af] rounded-lg shadow-md hover:bg-[#0842ff] transition-all duration-200"
-						>
-							{loader}
-						</button>
-					</div>
-				</form>
+						</div>
+					))}
+				</div>
+			)}
+			{/* Popup Message */}
+			{showSavedPopup && (
+				<div className="fixed bottom-4 right-4 px-4 py-2 bg-green-500 text-white font-semibold rounded shadow">
+					Settings Saved!
+				</div>
 			)}
 		</div>
 	);
