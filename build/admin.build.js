@@ -291,6 +291,7 @@ const Features = () => {
   const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
   const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const [popupMessage, setPopupMessage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [isSaving, setIsSaving] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false); // State for save overlay
 
   // Create state for toggle buttons
   const [toggles, setToggles] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
@@ -333,6 +334,7 @@ const Features = () => {
       acc[toggle.name] = toggle.value ? "on" : "off";
       return acc;
     }, {});
+    setIsSaving(true); // Activate overlay
     triggerPopup("Saving...");
     axios__WEBPACK_IMPORTED_MODULE_3__["default"].post(url, {
       settings: toggleValues
@@ -346,6 +348,8 @@ const Features = () => {
     }).catch(error => {
       console.error("Error saving settings:", error);
       triggerPopup("Error saving settings");
+    }).finally(() => {
+      setIsSaving(false); // Deactivate overlay
     });
   };
 
@@ -400,7 +404,14 @@ const Features = () => {
     });
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_common_CommonHeader__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "relative",
+    children: [isSaving && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "text-white font-semibold text-lg",
+        children: "Saving..."
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_common_CommonHeader__WEBPACK_IMPORTED_MODULE_1__["default"], {
       title: "Manage Features",
       onDisableAll: handleDisableAll,
       onEnableAll: handleEnableAll
@@ -442,7 +453,7 @@ const Features = () => {
         })
       }, toggle.id))
     }), popupMessage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "fixed bottom-4 right-4 px-4 py-2 bg-green-500 text-white font-semibold rounded shadow",
+      className: "fixed bottom-4 right-4 px-4 py-2 bg-[#0029af] text-white font-semibold rounded shadow",
       children: popupMessage
     })]
   });

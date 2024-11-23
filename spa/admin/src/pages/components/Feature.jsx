@@ -6,6 +6,7 @@ const Features = () => {
     const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
     const [isLoading, setIsLoading] = useState(true);
     const [popupMessage, setPopupMessage] = useState(null);
+    const [isSaving, setIsSaving] = useState(false); // State for save overlay
 
     // Create state for toggle buttons
     const [toggles, setToggles] = useState([
@@ -55,6 +56,7 @@ const Features = () => {
             return acc;
         }, {});
 
+        setIsSaving(true); // Activate overlay
         triggerPopup("Saving...");
 
         axios
@@ -74,6 +76,9 @@ const Features = () => {
             .catch((error) => {
                 console.error("Error saving settings:", error);
                 triggerPopup("Error saving settings");
+            })
+            .finally(() => {
+                setIsSaving(false); // Deactivate overlay
             });
     };
 
@@ -134,12 +139,22 @@ const Features = () => {
     }, []);
 
     return (
-        <div>
+        <div className="relative">
+            {/* Save Overlay */}
+            {isSaving && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+                    <div className="text-white font-semibold text-lg">
+                        Saving...
+                    </div>
+                </div>
+            )}
+
             <CommonHeader
                 title="Manage Features"
                 onDisableAll={handleDisableAll}
                 onEnableAll={handleEnableAll}
             />
+
             {isLoading ? (
                 <div>Loading...</div>
             ) : (
@@ -181,9 +196,10 @@ const Features = () => {
                     ))}
                 </div>
             )}
+
             {/* Popup Message */}
             {popupMessage && (
-                <div className="fixed bottom-4 right-4 px-4 py-2 bg-green-500 text-white font-semibold rounded shadow">
+                <div className="fixed bottom-4 right-4 px-4 py-2 bg-[#0029af] text-white font-semibold rounded shadow">
                     {popupMessage}
                 </div>
             )}
