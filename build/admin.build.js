@@ -290,7 +290,7 @@ __webpack_require__.r(__webpack_exports__);
 const Features = () => {
   const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
   const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
-  const [showSavedPopup, setShowSavedPopup] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [popupMessage, setPopupMessage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
 
   // Create state for toggle buttons
   const [toggles, setToggles] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
@@ -319,11 +319,11 @@ const Features = () => {
     value: false
   }]);
 
-  // Show "Saved" popup
-  const triggerSavedPopup = () => {
-    setShowSavedPopup(true);
+  // Show popup message
+  const triggerPopup = message => {
+    setPopupMessage(message);
     setTimeout(() => {
-      setShowSavedPopup(false);
+      setPopupMessage(null);
     }, 1500);
   };
 
@@ -333,6 +333,7 @@ const Features = () => {
       acc[toggle.name] = toggle.value ? "on" : "off";
       return acc;
     }, {});
+    triggerPopup("Saving...");
     axios__WEBPACK_IMPORTED_MODULE_3__["default"].post(url, {
       settings: toggleValues
     }, {
@@ -341,9 +342,10 @@ const Features = () => {
         "X-WP-Nonce": THRAILCOMMERCE.nonce
       }
     }).then(() => {
-      triggerSavedPopup();
+      triggerPopup("Settings Saved!");
     }).catch(error => {
       console.error("Error saving settings:", error);
+      triggerPopup("Error saving settings");
     });
   };
 
@@ -439,9 +441,9 @@ const Features = () => {
           })]
         })
       }, toggle.id))
-    }), showSavedPopup && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    }), popupMessage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "fixed bottom-4 right-4 px-4 py-2 bg-green-500 text-white font-semibold rounded shadow",
-      children: "Settings Saved!"
+      children: popupMessage
     })]
   });
 };
