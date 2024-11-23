@@ -5,10 +5,9 @@ import CommonHeader from "../../../common/CommonHeader";
 const Features = () => {
     const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
     const [isLoading, setIsLoading] = useState(true);
-    const [popupMessage, setPopupMessage] = useState(null);
-    const [isSaving, setIsSaving] = useState(false); // State for save overlay
+    const [isSaving, setIsSaving] = useState(false);
+    const [savingMessage, setSavingMessage] = useState("Saving...");
 
-    // Create state for toggle buttons
     const [toggles, setToggles] = useState([
         {
             id: 1,
@@ -41,23 +40,14 @@ const Features = () => {
         },
     ]);
 
-    // Show popup message
-    const triggerPopup = (message) => {
-        setPopupMessage(message);
-        setTimeout(() => {
-            setPopupMessage(null);
-        }, 1500);
-    };
-
-    // Save settings to server
     const saveSettings = (updatedToggles) => {
         const toggleValues = updatedToggles.reduce((acc, toggle) => {
             acc[toggle.name] = toggle.value ? "on" : "off";
             return acc;
         }, {});
 
-        setIsSaving(true); // Activate overlay
-        triggerPopup("Saving...");
+        setIsSaving(true);
+        setSavingMessage("Saving...");
 
         axios
             .post(
@@ -71,18 +61,20 @@ const Features = () => {
                 }
             )
             .then(() => {
-                triggerPopup("Settings Saved!");
+                setSavingMessage("Settings Saved!");
+                setTimeout(() => {
+                    setIsSaving(false);
+                }, 1500);
             })
             .catch((error) => {
                 console.error("Error saving settings:", error);
-                triggerPopup("Error saving settings");
-            })
-            .finally(() => {
-                setIsSaving(false); // Deactivate overlay
+                setSavingMessage("Error saving settings");
+                setTimeout(() => {
+                    setIsSaving(false);
+                }, 1500);
             });
     };
 
-    // Toggle individual feature
     const handleToggleChange = (id) => {
         setToggles((prevToggles) => {
             const updatedToggles = prevToggles.map((toggle) =>
@@ -93,7 +85,6 @@ const Features = () => {
         });
     };
 
-    // Disable all features
     const handleDisableAll = () => {
         setToggles((prevToggles) => {
             const updatedToggles = prevToggles.map((toggle) => ({
@@ -105,7 +96,6 @@ const Features = () => {
         });
     };
 
-    // Enable all features
     const handleEnableAll = () => {
         setToggles((prevToggles) => {
             const updatedToggles = prevToggles.map((toggle) => ({
@@ -117,7 +107,6 @@ const Features = () => {
         });
     };
 
-    // Load settings from server
     useEffect(() => {
         setIsLoading(true);
         axios
@@ -143,9 +132,7 @@ const Features = () => {
             {/* Save Overlay */}
             {isSaving && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-                    <div className="text-white font-semibold text-lg">
-                        Saving...
-                    </div>
+                    <div className="text-white font-semibold text-lg">{savingMessage}</div>
                 </div>
             )}
 
@@ -194,13 +181,6 @@ const Features = () => {
                             </div>
                         </div>
                     ))}
-                </div>
-            )}
-
-            {/* Popup Message */}
-            {popupMessage && (
-                <div className="fixed bottom-4 right-4 px-4 py-2 bg-[#0029af] text-white font-semibold rounded shadow">
-                    {popupMessage}
                 </div>
             )}
         </div>

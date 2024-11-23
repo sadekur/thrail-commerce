@@ -290,10 +290,8 @@ __webpack_require__.r(__webpack_exports__);
 const Features = () => {
   const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
   const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
-  const [popupMessage, setPopupMessage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
-  const [isSaving, setIsSaving] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false); // State for save overlay
-
-  // Create state for toggle buttons
+  const [isSaving, setIsSaving] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [savingMessage, setSavingMessage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("Saving...");
   const [toggles, setToggles] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
     id: 1,
     label: "Woocommerce Tip",
@@ -319,23 +317,13 @@ const Features = () => {
     description: "Enable custom functionality 3 for more options.",
     value: false
   }]);
-
-  // Show popup message
-  const triggerPopup = message => {
-    setPopupMessage(message);
-    setTimeout(() => {
-      setPopupMessage(null);
-    }, 1500);
-  };
-
-  // Save settings to server
   const saveSettings = updatedToggles => {
     const toggleValues = updatedToggles.reduce((acc, toggle) => {
       acc[toggle.name] = toggle.value ? "on" : "off";
       return acc;
     }, {});
-    setIsSaving(true); // Activate overlay
-    triggerPopup("Saving...");
+    setIsSaving(true);
+    setSavingMessage("Saving...");
     axios__WEBPACK_IMPORTED_MODULE_3__["default"].post(url, {
       settings: toggleValues
     }, {
@@ -344,16 +332,18 @@ const Features = () => {
         "X-WP-Nonce": THRAILCOMMERCE.nonce
       }
     }).then(() => {
-      triggerPopup("Settings Saved!");
+      setSavingMessage("Settings Saved!");
+      setTimeout(() => {
+        setIsSaving(false);
+      }, 1500);
     }).catch(error => {
       console.error("Error saving settings:", error);
-      triggerPopup("Error saving settings");
-    }).finally(() => {
-      setIsSaving(false); // Deactivate overlay
+      setSavingMessage("Error saving settings");
+      setTimeout(() => {
+        setIsSaving(false);
+      }, 1500);
     });
   };
-
-  // Toggle individual feature
   const handleToggleChange = id => {
     setToggles(prevToggles => {
       const updatedToggles = prevToggles.map(toggle => toggle.id === id ? {
@@ -364,8 +354,6 @@ const Features = () => {
       return updatedToggles;
     });
   };
-
-  // Disable all features
   const handleDisableAll = () => {
     setToggles(prevToggles => {
       const updatedToggles = prevToggles.map(toggle => ({
@@ -376,8 +364,6 @@ const Features = () => {
       return updatedToggles;
     });
   };
-
-  // Enable all features
   const handleEnableAll = () => {
     setToggles(prevToggles => {
       const updatedToggles = prevToggles.map(toggle => ({
@@ -388,8 +374,6 @@ const Features = () => {
       return updatedToggles;
     });
   };
-
-  // Load settings from server
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     setIsLoading(true);
     axios__WEBPACK_IMPORTED_MODULE_3__["default"].get(`${THRAILCOMMERCE.apiurl}/get-settings`).then(response => {
@@ -409,7 +393,7 @@ const Features = () => {
       className: "fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "text-white font-semibold text-lg",
-        children: "Saving..."
+        children: savingMessage
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_common_CommonHeader__WEBPACK_IMPORTED_MODULE_1__["default"], {
       title: "Manage Features",
@@ -452,9 +436,6 @@ const Features = () => {
           })]
         })
       }, toggle.id))
-    }), popupMessage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "fixed bottom-4 right-4 px-4 py-2 bg-[#0029af] text-white font-semibold rounded shadow",
-      children: popupMessage
     })]
   });
 };
