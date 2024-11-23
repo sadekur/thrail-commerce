@@ -39,8 +39,6 @@ class Menu {
             );
         }
     }
-
-    // Function to display the content of the main admin page
     public function admin_page_content()
     {
 ?>

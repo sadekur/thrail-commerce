@@ -26,9 +26,6 @@ class Features {
                     require_once $file;
                     $class_name = str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $feature_directory)));
                     $class = "\\Thrail\\Commerce\\Features\\{$class_name}";
-                    update_option('thrail_commerce_class', $class);
-
-                    // Instantiate the feature class if it exists
                     if (class_exists($class)) {
                         new $class();
                     }

@@ -22,7 +22,7 @@ jQuery(document).ready(($) => {
             beforeSend: (xhr) => xhr.setRequestHeader('X-WP-Nonce', THRAILCOMMERCE.nonce),
             success: () => thrail_commerce_modal(false),
             error: (error) => {
-                // alert('<?php esc_html_e('Error saving settings. Please try again.', 'thrail-commerce'); ?>');
+                thrail_commerce_modal(false);
                 console.error(error);
             },
         });
