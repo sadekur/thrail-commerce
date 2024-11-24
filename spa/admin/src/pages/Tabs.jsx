@@ -11,10 +11,9 @@ const Tabs = () => {
 	const tabs = ["dashboard", "feature", "blocks", "settings"];
 	return (
 		<>
-			<div>
-				{/* Tabs */}
+			<div className=''>
 				<div className='border-b border-gray-300 mb-4'>
-					<ul className='flex space-x-4'>
+					<ul className='flex items-center justify-start'>
 						{tabs.map((tab) => (
 							<li key={tab}>
 								<button
@@ -30,7 +29,6 @@ const Tabs = () => {
 						))}
 					</ul>
 				</div>
-				{/* Tab Content */}
 				<div className='mt-6'>
 					{activeTab === "dashboard" && <Dashboard />}
 					{activeTab === "feature" && <Feature />}

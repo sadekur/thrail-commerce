@@ -23,7 +23,7 @@ const CommonHeader = ({
   onEnableAll
 }) => {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-    className: "bg-white px-6 py-4 rounded-lg shadow-md flex justify-between items-center",
+    className: "flex justify-between items-center bg-white py-3 p-4 rounded-lg shadow-md",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
       className: "text-xl font-bold text-[#0029af]",
       children: title
@@ -74,10 +74,11 @@ const Tabs = () => {
   const tabs = ["dashboard", "feature", "blocks", "settings"];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      className: "",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
         className: "border-b border-gray-300 mb-4",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ul", {
-          className: "flex space-x-4",
+          className: "flex items-center justify-start",
           children: tabs.map(tab => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
               className: `py-2 px-4 ${activeTab === tab ? "border-b-2 border-[#0029af] text-[#0029af]" : "text-[#0029af] hover:text-[#0842ff]"}`,
