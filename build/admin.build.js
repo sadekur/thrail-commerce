@@ -80,7 +80,7 @@ const Tabs = () => {
           className: "flex space-x-4",
           children: tabs.map(tab => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-              className: `py-2 px-4 ${activeTab === tab ? "border-b-2 border-green-500 text-green-600" : "text-gray-500"}`,
+              className: `py-2 px-4 ${activeTab === tab ? "border-b-2 border-[#0029af] text-[#0029af]" : "text-[#0029af] hover:text-[#0842ff]"}`,
               onClick: () => setActiveTab(tab),
               children: tab.charAt(0).toUpperCase() + tab.slice(1)
             })
