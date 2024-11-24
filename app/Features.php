@@ -20,7 +20,7 @@ class Features {
 
         foreach ($features as $feature_key => $feature_directory) {
             if (isset($settings[$feature_key]) && $settings[$feature_key] === 'on') {
-                $file = THRAIL_COMMERCE_PATH . "/features/{$feature_directory}/{$feature_directory}.php";
+                $file = THRAIL_COMMERCE_PATH . "features/{$feature_directory}/{$feature_directory}.php";
 
                 if (file_exists($file)) {
                     require_once $file;

@@ -4,7 +4,7 @@ namespace Thrail\Commerce;
 class Helper {
     public static function get_template($template_name, $path, $data = []) {
         $template_path = plugin_dir_path(__FILE__) . $path . '/' . $template_name . '.php';
-        print_r(THRAIL_COMMERCE_PATH . '/assets/css/init.css');
+        // print_r(THRAIL_COMMERCE_PATH . '/assets/css/init.css');
 
         if (file_exists($template_path)) {
             // Extract data to variables
