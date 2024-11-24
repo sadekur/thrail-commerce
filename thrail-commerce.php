@@ -64,7 +64,7 @@ final class THRAIL_COMMERCE{
 		define( 'THRAIL_COMMERCE_FILE', __FILE__ );
 		define( 'THRAIL_COMMERCE_PATH', plugin_dir_path(__FILE__) );
 		define( 'THRAIL_COMMERCE_URL', plugin_dir_url(__FILE__) );
-		define( 'THRAIL_COMMERCE_ASSETS', THRAIL_COMMERCE_URL . '/assets' );
+		define( 'THRAIL_COMMERCE_ASSETS', THRAIL_COMMERCE_URL . 'assets' );
 	}
 
 	/**

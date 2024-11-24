@@ -42,7 +42,7 @@ class Assets {
                 'thrail-commerce-frontend-style',
                 THRAIL_COMMERCE_ASSETS . '/css/frontend.css',
                 [],
-                filemtime(THRAIL_COMMERCE_PATH . '/assets/css/frontend.css')
+                filemtime(THRAIL_COMMERCE_PATH . 'assets/css/frontend.css')
             );
         }
     }
@@ -50,9 +50,9 @@ class Assets {
     public function enqueue_frontend_assets() {
         wp_enqueue_script(
             'thrail-commerce-frontend-script',
-            THRAIL_COMMERCE_ASSETS . '/js/frontend.js',
+            THRAIL_COMMERCE_ASSETS . 'js/frontend.js',
             ['jquery'],
-            filemtime(THRAIL_COMMERCE_PATH . '/assets/js/frontend.js'),
+            filemtime(THRAIL_COMMERCE_PATH . 'assets/js/frontend.js'),
             true
         );
         wp_localize_script('thrail-commerce-frontend-script', 'THRAILCOMMERCE', [
@@ -66,7 +66,7 @@ class Assets {
             'thrail-commerce-frontend-style',
             THRAIL_COMMERCE_ASSETS . '/css/frontend.css',
             [],
-            filemtime(THRAIL_COMMERCE_PATH . '/assets/css/frontend.css')
+            filemtime(THRAIL_COMMERCE_PATH . 'assets/css/frontend.css')
         );
         $this->enqueue_common_assets();
     }
@@ -76,7 +76,7 @@ class Assets {
             'thrail-commerce-admin-script',
             THRAIL_COMMERCE_ASSETS . '/js/admin.js',
             ['jquery'],
-            filemtime(THRAIL_COMMERCE_PATH . '/assets/js/admin.js'),
+            filemtime(THRAIL_COMMERCE_PATH . 'assets/js/admin.js'),
             true
         );
 
@@ -92,7 +92,7 @@ class Assets {
             'thrail-commerce-init-script',
             THRAIL_COMMERCE_ASSETS . '/js/init.js',
             [],
-            filemtime(THRAIL_COMMERCE_PATH . '/assets/js/init.js'),
+            filemtime(THRAIL_COMMERCE_PATH . 'assets/js/init.js'),
             true
         );
 
@@ -115,14 +115,14 @@ class Assets {
             'thrail-commerce-admin-style',
             THRAIL_COMMERCE_ASSETS . '/css/admin.css',
             [],
-            filemtime(THRAIL_COMMERCE_PATH . '/assets/css/admin.css')
+            filemtime(THRAIL_COMMERCE_PATH . 'assets/css/admin.css')
         );
 
         wp_enqueue_style(
             'thrail-commerce-init-style',
             THRAIL_COMMERCE_ASSETS . '/css/init.css',
             [],
-            filemtime(THRAIL_COMMERCE_PATH . '/assets/css/init.css')
+            filemtime(THRAIL_COMMERCE_PATH . 'assets/css/init.css')
         );
 
         wp_enqueue_style(
