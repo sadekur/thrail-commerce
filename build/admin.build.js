@@ -23,18 +23,18 @@ const CommonHeader = ({
   onEnableAll
 }) => {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-    className: "flex justify-between items-center bg-white py-3 p-4 rounded-lg shadow-md",
+    className: "thail-commerce-header bg-white py-3 p-4 rounded-lg shadow-md",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
       className: "text-xl font-bold text-[#0029af]",
       children: title
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "flex space-x-4",
+      className: "thail-commerce-control-button flex",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-        className: "px-4 py-2 bg-gray-500 border border-gray-500 text-white font-bold rounded-lg shadow hover:bg-red-600 transition-all duration-200",
+        className: "thail-commerce-disable-all",
         onClick: onDisableAll,
         children: "Disable All"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-        className: "px-4 py-2 bg-[#0029af] border-gray-500 text-white rounded-lg shadow hover:bg-[#0842ff] transition-all duration-200",
+        className: "thail-commerce-enable-all",
         onClick: onEnableAll,
         children: "Enable All"
       })]
@@ -222,7 +222,7 @@ const Blocks = () => {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "relative",
     children: [isSaving && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center",
+      className: "thrail-modal-save inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "text-white font-semibold text-lg",
         children: savingMessage
@@ -420,7 +420,7 @@ const Features = () => {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "relative",
     children: [isSaving && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center",
+      className: "thrail-modal-save inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "text-white font-semibold text-lg",
         children: savingMessage
