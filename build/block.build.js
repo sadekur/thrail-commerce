@@ -6899,15 +6899,11 @@ const Edit = ({
   setAttributes
 }) => {
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)();
-
-  // Update the `sections` attribute
   const updateSections = newSections => {
     setAttributes({
       sections: newSections
     });
   };
-
-  // Toggle the accordion open/close state
   const toggleSection = index => {
     const updatedSections = attributes.sections.map((section, idx) => idx === index ? {
       ...section,
@@ -6915,8 +6911,6 @@ const Edit = ({
     } : section);
     updateSections(updatedSections);
   };
-
-  // Update individual section fields (title/content)
   const updateSection = (index, field, value) => {
     const updatedSections = attributes.sections.map((section, idx) => idx === index ? {
       ...section,
@@ -6924,8 +6918,6 @@ const Edit = ({
     } : section);
     updateSections(updatedSections);
   };
-
-  // Add a new section to the accordion
   const addSection = () => {
     const newSection = {
       title: "New Accordion",

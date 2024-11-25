@@ -5,12 +5,9 @@ import { __ } from "@wordpress/i18n";
 const Edit = ({ attributes, setAttributes }) => {
   const blockProps = useBlockProps();
 
-  // Update the `sections` attribute
   const updateSections = (newSections) => {
     setAttributes({ sections: newSections });
   };
-
-  // Toggle the accordion open/close state
   const toggleSection = (index) => {
     const updatedSections = attributes.sections.map((section, idx) =>
       idx === index ? { ...section, isOpen: !section.isOpen } : section
@@ -18,15 +15,12 @@ const Edit = ({ attributes, setAttributes }) => {
     updateSections(updatedSections);
   };
 
-  // Update individual section fields (title/content)
   const updateSection = (index, field, value) => {
     const updatedSections = attributes.sections.map((section, idx) =>
       idx === index ? { ...section, [field]: value } : section
     );
     updateSections(updatedSections);
   };
-
-  // Add a new section to the accordion
   const addSection = () => {
     const newSection = { title: "New Accordion", content: "", isOpen: false };
     updateSections([...attributes.sections, newSection]);
@@ -34,7 +28,6 @@ const Edit = ({ attributes, setAttributes }) => {
 
   return (
     <div {...blockProps}>
-      {/* Inspector Controls */}
       <InspectorControls>
         <Panel>
           <PanelBody title={__("Settings", "thrail-commerce")} initialOpen={true}>
@@ -43,13 +36,11 @@ const Edit = ({ attributes, setAttributes }) => {
         </Panel>
       </InspectorControls>
 
-      {/* Accordion Sections */}
       {attributes.sections.map((section, index) => (
         <div
           key={index}
           className="border border-indigo-700 rounded-sm mb-4 p-3 accordion-section"
         >
-          {/* Accordion Header */}
           <div
             onClick={() => toggleSection(index)}
             className="cursor-pointer py-2 border-b border-blue-500 mb-2 accordion-title"
@@ -62,8 +53,6 @@ const Edit = ({ attributes, setAttributes }) => {
               className="text-gray-800"
             />
           </div>
-
-          {/* Accordion Content */}
           {section.isOpen && (
             <div className="accordion-content">
               <RichText
@@ -78,7 +67,6 @@ const Edit = ({ attributes, setAttributes }) => {
         </div>
       ))}
 
-      {/* Add Section Button */}
       <Button
         onClick={addSection}
         className="mt-4"
