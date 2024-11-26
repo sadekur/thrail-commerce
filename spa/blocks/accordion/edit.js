@@ -39,19 +39,20 @@ const Edit = ({ attributes, setAttributes }) => {
       {attributes.sections.map((section, index) => (
         <div
           key={index}
-          className="border border-indigo-700 rounded-sm mb-4 p-3 accordion-section"
+          className="border border-[#0029af] rounded-sm mb-4 p-3 accordion-section"
         >
           <div
             onClick={() => toggleSection(index)}
-            className="cursor-pointer py-2 border-b border-blue-500 mb-2 accordion-title"
+            className="cursor-pointer py-2 mb-2 accordion-title"
           >
             <RichText
               tagName="h3"
               value={section.title}
               onChange={(value) => updateSection(index, "title", value)}
               placeholder={__("Enter title...", "thrail-commerce")}
-              className="text-gray-800"
+              style={{ color: "#0029af" }}
             />
+
           </div>
           {section.isOpen && (
             <div className="accordion-content">
@@ -60,7 +61,7 @@ const Edit = ({ attributes, setAttributes }) => {
                 value={section.content}
                 onChange={(value) => updateSection(index, "content", value)}
                 placeholder={__("Enter content...", "thrail-commerce")}
-                className="text-gray-800 p-2 rounded border border-gray-300 bg-white"
+                className="text-gray-800 p-2 rounded bg-white"
               />
             </div>
           )}

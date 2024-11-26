@@ -6939,16 +6939,18 @@ const Edit = ({
         })
       })
     }), attributes.sections.map((section, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "border border-indigo-700 rounded-sm mb-4 p-3 accordion-section",
+      className: "border border-[#0029af] rounded-sm mb-4 p-3 accordion-section",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         onClick: () => toggleSection(index),
-        className: "cursor-pointer py-2 border-b border-blue-500 mb-2 accordion-title",
+        className: "cursor-pointer py-2 mb-2 accordion-title",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
           tagName: "h3",
           value: section.title,
           onChange: value => updateSection(index, "title", value),
           placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Enter title...", "thrail-commerce"),
-          className: "text-gray-800"
+          style: {
+            color: "#0029af"
+          }
         })
       }), section.isOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "accordion-content",
@@ -6957,7 +6959,7 @@ const Edit = ({
           value: section.content,
           onChange: value => updateSection(index, "content", value),
           placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Enter content...", "thrail-commerce"),
-          className: "text-gray-800 p-2 rounded border border-gray-300 bg-white"
+          className: "text-gray-800 p-2 rounded bg-white"
         })
       })]
     }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["default"], {
