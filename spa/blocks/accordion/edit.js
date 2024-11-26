@@ -1,4 +1,8 @@
-import { useBlockProps, RichText, InspectorControls } from "@wordpress/block-editor";
+import {
+  useBlockProps,
+  RichText,
+  InspectorControls,
+} from "@wordpress/block-editor";
 import { PanelBody, Panel, Button } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 
@@ -8,6 +12,7 @@ const Edit = ({ attributes, setAttributes }) => {
   const updateSections = (newSections) => {
     setAttributes({ sections: newSections });
   };
+
   const toggleSection = (index) => {
     const updatedSections = attributes.sections.map((section, idx) =>
       idx === index ? { ...section, isOpen: !section.isOpen } : section
@@ -21,6 +26,7 @@ const Edit = ({ attributes, setAttributes }) => {
     );
     updateSections(updatedSections);
   };
+
   const addSection = () => {
     const newSection = { title: "New Accordion", content: "", isOpen: false };
     updateSections([...attributes.sections, newSection]);
@@ -30,8 +36,13 @@ const Edit = ({ attributes, setAttributes }) => {
     <div {...blockProps}>
       <InspectorControls>
         <Panel>
-          <PanelBody title={__("Settings", "thrail-commerce")} initialOpen={true}>
-            <p>{__("Additional settings can be added here.", "thrail-commerce")}</p>
+          <PanelBody
+            title={__("Settings", "thrail-commerce")}
+            initialOpen={true}
+          >
+            <p>
+              {__("Additional settings can be added here.", "thrail-commerce")}
+            </p>
           </PanelBody>
         </Panel>
       </InspectorControls>
@@ -43,7 +54,7 @@ const Edit = ({ attributes, setAttributes }) => {
         >
           <div
             onClick={() => toggleSection(index)}
-            className="cursor-pointer py-2 mb-2 accordion-title"
+            className="cursor-pointer py-2 mb-2 flex justify-between items-center accordion-title"
           >
             <RichText
               tagName="h3"
@@ -52,8 +63,11 @@ const Edit = ({ attributes, setAttributes }) => {
               placeholder={__("Enter title...", "thrail-commerce")}
               style={{ color: "#0029af" }}
             />
-
+            <span className="accordion-icon text-[#0029af] font-bold">
+              {section.isOpen ? "-" : "+"}
+            </span>
           </div>
+
           {section.isOpen && (
             <div className="accordion-content">
               <RichText
@@ -68,11 +82,7 @@ const Edit = ({ attributes, setAttributes }) => {
         </div>
       ))}
 
-      <Button
-        onClick={addSection}
-        className="mt-4"
-        variant="primary"
-      >
+      <Button onClick={addSection} className="mt-4" variant="primary">
         {__("Add Section", "thrail-commerce")}
       </Button>
     </div>

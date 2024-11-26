@@ -6940,10 +6940,10 @@ const Edit = ({
       })
     }), attributes.sections.map((section, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "border border-[#0029af] rounded-sm mb-4 p-3 accordion-section",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         onClick: () => toggleSection(index),
-        className: "cursor-pointer py-2 mb-2 accordion-title",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
+        className: "cursor-pointer py-2 mb-2 flex justify-between items-center accordion-title",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
           tagName: "h3",
           value: section.title,
           onChange: value => updateSection(index, "title", value),
@@ -6951,7 +6951,10 @@ const Edit = ({
           style: {
             color: "#0029af"
           }
-        })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          className: "accordion-icon text-[#0029af] font-bold",
+          children: section.isOpen ? "-" : "+"
+        })]
       }), section.isOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "accordion-content",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
@@ -20062,7 +20065,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"thrail-commerce/accordion","title":"Accordion","category":"thrail-commerce-product","icon":"list-view","supports":{"html":false},"attributes":{"sections":{"type":"array","default":[{"title":"Accordion 1","content":"Content for Accordion 1","isOpen":true},{"title":"Accordion 2","content":"Content for Accordion 2","isOpen":true}]}},"editorScript":"file:./index.js","render":"file:./render.php","style":"file:./style.css"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"thrail-commerce/accordion","title":"Accordion","category":"thrail-commerce-product","icon":"list-view","supports":{"html":false},"attributes":{"sections":{"type":"array","default":[{"title":"What is Thrail Commerce?","content":"Thrail Commerce is a cutting-edge e-commerce platform designed to provide seamless shopping experiences and advanced product management tools.","isOpen":true},{"title":"How does this feature work?","content":"This feature allows users to toggle sections of content, enabling a compact and user-friendly display of information.","isOpen":true}]}},"editorScript":"file:./index.js","render":"file:./render.php","style":"file:./style.css"}');
 
 /***/ }),
 

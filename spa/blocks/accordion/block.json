@@ -12,8 +12,16 @@
 		"sections": {
 			"type": "array",
 			"default": [
-				{ "title": "Accordion 1", "content": "Content for Accordion 1", "isOpen": true },
-				{ "title": "Accordion 2", "content": "Content for Accordion 2", "isOpen": true }
+				{
+					"title": "What is Thrail Commerce?",
+					"content": "Thrail Commerce is a cutting-edge e-commerce platform designed to provide seamless shopping experiences and advanced product management tools.",
+					"isOpen": true
+				},
+				{
+					"title": "How does this feature work?",
+					"content": "This feature allows users to toggle sections of content, enabling a compact and user-friendly display of information.",
+					"isOpen": true
+				}
 			]
 		}
 	},
