@@ -3,9 +3,11 @@
 	background-color: #ccc;
 	padding: 10px;
 }
-
-.wp-block-thrail-commerce-accordion .accordion-content {
-	display: none;
-	padding: 10px;
-	background-color: #f9f9f9;
-} */
+*/
+.thrail-commerce-accordion-header {
+	justify-content: space-between;
+}
+.thrail-commerce-add-section {
+	color: #ffffff;
+	border-radius: 6px;
+}

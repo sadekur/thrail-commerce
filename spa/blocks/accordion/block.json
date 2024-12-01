@@ -22,7 +22,15 @@
 					"content": "This feature allows users to toggle sections of content, enabling a compact and user-friendly display of information.",
 					"isOpen": true
 				}
-			]
+			],
+			"titleColor": {
+				"type": "string",
+				"default": "#000000"
+			},
+			"titleFontSize": {
+				"type": "string",
+				"default": "16px"
+			}
 		}
 	},
 	"editorScript": "file:./index.js",

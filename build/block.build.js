@@ -1326,6 +1326,712 @@ var Emotion$1 = Emotion;
 
 /***/ }),
 
+/***/ "./node_modules/@emotion/react/dist/emotion-react.browser.development.esm.js":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@emotion/react/dist/emotion-react.browser.development.esm.js ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CacheProvider: () => (/* reexport safe */ _emotion_element_7a1343fa_browser_development_esm_js__WEBPACK_IMPORTED_MODULE_0__.C),
+/* harmony export */   ClassNames: () => (/* binding */ ClassNames),
+/* harmony export */   Global: () => (/* binding */ Global),
+/* harmony export */   ThemeContext: () => (/* reexport safe */ _emotion_element_7a1343fa_browser_development_esm_js__WEBPACK_IMPORTED_MODULE_0__.T),
+/* harmony export */   ThemeProvider: () => (/* reexport safe */ _emotion_element_7a1343fa_browser_development_esm_js__WEBPACK_IMPORTED_MODULE_0__.a),
+/* harmony export */   __unsafe_useEmotionCache: () => (/* reexport safe */ _emotion_element_7a1343fa_browser_development_esm_js__WEBPACK_IMPORTED_MODULE_0__._),
+/* harmony export */   createElement: () => (/* binding */ jsx),
+/* harmony export */   css: () => (/* binding */ css),
+/* harmony export */   jsx: () => (/* binding */ jsx),
+/* harmony export */   keyframes: () => (/* binding */ keyframes),
+/* harmony export */   useTheme: () => (/* reexport safe */ _emotion_element_7a1343fa_browser_development_esm_js__WEBPACK_IMPORTED_MODULE_0__.u),
+/* harmony export */   withEmotionCache: () => (/* reexport safe */ _emotion_element_7a1343fa_browser_development_esm_js__WEBPACK_IMPORTED_MODULE_0__.w),
+/* harmony export */   withTheme: () => (/* reexport safe */ _emotion_element_7a1343fa_browser_development_esm_js__WEBPACK_IMPORTED_MODULE_0__.b)
+/* harmony export */ });
+/* harmony import */ var _emotion_element_7a1343fa_browser_development_esm_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./emotion-element-7a1343fa.browser.development.esm.js */ "./node_modules/@emotion/react/dist/emotion-element-7a1343fa.browser.development.esm.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _emotion_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/utils */ "./node_modules/@emotion/utils/dist/emotion-utils.browser.esm.js");
+/* harmony import */ var _emotion_use_insertion_effect_with_fallbacks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @emotion/use-insertion-effect-with-fallbacks */ "./node_modules/@emotion/use-insertion-effect-with-fallbacks/dist/emotion-use-insertion-effect-with-fallbacks.browser.esm.js");
+/* harmony import */ var _emotion_serialize__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @emotion/serialize */ "./node_modules/@emotion/serialize/dist/emotion-serialize.development.esm.js");
+/* harmony import */ var _emotion_cache__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @emotion/cache */ "./node_modules/@emotion/cache/dist/emotion-cache.browser.development.esm.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _emotion_weak_memoize__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @emotion/weak-memoize */ "./node_modules/@emotion/weak-memoize/dist/emotion-weak-memoize.esm.js");
+/* harmony import */ var hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! hoist-non-react-statics */ "./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js");
+/* harmony import */ var hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_8__);
+
+
+
+
+
+
+
+
+
+
+
+
+var isDevelopment = true;
+
+var pkg = {
+	name: "@emotion/react",
+	version: "11.13.3",
+	main: "dist/emotion-react.cjs.js",
+	module: "dist/emotion-react.esm.js",
+	exports: {
+		".": {
+			types: {
+				"import": "./dist/emotion-react.cjs.mjs",
+				"default": "./dist/emotion-react.cjs.js"
+			},
+			development: {
+				"edge-light": {
+					module: "./dist/emotion-react.development.edge-light.esm.js",
+					"import": "./dist/emotion-react.development.edge-light.cjs.mjs",
+					"default": "./dist/emotion-react.development.edge-light.cjs.js"
+				},
+				worker: {
+					module: "./dist/emotion-react.development.edge-light.esm.js",
+					"import": "./dist/emotion-react.development.edge-light.cjs.mjs",
+					"default": "./dist/emotion-react.development.edge-light.cjs.js"
+				},
+				workerd: {
+					module: "./dist/emotion-react.development.edge-light.esm.js",
+					"import": "./dist/emotion-react.development.edge-light.cjs.mjs",
+					"default": "./dist/emotion-react.development.edge-light.cjs.js"
+				},
+				browser: {
+					module: "./dist/emotion-react.browser.development.esm.js",
+					"import": "./dist/emotion-react.browser.development.cjs.mjs",
+					"default": "./dist/emotion-react.browser.development.cjs.js"
+				},
+				module: "./dist/emotion-react.development.esm.js",
+				"import": "./dist/emotion-react.development.cjs.mjs",
+				"default": "./dist/emotion-react.development.cjs.js"
+			},
+			"edge-light": {
+				module: "./dist/emotion-react.edge-light.esm.js",
+				"import": "./dist/emotion-react.edge-light.cjs.mjs",
+				"default": "./dist/emotion-react.edge-light.cjs.js"
+			},
+			worker: {
+				module: "./dist/emotion-react.edge-light.esm.js",
+				"import": "./dist/emotion-react.edge-light.cjs.mjs",
+				"default": "./dist/emotion-react.edge-light.cjs.js"
+			},
+			workerd: {
+				module: "./dist/emotion-react.edge-light.esm.js",
+				"import": "./dist/emotion-react.edge-light.cjs.mjs",
+				"default": "./dist/emotion-react.edge-light.cjs.js"
+			},
+			browser: {
+				module: "./dist/emotion-react.browser.esm.js",
+				"import": "./dist/emotion-react.browser.cjs.mjs",
+				"default": "./dist/emotion-react.browser.cjs.js"
+			},
+			module: "./dist/emotion-react.esm.js",
+			"import": "./dist/emotion-react.cjs.mjs",
+			"default": "./dist/emotion-react.cjs.js"
+		},
+		"./jsx-runtime": {
+			types: {
+				"import": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.mjs",
+				"default": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.js"
+			},
+			development: {
+				"edge-light": {
+					module: "./jsx-runtime/dist/emotion-react-jsx-runtime.development.edge-light.esm.js",
+					"import": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.edge-light.cjs.mjs",
+					"default": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.edge-light.cjs.js"
+				},
+				worker: {
+					module: "./jsx-runtime/dist/emotion-react-jsx-runtime.development.edge-light.esm.js",
+					"import": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.edge-light.cjs.mjs",
+					"default": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.edge-light.cjs.js"
+				},
+				workerd: {
+					module: "./jsx-runtime/dist/emotion-react-jsx-runtime.development.edge-light.esm.js",
+					"import": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.edge-light.cjs.mjs",
+					"default": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.edge-light.cjs.js"
+				},
+				browser: {
+					module: "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js",
+					"import": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.cjs.mjs",
+					"default": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.cjs.js"
+				},
+				module: "./jsx-runtime/dist/emotion-react-jsx-runtime.development.esm.js",
+				"import": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.cjs.mjs",
+				"default": "./jsx-runtime/dist/emotion-react-jsx-runtime.development.cjs.js"
+			},
+			"edge-light": {
+				module: "./jsx-runtime/dist/emotion-react-jsx-runtime.edge-light.esm.js",
+				"import": "./jsx-runtime/dist/emotion-react-jsx-runtime.edge-light.cjs.mjs",
+				"default": "./jsx-runtime/dist/emotion-react-jsx-runtime.edge-light.cjs.js"
+			},
+			worker: {
+				module: "./jsx-runtime/dist/emotion-react-jsx-runtime.edge-light.esm.js",
+				"import": "./jsx-runtime/dist/emotion-react-jsx-runtime.edge-light.cjs.mjs",
+				"default": "./jsx-runtime/dist/emotion-react-jsx-runtime.edge-light.cjs.js"
+			},
+			workerd: {
+				module: "./jsx-runtime/dist/emotion-react-jsx-runtime.edge-light.esm.js",
+				"import": "./jsx-runtime/dist/emotion-react-jsx-runtime.edge-light.cjs.mjs",
+				"default": "./jsx-runtime/dist/emotion-react-jsx-runtime.edge-light.cjs.js"
+			},
+			browser: {
+				module: "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.esm.js",
+				"import": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.cjs.mjs",
+				"default": "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.cjs.js"
+			},
+			module: "./jsx-runtime/dist/emotion-react-jsx-runtime.esm.js",
+			"import": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.mjs",
+			"default": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.js"
+		},
+		"./_isolated-hnrs": {
+			types: {
+				"import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.mjs",
+				"default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.js"
+			},
+			development: {
+				"edge-light": {
+					module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.esm.js",
+					"import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.cjs.mjs",
+					"default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.cjs.js"
+				},
+				worker: {
+					module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.esm.js",
+					"import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.cjs.mjs",
+					"default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.cjs.js"
+				},
+				workerd: {
+					module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.esm.js",
+					"import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.cjs.mjs",
+					"default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.edge-light.cjs.js"
+				},
+				browser: {
+					module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.development.esm.js",
+					"import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.development.cjs.mjs",
+					"default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.development.cjs.js"
+				},
+				module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.esm.js",
+				"import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.cjs.mjs",
+				"default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.development.cjs.js"
+			},
+			"edge-light": {
+				module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.esm.js",
+				"import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.cjs.mjs",
+				"default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.cjs.js"
+			},
+			worker: {
+				module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.esm.js",
+				"import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.cjs.mjs",
+				"default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.cjs.js"
+			},
+			workerd: {
+				module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.esm.js",
+				"import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.cjs.mjs",
+				"default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.edge-light.cjs.js"
+			},
+			browser: {
+				module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.esm.js",
+				"import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.cjs.mjs",
+				"default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.cjs.js"
+			},
+			module: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.esm.js",
+			"import": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.mjs",
+			"default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.js"
+		},
+		"./jsx-dev-runtime": {
+			types: {
+				"import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.mjs",
+				"default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.js"
+			},
+			development: {
+				"edge-light": {
+					module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.edge-light.esm.js",
+					"import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.edge-light.cjs.mjs",
+					"default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.edge-light.cjs.js"
+				},
+				worker: {
+					module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.edge-light.esm.js",
+					"import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.edge-light.cjs.mjs",
+					"default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.edge-light.cjs.js"
+				},
+				workerd: {
+					module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.edge-light.esm.js",
+					"import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.edge-light.cjs.mjs",
+					"default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.edge-light.cjs.js"
+				},
+				browser: {
+					module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.development.esm.js",
+					"import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.development.cjs.mjs",
+					"default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.development.cjs.js"
+				},
+				module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.esm.js",
+				"import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.cjs.mjs",
+				"default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.development.cjs.js"
+			},
+			"edge-light": {
+				module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.edge-light.esm.js",
+				"import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.edge-light.cjs.mjs",
+				"default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.edge-light.cjs.js"
+			},
+			worker: {
+				module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.edge-light.esm.js",
+				"import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.edge-light.cjs.mjs",
+				"default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.edge-light.cjs.js"
+			},
+			workerd: {
+				module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.edge-light.esm.js",
+				"import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.edge-light.cjs.mjs",
+				"default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.edge-light.cjs.js"
+			},
+			browser: {
+				module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.esm.js",
+				"import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.cjs.mjs",
+				"default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.cjs.js"
+			},
+			module: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.esm.js",
+			"import": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.mjs",
+			"default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.js"
+		},
+		"./package.json": "./package.json",
+		"./types/css-prop": "./types/css-prop.d.ts",
+		"./macro": {
+			types: {
+				"import": "./macro.d.mts",
+				"default": "./macro.d.ts"
+			},
+			"default": "./macro.js"
+		}
+	},
+	imports: {
+		"#is-development": {
+			development: "./src/conditions/true.js",
+			"default": "./src/conditions/false.js"
+		},
+		"#is-browser": {
+			"edge-light": "./src/conditions/false.js",
+			workerd: "./src/conditions/false.js",
+			worker: "./src/conditions/false.js",
+			browser: "./src/conditions/true.js",
+			"default": "./src/conditions/is-browser.js"
+		}
+	},
+	types: "types/index.d.ts",
+	files: [
+		"src",
+		"dist",
+		"jsx-runtime",
+		"jsx-dev-runtime",
+		"_isolated-hnrs",
+		"types/*.d.ts",
+		"macro.*"
+	],
+	sideEffects: false,
+	author: "Emotion Contributors",
+	license: "MIT",
+	scripts: {
+		"test:typescript": "dtslint types"
+	},
+	dependencies: {
+		"@babel/runtime": "^7.18.3",
+		"@emotion/babel-plugin": "^11.12.0",
+		"@emotion/cache": "^11.13.0",
+		"@emotion/serialize": "^1.3.1",
+		"@emotion/use-insertion-effect-with-fallbacks": "^1.1.0",
+		"@emotion/utils": "^1.4.0",
+		"@emotion/weak-memoize": "^0.4.0",
+		"hoist-non-react-statics": "^3.3.1"
+	},
+	peerDependencies: {
+		react: ">=16.8.0"
+	},
+	peerDependenciesMeta: {
+		"@types/react": {
+			optional: true
+		}
+	},
+	devDependencies: {
+		"@definitelytyped/dtslint": "0.0.112",
+		"@emotion/css": "11.13.0",
+		"@emotion/css-prettifier": "1.1.4",
+		"@emotion/server": "11.11.0",
+		"@emotion/styled": "11.13.0",
+		"html-tag-names": "^1.1.2",
+		react: "16.14.0",
+		"svg-tag-names": "^1.1.1",
+		typescript: "^5.4.5"
+	},
+	repository: "https://github.com/emotion-js/emotion/tree/main/packages/react",
+	publishConfig: {
+		access: "public"
+	},
+	"umd:main": "dist/emotion-react.umd.min.js",
+	preconstruct: {
+		entrypoints: [
+			"./index.js",
+			"./jsx-runtime.js",
+			"./jsx-dev-runtime.js",
+			"./_isolated-hnrs.js"
+		],
+		umdName: "emotionReact",
+		exports: {
+			extra: {
+				"./types/css-prop": "./types/css-prop.d.ts",
+				"./macro": {
+					types: {
+						"import": "./macro.d.mts",
+						"default": "./macro.d.ts"
+					},
+					"default": "./macro.js"
+				}
+			}
+		}
+	}
+};
+
+var jsx
+/*: typeof React.createElement */
+= function jsx
+/*: typeof React.createElement */
+(type
+/*: React.ElementType */
+, props
+/*: Object */
+) {
+  var args = arguments;
+
+  if (props == null || !_emotion_element_7a1343fa_browser_development_esm_js__WEBPACK_IMPORTED_MODULE_0__.h.call(props, 'css')) {
+    return react__WEBPACK_IMPORTED_MODULE_1__.createElement.apply(undefined, args);
+  }
+
+  var argsLength = args.length;
+  var createElementArgArray = new Array(argsLength);
+  createElementArgArray[0] = _emotion_element_7a1343fa_browser_development_esm_js__WEBPACK_IMPORTED_MODULE_0__.E;
+  createElementArgArray[1] = (0,_emotion_element_7a1343fa_browser_development_esm_js__WEBPACK_IMPORTED_MODULE_0__.c)(type, props);
+
+  for (var i = 2; i < argsLength; i++) {
+    createElementArgArray[i] = args[i];
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_1__.createElement.apply(null, createElementArgArray);
+};
+
+/*
+type Styles = Object | Array<Object>
+
+type GlobalProps = {
+  +styles: Styles | (Object => Styles)
+}
+*/
+
+var warnedAboutCssPropForGlobal = false; // maintain place over rerenders.
+// initial render from browser, insertBefore context.sheet.tags[0] or if a style hasn't been inserted there yet, appendChild
+// initial client-side render from SSR, use place of hydrating tag
+
+var Global
+/*: React.AbstractComponent<
+GlobalProps
+> */
+= /* #__PURE__ */(0,_emotion_element_7a1343fa_browser_development_esm_js__WEBPACK_IMPORTED_MODULE_0__.w)(function (props
+/*: GlobalProps */
+, cache) {
+  if (!warnedAboutCssPropForGlobal && ( // check for className as well since the user is
+  // probably using the custom createElement which
+  // means it will be turned into a className prop
+  // I don't really want to add it to the type since it shouldn't be used
+  props.className || props.css)) {
+    console.error("It looks like you're using the css prop on Global, did you mean to use the styles prop instead?");
+    warnedAboutCssPropForGlobal = true;
+  }
+
+  var styles = props.styles;
+  var serialized = (0,_emotion_serialize__WEBPACK_IMPORTED_MODULE_4__.serializeStyles)([styles], undefined, react__WEBPACK_IMPORTED_MODULE_1__.useContext(_emotion_element_7a1343fa_browser_development_esm_js__WEBPACK_IMPORTED_MODULE_0__.T));
+  // but it is based on a constant that will never change at runtime
+  // it's effectively like having two implementations and switching them out
+  // so it's not actually breaking anything
+
+
+  var sheetRef = react__WEBPACK_IMPORTED_MODULE_1__.useRef();
+  (0,_emotion_use_insertion_effect_with_fallbacks__WEBPACK_IMPORTED_MODULE_3__.useInsertionEffectWithLayoutFallback)(function () {
+    var key = cache.key + "-global"; // use case of https://github.com/emotion-js/emotion/issues/2675
+
+    var sheet = new cache.sheet.constructor({
+      key: key,
+      nonce: cache.sheet.nonce,
+      container: cache.sheet.container,
+      speedy: cache.sheet.isSpeedy
+    });
+    var rehydrating = false;
+    var node
+    /*: HTMLStyleElement | null*/
+    = document.querySelector("style[data-emotion=\"" + key + " " + serialized.name + "\"]");
+
+    if (cache.sheet.tags.length) {
+      sheet.before = cache.sheet.tags[0];
+    }
+
+    if (node !== null) {
+      rehydrating = true; // clear the hash so this node won't be recognizable as rehydratable by other <Global/>s
+
+      node.setAttribute('data-emotion', key);
+      sheet.hydrate([node]);
+    }
+
+    sheetRef.current = [sheet, rehydrating];
+    return function () {
+      sheet.flush();
+    };
+  }, [cache]);
+  (0,_emotion_use_insertion_effect_with_fallbacks__WEBPACK_IMPORTED_MODULE_3__.useInsertionEffectWithLayoutFallback)(function () {
+    var sheetRefCurrent = sheetRef.current;
+    var sheet = sheetRefCurrent[0],
+        rehydrating = sheetRefCurrent[1];
+
+    if (rehydrating) {
+      sheetRefCurrent[1] = false;
+      return;
+    }
+
+    if (serialized.next !== undefined) {
+      // insert keyframes
+      (0,_emotion_utils__WEBPACK_IMPORTED_MODULE_2__.insertStyles)(cache, serialized.next, true);
+    }
+
+    if (sheet.tags.length) {
+      // if this doesn't exist then it will be null so the style element will be appended
+      var element = sheet.tags[sheet.tags.length - 1].nextElementSibling;
+      sheet.before = element;
+      sheet.flush();
+    }
+
+    cache.insert("", serialized, sheet, false);
+  }, [cache, serialized.name]);
+  return null;
+});
+
+{
+  Global.displayName = 'EmotionGlobal';
+}
+
+/* import type { Interpolation, SerializedStyles } from '@emotion/utils' */
+
+function css()
+/*: SerializedStyles */
+{
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  return (0,_emotion_serialize__WEBPACK_IMPORTED_MODULE_4__.serializeStyles)(args);
+}
+
+/*
+type Keyframes = {|
+  name: string,
+  styles: string,
+  anim: 1,
+  toString: () => string
+|} & string
+*/
+
+var keyframes = function
+  /*: Keyframes */
+keyframes() {
+  var insertable = css.apply(void 0, arguments);
+  var name = "animation-" + insertable.name;
+  return {
+    name: name,
+    styles: "@keyframes " + name + "{" + insertable.styles + "}",
+    anim: 1,
+    toString: function toString() {
+      return "_EMO_" + this.name + "_" + this.styles + "_EMO_";
+    }
+  };
+};
+
+/*
+type ClassNameArg =
+  | string
+  | boolean
+  | { [key: string]: boolean }
+  | Array<ClassNameArg>
+  | null
+  | void
+*/
+
+var classnames = function
+  /*: string */
+classnames(args
+/*: Array<ClassNameArg> */
+) {
+  var len = args.length;
+  var i = 0;
+  var cls = '';
+
+  for (; i < len; i++) {
+    var arg = args[i];
+    if (arg == null) continue;
+    var toAdd = void 0;
+
+    switch (typeof arg) {
+      case 'boolean':
+        break;
+
+      case 'object':
+        {
+          if (Array.isArray(arg)) {
+            toAdd = classnames(arg);
+          } else {
+            if (arg.styles !== undefined && arg.name !== undefined) {
+              console.error('You have passed styles created with `css` from `@emotion/react` package to the `cx`.\n' + '`cx` is meant to compose class names (strings) so you should convert those styles to a class name by passing them to the `css` received from <ClassNames/> component.');
+            }
+
+            toAdd = '';
+
+            for (var k in arg) {
+              if (arg[k] && k) {
+                toAdd && (toAdd += ' ');
+                toAdd += k;
+              }
+            }
+          }
+
+          break;
+        }
+
+      default:
+        {
+          toAdd = arg;
+        }
+    }
+
+    if (toAdd) {
+      cls && (cls += ' ');
+      cls += toAdd;
+    }
+  }
+
+  return cls;
+};
+
+function merge(registered
+/*: Object */
+, css
+/*: (...args: Array<any>) => string */
+, className
+/*: string */
+) {
+  var registeredStyles = [];
+  var rawClassName = (0,_emotion_utils__WEBPACK_IMPORTED_MODULE_2__.getRegisteredStyles)(registered, registeredStyles, className);
+
+  if (registeredStyles.length < 2) {
+    return className;
+  }
+
+  return rawClassName + css(registeredStyles);
+}
+
+var Insertion = function Insertion(_ref) {
+  var cache = _ref.cache,
+      serializedArr = _ref.serializedArr;
+  (0,_emotion_use_insertion_effect_with_fallbacks__WEBPACK_IMPORTED_MODULE_3__.useInsertionEffectAlwaysWithSyncFallback)(function () {
+
+    for (var i = 0; i < serializedArr.length; i++) {
+      (0,_emotion_utils__WEBPACK_IMPORTED_MODULE_2__.insertStyles)(cache, serializedArr[i], false);
+    }
+  });
+
+  return null;
+};
+/*
+type Props = {
+  children: ({
+    css: (...args: any) => string,
+    cx: (...args: Array<ClassNameArg>) => string,
+    theme: Object
+  }) => React.Node
+} */
+
+
+var ClassNames
+/*: React.AbstractComponent<Props>*/
+= /* #__PURE__ */(0,_emotion_element_7a1343fa_browser_development_esm_js__WEBPACK_IMPORTED_MODULE_0__.w)(function (props, cache) {
+  var hasRendered = false;
+  var serializedArr = [];
+
+  var css = function css() {
+    if (hasRendered && isDevelopment) {
+      throw new Error('css can only be used during render');
+    }
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var serialized = (0,_emotion_serialize__WEBPACK_IMPORTED_MODULE_4__.serializeStyles)(args, cache.registered);
+    serializedArr.push(serialized); // registration has to happen here as the result of this might get consumed by `cx`
+
+    (0,_emotion_utils__WEBPACK_IMPORTED_MODULE_2__.registerStyles)(cache, serialized, false);
+    return cache.key + "-" + serialized.name;
+  };
+
+  var cx = function cx() {
+    if (hasRendered && isDevelopment) {
+      throw new Error('cx can only be used during render');
+    }
+
+    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    return merge(cache.registered, css, classnames(args));
+  };
+
+  var content = {
+    css: css,
+    cx: cx,
+    theme: react__WEBPACK_IMPORTED_MODULE_1__.useContext(_emotion_element_7a1343fa_browser_development_esm_js__WEBPACK_IMPORTED_MODULE_0__.T)
+  };
+  var ele = props.children(content);
+  hasRendered = true;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(Insertion, {
+    cache: cache,
+    serializedArr: serializedArr
+  }), ele);
+});
+
+{
+  ClassNames.displayName = 'EmotionClassNames';
+}
+
+{
+  var isBrowser = typeof document !== 'undefined'; // #1727, #2905 for some reason Jest and Vitest evaluate modules twice if some consuming module gets mocked
+
+  var isTestEnv = typeof jest !== 'undefined' || typeof vi !== 'undefined';
+
+  if (isBrowser && !isTestEnv) {
+    // globalThis has wide browser support - https://caniuse.com/?search=globalThis, Node.js 12 and later
+    var globalContext = // $FlowIgnore
+    typeof globalThis !== 'undefined' ? globalThis // eslint-disable-line no-undef
+    : isBrowser ? window : __webpack_require__.g;
+    var globalKey = "__EMOTION_REACT_" + pkg.version.split('.')[0] + "__";
+
+    if (globalContext[globalKey]) {
+      console.warn('You are loading @emotion/react when it is already loaded. Running ' + 'multiple instances may cause problems. This can happen if multiple ' + 'versions are used, or if multiple builds of the same version are ' + 'used.');
+    }
+
+    globalContext[globalKey] = true;
+  }
+}
+
+
+
+
+/***/ }),
+
 /***/ "./node_modules/@emotion/serialize/dist/emotion-serialize.development.esm.js":
 /*!***********************************************************************************!*\
   !*** ./node_modules/@emotion/serialize/dist/emotion-serialize.development.esm.js ***!
@@ -2654,6 +3360,292 @@ function postfix( expression ) {
 	return terms.concat( stack.reverse() );
 }
 
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/components/build-module/base-control/hooks.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@wordpress/components/build-module/base-control/hooks.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   useBaseControlProps: () => (/* binding */ useBaseControlProps)
+/* harmony export */ });
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/compose */ "./node_modules/@wordpress/compose/build-module/hooks/use-instance-id/index.js");
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! . */ "./node_modules/@wordpress/components/build-module/base-control/index.js");
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Generate props for the `BaseControl` and the inner control itself.
+ *
+ * Namely, it takes care of generating a unique `id`, properly associating it with the `label` and `help` elements.
+ *
+ * @param props
+ */
+function useBaseControlProps(props) {
+  const {
+    help,
+    id: preferredId,
+    ...restProps
+  } = props;
+  const uniqueId = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_0__["default"])(___WEBPACK_IMPORTED_MODULE_1__["default"], 'wp-components-base-control', preferredId);
+  return {
+    baseControlProps: {
+      id: uniqueId,
+      help,
+      ...restProps
+    },
+    controlProps: {
+      id: uniqueId,
+      ...(!!help ? {
+        'aria-describedby': `${uniqueId}__help`
+      } : {})
+    }
+  };
+}
+//# sourceMappingURL=hooks.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/components/build-module/base-control/index.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@wordpress/components/build-module/base-control/index.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   BaseControl: () => (/* binding */ BaseControl),
+/* harmony export */   VisualLabel: () => (/* binding */ VisualLabel),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   useBaseControlProps: () => (/* reexport safe */ _hooks__WEBPACK_IMPORTED_MODULE_3__.useBaseControlProps)
+/* harmony export */ });
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.mjs");
+/* harmony import */ var _wordpress_deprecated__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/deprecated */ "./node_modules/@wordpress/deprecated/build-module/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _visually_hidden__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../visually-hidden */ "./node_modules/@wordpress/components/build-module/visually-hidden/component.js");
+/* harmony import */ var _styles_base_control_styles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./styles/base-control-styles */ "./node_modules/@wordpress/components/build-module/base-control/styles/base-control-styles.js");
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../context */ "./node_modules/@wordpress/components/build-module/context/use-context-system.js");
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../context */ "./node_modules/@wordpress/components/build-module/context/context-connect.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./hooks */ "./node_modules/@wordpress/components/build-module/base-control/hooks.js");
+/**
+ * External dependencies
+ */
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+const UnconnectedBaseControl = props => {
+  const {
+    __nextHasNoMarginBottom = false,
+    __associatedWPComponentName = 'BaseControl',
+    id,
+    label,
+    hideLabelFromVision = false,
+    help,
+    className,
+    children
+  } = (0,_context__WEBPACK_IMPORTED_MODULE_4__.useContextSystem)(props, 'BaseControl');
+  if (!__nextHasNoMarginBottom) {
+    (0,_wordpress_deprecated__WEBPACK_IMPORTED_MODULE_5__["default"])(`Bottom margin styles for wp.components.${__associatedWPComponentName}`, {
+      since: '6.7',
+      version: '7.0',
+      hint: 'Set the `__nextHasNoMarginBottom` prop to true to start opting into the new styles, which will become the default in a future version.'
+    });
+  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_styles_base_control_styles__WEBPACK_IMPORTED_MODULE_6__.Wrapper, {
+    className: className,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_styles_base_control_styles__WEBPACK_IMPORTED_MODULE_6__.StyledField, {
+      className: "components-base-control__field"
+      // TODO: Official deprecation for this should start after all internal usages have been migrated
+      ,
+      __nextHasNoMarginBottom: __nextHasNoMarginBottom,
+      children: [label && id && (hideLabelFromVision ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_visually_hidden__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        as: "label",
+        htmlFor: id,
+        children: label
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_styles_base_control_styles__WEBPACK_IMPORTED_MODULE_6__.StyledLabel, {
+        className: "components-base-control__label",
+        htmlFor: id,
+        children: label
+      })), label && !id && (hideLabelFromVision ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_visually_hidden__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        as: "label",
+        children: label
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(VisualLabel, {
+        children: label
+      })), children]
+    }), !!help && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_styles_base_control_styles__WEBPACK_IMPORTED_MODULE_6__.StyledHelp, {
+      id: id ? id + '__help' : undefined,
+      className: "components-base-control__help",
+      __nextHasNoMarginBottom: __nextHasNoMarginBottom,
+      children: help
+    })]
+  });
+};
+const UnforwardedVisualLabel = (props, ref) => {
+  const {
+    className,
+    children,
+    ...restProps
+  } = props;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_styles_base_control_styles__WEBPACK_IMPORTED_MODULE_6__.StyledVisualLabel, {
+    ref: ref,
+    ...restProps,
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_0__["default"])('components-base-control__label', className),
+    children: children
+  });
+};
+const VisualLabel = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(UnforwardedVisualLabel);
+
+/**
+ * `BaseControl` is a component used to generate labels and help text for components handling user inputs.
+ *
+ * ```jsx
+ * import { BaseControl, useBaseControlProps } from '@wordpress/components';
+ *
+ * // Render a `BaseControl` for a textarea input
+ * const MyCustomTextareaControl = ({ children, ...baseProps }) => (
+ * 	// `useBaseControlProps` is a convenience hook to get the props for the `BaseControl`
+ * 	// and the inner control itself. Namely, it takes care of generating a unique `id`,
+ * 	// properly associating it with the `label` and `help` elements.
+ * 	const { baseControlProps, controlProps } = useBaseControlProps( baseProps );
+ *
+ * 	return (
+ * 		<BaseControl { ...baseControlProps } __nextHasNoMarginBottom>
+ * 			<textarea { ...controlProps }>
+ * 			  { children }
+ * 			</textarea>
+ * 		</BaseControl>
+ * 	);
+ * );
+ * ```
+ */
+const BaseControl = Object.assign((0,_context__WEBPACK_IMPORTED_MODULE_8__.contextConnectWithoutRef)(UnconnectedBaseControl, 'BaseControl'), {
+  /**
+   * `BaseControl.VisualLabel` is used to render a purely visual label inside a `BaseControl` component.
+   *
+   * It should only be used in cases where the children being rendered inside `BaseControl` are already accessibly labeled,
+   * e.g., a button, but we want an additional visual label for that section equivalent to the labels `BaseControl` would
+   * otherwise use if the `label` prop was passed.
+   *
+   * ```jsx
+   * import { BaseControl } from '@wordpress/components';
+   *
+   * const MyBaseControl = () => (
+   * 	<BaseControl
+   * 		__nextHasNoMarginBottom
+   * 		help="This button is already accessibly labeled."
+   * 	>
+   * 		<BaseControl.VisualLabel>Author</BaseControl.VisualLabel>
+   * 		<Button>Select an author</Button>
+   * 	</BaseControl>
+   * );
+   * ```
+   */
+  VisualLabel
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BaseControl);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/components/build-module/base-control/styles/base-control-styles.js":
+/*!****************************************************************************************************!*\
+  !*** ./node_modules/@wordpress/components/build-module/base-control/styles/base-control-styles.js ***!
+  \****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   StyledField: () => (/* binding */ StyledField),
+/* harmony export */   StyledHelp: () => (/* binding */ StyledHelp),
+/* harmony export */   StyledLabel: () => (/* binding */ StyledLabel),
+/* harmony export */   StyledVisualLabel: () => (/* binding */ StyledVisualLabel),
+/* harmony export */   Wrapper: () => (/* binding */ Wrapper)
+/* harmony export */ });
+/* harmony import */ var _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/styled/base */ "./node_modules/@emotion/styled/base/dist/emotion-styled-base.browser.development.esm.js");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.browser.development.esm.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils */ "./node_modules/@wordpress/components/build-module/utils/font.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils */ "./node_modules/@wordpress/components/build-module/utils/box-sizing.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils */ "./node_modules/@wordpress/components/build-module/utils/base-label.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utils */ "./node_modules/@wordpress/components/build-module/utils/colors-values.js");
+/* harmony import */ var _utils_space__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/space */ "./node_modules/@wordpress/components/build-module/utils/space.js");
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
+/**
+ * External dependencies
+ */
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+const Wrapper = /*#__PURE__*/(0,_emotion_styled_base__WEBPACK_IMPORTED_MODULE_0__["default"])("div",  false ? 0 : {
+  target: "ej5x27r4",
+  label: "Wrapper"
+})("font-family:", (0,_utils__WEBPACK_IMPORTED_MODULE_1__.font)('default.fontFamily'), ";font-size:", (0,_utils__WEBPACK_IMPORTED_MODULE_1__.font)('default.fontSize'), ";", _utils__WEBPACK_IMPORTED_MODULE_2__.boxSizingReset, ";" + ( false ? 0 : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkB3b3JkcHJlc3MvY29tcG9uZW50cy9zcmMvYmFzZS1jb250cm9sL3N0eWxlcy9iYXNlLWNvbnRyb2wtc3R5bGVzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVlpQyIsImZpbGUiOiJAd29yZHByZXNzL2NvbXBvbmVudHMvc3JjL2Jhc2UtY29udHJvbC9zdHlsZXMvYmFzZS1jb250cm9sLXN0eWxlcy50cyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogRXh0ZXJuYWwgZGVwZW5kZW5jaWVzXG4gKi9cbmltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkJztcbmltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0JztcblxuLyoqXG4gKiBJbnRlcm5hbCBkZXBlbmRlbmNpZXNcbiAqL1xuaW1wb3J0IHsgYmFzZUxhYmVsVHlwb2dyYXBoeSwgYm94U2l6aW5nUmVzZXQsIGZvbnQsIENPTE9SUyB9IGZyb20gJy4uLy4uL3V0aWxzJztcbmltcG9ydCB7IHNwYWNlIH0gZnJvbSAnLi4vLi4vdXRpbHMvc3BhY2UnO1xuXG5leHBvcnQgY29uc3QgV3JhcHBlciA9IHN0eWxlZC5kaXZgXG5cdGZvbnQtZmFtaWx5OiAkeyBmb250KCAnZGVmYXVsdC5mb250RmFtaWx5JyApIH07XG5cdGZvbnQtc2l6ZTogJHsgZm9udCggJ2RlZmF1bHQuZm9udFNpemUnICkgfTtcblxuXHQkeyBib3hTaXppbmdSZXNldCB9XG5gO1xuXG5jb25zdCBkZXByZWNhdGVkTWFyZ2luRmllbGQgPSAoIHsgX19uZXh0SGFzTm9NYXJnaW5Cb3R0b20gPSBmYWxzZSB9ICkgPT4ge1xuXHRyZXR1cm4gKFxuXHRcdCEgX19uZXh0SGFzTm9NYXJnaW5Cb3R0b20gJiZcblx0XHRjc3NgXG5cdFx0XHRtYXJnaW4tYm90dG9tOiAkeyBzcGFjZSggMiApIH07XG5cdFx0YFxuXHQpO1xufTtcblxuZXhwb3J0IGNvbnN0IFN0eWxlZEZpZWxkID0gc3R5bGVkLmRpdmBcblx0JHsgZGVwcmVjYXRlZE1hcmdpbkZpZWxkIH1cblxuXHQuY29tcG9uZW50cy1wYW5lbF9fcm93ICYge1xuXHRcdG1hcmdpbi1ib3R0b206IGluaGVyaXQ7XG5cdH1cbmA7XG5cbmNvbnN0IGxhYmVsU3R5bGVzID0gY3NzYFxuXHQkeyBiYXNlTGFiZWxUeXBvZ3JhcGh5IH07XG5cblx0ZGlzcGxheTogYmxvY2s7XG5cdG1hcmdpbi1ib3R0b206ICR7IHNwYWNlKCAyICkgfTtcblx0LyoqXG5cdCAqIFJlbW92ZXMgQ2hyb21lL1NhZmFyaS9GaXJlZm94IHVzZXIgYWdlbnQgc3R5bGVzaGVldCBwYWRkaW5nIGZyb21cblx0ICogU3R5bGVkTGFiZWwgd2hlbiBpdCBpcyByZW5kZXJlZCBhcyBhIGxlZ2VuZC5cblx0ICovXG5cdHBhZGRpbmc6IDA7XG5gO1xuXG5leHBvcnQgY29uc3QgU3R5bGVkTGFiZWwgPSBzdHlsZWQubGFiZWxgXG5cdCR7IGxhYmVsU3R5bGVzIH1cbmA7XG5cbmNvbnN0IGRlcHJlY2F0ZWRNYXJnaW5IZWxwID0gKCB7IF9fbmV4dEhhc05vTWFyZ2luQm90dG9tID0gZmFsc2UgfSApID0+IHtcblx0cmV0dXJuIChcblx0XHQhIF9fbmV4dEhhc05vTWFyZ2luQm90dG9tICYmXG5cdFx0Y3NzYFxuXHRcdFx0bWFyZ2luLWJvdHRvbTogcmV2ZXJ0O1xuXHRcdGBcblx0KTtcbn07XG5cbmV4cG9ydCBjb25zdCBTdHlsZWRIZWxwID0gc3R5bGVkLnBgXG5cdG1hcmdpbi10b3A6ICR7IHNwYWNlKCAyICkgfTtcblx0bWFyZ2luLWJvdHRvbTogMDtcblx0Zm9udC1zaXplOiAkeyBmb250KCAnaGVscFRleHQuZm9udFNpemUnICkgfTtcblx0Zm9udC1zdHlsZTogbm9ybWFsO1xuXHRjb2xvcjogJHsgQ09MT1JTLmdyYXlbIDcwMCBdIH07XG5cblx0JHsgZGVwcmVjYXRlZE1hcmdpbkhlbHAgfVxuYDtcblxuZXhwb3J0IGNvbnN0IFN0eWxlZFZpc3VhbExhYmVsID0gc3R5bGVkLnNwYW5gXG5cdCR7IGxhYmVsU3R5bGVzIH1cbmA7XG4iXX0= */"));
+const deprecatedMarginField = ({
+  __nextHasNoMarginBottom = false
+}) => {
+  return !__nextHasNoMarginBottom && /*#__PURE__*/(0,_emotion_react__WEBPACK_IMPORTED_MODULE_3__.css)("margin-bottom:", (0,_utils_space__WEBPACK_IMPORTED_MODULE_4__.space)(2), ";" + ( false ? 0 : ";label:deprecatedMarginField;"),  false ? 0 : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkB3b3JkcHJlc3MvY29tcG9uZW50cy9zcmMvYmFzZS1jb250cm9sL3N0eWxlcy9iYXNlLWNvbnRyb2wtc3R5bGVzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXNCSyIsImZpbGUiOiJAd29yZHByZXNzL2NvbXBvbmVudHMvc3JjL2Jhc2UtY29udHJvbC9zdHlsZXMvYmFzZS1jb250cm9sLXN0eWxlcy50cyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogRXh0ZXJuYWwgZGVwZW5kZW5jaWVzXG4gKi9cbmltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkJztcbmltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0JztcblxuLyoqXG4gKiBJbnRlcm5hbCBkZXBlbmRlbmNpZXNcbiAqL1xuaW1wb3J0IHsgYmFzZUxhYmVsVHlwb2dyYXBoeSwgYm94U2l6aW5nUmVzZXQsIGZvbnQsIENPTE9SUyB9IGZyb20gJy4uLy4uL3V0aWxzJztcbmltcG9ydCB7IHNwYWNlIH0gZnJvbSAnLi4vLi4vdXRpbHMvc3BhY2UnO1xuXG5leHBvcnQgY29uc3QgV3JhcHBlciA9IHN0eWxlZC5kaXZgXG5cdGZvbnQtZmFtaWx5OiAkeyBmb250KCAnZGVmYXVsdC5mb250RmFtaWx5JyApIH07XG5cdGZvbnQtc2l6ZTogJHsgZm9udCggJ2RlZmF1bHQuZm9udFNpemUnICkgfTtcblxuXHQkeyBib3hTaXppbmdSZXNldCB9XG5gO1xuXG5jb25zdCBkZXByZWNhdGVkTWFyZ2luRmllbGQgPSAoIHsgX19uZXh0SGFzTm9NYXJnaW5Cb3R0b20gPSBmYWxzZSB9ICkgPT4ge1xuXHRyZXR1cm4gKFxuXHRcdCEgX19uZXh0SGFzTm9NYXJnaW5Cb3R0b20gJiZcblx0XHRjc3NgXG5cdFx0XHRtYXJnaW4tYm90dG9tOiAkeyBzcGFjZSggMiApIH07XG5cdFx0YFxuXHQpO1xufTtcblxuZXhwb3J0IGNvbnN0IFN0eWxlZEZpZWxkID0gc3R5bGVkLmRpdmBcblx0JHsgZGVwcmVjYXRlZE1hcmdpbkZpZWxkIH1cblxuXHQuY29tcG9uZW50cy1wYW5lbF9fcm93ICYge1xuXHRcdG1hcmdpbi1ib3R0b206IGluaGVyaXQ7XG5cdH1cbmA7XG5cbmNvbnN0IGxhYmVsU3R5bGVzID0gY3NzYFxuXHQkeyBiYXNlTGFiZWxUeXBvZ3JhcGh5IH07XG5cblx0ZGlzcGxheTogYmxvY2s7XG5cdG1hcmdpbi1ib3R0b206ICR7IHNwYWNlKCAyICkgfTtcblx0LyoqXG5cdCAqIFJlbW92ZXMgQ2hyb21lL1NhZmFyaS9GaXJlZm94IHVzZXIgYWdlbnQgc3R5bGVzaGVldCBwYWRkaW5nIGZyb21cblx0ICogU3R5bGVkTGFiZWwgd2hlbiBpdCBpcyByZW5kZXJlZCBhcyBhIGxlZ2VuZC5cblx0ICovXG5cdHBhZGRpbmc6IDA7XG5gO1xuXG5leHBvcnQgY29uc3QgU3R5bGVkTGFiZWwgPSBzdHlsZWQubGFiZWxgXG5cdCR7IGxhYmVsU3R5bGVzIH1cbmA7XG5cbmNvbnN0IGRlcHJlY2F0ZWRNYXJnaW5IZWxwID0gKCB7IF9fbmV4dEhhc05vTWFyZ2luQm90dG9tID0gZmFsc2UgfSApID0+IHtcblx0cmV0dXJuIChcblx0XHQhIF9fbmV4dEhhc05vTWFyZ2luQm90dG9tICYmXG5cdFx0Y3NzYFxuXHRcdFx0bWFyZ2luLWJvdHRvbTogcmV2ZXJ0O1xuXHRcdGBcblx0KTtcbn07XG5cbmV4cG9ydCBjb25zdCBTdHlsZWRIZWxwID0gc3R5bGVkLnBgXG5cdG1hcmdpbi10b3A6ICR7IHNwYWNlKCAyICkgfTtcblx0bWFyZ2luLWJvdHRvbTogMDtcblx0Zm9udC1zaXplOiAkeyBmb250KCAnaGVscFRleHQuZm9udFNpemUnICkgfTtcblx0Zm9udC1zdHlsZTogbm9ybWFsO1xuXHRjb2xvcjogJHsgQ09MT1JTLmdyYXlbIDcwMCBdIH07XG5cblx0JHsgZGVwcmVjYXRlZE1hcmdpbkhlbHAgfVxuYDtcblxuZXhwb3J0IGNvbnN0IFN0eWxlZFZpc3VhbExhYmVsID0gc3R5bGVkLnNwYW5gXG5cdCR7IGxhYmVsU3R5bGVzIH1cbmA7XG4iXX0= */");
+};
+const StyledField = /*#__PURE__*/(0,_emotion_styled_base__WEBPACK_IMPORTED_MODULE_0__["default"])("div",  false ? 0 : {
+  target: "ej5x27r3",
+  label: "StyledField"
+})(deprecatedMarginField, " .components-panel__row &{margin-bottom:inherit;}" + ( false ? 0 : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkB3b3JkcHJlc3MvY29tcG9uZW50cy9zcmMvYmFzZS1jb250cm9sL3N0eWxlcy9iYXNlLWNvbnRyb2wtc3R5bGVzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQTRCcUMiLCJmaWxlIjoiQHdvcmRwcmVzcy9jb21wb25lbnRzL3NyYy9iYXNlLWNvbnRyb2wvc3R5bGVzL2Jhc2UtY29udHJvbC1zdHlsZXMudHMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEV4dGVybmFsIGRlcGVuZGVuY2llc1xuICovXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZCc7XG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCc7XG5cbi8qKlxuICogSW50ZXJuYWwgZGVwZW5kZW5jaWVzXG4gKi9cbmltcG9ydCB7IGJhc2VMYWJlbFR5cG9ncmFwaHksIGJveFNpemluZ1Jlc2V0LCBmb250LCBDT0xPUlMgfSBmcm9tICcuLi8uLi91dGlscyc7XG5pbXBvcnQgeyBzcGFjZSB9IGZyb20gJy4uLy4uL3V0aWxzL3NwYWNlJztcblxuZXhwb3J0IGNvbnN0IFdyYXBwZXIgPSBzdHlsZWQuZGl2YFxuXHRmb250LWZhbWlseTogJHsgZm9udCggJ2RlZmF1bHQuZm9udEZhbWlseScgKSB9O1xuXHRmb250LXNpemU6ICR7IGZvbnQoICdkZWZhdWx0LmZvbnRTaXplJyApIH07XG5cblx0JHsgYm94U2l6aW5nUmVzZXQgfVxuYDtcblxuY29uc3QgZGVwcmVjYXRlZE1hcmdpbkZpZWxkID0gKCB7IF9fbmV4dEhhc05vTWFyZ2luQm90dG9tID0gZmFsc2UgfSApID0+IHtcblx0cmV0dXJuIChcblx0XHQhIF9fbmV4dEhhc05vTWFyZ2luQm90dG9tICYmXG5cdFx0Y3NzYFxuXHRcdFx0bWFyZ2luLWJvdHRvbTogJHsgc3BhY2UoIDIgKSB9O1xuXHRcdGBcblx0KTtcbn07XG5cbmV4cG9ydCBjb25zdCBTdHlsZWRGaWVsZCA9IHN0eWxlZC5kaXZgXG5cdCR7IGRlcHJlY2F0ZWRNYXJnaW5GaWVsZCB9XG5cblx0LmNvbXBvbmVudHMtcGFuZWxfX3JvdyAmIHtcblx0XHRtYXJnaW4tYm90dG9tOiBpbmhlcml0O1xuXHR9XG5gO1xuXG5jb25zdCBsYWJlbFN0eWxlcyA9IGNzc2Bcblx0JHsgYmFzZUxhYmVsVHlwb2dyYXBoeSB9O1xuXG5cdGRpc3BsYXk6IGJsb2NrO1xuXHRtYXJnaW4tYm90dG9tOiAkeyBzcGFjZSggMiApIH07XG5cdC8qKlxuXHQgKiBSZW1vdmVzIENocm9tZS9TYWZhcmkvRmlyZWZveCB1c2VyIGFnZW50IHN0eWxlc2hlZXQgcGFkZGluZyBmcm9tXG5cdCAqIFN0eWxlZExhYmVsIHdoZW4gaXQgaXMgcmVuZGVyZWQgYXMgYSBsZWdlbmQuXG5cdCAqL1xuXHRwYWRkaW5nOiAwO1xuYDtcblxuZXhwb3J0IGNvbnN0IFN0eWxlZExhYmVsID0gc3R5bGVkLmxhYmVsYFxuXHQkeyBsYWJlbFN0eWxlcyB9XG5gO1xuXG5jb25zdCBkZXByZWNhdGVkTWFyZ2luSGVscCA9ICggeyBfX25leHRIYXNOb01hcmdpbkJvdHRvbSA9IGZhbHNlIH0gKSA9PiB7XG5cdHJldHVybiAoXG5cdFx0ISBfX25leHRIYXNOb01hcmdpbkJvdHRvbSAmJlxuXHRcdGNzc2Bcblx0XHRcdG1hcmdpbi1ib3R0b206IHJldmVydDtcblx0XHRgXG5cdCk7XG59O1xuXG5leHBvcnQgY29uc3QgU3R5bGVkSGVscCA9IHN0eWxlZC5wYFxuXHRtYXJnaW4tdG9wOiAkeyBzcGFjZSggMiApIH07XG5cdG1hcmdpbi1ib3R0b206IDA7XG5cdGZvbnQtc2l6ZTogJHsgZm9udCggJ2hlbHBUZXh0LmZvbnRTaXplJyApIH07XG5cdGZvbnQtc3R5bGU6IG5vcm1hbDtcblx0Y29sb3I6ICR7IENPTE9SUy5ncmF5WyA3MDAgXSB9O1xuXG5cdCR7IGRlcHJlY2F0ZWRNYXJnaW5IZWxwIH1cbmA7XG5cbmV4cG9ydCBjb25zdCBTdHlsZWRWaXN1YWxMYWJlbCA9IHN0eWxlZC5zcGFuYFxuXHQkeyBsYWJlbFN0eWxlcyB9XG5gO1xuIl19 */"));
+const labelStyles = /*#__PURE__*/(0,_emotion_react__WEBPACK_IMPORTED_MODULE_3__.css)(_utils__WEBPACK_IMPORTED_MODULE_5__.baseLabelTypography, ";display:block;margin-bottom:", (0,_utils_space__WEBPACK_IMPORTED_MODULE_4__.space)(2), ";padding:0;" + ( false ? 0 : ";label:labelStyles;"),  false ? 0 : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkB3b3JkcHJlc3MvY29tcG9uZW50cy9zcmMvYmFzZS1jb250cm9sL3N0eWxlcy9iYXNlLWNvbnRyb2wtc3R5bGVzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQW9DdUIiLCJmaWxlIjoiQHdvcmRwcmVzcy9jb21wb25lbnRzL3NyYy9iYXNlLWNvbnRyb2wvc3R5bGVzL2Jhc2UtY29udHJvbC1zdHlsZXMudHMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEV4dGVybmFsIGRlcGVuZGVuY2llc1xuICovXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZCc7XG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCc7XG5cbi8qKlxuICogSW50ZXJuYWwgZGVwZW5kZW5jaWVzXG4gKi9cbmltcG9ydCB7IGJhc2VMYWJlbFR5cG9ncmFwaHksIGJveFNpemluZ1Jlc2V0LCBmb250LCBDT0xPUlMgfSBmcm9tICcuLi8uLi91dGlscyc7XG5pbXBvcnQgeyBzcGFjZSB9IGZyb20gJy4uLy4uL3V0aWxzL3NwYWNlJztcblxuZXhwb3J0IGNvbnN0IFdyYXBwZXIgPSBzdHlsZWQuZGl2YFxuXHRmb250LWZhbWlseTogJHsgZm9udCggJ2RlZmF1bHQuZm9udEZhbWlseScgKSB9O1xuXHRmb250LXNpemU6ICR7IGZvbnQoICdkZWZhdWx0LmZvbnRTaXplJyApIH07XG5cblx0JHsgYm94U2l6aW5nUmVzZXQgfVxuYDtcblxuY29uc3QgZGVwcmVjYXRlZE1hcmdpbkZpZWxkID0gKCB7IF9fbmV4dEhhc05vTWFyZ2luQm90dG9tID0gZmFsc2UgfSApID0+IHtcblx0cmV0dXJuIChcblx0XHQhIF9fbmV4dEhhc05vTWFyZ2luQm90dG9tICYmXG5cdFx0Y3NzYFxuXHRcdFx0bWFyZ2luLWJvdHRvbTogJHsgc3BhY2UoIDIgKSB9O1xuXHRcdGBcblx0KTtcbn07XG5cbmV4cG9ydCBjb25zdCBTdHlsZWRGaWVsZCA9IHN0eWxlZC5kaXZgXG5cdCR7IGRlcHJlY2F0ZWRNYXJnaW5GaWVsZCB9XG5cblx0LmNvbXBvbmVudHMtcGFuZWxfX3JvdyAmIHtcblx0XHRtYXJnaW4tYm90dG9tOiBpbmhlcml0O1xuXHR9XG5gO1xuXG5jb25zdCBsYWJlbFN0eWxlcyA9IGNzc2Bcblx0JHsgYmFzZUxhYmVsVHlwb2dyYXBoeSB9O1xuXG5cdGRpc3BsYXk6IGJsb2NrO1xuXHRtYXJnaW4tYm90dG9tOiAkeyBzcGFjZSggMiApIH07XG5cdC8qKlxuXHQgKiBSZW1vdmVzIENocm9tZS9TYWZhcmkvRmlyZWZveCB1c2VyIGFnZW50IHN0eWxlc2hlZXQgcGFkZGluZyBmcm9tXG5cdCAqIFN0eWxlZExhYmVsIHdoZW4gaXQgaXMgcmVuZGVyZWQgYXMgYSBsZWdlbmQuXG5cdCAqL1xuXHRwYWRkaW5nOiAwO1xuYDtcblxuZXhwb3J0IGNvbnN0IFN0eWxlZExhYmVsID0gc3R5bGVkLmxhYmVsYFxuXHQkeyBsYWJlbFN0eWxlcyB9XG5gO1xuXG5jb25zdCBkZXByZWNhdGVkTWFyZ2luSGVscCA9ICggeyBfX25leHRIYXNOb01hcmdpbkJvdHRvbSA9IGZhbHNlIH0gKSA9PiB7XG5cdHJldHVybiAoXG5cdFx0ISBfX25leHRIYXNOb01hcmdpbkJvdHRvbSAmJlxuXHRcdGNzc2Bcblx0XHRcdG1hcmdpbi1ib3R0b206IHJldmVydDtcblx0XHRgXG5cdCk7XG59O1xuXG5leHBvcnQgY29uc3QgU3R5bGVkSGVscCA9IHN0eWxlZC5wYFxuXHRtYXJnaW4tdG9wOiAkeyBzcGFjZSggMiApIH07XG5cdG1hcmdpbi1ib3R0b206IDA7XG5cdGZvbnQtc2l6ZTogJHsgZm9udCggJ2hlbHBUZXh0LmZvbnRTaXplJyApIH07XG5cdGZvbnQtc3R5bGU6IG5vcm1hbDtcblx0Y29sb3I6ICR7IENPTE9SUy5ncmF5WyA3MDAgXSB9O1xuXG5cdCR7IGRlcHJlY2F0ZWRNYXJnaW5IZWxwIH1cbmA7XG5cbmV4cG9ydCBjb25zdCBTdHlsZWRWaXN1YWxMYWJlbCA9IHN0eWxlZC5zcGFuYFxuXHQkeyBsYWJlbFN0eWxlcyB9XG5gO1xuIl19 */");
+const StyledLabel = /*#__PURE__*/(0,_emotion_styled_base__WEBPACK_IMPORTED_MODULE_0__["default"])("label",  false ? 0 : {
+  target: "ej5x27r2",
+  label: "StyledLabel"
+})(labelStyles, ";" + ( false ? 0 : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkB3b3JkcHJlc3MvY29tcG9uZW50cy9zcmMvYmFzZS1jb250cm9sL3N0eWxlcy9iYXNlLWNvbnRyb2wtc3R5bGVzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWdEdUMiLCJmaWxlIjoiQHdvcmRwcmVzcy9jb21wb25lbnRzL3NyYy9iYXNlLWNvbnRyb2wvc3R5bGVzL2Jhc2UtY29udHJvbC1zdHlsZXMudHMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEV4dGVybmFsIGRlcGVuZGVuY2llc1xuICovXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZCc7XG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCc7XG5cbi8qKlxuICogSW50ZXJuYWwgZGVwZW5kZW5jaWVzXG4gKi9cbmltcG9ydCB7IGJhc2VMYWJlbFR5cG9ncmFwaHksIGJveFNpemluZ1Jlc2V0LCBmb250LCBDT0xPUlMgfSBmcm9tICcuLi8uLi91dGlscyc7XG5pbXBvcnQgeyBzcGFjZSB9IGZyb20gJy4uLy4uL3V0aWxzL3NwYWNlJztcblxuZXhwb3J0IGNvbnN0IFdyYXBwZXIgPSBzdHlsZWQuZGl2YFxuXHRmb250LWZhbWlseTogJHsgZm9udCggJ2RlZmF1bHQuZm9udEZhbWlseScgKSB9O1xuXHRmb250LXNpemU6ICR7IGZvbnQoICdkZWZhdWx0LmZvbnRTaXplJyApIH07XG5cblx0JHsgYm94U2l6aW5nUmVzZXQgfVxuYDtcblxuY29uc3QgZGVwcmVjYXRlZE1hcmdpbkZpZWxkID0gKCB7IF9fbmV4dEhhc05vTWFyZ2luQm90dG9tID0gZmFsc2UgfSApID0+IHtcblx0cmV0dXJuIChcblx0XHQhIF9fbmV4dEhhc05vTWFyZ2luQm90dG9tICYmXG5cdFx0Y3NzYFxuXHRcdFx0bWFyZ2luLWJvdHRvbTogJHsgc3BhY2UoIDIgKSB9O1xuXHRcdGBcblx0KTtcbn07XG5cbmV4cG9ydCBjb25zdCBTdHlsZWRGaWVsZCA9IHN0eWxlZC5kaXZgXG5cdCR7IGRlcHJlY2F0ZWRNYXJnaW5GaWVsZCB9XG5cblx0LmNvbXBvbmVudHMtcGFuZWxfX3JvdyAmIHtcblx0XHRtYXJnaW4tYm90dG9tOiBpbmhlcml0O1xuXHR9XG5gO1xuXG5jb25zdCBsYWJlbFN0eWxlcyA9IGNzc2Bcblx0JHsgYmFzZUxhYmVsVHlwb2dyYXBoeSB9O1xuXG5cdGRpc3BsYXk6IGJsb2NrO1xuXHRtYXJnaW4tYm90dG9tOiAkeyBzcGFjZSggMiApIH07XG5cdC8qKlxuXHQgKiBSZW1vdmVzIENocm9tZS9TYWZhcmkvRmlyZWZveCB1c2VyIGFnZW50IHN0eWxlc2hlZXQgcGFkZGluZyBmcm9tXG5cdCAqIFN0eWxlZExhYmVsIHdoZW4gaXQgaXMgcmVuZGVyZWQgYXMgYSBsZWdlbmQuXG5cdCAqL1xuXHRwYWRkaW5nOiAwO1xuYDtcblxuZXhwb3J0IGNvbnN0IFN0eWxlZExhYmVsID0gc3R5bGVkLmxhYmVsYFxuXHQkeyBsYWJlbFN0eWxlcyB9XG5gO1xuXG5jb25zdCBkZXByZWNhdGVkTWFyZ2luSGVscCA9ICggeyBfX25leHRIYXNOb01hcmdpbkJvdHRvbSA9IGZhbHNlIH0gKSA9PiB7XG5cdHJldHVybiAoXG5cdFx0ISBfX25leHRIYXNOb01hcmdpbkJvdHRvbSAmJlxuXHRcdGNzc2Bcblx0XHRcdG1hcmdpbi1ib3R0b206IHJldmVydDtcblx0XHRgXG5cdCk7XG59O1xuXG5leHBvcnQgY29uc3QgU3R5bGVkSGVscCA9IHN0eWxlZC5wYFxuXHRtYXJnaW4tdG9wOiAkeyBzcGFjZSggMiApIH07XG5cdG1hcmdpbi1ib3R0b206IDA7XG5cdGZvbnQtc2l6ZTogJHsgZm9udCggJ2hlbHBUZXh0LmZvbnRTaXplJyApIH07XG5cdGZvbnQtc3R5bGU6IG5vcm1hbDtcblx0Y29sb3I6ICR7IENPTE9SUy5ncmF5WyA3MDAgXSB9O1xuXG5cdCR7IGRlcHJlY2F0ZWRNYXJnaW5IZWxwIH1cbmA7XG5cbmV4cG9ydCBjb25zdCBTdHlsZWRWaXN1YWxMYWJlbCA9IHN0eWxlZC5zcGFuYFxuXHQkeyBsYWJlbFN0eWxlcyB9XG5gO1xuIl19 */"));
+var _ref =  false ? 0 : {
+  name: "1xen9ob-deprecatedMarginHelp",
+  styles: "margin-bottom:revert;label:deprecatedMarginHelp;",
+  map: "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkB3b3JkcHJlc3MvY29tcG9uZW50cy9zcmMvYmFzZS1jb250cm9sL3N0eWxlcy9iYXNlLWNvbnRyb2wtc3R5bGVzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXVESyIsImZpbGUiOiJAd29yZHByZXNzL2NvbXBvbmVudHMvc3JjL2Jhc2UtY29udHJvbC9zdHlsZXMvYmFzZS1jb250cm9sLXN0eWxlcy50cyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogRXh0ZXJuYWwgZGVwZW5kZW5jaWVzXG4gKi9cbmltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkJztcbmltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0JztcblxuLyoqXG4gKiBJbnRlcm5hbCBkZXBlbmRlbmNpZXNcbiAqL1xuaW1wb3J0IHsgYmFzZUxhYmVsVHlwb2dyYXBoeSwgYm94U2l6aW5nUmVzZXQsIGZvbnQsIENPTE9SUyB9IGZyb20gJy4uLy4uL3V0aWxzJztcbmltcG9ydCB7IHNwYWNlIH0gZnJvbSAnLi4vLi4vdXRpbHMvc3BhY2UnO1xuXG5leHBvcnQgY29uc3QgV3JhcHBlciA9IHN0eWxlZC5kaXZgXG5cdGZvbnQtZmFtaWx5OiAkeyBmb250KCAnZGVmYXVsdC5mb250RmFtaWx5JyApIH07XG5cdGZvbnQtc2l6ZTogJHsgZm9udCggJ2RlZmF1bHQuZm9udFNpemUnICkgfTtcblxuXHQkeyBib3hTaXppbmdSZXNldCB9XG5gO1xuXG5jb25zdCBkZXByZWNhdGVkTWFyZ2luRmllbGQgPSAoIHsgX19uZXh0SGFzTm9NYXJnaW5Cb3R0b20gPSBmYWxzZSB9ICkgPT4ge1xuXHRyZXR1cm4gKFxuXHRcdCEgX19uZXh0SGFzTm9NYXJnaW5Cb3R0b20gJiZcblx0XHRjc3NgXG5cdFx0XHRtYXJnaW4tYm90dG9tOiAkeyBzcGFjZSggMiApIH07XG5cdFx0YFxuXHQpO1xufTtcblxuZXhwb3J0IGNvbnN0IFN0eWxlZEZpZWxkID0gc3R5bGVkLmRpdmBcblx0JHsgZGVwcmVjYXRlZE1hcmdpbkZpZWxkIH1cblxuXHQuY29tcG9uZW50cy1wYW5lbF9fcm93ICYge1xuXHRcdG1hcmdpbi1ib3R0b206IGluaGVyaXQ7XG5cdH1cbmA7XG5cbmNvbnN0IGxhYmVsU3R5bGVzID0gY3NzYFxuXHQkeyBiYXNlTGFiZWxUeXBvZ3JhcGh5IH07XG5cblx0ZGlzcGxheTogYmxvY2s7XG5cdG1hcmdpbi1ib3R0b206ICR7IHNwYWNlKCAyICkgfTtcblx0LyoqXG5cdCAqIFJlbW92ZXMgQ2hyb21lL1NhZmFyaS9GaXJlZm94IHVzZXIgYWdlbnQgc3R5bGVzaGVldCBwYWRkaW5nIGZyb21cblx0ICogU3R5bGVkTGFiZWwgd2hlbiBpdCBpcyByZW5kZXJlZCBhcyBhIGxlZ2VuZC5cblx0ICovXG5cdHBhZGRpbmc6IDA7XG5gO1xuXG5leHBvcnQgY29uc3QgU3R5bGVkTGFiZWwgPSBzdHlsZWQubGFiZWxgXG5cdCR7IGxhYmVsU3R5bGVzIH1cbmA7XG5cbmNvbnN0IGRlcHJlY2F0ZWRNYXJnaW5IZWxwID0gKCB7IF9fbmV4dEhhc05vTWFyZ2luQm90dG9tID0gZmFsc2UgfSApID0+IHtcblx0cmV0dXJuIChcblx0XHQhIF9fbmV4dEhhc05vTWFyZ2luQm90dG9tICYmXG5cdFx0Y3NzYFxuXHRcdFx0bWFyZ2luLWJvdHRvbTogcmV2ZXJ0O1xuXHRcdGBcblx0KTtcbn07XG5cbmV4cG9ydCBjb25zdCBTdHlsZWRIZWxwID0gc3R5bGVkLnBgXG5cdG1hcmdpbi10b3A6ICR7IHNwYWNlKCAyICkgfTtcblx0bWFyZ2luLWJvdHRvbTogMDtcblx0Zm9udC1zaXplOiAkeyBmb250KCAnaGVscFRleHQuZm9udFNpemUnICkgfTtcblx0Zm9udC1zdHlsZTogbm9ybWFsO1xuXHRjb2xvcjogJHsgQ09MT1JTLmdyYXlbIDcwMCBdIH07XG5cblx0JHsgZGVwcmVjYXRlZE1hcmdpbkhlbHAgfVxuYDtcblxuZXhwb3J0IGNvbnN0IFN0eWxlZFZpc3VhbExhYmVsID0gc3R5bGVkLnNwYW5gXG5cdCR7IGxhYmVsU3R5bGVzIH1cbmA7XG4iXX0= */",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+const deprecatedMarginHelp = ({
+  __nextHasNoMarginBottom = false
+}) => {
+  return !__nextHasNoMarginBottom && _ref;
+};
+const StyledHelp = /*#__PURE__*/(0,_emotion_styled_base__WEBPACK_IMPORTED_MODULE_0__["default"])("p",  false ? 0 : {
+  target: "ej5x27r1",
+  label: "StyledHelp"
+})("margin-top:", (0,_utils_space__WEBPACK_IMPORTED_MODULE_4__.space)(2), ";margin-bottom:0;font-size:", (0,_utils__WEBPACK_IMPORTED_MODULE_1__.font)('helpText.fontSize'), ";font-style:normal;color:", _utils__WEBPACK_IMPORTED_MODULE_6__.COLORS.gray[700], ";", deprecatedMarginHelp, ";" + ( false ? 0 : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkB3b3JkcHJlc3MvY29tcG9uZW50cy9zcmMvYmFzZS1jb250cm9sL3N0eWxlcy9iYXNlLWNvbnRyb2wtc3R5bGVzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQTZEa0MiLCJmaWxlIjoiQHdvcmRwcmVzcy9jb21wb25lbnRzL3NyYy9iYXNlLWNvbnRyb2wvc3R5bGVzL2Jhc2UtY29udHJvbC1zdHlsZXMudHMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEV4dGVybmFsIGRlcGVuZGVuY2llc1xuICovXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZCc7XG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCc7XG5cbi8qKlxuICogSW50ZXJuYWwgZGVwZW5kZW5jaWVzXG4gKi9cbmltcG9ydCB7IGJhc2VMYWJlbFR5cG9ncmFwaHksIGJveFNpemluZ1Jlc2V0LCBmb250LCBDT0xPUlMgfSBmcm9tICcuLi8uLi91dGlscyc7XG5pbXBvcnQgeyBzcGFjZSB9IGZyb20gJy4uLy4uL3V0aWxzL3NwYWNlJztcblxuZXhwb3J0IGNvbnN0IFdyYXBwZXIgPSBzdHlsZWQuZGl2YFxuXHRmb250LWZhbWlseTogJHsgZm9udCggJ2RlZmF1bHQuZm9udEZhbWlseScgKSB9O1xuXHRmb250LXNpemU6ICR7IGZvbnQoICdkZWZhdWx0LmZvbnRTaXplJyApIH07XG5cblx0JHsgYm94U2l6aW5nUmVzZXQgfVxuYDtcblxuY29uc3QgZGVwcmVjYXRlZE1hcmdpbkZpZWxkID0gKCB7IF9fbmV4dEhhc05vTWFyZ2luQm90dG9tID0gZmFsc2UgfSApID0+IHtcblx0cmV0dXJuIChcblx0XHQhIF9fbmV4dEhhc05vTWFyZ2luQm90dG9tICYmXG5cdFx0Y3NzYFxuXHRcdFx0bWFyZ2luLWJvdHRvbTogJHsgc3BhY2UoIDIgKSB9O1xuXHRcdGBcblx0KTtcbn07XG5cbmV4cG9ydCBjb25zdCBTdHlsZWRGaWVsZCA9IHN0eWxlZC5kaXZgXG5cdCR7IGRlcHJlY2F0ZWRNYXJnaW5GaWVsZCB9XG5cblx0LmNvbXBvbmVudHMtcGFuZWxfX3JvdyAmIHtcblx0XHRtYXJnaW4tYm90dG9tOiBpbmhlcml0O1xuXHR9XG5gO1xuXG5jb25zdCBsYWJlbFN0eWxlcyA9IGNzc2Bcblx0JHsgYmFzZUxhYmVsVHlwb2dyYXBoeSB9O1xuXG5cdGRpc3BsYXk6IGJsb2NrO1xuXHRtYXJnaW4tYm90dG9tOiAkeyBzcGFjZSggMiApIH07XG5cdC8qKlxuXHQgKiBSZW1vdmVzIENocm9tZS9TYWZhcmkvRmlyZWZveCB1c2VyIGFnZW50IHN0eWxlc2hlZXQgcGFkZGluZyBmcm9tXG5cdCAqIFN0eWxlZExhYmVsIHdoZW4gaXQgaXMgcmVuZGVyZWQgYXMgYSBsZWdlbmQuXG5cdCAqL1xuXHRwYWRkaW5nOiAwO1xuYDtcblxuZXhwb3J0IGNvbnN0IFN0eWxlZExhYmVsID0gc3R5bGVkLmxhYmVsYFxuXHQkeyBsYWJlbFN0eWxlcyB9XG5gO1xuXG5jb25zdCBkZXByZWNhdGVkTWFyZ2luSGVscCA9ICggeyBfX25leHRIYXNOb01hcmdpbkJvdHRvbSA9IGZhbHNlIH0gKSA9PiB7XG5cdHJldHVybiAoXG5cdFx0ISBfX25leHRIYXNOb01hcmdpbkJvdHRvbSAmJlxuXHRcdGNzc2Bcblx0XHRcdG1hcmdpbi1ib3R0b206IHJldmVydDtcblx0XHRgXG5cdCk7XG59O1xuXG5leHBvcnQgY29uc3QgU3R5bGVkSGVscCA9IHN0eWxlZC5wYFxuXHRtYXJnaW4tdG9wOiAkeyBzcGFjZSggMiApIH07XG5cdG1hcmdpbi1ib3R0b206IDA7XG5cdGZvbnQtc2l6ZTogJHsgZm9udCggJ2hlbHBUZXh0LmZvbnRTaXplJyApIH07XG5cdGZvbnQtc3R5bGU6IG5vcm1hbDtcblx0Y29sb3I6ICR7IENPTE9SUy5ncmF5WyA3MDAgXSB9O1xuXG5cdCR7IGRlcHJlY2F0ZWRNYXJnaW5IZWxwIH1cbmA7XG5cbmV4cG9ydCBjb25zdCBTdHlsZWRWaXN1YWxMYWJlbCA9IHN0eWxlZC5zcGFuYFxuXHQkeyBsYWJlbFN0eWxlcyB9XG5gO1xuIl19 */"));
+const StyledVisualLabel = /*#__PURE__*/(0,_emotion_styled_base__WEBPACK_IMPORTED_MODULE_0__["default"])("span",  false ? 0 : {
+  target: "ej5x27r0",
+  label: "StyledVisualLabel"
+})(labelStyles, ";" + ( false ? 0 : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkB3b3JkcHJlc3MvY29tcG9uZW50cy9zcmMvYmFzZS1jb250cm9sL3N0eWxlcy9iYXNlLWNvbnRyb2wtc3R5bGVzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXVFNEMiLCJmaWxlIjoiQHdvcmRwcmVzcy9jb21wb25lbnRzL3NyYy9iYXNlLWNvbnRyb2wvc3R5bGVzL2Jhc2UtY29udHJvbC1zdHlsZXMudHMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEV4dGVybmFsIGRlcGVuZGVuY2llc1xuICovXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZCc7XG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCc7XG5cbi8qKlxuICogSW50ZXJuYWwgZGVwZW5kZW5jaWVzXG4gKi9cbmltcG9ydCB7IGJhc2VMYWJlbFR5cG9ncmFwaHksIGJveFNpemluZ1Jlc2V0LCBmb250LCBDT0xPUlMgfSBmcm9tICcuLi8uLi91dGlscyc7XG5pbXBvcnQgeyBzcGFjZSB9IGZyb20gJy4uLy4uL3V0aWxzL3NwYWNlJztcblxuZXhwb3J0IGNvbnN0IFdyYXBwZXIgPSBzdHlsZWQuZGl2YFxuXHRmb250LWZhbWlseTogJHsgZm9udCggJ2RlZmF1bHQuZm9udEZhbWlseScgKSB9O1xuXHRmb250LXNpemU6ICR7IGZvbnQoICdkZWZhdWx0LmZvbnRTaXplJyApIH07XG5cblx0JHsgYm94U2l6aW5nUmVzZXQgfVxuYDtcblxuY29uc3QgZGVwcmVjYXRlZE1hcmdpbkZpZWxkID0gKCB7IF9fbmV4dEhhc05vTWFyZ2luQm90dG9tID0gZmFsc2UgfSApID0+IHtcblx0cmV0dXJuIChcblx0XHQhIF9fbmV4dEhhc05vTWFyZ2luQm90dG9tICYmXG5cdFx0Y3NzYFxuXHRcdFx0bWFyZ2luLWJvdHRvbTogJHsgc3BhY2UoIDIgKSB9O1xuXHRcdGBcblx0KTtcbn07XG5cbmV4cG9ydCBjb25zdCBTdHlsZWRGaWVsZCA9IHN0eWxlZC5kaXZgXG5cdCR7IGRlcHJlY2F0ZWRNYXJnaW5GaWVsZCB9XG5cblx0LmNvbXBvbmVudHMtcGFuZWxfX3JvdyAmIHtcblx0XHRtYXJnaW4tYm90dG9tOiBpbmhlcml0O1xuXHR9XG5gO1xuXG5jb25zdCBsYWJlbFN0eWxlcyA9IGNzc2Bcblx0JHsgYmFzZUxhYmVsVHlwb2dyYXBoeSB9O1xuXG5cdGRpc3BsYXk6IGJsb2NrO1xuXHRtYXJnaW4tYm90dG9tOiAkeyBzcGFjZSggMiApIH07XG5cdC8qKlxuXHQgKiBSZW1vdmVzIENocm9tZS9TYWZhcmkvRmlyZWZveCB1c2VyIGFnZW50IHN0eWxlc2hlZXQgcGFkZGluZyBmcm9tXG5cdCAqIFN0eWxlZExhYmVsIHdoZW4gaXQgaXMgcmVuZGVyZWQgYXMgYSBsZWdlbmQuXG5cdCAqL1xuXHRwYWRkaW5nOiAwO1xuYDtcblxuZXhwb3J0IGNvbnN0IFN0eWxlZExhYmVsID0gc3R5bGVkLmxhYmVsYFxuXHQkeyBsYWJlbFN0eWxlcyB9XG5gO1xuXG5jb25zdCBkZXByZWNhdGVkTWFyZ2luSGVscCA9ICggeyBfX25leHRIYXNOb01hcmdpbkJvdHRvbSA9IGZhbHNlIH0gKSA9PiB7XG5cdHJldHVybiAoXG5cdFx0ISBfX25leHRIYXNOb01hcmdpbkJvdHRvbSAmJlxuXHRcdGNzc2Bcblx0XHRcdG1hcmdpbi1ib3R0b206IHJldmVydDtcblx0XHRgXG5cdCk7XG59O1xuXG5leHBvcnQgY29uc3QgU3R5bGVkSGVscCA9IHN0eWxlZC5wYFxuXHRtYXJnaW4tdG9wOiAkeyBzcGFjZSggMiApIH07XG5cdG1hcmdpbi1ib3R0b206IDA7XG5cdGZvbnQtc2l6ZTogJHsgZm9udCggJ2hlbHBUZXh0LmZvbnRTaXplJyApIH07XG5cdGZvbnQtc3R5bGU6IG5vcm1hbDtcblx0Y29sb3I6ICR7IENPTE9SUy5ncmF5WyA3MDAgXSB9O1xuXG5cdCR7IGRlcHJlY2F0ZWRNYXJnaW5IZWxwIH1cbmA7XG5cbmV4cG9ydCBjb25zdCBTdHlsZWRWaXN1YWxMYWJlbCA9IHN0eWxlZC5zcGFuYFxuXHQkeyBsYWJlbFN0eWxlcyB9XG5gO1xuIl19 */"));
+//# sourceMappingURL=base-control-styles.js.map
 
 /***/ }),
 
@@ -4111,6 +5103,107 @@ function Shortcut(props) {
 
 /***/ }),
 
+/***/ "./node_modules/@wordpress/components/build-module/text-control/index.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@wordpress/components/build-module/text-control/index.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   TextControl: () => (/* binding */ TextControl),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.mjs");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/compose */ "./node_modules/@wordpress/compose/build-module/hooks/use-instance-id/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _base_control__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../base-control */ "./node_modules/@wordpress/components/build-module/base-control/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/**
+ * External dependencies
+ */
+
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+function UnforwardedTextControl(props, ref) {
+  const {
+    __nextHasNoMarginBottom,
+    __next40pxDefaultSize = false,
+    label,
+    hideLabelFromVision,
+    value,
+    help,
+    id: idProp,
+    className,
+    onChange,
+    type = 'text',
+    ...additionalProps
+  } = props;
+  const id = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__["default"])(TextControl, 'inspector-text-control', idProp);
+  const onChangeValue = event => onChange(event.target.value);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_base_control__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    __nextHasNoMarginBottom: __nextHasNoMarginBottom,
+    __associatedWPComponentName: "TextControl",
+    label: label,
+    hideLabelFromVision: hideLabelFromVision,
+    id: id,
+    help: help,
+    className: className,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+      className: (0,clsx__WEBPACK_IMPORTED_MODULE_0__["default"])('components-text-control__input', {
+        'is-next-40px-default-size': __next40pxDefaultSize
+      }),
+      type: type,
+      id: id,
+      value: value,
+      onChange: onChangeValue,
+      "aria-describedby": !!help ? id + '__help' : undefined,
+      ref: ref,
+      ...additionalProps
+    })
+  });
+}
+
+/**
+ * TextControl components let users enter and edit text.
+ *
+ * ```jsx
+ * import { TextControl } from '@wordpress/components';
+ * import { useState } from '@wordpress/element';
+ *
+ * const MyTextControl = () => {
+ *   const [ className, setClassName ] = useState( '' );
+ *
+ *   return (
+ *     <TextControl
+ *       __nextHasNoMarginBottom
+ *       label="Additional CSS Class"
+ *       value={ className }
+ *       onChange={ ( value ) => setClassName( value ) }
+ *     />
+ *   );
+ * };
+ * ```
+ */
+const TextControl = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(UnforwardedTextControl);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TextControl);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
 /***/ "./node_modules/@wordpress/components/build-module/tooltip/index.js":
 /*!**************************************************************************!*\
   !*** ./node_modules/@wordpress/components/build-module/tooltip/index.js ***!
@@ -4261,6 +5354,214 @@ function UnforwardedTooltip(props, ref) {
 const Tooltip = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(UnforwardedTooltip);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Tooltip);
 //# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/components/build-module/utils/base-label.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@wordpress/components/build-module/utils/base-label.js ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   baseLabelTypography: () => (/* binding */ baseLabelTypography)
+/* harmony export */ });
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
+/**
+ * External dependencies
+ */
+
+
+// This is a very low-level mixin which you shouldn't have to use directly.
+// Try to use BaseControl's StyledLabel or BaseControl.VisualLabel if you can.
+const baseLabelTypography =  false ? 0 : {
+  name: "1awj7qe-baseLabelTypography",
+  styles: "font-size:11px;font-weight:500;line-height:1.4;text-transform:uppercase;label:baseLabelTypography;",
+  map: "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkB3b3JkcHJlc3MvY29tcG9uZW50cy9zcmMvdXRpbHMvYmFzZS1sYWJlbC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFPc0MiLCJmaWxlIjoiQHdvcmRwcmVzcy9jb21wb25lbnRzL3NyYy91dGlscy9iYXNlLWxhYmVsLnRzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBFeHRlcm5hbCBkZXBlbmRlbmNpZXNcbiAqL1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnO1xuXG4vLyBUaGlzIGlzIGEgdmVyeSBsb3ctbGV2ZWwgbWl4aW4gd2hpY2ggeW91IHNob3VsZG4ndCBoYXZlIHRvIHVzZSBkaXJlY3RseS5cbi8vIFRyeSB0byB1c2UgQmFzZUNvbnRyb2wncyBTdHlsZWRMYWJlbCBvciBCYXNlQ29udHJvbC5WaXN1YWxMYWJlbCBpZiB5b3UgY2FuLlxuZXhwb3J0IGNvbnN0IGJhc2VMYWJlbFR5cG9ncmFwaHkgPSBjc3NgXG5cdGZvbnQtc2l6ZTogMTFweDtcblx0Zm9udC13ZWlnaHQ6IDUwMDtcblx0bGluZS1oZWlnaHQ6IDEuNDtcblx0dGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbmA7XG4iXX0= */",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+//# sourceMappingURL=base-label.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/components/build-module/utils/box-sizing.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@wordpress/components/build-module/utils/box-sizing.js ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   boxSizingReset: () => (/* binding */ boxSizingReset)
+/* harmony export */ });
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
+/**
+ * External dependencies
+ */
+
+const boxSizingReset =  false ? 0 : {
+  name: "1pa5nhz-boxSizingReset",
+  styles: "box-sizing:border-box;*,*::before,*::after{box-sizing:inherit;};label:boxSizingReset;",
+  map: "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkB3b3JkcHJlc3MvY29tcG9uZW50cy9zcmMvdXRpbHMvYm94LXNpemluZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLaUMiLCJmaWxlIjoiQHdvcmRwcmVzcy9jb21wb25lbnRzL3NyYy91dGlscy9ib3gtc2l6aW5nLnRzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBFeHRlcm5hbCBkZXBlbmRlbmNpZXNcbiAqL1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnO1xuXG5leHBvcnQgY29uc3QgYm94U2l6aW5nUmVzZXQgPSBjc3NgXG5cdGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG5cblx0Kixcblx0Kjo6YmVmb3JlLFxuXHQqOjphZnRlciB7XG5cdFx0Ym94LXNpemluZzogaW5oZXJpdDtcblx0fVxuYDtcbiJdfQ== */",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+//# sourceMappingURL=box-sizing.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/components/build-module/utils/colors-values.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/@wordpress/components/build-module/utils/colors-values.js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   COLORS: () => (/* binding */ COLORS),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/**
+ * Internal dependencies
+ */
+const white = '#fff';
+
+// Matches the grays in @wordpress/base-styles
+const GRAY = {
+  900: '#1e1e1e',
+  800: '#2f2f2f',
+  /** Meets 4.6:1 text contrast against white. */
+  700: '#757575',
+  /** Meets 3:1 UI or large text contrast against white. */
+  600: '#949494',
+  400: '#ccc',
+  /** Used for most borders. */
+  300: '#ddd',
+  /** Used sparingly for light borders. */
+  200: '#e0e0e0',
+  /** Used for light gray backgrounds. */
+  100: '#f0f0f0'
+};
+
+// Matches @wordpress/base-styles
+const ALERT = {
+  yellow: '#f0b849',
+  red: '#d94f4f',
+  green: '#4ab866'
+};
+
+// Should match packages/components/src/utils/theme-variables.scss
+const THEME = {
+  accent: `var(--wp-components-color-accent, var(--wp-admin-theme-color, #3858e9))`,
+  accentDarker10: `var(--wp-components-color-accent-darker-10, var(--wp-admin-theme-color-darker-10, #2145e6))`,
+  accentDarker20: `var(--wp-components-color-accent-darker-20, var(--wp-admin-theme-color-darker-20, #183ad6))`,
+  /** Used when placing text on the accent color. */
+  accentInverted: `var(--wp-components-color-accent-inverted, ${white})`,
+  background: `var(--wp-components-color-background, ${white})`,
+  foreground: `var(--wp-components-color-foreground, ${GRAY[900]})`,
+  /** Used when placing text on the foreground color. */
+  foregroundInverted: `var(--wp-components-color-foreground-inverted, ${white})`,
+  gray: {
+    /** @deprecated Use `COLORS.theme.foreground` instead. */
+    900: `var(--wp-components-color-foreground, ${GRAY[900]})`,
+    800: `var(--wp-components-color-gray-800, ${GRAY[800]})`,
+    700: `var(--wp-components-color-gray-700, ${GRAY[700]})`,
+    600: `var(--wp-components-color-gray-600, ${GRAY[600]})`,
+    400: `var(--wp-components-color-gray-400, ${GRAY[400]})`,
+    300: `var(--wp-components-color-gray-300, ${GRAY[300]})`,
+    200: `var(--wp-components-color-gray-200, ${GRAY[200]})`,
+    100: `var(--wp-components-color-gray-100, ${GRAY[100]})`
+  }
+};
+const UI = {
+  background: THEME.background,
+  backgroundDisabled: THEME.gray[100],
+  border: THEME.gray[600],
+  borderHover: THEME.gray[700],
+  borderFocus: THEME.accent,
+  borderDisabled: THEME.gray[400],
+  textDisabled: THEME.gray[600],
+  // Matches @wordpress/base-styles
+  darkGrayPlaceholder: `color-mix(in srgb, ${THEME.foreground}, transparent 38%)`,
+  lightGrayPlaceholder: `color-mix(in srgb, ${THEME.background}, transparent 35%)`
+};
+const COLORS = Object.freeze({
+  /**
+   * The main gray color object.
+   *
+   * @deprecated Use semantic aliases in `COLORS.ui` or theme-ready variables in `COLORS.theme.gray`.
+   */
+  gray: GRAY,
+  // TODO: Stop exporting this when everything is migrated to `theme` or `ui`
+  white,
+  alert: ALERT,
+  /**
+   * Theme-ready variables with fallbacks.
+   *
+   * Prefer semantic aliases in `COLORS.ui` when applicable.
+   */
+  theme: THEME,
+  /**
+   * Semantic aliases (prefer these over raw variables when applicable).
+   */
+  ui: UI
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (COLORS);
+//# sourceMappingURL=colors-values.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/components/build-module/utils/font-values.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@wordpress/components/build-module/utils/font-values.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  'default.fontFamily': "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
+  'default.fontSize': '13px',
+  'helpText.fontSize': '12px',
+  mobileTextMinFontSize: '16px'
+});
+//# sourceMappingURL=font-values.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/components/build-module/utils/font.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@wordpress/components/build-module/utils/font.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   font: () => (/* binding */ font)
+/* harmony export */ });
+/* harmony import */ var _font_values__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./font-values */ "./node_modules/@wordpress/components/build-module/utils/font-values.js");
+/**
+ * Internal dependencies
+ */
+
+
+/**
+ *
+ * @param {keyof FONT} value Path of value from `FONT`
+ * @return {string} Font rule value
+ */
+function font(value) {
+  var _FONT$value;
+  return (_FONT$value = _font_values__WEBPACK_IMPORTED_MODULE_0__["default"][value]) !== null && _FONT$value !== void 0 ? _FONT$value : '';
+}
+//# sourceMappingURL=font.js.map
 
 /***/ }),
 
@@ -4485,6 +5786,61 @@ function useUpdateEffect(effect, deps) {
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useUpdateEffect);
 //# sourceMappingURL=use-update-effect.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/components/build-module/utils/space.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@wordpress/components/build-module/utils/space.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   space: () => (/* binding */ space)
+/* harmony export */ });
+/**
+ * The argument value for the `space()` utility function.
+ *
+ * When this is a number or a numeric string, it will be interpreted as a
+ * multiplier for the grid base value (4px). For example, `space( 2 )` will be 8px.
+ *
+ * Otherwise, it will be interpreted as a literal CSS length value. For example,
+ * `space( 'auto' )` will be 'auto', and `space( '2px' )` will be 2px.
+ */
+
+const GRID_BASE = '4px';
+
+/**
+ * A function that handles numbers, numeric strings, and unit values.
+ *
+ * When given a number or a numeric string, it will return the grid-based
+ * value as a factor of GRID_BASE, defined above.
+ *
+ * When given a unit value or one of the named CSS values like `auto`,
+ * it will simply return the value back.
+ *
+ * @param value A number, numeric string, or a unit value.
+ */
+function space(value) {
+  if (typeof value === 'undefined') {
+    return undefined;
+  }
+
+  // Handle empty strings, if it's the number 0 this still works.
+  if (!value) {
+    return '0';
+  }
+  const asInt = typeof value === 'number' ? value : Number(value);
+
+  // Test if the input has a unit, was NaN, or was one of the named CSS values (like `auto`), in which case just use that value.
+  if (typeof window !== 'undefined' && window.CSS?.supports?.('margin', value.toString()) || Number.isNaN(asInt)) {
+    return value.toString();
+  }
+  return `calc(${GRID_BASE} * ${value})`;
+}
+//# sourceMappingURL=space.js.map
 
 /***/ }),
 
@@ -6885,11 +8241,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/text-control/index.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/panel/index.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/panel/body.js");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -6899,6 +8256,11 @@ const Edit = ({
   setAttributes
 }) => {
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)();
+  const {
+    sections,
+    titleColor,
+    titleFontSize
+  } = attributes;
   const updateSections = newSections => {
     setAttributes({
       sections: newSections
@@ -6930,19 +8292,31 @@ const Edit = ({
     ...blockProps,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Settings", "thrail-commerce"),
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Accordion Settings", "thrail-commerce"),
           initialOpen: true,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Additional settings can be added here.", "thrail-commerce")
-          })
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Title Color", "thrail-commerce"),
+            value: titleColor,
+            type: "color",
+            onChange: value => setAttributes({
+              titleColor: value
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Title Font Size", "thrail-commerce"),
+            value: titleFontSize,
+            type: "number",
+            onChange: value => setAttributes({
+              titleFontSize: value
+            })
+          })]
         })
       })
     }), attributes.sections.map((section, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "border border-[#0029af] rounded-sm mb-4 p-3 accordion-section",
+      className: "px-4 border border-[#0029af] rounded-sm mb-4 p-3 accordion-section",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         onClick: () => toggleSection(index),
-        className: "cursor-pointer py-2 mb-2 flex justify-between items-center accordion-title",
+        className: "thrail-commerce-accordion-header cursor-pointer py-2 mb-2 flex items-center accordion-title",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
           tagName: "h3",
           value: section.title,
@@ -6965,10 +8339,9 @@ const Edit = ({
           className: "text-gray-800 p-2 rounded bg-white"
         })
       })]
-    }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
       onClick: addSection,
-      className: "mt-4",
-      variant: "primary",
+      className: "thrail-commerce-add-section mt-4 p-2 bg-[#0029af] border border-[#0029af] ",
       children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Add Section", "thrail-commerce")
     })]
   });
@@ -20065,7 +21438,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"thrail-commerce/accordion","title":"Accordion","category":"thrail-commerce-product","icon":"list-view","supports":{"html":false},"attributes":{"sections":{"type":"array","default":[{"title":"What is Thrail Commerce?","content":"Thrail Commerce is a cutting-edge e-commerce platform designed to provide seamless shopping experiences and advanced product management tools.","isOpen":true},{"title":"How does this feature work?","content":"This feature allows users to toggle sections of content, enabling a compact and user-friendly display of information.","isOpen":true}]}},"editorScript":"file:./index.js","render":"file:./render.php","style":"file:./style.css"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"thrail-commerce/accordion","title":"Accordion","category":"thrail-commerce-product","icon":"list-view","supports":{"html":false},"attributes":{"sections":{"type":"array","default":[{"title":"What is Thrail Commerce?","content":"Thrail Commerce is a cutting-edge e-commerce platform designed to provide seamless shopping experiences and advanced product management tools.","isOpen":true},{"title":"How does this feature work?","content":"This feature allows users to toggle sections of content, enabling a compact and user-friendly display of information.","isOpen":true}],"titleColor":{"type":"string","default":"#000000"},"titleFontSize":{"type":"string","default":"16px"}}},"editorScript":"file:./index.js","render":"file:./render.php","style":"file:./style.css"}');
 
 /***/ }),
 
@@ -20170,6 +21543,18 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/tru
 /******/ 				}
 /******/ 			}
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */

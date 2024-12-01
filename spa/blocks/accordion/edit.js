@@ -3,11 +3,13 @@ import {
   RichText,
   InspectorControls,
 } from "@wordpress/block-editor";
+import { TextControl } from "@wordpress/components";
 import { PanelBody, Panel, Button } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 
 const Edit = ({ attributes, setAttributes }) => {
   const blockProps = useBlockProps();
+  const { sections, titleColor, titleFontSize } = attributes;
 
   const updateSections = (newSections) => {
     setAttributes({ sections: newSections });
@@ -36,13 +38,19 @@ const Edit = ({ attributes, setAttributes }) => {
     <div {...blockProps}>
       <InspectorControls>
         <Panel>
-          <PanelBody
-            title={__("Settings", "thrail-commerce")}
-            initialOpen={true}
-          >
-            <p>
-              {__("Additional settings can be added here.", "thrail-commerce")}
-            </p>
+          <PanelBody title={__("Accordion Settings", "thrail-commerce")} initialOpen={true}>
+            <TextControl
+              label={__("Title Color", "thrail-commerce")}
+              value={titleColor}
+              type="color"
+              onChange={(value) => setAttributes({ titleColor: value })}
+            />
+            <TextControl
+              label={__("Title Font Size", "thrail-commerce")}
+              value={titleFontSize}
+              type="number"
+              onChange={(value) => setAttributes({ titleFontSize: value })}
+            />
           </PanelBody>
         </Panel>
       </InspectorControls>
@@ -50,11 +58,11 @@ const Edit = ({ attributes, setAttributes }) => {
       {attributes.sections.map((section, index) => (
         <div
           key={index}
-          className="border border-[#0029af] rounded-sm mb-4 p-3 accordion-section"
+          className="px-4 border border-[#0029af] rounded-sm mb-4 p-3 accordion-section"
         >
           <div
             onClick={() => toggleSection(index)}
-            className="cursor-pointer py-2 mb-2 flex justify-between items-center accordion-title"
+            className="thrail-commerce-accordion-header cursor-pointer py-2 mb-2 flex items-center accordion-title"
           >
             <RichText
               tagName="h3"
@@ -82,9 +90,9 @@ const Edit = ({ attributes, setAttributes }) => {
         </div>
       ))}
 
-      <Button onClick={addSection} className="mt-4" variant="primary">
+      <button onClick={addSection} className="thrail-commerce-add-section mt-4 p-2 bg-[#0029af] border border-[#0029af] ">
         {__("Add Section", "thrail-commerce")}
-      </Button>
+      </button>
     </div>
   );
 };
