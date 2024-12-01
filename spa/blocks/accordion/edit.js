@@ -10,6 +10,7 @@ import { __ } from "@wordpress/i18n";
 const Edit = ({ attributes, setAttributes }) => {
   const blockProps = useBlockProps();
   const { sections, titleColor, titleFontSize } = attributes;
+  console.log(titleColor);
 
   const updateSections = (newSections) => {
     setAttributes({ sections: newSections });
@@ -62,14 +63,14 @@ const Edit = ({ attributes, setAttributes }) => {
         >
           <div
             onClick={() => toggleSection(index)}
-            className="thrail-commerce-accordion-header cursor-pointer py-2 mb-2 flex items-center accordion-title"
+            className="thrail-commerce-accordion-header cursor-pointer py-2 mb-2 flex items-center"
           >
             <RichText
               tagName="h3"
               value={section.title}
               onChange={(value) => updateSection(index, "title", value)}
               placeholder={__("Enter title...", "thrail-commerce")}
-              style={{ color: "#0029af" }}
+              style={{ color: titleColor, fontSize: titleFontSize }}
             />
             <span className="accordion-icon text-[#0029af] font-bold">
               {section.isOpen ? "-" : "+"}
