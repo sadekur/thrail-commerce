@@ -10,7 +10,7 @@ import { __ } from "@wordpress/i18n";
 const Edit = ({ attributes, setAttributes }) => {
   const blockProps = useBlockProps();
   const { sections, titleColor, titleFontSize } = attributes;
-  console.log(titleColor);
+  console.log(sections);
 
   const updateSections = (newSections) => {
     setAttributes({ sections: newSections });
@@ -47,11 +47,12 @@ const Edit = ({ attributes, setAttributes }) => {
               onChange={(value) => setAttributes({ titleColor: value })}
             />
             <TextControl
-              label={__("Title Font Size", "thrail-commerce")}
-              value={titleFontSize}
+              label={__("Title Font Size (px)", "thrail-commerce")}
+              value={parseInt(titleFontSize, 10)}
               type="number"
-              onChange={(value) => setAttributes({ titleFontSize: value })}
+              onChange={(value) => setAttributes({ titleFontSize: `${value}px` })} // Append px
             />
+
           </PanelBody>
         </Panel>
       </InspectorControls>

@@ -8261,7 +8261,7 @@ const Edit = ({
     titleColor,
     titleFontSize
   } = attributes;
-  console.log(titleColor);
+  console.log(sections);
   const updateSections = newSections => {
     setAttributes({
       sections: newSections
@@ -8304,12 +8304,12 @@ const Edit = ({
               titleColor: value
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["default"], {
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Title Font Size", "thrail-commerce"),
-            value: titleFontSize,
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Title Font Size (px)", "thrail-commerce"),
+            value: parseInt(titleFontSize, 10),
             type: "number",
             onChange: value => setAttributes({
-              titleFontSize: value
-            })
+              titleFontSize: `${value}px`
+            }) // Append px
           })]
         })
       })
