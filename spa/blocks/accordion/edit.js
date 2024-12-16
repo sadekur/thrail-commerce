@@ -9,8 +9,7 @@ import { __ } from "@wordpress/i18n";
 
 const Edit = ({ attributes, setAttributes }) => {
   const blockProps = useBlockProps();
-  const { sections, titleColor, titleFontSize } = attributes;
-  console.log(sections);
+  const { sections, titleColor, titleFontSize, contentColor, contentFontSize } = attributes;
 
   const updateSections = (newSections) => {
     setAttributes({ sections: newSections });
@@ -50,9 +49,31 @@ const Edit = ({ attributes, setAttributes }) => {
               label={__("Title Font Size (px)", "thrail-commerce")}
               value={parseInt(titleFontSize, 10)}
               type="number"
-              onChange={(value) => setAttributes({ titleFontSize: `${value}px` })} // Append px
+              onChange={(value) => setAttributes({ titleFontSize: `${value}px` })}
             />
-
+            <TextControl
+              label={__("Content Color", "thrail-commerce")}
+              value={contentColor}
+              type="color"
+              onChange={(value) => setAttributes({ contentColor: value })}
+            />
+            <TextControl
+              label={__("Content Font Size (px)", "thrail-commerce")}
+              value={parseInt(contentFontSize, 10)}
+              type="number"
+              onChange={(value) => setAttributes({ contentFontSize: `${value}px` })}
+            />
+            <SelectControl
+              label={__("Content Font Family", "thrail-commerce")}
+              value={contentFontFamily}
+              options={[
+                { label: "Default", value: "inherit" },
+                { label: "Arial", value: "Arial, sans-serif" },
+                { label: "Georgia", value: "Georgia, serif" },
+                { label: "Roboto", value: "'Roboto', sans-serif" },
+              ]}
+              onChange={(value) => setAttributes({ contentFontFamily: value })}
+            />
           </PanelBody>
         </Panel>
       </InspectorControls>
@@ -86,6 +107,7 @@ const Edit = ({ attributes, setAttributes }) => {
                 onChange={(value) => updateSection(index, "content", value)}
                 placeholder={__("Enter content...", "thrail-commerce")}
                 className="text-gray-800 p-2 rounded bg-white"
+                style={{ color: contentColor, fontSize: contentFontSize }}
               />
             </div>
           )}

@@ -8259,9 +8259,10 @@ const Edit = ({
   const {
     sections,
     titleColor,
-    titleFontSize
+    titleFontSize,
+    contentColor,
+    contentFontSize
   } = attributes;
-  console.log(sections);
   const updateSections = newSections => {
     setAttributes({
       sections: newSections
@@ -8309,7 +8310,40 @@ const Edit = ({
             type: "number",
             onChange: value => setAttributes({
               titleFontSize: `${value}px`
-            }) // Append px
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Content Color", "thrail-commerce"),
+            value: contentColor,
+            type: "color",
+            onChange: value => setAttributes({
+              contentColor: value
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Content Font Size (px)", "thrail-commerce"),
+            value: parseInt(contentFontSize, 10),
+            type: "number",
+            onChange: value => setAttributes({
+              contentFontSize: `${value}px`
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(SelectControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Content Font Family", "thrail-commerce"),
+            value: contentFontFamily,
+            options: [{
+              label: "Default",
+              value: "inherit"
+            }, {
+              label: "Arial",
+              value: "Arial, sans-serif"
+            }, {
+              label: "Georgia",
+              value: "Georgia, serif"
+            }, {
+              label: "Roboto",
+              value: "'Roboto', sans-serif"
+            }],
+            onChange: value => setAttributes({
+              contentFontFamily: value
+            })
           })]
         })
       })
@@ -8338,7 +8372,11 @@ const Edit = ({
           value: section.content,
           onChange: value => updateSection(index, "content", value),
           placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Enter content...", "thrail-commerce"),
-          className: "text-gray-800 p-2 rounded bg-white"
+          className: "text-gray-800 p-2 rounded bg-white",
+          style: {
+            color: contentColor,
+            fontSize: contentFontSize
+          }
         })
       })]
     }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
@@ -21440,7 +21478,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"thrail-commerce/accordion","title":"Accordion","category":"thrail-commerce-product","icon":"list-view","supports":{"html":false},"attributes":{"sections":{"type":"array","default":[{"title":"What is Thrail Commerce?","content":"Thrail Commerce is a cutting-edge e-commerce platform designed to provide seamless shopping experiences and advanced product management tools.","isOpen":true},{"title":"How does this feature work?","content":"This feature allows users to toggle sections of content, enabling a compact and user-friendly display of information.","isOpen":true}]},"titleColor":{"type":"string","default":"#0029af"},"titleFontSize":{"type":"string","default":"16px"}},"editorScript":"file:./index.js","render":"file:./render.php","style":"file:./style.css"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"thrail-commerce/accordion","title":"Accordion","category":"thrail-commerce-product","icon":"list-view","supports":{"html":false},"attributes":{"sections":{"type":"array","default":[{"title":"What is Thrail Commerce?","content":"Thrail Commerce is a cutting-edge e-commerce platform designed to provide seamless shopping experiences and advanced product management tools.","isOpen":true},{"title":"How does this feature work?","content":"This feature allows users to toggle sections of content, enabling a compact and user-friendly display of information.","isOpen":true}]},"titleColor":{"type":"string","default":"#0029af"},"titleFontSize":{"type":"string","default":"16px"},"contentColor":{"type":"string","default":"#0029af"},"contentFontSize":{"type":"string","default":"10px"},"titleFontFamily":{"type":"string","default":"inherit"},"contentFontFamily":{"type":"string","default":"inherit"}},"editorScript":"file:./index.js","render":"file:./render.php","style":"file:./style.css"}');
 
 /***/ }),
 

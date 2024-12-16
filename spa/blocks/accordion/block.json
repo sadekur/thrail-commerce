@@ -31,6 +31,22 @@
 		"titleFontSize": {
 			"type": "string",
 			"default": "16px"
+		},
+		"contentColor": {
+			"type": "string",
+			"default": "#0029af"
+		},
+		"contentFontSize": {
+			"type": "string",
+			"default": "10px"
+		},
+		"titleFontFamily": {
+			"type": "string",
+			"default": "inherit"
+		},
+		"contentFontFamily": {
+			"type": "string",
+			"default": "inherit"
 		}
 	},
 	"editorScript": "file:./index.js",
