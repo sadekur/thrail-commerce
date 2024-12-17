@@ -3,13 +3,14 @@ import {
   RichText,
   InspectorControls,
 } from "@wordpress/block-editor";
+import { SelectControl } from "@wordpress/components";
 import { TextControl } from "@wordpress/components";
 import { PanelBody, Panel, Button } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 
 const Edit = ({ attributes, setAttributes }) => {
   const blockProps = useBlockProps();
-  const { sections, titleColor, titleFontSize, contentColor, contentFontSize } = attributes;
+  const { sections, titleColor, titleFontSize, contentColor, contentFontSize, titleFontFamily, contentFontFamily } = attributes;
 
   const updateSections = (newSections) => {
     setAttributes({ sections: newSections });
@@ -50,6 +51,17 @@ const Edit = ({ attributes, setAttributes }) => {
               value={parseInt(titleFontSize, 10)}
               type="number"
               onChange={(value) => setAttributes({ titleFontSize: `${value}px` })}
+            />
+            <SelectControl
+              label={__("Title Font Family", "thrail-commerce")}
+              value={titleFontFamily}
+              options={[
+                { label: "Default", value: "inherit" },
+                { label: "Arial", value: "Arial, sans-serif" },
+                { label: "Georgia", value: "Georgia, serif" },
+                { label: "Roboto", value: "'Roboto', sans-serif" },
+              ]}
+              onChange={(value) => setAttributes({ titleFontFamily: value })}
             />
             <TextControl
               label={__("Content Color", "thrail-commerce")}
@@ -92,7 +104,7 @@ const Edit = ({ attributes, setAttributes }) => {
               value={section.title}
               onChange={(value) => updateSection(index, "title", value)}
               placeholder={__("Enter title...", "thrail-commerce")}
-              style={{ color: titleColor, fontSize: titleFontSize }}
+              style={{ color: titleColor, fontSize: titleFontSize, fontFamily: titleFontFamily }}
             />
             <span className="accordion-icon text-[#0029af] font-bold">
               {section.isOpen ? "-" : "+"}
@@ -107,7 +119,7 @@ const Edit = ({ attributes, setAttributes }) => {
                 onChange={(value) => updateSection(index, "content", value)}
                 placeholder={__("Enter content...", "thrail-commerce")}
                 className="text-gray-800 p-2 rounded bg-white"
-                style={{ color: contentColor, fontSize: contentFontSize }}
+                style={{ color: contentColor, fontSize: contentFontSize, fontFamily: contentFontFamily }}
               />
             </div>
           )}
