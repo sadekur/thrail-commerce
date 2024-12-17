@@ -10,7 +10,21 @@ import { __ } from "@wordpress/i18n";
 
 const Edit = ({ attributes, setAttributes }) => {
   const blockProps = useBlockProps();
-  const { sections, titleColor, titleFontSize, contentColor, contentFontSize, titleFontFamily, contentFontFamily } = attributes;
+  const {
+    sections,
+    titleColor,
+    titleFontSize,
+    contentColor,
+    contentFontSize,
+    titleFontFamily,
+    contentFontFamily,
+    borderColor,
+    borderSize,
+    borderStyle,
+    buttonColor,
+    buttonFontSize,
+    buttonFontFamily,
+  } = attributes;
 
   const updateSections = (newSections) => {
     setAttributes({ sections: newSections });
@@ -39,7 +53,34 @@ const Edit = ({ attributes, setAttributes }) => {
     <div {...blockProps}>
       <InspectorControls>
         <Panel>
-          <PanelBody title={__("Accordion Settings", "thrail-commerce")} initialOpen={true}>
+          <PanelBody
+            title={__("Accordion Settings", "thrail-commerce")}
+            initialOpen={true}
+          >
+            <TextControl
+              label={__("Border Color", "thrail-commerce")}
+              value={borderColor}
+              type="color"
+              onChange={(value) => setAttributes({ borderColor: value })}
+            />
+            <TextControl
+              label={__("Border Size (px)", "thrail-commerce")}
+              value={parseInt(borderSize, 10)}
+              type="number"
+              onChange={(value) => setAttributes({ borderSize: `${value}px` })}
+            />
+            <SelectControl
+              label={__("Border Style", "thrail-commerce")}
+              value={borderStyle}
+              options={[
+                { label: __("Solid", "thrail-commerce"), value: "solid" },
+                { label: __("Dashed", "thrail-commerce"), value: "dashed" },
+                { label: __("Dotted", "thrail-commerce"), value: "dotted" },
+                { label: __("Double", "thrail-commerce"), value: "double" },
+                { label: __("None", "thrail-commerce"), value: "none" },
+              ]}
+              onChange={(value) => setAttributes({ borderStyle: value })}
+            />
             <TextControl
               label={__("Title Color", "thrail-commerce")}
               value={titleColor}
@@ -50,7 +91,9 @@ const Edit = ({ attributes, setAttributes }) => {
               label={__("Title Font Size (px)", "thrail-commerce")}
               value={parseInt(titleFontSize, 10)}
               type="number"
-              onChange={(value) => setAttributes({ titleFontSize: `${value}px` })}
+              onChange={(value) =>
+                setAttributes({ titleFontSize: `${value}px` })
+              }
             />
             <SelectControl
               label={__("Title Font Family", "thrail-commerce")}
@@ -73,7 +116,9 @@ const Edit = ({ attributes, setAttributes }) => {
               label={__("Content Font Size (px)", "thrail-commerce")}
               value={parseInt(contentFontSize, 10)}
               type="number"
-              onChange={(value) => setAttributes({ contentFontSize: `${value}px` })}
+              onChange={(value) =>
+                setAttributes({ contentFontSize: `${value}px` })
+              }
             />
             <SelectControl
               label={__("Content Font Family", "thrail-commerce")}
@@ -94,6 +139,11 @@ const Edit = ({ attributes, setAttributes }) => {
         <div
           key={index}
           className="px-4 border border-[#0029af] rounded-sm mb-4 p-3 accordion-section"
+          style={{
+            borderColor,
+            borderWidth: borderSize,
+            borderStyle,
+          }}
         >
           <div
             onClick={() => toggleSection(index)}
@@ -104,7 +154,11 @@ const Edit = ({ attributes, setAttributes }) => {
               value={section.title}
               onChange={(value) => updateSection(index, "title", value)}
               placeholder={__("Enter title...", "thrail-commerce")}
-              style={{ color: titleColor, fontSize: titleFontSize, fontFamily: titleFontFamily }}
+              style={{
+                color: titleColor,
+                fontSize: titleFontSize,
+                fontFamily: titleFontFamily,
+              }}
             />
             <span className="accordion-icon text-[#0029af] font-bold">
               {section.isOpen ? "-" : "+"}
@@ -119,14 +173,21 @@ const Edit = ({ attributes, setAttributes }) => {
                 onChange={(value) => updateSection(index, "content", value)}
                 placeholder={__("Enter content...", "thrail-commerce")}
                 className="text-gray-800 p-2 rounded bg-white"
-                style={{ color: contentColor, fontSize: contentFontSize, fontFamily: contentFontFamily }}
+                style={{
+                  color: contentColor,
+                  fontSize: contentFontSize,
+                  fontFamily: contentFontFamily,
+                }}
               />
             </div>
           )}
         </div>
       ))}
 
-      <button onClick={addSection} className="thrail-commerce-add-section mt-4 p-2 bg-[#0029af] border border-[#0029af] ">
+      <button
+        onClick={addSection}
+        className="thrail-commerce-add-section mt-4 p-2 bg-[#0029af] border border-[#0029af] "
+      >
         {__("Add Section", "thrail-commerce")}
       </button>
     </div>

@@ -47,6 +47,30 @@
 		"contentFontFamily": {
 			"type": "string",
 			"default": "inherit"
+		},
+		"borderColor": {
+			"type": "string",
+			"default": "#0029af"
+		},
+		"borderSize": {
+			"type": "string",
+			"default": "1px"
+		},
+		"borderStyle": {
+			"type": "string",
+			"default": "solid"
+		},
+		"buttonColor": {
+			"type": "string",
+			"default": "#0029af"
+		},
+		"buttonFontSize": {
+			"type": "string",
+			"default": "10px"
+		},
+		"buttonFontFamily": {
+			"type": "string",
+			"default": "inherit"
 		}
 	},
 	"editorScript": "file:./index.js",

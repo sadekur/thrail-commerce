@@ -10819,7 +10819,13 @@ const Edit = ({
     contentColor,
     contentFontSize,
     titleFontFamily,
-    contentFontFamily
+    contentFontFamily,
+    borderColor,
+    borderSize,
+    borderStyle,
+    buttonColor,
+    buttonFontSize,
+    buttonFontFamily
   } = attributes;
   const updateSections = newSections => {
     setAttributes({
@@ -10856,6 +10862,42 @@ const Edit = ({
           title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Accordion Settings", "thrail-commerce"),
           initialOpen: true,
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Border Color", "thrail-commerce"),
+            value: borderColor,
+            type: "color",
+            onChange: value => setAttributes({
+              borderColor: value
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Border Size (px)", "thrail-commerce"),
+            value: parseInt(borderSize, 10),
+            type: "number",
+            onChange: value => setAttributes({
+              borderSize: `${value}px`
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["default"], {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Border Style", "thrail-commerce"),
+            value: borderStyle,
+            options: [{
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Solid", "thrail-commerce"),
+              value: "solid"
+            }, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Dashed", "thrail-commerce"),
+              value: "dashed"
+            }, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Dotted", "thrail-commerce"),
+              value: "dotted"
+            }, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Double", "thrail-commerce"),
+              value: "double"
+            }, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("None", "thrail-commerce"),
+              value: "none"
+            }],
+            onChange: value => setAttributes({
+              borderStyle: value
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["default"], {
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Title Color", "thrail-commerce"),
             value: titleColor,
             type: "color",
@@ -10926,6 +10968,11 @@ const Edit = ({
       })
     }), attributes.sections.map((section, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "px-4 border border-[#0029af] rounded-sm mb-4 p-3 accordion-section",
+      style: {
+        borderColor,
+        borderWidth: borderSize,
+        borderStyle
+      },
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         onClick: () => toggleSection(index),
         className: "thrail-commerce-accordion-header cursor-pointer py-2 mb-2 flex items-center",
@@ -24358,7 +24405,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"thrail-commerce/accordion","title":"Accordion","category":"thrail-commerce-product","icon":"list-view","supports":{"html":false},"attributes":{"sections":{"type":"array","default":[{"title":"What is Thrail Commerce?","content":"Thrail Commerce is a cutting-edge e-commerce platform designed to provide seamless shopping experiences and advanced product management tools.","isOpen":true},{"title":"How does this feature work?","content":"This feature allows users to toggle sections of content, enabling a compact and user-friendly display of information.","isOpen":true}]},"titleColor":{"type":"string","default":"#0029af"},"titleFontSize":{"type":"string","default":"16px"},"contentColor":{"type":"string","default":"#0029af"},"contentFontSize":{"type":"string","default":"10px"},"titleFontFamily":{"type":"string","default":"inherit"},"contentFontFamily":{"type":"string","default":"inherit"}},"editorScript":"file:./index.js","render":"file:./render.php","style":"file:./style.css"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"thrail-commerce/accordion","title":"Accordion","category":"thrail-commerce-product","icon":"list-view","supports":{"html":false},"attributes":{"sections":{"type":"array","default":[{"title":"What is Thrail Commerce?","content":"Thrail Commerce is a cutting-edge e-commerce platform designed to provide seamless shopping experiences and advanced product management tools.","isOpen":true},{"title":"How does this feature work?","content":"This feature allows users to toggle sections of content, enabling a compact and user-friendly display of information.","isOpen":true}]},"titleColor":{"type":"string","default":"#0029af"},"titleFontSize":{"type":"string","default":"16px"},"contentColor":{"type":"string","default":"#0029af"},"contentFontSize":{"type":"string","default":"10px"},"titleFontFamily":{"type":"string","default":"inherit"},"contentFontFamily":{"type":"string","default":"inherit"},"borderColor":{"type":"string","default":"#0029af"},"borderSize":{"type":"string","default":"1px"},"borderStyle":{"type":"string","default":"solid"},"buttonColor":{"type":"string","default":"#0029af"},"buttonFontSize":{"type":"string","default":"10px"},"buttonFontFamily":{"type":"string","default":"inherit"}},"editorScript":"file:./index.js","render":"file:./render.php","style":"file:./style.css"}');
 
 /***/ }),
 
