@@ -30,7 +30,7 @@
 		},
 		"titleFontSize": {
 			"type": "string",
-			"default": "16px"
+			"default": "20px"
 		},
 		"contentColor": {
 			"type": "string",
@@ -38,7 +38,7 @@
 		},
 		"contentFontSize": {
 			"type": "string",
-			"default": "10px"
+			"default": "16px"
 		},
 		"titleFontFamily": {
 			"type": "string",
@@ -66,7 +66,7 @@
 		},
 		"buttonFontSize": {
 			"type": "string",
-			"default": "10px"
+			"default": "16px"
 		},
 		"buttonFontFamily": {
 			"type": "string",

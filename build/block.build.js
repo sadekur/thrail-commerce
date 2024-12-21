@@ -10799,6 +10799,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/text-control/index.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/panel/index.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/panel/body.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
@@ -10825,7 +10826,10 @@ const Edit = ({
     borderStyle,
     buttonColor,
     buttonFontSize,
-    buttonFontFamily
+    buttonFontFamily,
+    buttonBackgroundColor,
+    buttonTextColor,
+    buttonText
   } = attributes;
   const updateSections = newSections => {
     setAttributes({
@@ -10853,6 +10857,14 @@ const Edit = ({
       isOpen: false
     };
     updateSections([...attributes.sections, newSection]);
+  };
+  const removeSection = index => {
+    if (attributes.sections.length > 1) {
+      const updatedSections = attributes.sections.filter((_, idx) => idx !== index);
+      updateSections(updatedSections);
+    } else {
+      alert((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("You cannot remove the last section.", "thrail-commerce"));
+    }
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     ...blockProps,
@@ -10963,6 +10975,52 @@ const Edit = ({
             onChange: value => setAttributes({
               contentFontFamily: value
             })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Button Background Color", "thrail-commerce"),
+            value: buttonBackgroundColor,
+            type: "color",
+            onChange: value => setAttributes({
+              buttonBackgroundColor: value
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Button Text Color", "thrail-commerce"),
+            value: buttonTextColor,
+            type: "color",
+            onChange: value => setAttributes({
+              buttonTextColor: value
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Button Font Size (px)", "thrail-commerce"),
+            value: parseInt(buttonFontSize, 10),
+            type: "number",
+            onChange: value => setAttributes({
+              buttonFontSize: `${value}px`
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["default"], {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Button Font Family", "thrail-commerce"),
+            value: buttonFontFamily,
+            options: [{
+              label: "Default",
+              value: "inherit"
+            }, {
+              label: "Arial",
+              value: "Arial, sans-serif"
+            }, {
+              label: "Georgia",
+              value: "Georgia, serif"
+            }, {
+              label: "Roboto",
+              value: "'Roboto', sans-serif"
+            }],
+            onChange: value => setAttributes({
+              buttonFontFamily: value
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Button Text", "thrail-commerce"),
+            value: buttonText,
+            onChange: value => setAttributes({
+              buttonText: value
+            })
           })]
         })
       })
@@ -11004,11 +11062,26 @@ const Edit = ({
             fontFamily: contentFontFamily
           }
         })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        isDestructive: true,
+        onClick: () => removeSection(index),
+        className: "mt-2",
+        disabled: attributes.sections.length === 1,
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Remove Section", "thrail-commerce")
       })]
     }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
       onClick: addSection,
-      className: "thrail-commerce-add-section mt-4 p-2 bg-[#0029af] border border-[#0029af] ",
-      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Add Section", "thrail-commerce")
+      className: "thrail-commerce-add-section mt-4 p-2",
+      style: {
+        backgroundColor: buttonBackgroundColor,
+        color: buttonTextColor,
+        fontSize: buttonFontSize,
+        fontFamily: buttonFontFamily,
+        borderColor: buttonColor,
+        borderWidth: "1px",
+        borderStyle: "solid"
+      },
+      children: buttonText
     })]
   });
 };
@@ -24405,7 +24478,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"thrail-commerce/accordion","title":"Accordion","category":"thrail-commerce-product","icon":"list-view","supports":{"html":false},"attributes":{"sections":{"type":"array","default":[{"title":"What is Thrail Commerce?","content":"Thrail Commerce is a cutting-edge e-commerce platform designed to provide seamless shopping experiences and advanced product management tools.","isOpen":true},{"title":"How does this feature work?","content":"This feature allows users to toggle sections of content, enabling a compact and user-friendly display of information.","isOpen":true}]},"titleColor":{"type":"string","default":"#0029af"},"titleFontSize":{"type":"string","default":"16px"},"contentColor":{"type":"string","default":"#0029af"},"contentFontSize":{"type":"string","default":"10px"},"titleFontFamily":{"type":"string","default":"inherit"},"contentFontFamily":{"type":"string","default":"inherit"},"borderColor":{"type":"string","default":"#0029af"},"borderSize":{"type":"string","default":"1px"},"borderStyle":{"type":"string","default":"solid"},"buttonColor":{"type":"string","default":"#0029af"},"buttonFontSize":{"type":"string","default":"10px"},"buttonFontFamily":{"type":"string","default":"inherit"},"buttonText":{"type":"string","default":"Add Section"},"buttonBackgroundColor":{"type":"string","default":"#0029af"},"buttonTextColor":{"type":"string","default":"#ffffff"}},"editorScript":"file:./index.js","render":"file:./render.php","style":"file:./style.css"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"thrail-commerce/accordion","title":"Accordion","category":"thrail-commerce-product","icon":"list-view","supports":{"html":false},"attributes":{"sections":{"type":"array","default":[{"title":"What is Thrail Commerce?","content":"Thrail Commerce is a cutting-edge e-commerce platform designed to provide seamless shopping experiences and advanced product management tools.","isOpen":true},{"title":"How does this feature work?","content":"This feature allows users to toggle sections of content, enabling a compact and user-friendly display of information.","isOpen":true}]},"titleColor":{"type":"string","default":"#0029af"},"titleFontSize":{"type":"string","default":"20px"},"contentColor":{"type":"string","default":"#0029af"},"contentFontSize":{"type":"string","default":"16px"},"titleFontFamily":{"type":"string","default":"inherit"},"contentFontFamily":{"type":"string","default":"inherit"},"borderColor":{"type":"string","default":"#0029af"},"borderSize":{"type":"string","default":"1px"},"borderStyle":{"type":"string","default":"solid"},"buttonColor":{"type":"string","default":"#0029af"},"buttonFontSize":{"type":"string","default":"16px"},"buttonFontFamily":{"type":"string","default":"inherit"},"buttonText":{"type":"string","default":"Add Section"},"buttonBackgroundColor":{"type":"string","default":"#0029af"},"buttonTextColor":{"type":"string","default":"#ffffff"}},"editorScript":"file:./index.js","render":"file:./render.php","style":"file:./style.css"}');
 
 /***/ }),
 
