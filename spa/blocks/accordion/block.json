@@ -71,6 +71,18 @@
 		"buttonFontFamily": {
 			"type": "string",
 			"default": "inherit"
+		},
+		"buttonText": {
+			"type": "string",
+			"default": "Add Section"
+		},
+		"buttonBackgroundColor": {
+			"type": "string",
+			"default": "#0029af"
+		},
+		"buttonTextColor": {
+			"type": "string",
+			"default": "#ffffff"
 		}
 	},
 	"editorScript": "file:./index.js",
