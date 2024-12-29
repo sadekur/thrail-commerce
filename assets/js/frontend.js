@@ -67,4 +67,7 @@ jQuery(document).ready(function($) {
 			}
 		});
 	});
+	$('.accordion-icon').click(function(){
+		alert('clicked');
+	});
 });
