@@ -31,7 +31,7 @@ class Assets {
             time(),
             true
         );
-        if( true || did_action( 'thrailcommerce_block/accordion' ) ) {
+        // if( true || did_action( 'thrailcommerce_block/accordion' ) ) {
             wp_enqueue_script(
                 'thrail-commerce-frontend-script',
                 THRAIL_COMMERCE_ASSETS . '/js/frontend.js',
@@ -39,7 +39,7 @@ class Assets {
                 filemtime(THRAIL_COMMERCE_PATH . 'assets/js/frontend.js'),
                 true
             );
-        }
+        // }
         $this->enqueue_common_assets();
 
         wp_localize_script('thrail-commerce-block-script', 'THRAILCOMMERCE', [

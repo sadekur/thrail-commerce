@@ -1,16 +1,16 @@
 <?php
 // Extract attributes passed to the block.
-$sections               = $attributes['sections'] ?? [];
-$borderColor            = $attributes['borderColor'] ?? '#000';
-$borderSize             = $attributes['borderSize'] ?? '1px';
-$borderStyle            = $attributes['borderStyle'] ?? 'solid';
-$titleColor             = $attributes['titleColor'] ?? '#000';
-$titleFontSize          = $attributes['titleFontSize'] ?? '16px';
-$titleFontFamily        = $attributes['titleFontFamily'] ?? 'inherit';
-$contentColor           = $attributes['contentColor'] ?? '#000';
-$contentFontSize        = $attributes['contentFontSize'] ?? '14px';
-$contentFontFamily      = $attributes['contentFontFamily'] ?? 'inherit';
-do_action( 'thrailcommerce_block/accordion' )
+$sections               = $attributes[ 'sections' ] ?? [];
+$borderColor            = $attributes[ 'borderColor' ] ?? '#000';
+$borderSize             = $attributes[ 'borderSize' ] ?? '1px';
+$borderStyle            = $attributes[ 'borderStyle' ] ?? 'solid';
+$titleColor             = $attributes[ 'titleColor' ] ?? '#000';
+$titleFontSize          = $attributes[ 'titleFontSize' ] ?? '16px';
+$titleFontFamily        = $attributes[ 'titleFontFamily' ] ?? 'inherit';
+$contentColor           = $attributes[ 'contentColor' ] ?? '#000';
+$contentFontSize        = $attributes[ 'contentFontSize' ] ?? '14px';
+$contentFontFamily      = $attributes[ 'contentFontFamily' ] ?? 'inherit';
+// do_action( 'thrailcommerce_block/accordion' )
 ?>
 <div class="thrail-commerce-accordion">
     <?php foreach ($sections as $index => $section): ?>

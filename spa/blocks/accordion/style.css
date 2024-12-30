@@ -5,7 +5,7 @@
 	color: #ffffff;
 	border-radius: 6px;
 }
-.accordion-content {
+/* .accordion-content {
     overflow: hidden;
     transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
 }
@@ -13,4 +13,4 @@
     max-height: 0;
     opacity: 0;
     display: none;
-}
+} */
