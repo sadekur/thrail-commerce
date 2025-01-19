@@ -1,11 +1,14 @@
 <?php
 namespace Thrail\Commerce\Features;
+use Thrail\Commerce\Classes\Trait\Hookable;
 
 class WoocommerceTips {
+
+    use Hookable;
     public function __construct() {
         // Hook form display methods
-        add_action('woocommerce_before_cart_contents', [$this, 'display_tips_form']);
-        add_action('woocommerce_review_order_before_payment', [$this, 'display_tips_form']);
+        $this->action('woocommerce_before_cart_contents', [$this, 'display_tips_form']);
+        $this->action('woocommerce_review_order_before_payment', [$this, 'display_tips_form']);
     }
 
     /**
