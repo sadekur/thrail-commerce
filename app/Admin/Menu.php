@@ -2,8 +2,11 @@
 
 namespace Thrail\Commerce\Admin;
 
+use ParagonIE\Sodium\Core\Curve25519\H;
+use ParagonIE\Sodium\Core\Util;
 use Thrail\Commerce\Classes\Trait\Hookable;
 use Thrail\Commerce\Helper;
+use Thrail\Commerce\Classes\Helper\Utility;
 
 class Menu {
     use Hookable;
@@ -60,6 +63,6 @@ class Menu {
         ];
     
         $settings = wp_parse_args($settings, $defaults);
-        echo Helper::get_template('settings', 'settings', $settings);
+        echo Utility::get_template( 'settings', 'settings', $settings );
     }  
 }

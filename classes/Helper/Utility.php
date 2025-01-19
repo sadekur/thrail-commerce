@@ -79,19 +79,18 @@ class Utility {
 	 * @param string $template The template file name.
 	 * @param array  $args Optional. An associative array of variables to pass to the template file.
 	 */
-	public static function get_template( $template, $args = array() ) {
-		$path = EASYCOMMERCE_PLUGIN_DIR . 'views/' . $template;
+    public static function get_template( $template_name, $path, $data = [] ) {
+        $template_path = THRAIL_COMMERCE_PATH . 'app/settings/' . $template_name . '.php';
+        print_r($template_path);
 
-		if ( file_exists( $path ) ) {
-			if ( ! empty( $args ) && is_array( $args ) ) {
-				extract( $args );
-			}
+        if ( file_exists( $template_path ) ) {
+            // Extract data to variables
+            extract( $data );
+            ob_start();
+            include $template_path;
+            return ob_get_clean();
+        }
 
-			ob_start();
-			include $path;
-			return ob_get_clean();
-		} else {
-			error_log( 'Template file not found: ' . $path );
-		}
-	}
+        return '<p>' . esc_html__('Template not found!', 'thrail-commerce') . '</p>';
+    }
 }
