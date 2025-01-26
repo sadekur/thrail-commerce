@@ -11,20 +11,18 @@ use Thrail\Commerce\Classes\Helper\Utility;
 class Menu {
     use Hookable;
 
-    function __construct()
-    {
+    function __construct() {
         // Hook into the admin_menu action
-        $this->action('admin_menu', [$this, 'add_admin_menu']);
+        $this->action( 'admin_menu', [ $this, 'add_admin_menu' ] );
     }
 
-    public function add_admin_menu()
-    {
+    public function add_admin_menu() {
         add_menu_page(
             'Thrail Commerce',
             'Thrail Commerce',
             'manage_options',
             'thrail-commerce',
-            [$this, 'admin_page_content'],
+            [ $this, 'admin_page_content' ],
             'dashicons-admin-generic',
             20
         );
@@ -37,14 +35,13 @@ class Menu {
                 'Thrail Commerce Settings',
                 'Settings',
                 'manage_options',
-                'thrail-commerce-settings',
+                'thrail-commerce-tip-settings',
                 [ $this, 'settings_page_content' ]
             );
         }
     }
-    public function admin_page_content()
-    {
-?>
+    public function admin_page_content() {
+    ?>
         <div class="wrap">
             <div id="thrail_commerce_render"></div>
         </div>

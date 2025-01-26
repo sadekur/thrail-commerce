@@ -66,6 +66,7 @@ class Assets {
         );
         wp_localize_script('thrail-commerce-frontend-script', 'THRAILCOMMERCE', [
             'ajaxurl' => admin_url('admin-ajax.php'),
+            'adminurl' => admin_url(),
             'nonce'   => wp_create_nonce('thrail-commerce'),
             'error'   => __('Something went wrong', 'thrail-commerce'),
         ]);
@@ -115,6 +116,7 @@ class Assets {
 
         wp_localize_script('thrail-commerce-admin-script', 'THRAILCOMMERCE', [
             'nonce'    => wp_create_nonce( 'wp_rest' ),
+            'adminurl' => admin_url(),
             'ajaxurl'  => admin_url( 'admin-ajax.php' ),
             'apiurl'   => untrailingslashit( rest_url( 'thrail/v1' ) ),
             'error'    => __( 'Something went wrong', 'thrail-commerce' ),
