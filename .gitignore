@@ -1,8 +1,8 @@
-# vendor/
-# node_modules/
-# build/
-# composer.lock
-# package-lock.json
-# .phpunit.cache/
-# tree.txt
-# **/.DS_Store
+vendor/
+node_modules/
+build/
+composer.lock
+package-lock.json
+.phpunit.cache/
+tree.txt
+**/.DS_Store
