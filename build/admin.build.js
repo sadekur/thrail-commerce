@@ -318,7 +318,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const Features = () => {
-  const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
   const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const [isSaving, setIsSaving] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [savingMessage, setSavingMessage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("Saving...");
@@ -348,6 +347,7 @@ const Features = () => {
     description: "Enable custom functionality 3 for more options.",
     value: false
   }]);
+  const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
   const save = updatedToggles => {
     const toggleValues = updatedToggles.reduce((acc, toggle) => {
       acc[toggle.name] = toggle.value ? "on" : "off";

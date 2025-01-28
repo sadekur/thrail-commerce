@@ -3,7 +3,6 @@ import axios from "axios";
 import CommonHeader from "../../../common/CommonHeader";
 
 const Features = () => {
-    const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
     const [isLoading, setIsLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
     const [savingMessage, setSavingMessage] = useState("Saving...");
@@ -40,6 +39,7 @@ const Features = () => {
             value: false,
         },
     ]);
+	const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
 
     const save = (updatedToggles) => {
         const toggleValues = updatedToggles.reduce((acc, toggle) => {
