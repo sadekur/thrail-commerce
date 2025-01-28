@@ -1,1 +1,8 @@
-node_modules
+vendor/
+node_modules/
+build/
+composer.lock
+package-lock.json
+.phpunit.cache/
+tree.txt
+**/.DS_Store
