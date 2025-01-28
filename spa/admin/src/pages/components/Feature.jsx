@@ -192,11 +192,14 @@ const Features = () => {
                             </div>
                         ))}
                     </div>
-                    <p className="submit mt-6">
-                        <button type="submit" className="button button-primary">
-                            {loader}
-                        </button>
-                    </p>
+                    <p className="submit mt-6 flex justify-center">
+						<button
+							type="submit"
+							className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-200"
+						>
+							{loader}
+						</button>
+					</p>
                 </form>
             )}
         </div>
