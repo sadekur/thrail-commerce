@@ -347,10 +347,9 @@ const Features = () => {
     description: "Enable custom functionality 3 for more options.",
     value: false
   }]);
-  const [toogler, setToggler] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(toggles);
   const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
-  const save = () => {
-    const toggleValues = toogler.reduce((acc, toggle) => {
+  const save = updatedToggles => {
+    const toggleValues = updatedToggles.reduce((acc, toggle) => {
       acc[toggle.name] = toggle.value ? "on" : "off";
       return acc;
     }, {});
@@ -365,7 +364,8 @@ const Features = () => {
       }
     }).then(() => {
       setSavingMessage("Settings Saved!");
-      setToggles(toogler);
+      setToggles(updatedToggles);
+      window.location.reload();
       setTimeout(() => {
         setIsSaving(false);
       }, 1500);
@@ -378,62 +378,40 @@ const Features = () => {
     });
   };
   const handleToggleChange = id => {
-    setToggler(prevToggles => {
-      prevToggles.map(toggle => {
-        toggle.id === id ? toggle.value = !toggle.value : toggle;
-      });
+    setToggles(prevToggles => {
+      const updatedToggles = prevToggles.map(toggle => toggle.id === id ? {
+        ...toggle,
+        value: !toggle.value
+      } : toggle);
+      return updatedToggles;
     });
   };
   const handleDisableAll = () => {
-    setToggles(prevToggles => {
-      const updatedToggles = prevToggles.map(toggle => ({
-        ...toggle,
-        value: false
-      }));
-      save(updatedToggles);
-      return updatedToggles;
-    });
+    setToggles(prevToggles => prevToggles.map(toggle => ({
+      ...toggle,
+      value: false
+    })));
   };
   const handleEnableAll = () => {
-    setToggles(prevToggles => {
-      const updatedToggles = prevToggles.map(toggle => ({
-        ...toggle,
-        value: true
-      }));
-      save(updatedToggles);
-      return updatedToggles;
-    });
+    setToggles(prevToggles => prevToggles.map(toggle => ({
+      ...toggle,
+      value: true
+    })));
   };
   const handleSubmit = e => {
     e.preventDefault();
     setLoader("Saving...");
-    const toggleValues = toggles.reduce((acc, toggle) => {
-      acc[toggle.name] = toggle.value ? "on" : "off";
-      return acc;
-    }, {});
-    axios__WEBPACK_IMPORTED_MODULE_3__["default"].post(url, {
-      settings: toggleValues
-    }, {
-      headers: {
-        "Content-Type": "application/json",
-        "X-WP-Nonce": THRAILCOMMERCE.nonce
-      }
-    }).then(() => {
-      setLoader("Saved");
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
-    }).catch(error => {
-      console.error("Error saving settings:", error);
-    });
+    save(toggles);
+    setLoader("Save Settings");
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     setIsLoading(true);
     axios__WEBPACK_IMPORTED_MODULE_3__["default"].get(`${THRAILCOMMERCE.apiurl}/get-settings`).then(response => {
-      setToggles(prevToggles => prevToggles.map(toggle => ({
+      const updatedToggles = toggles.map(toggle => ({
         ...toggle,
         value: response.data[toggle.name] === "on"
-      })));
+      }));
+      setToggles(updatedToggles);
     }).catch(error => {
       console.error("Error loading settings:", error);
     }).finally(() => {

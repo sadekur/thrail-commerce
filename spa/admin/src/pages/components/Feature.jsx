@@ -8,7 +8,6 @@ const Features = () => {
     const [savingMessage, setSavingMessage] = useState("Saving...");
     const [loader, setLoader] = useState("Save Settings");
 
-
     const [toggles, setToggles] = useState([
         {
             id: 1,
@@ -40,12 +39,11 @@ const Features = () => {
             value: false,
         },
     ]);
-	const [toogler, setToggler] = useState(toggles);
 
-	const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
+    const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
 
-    const save = () => {
-        const toggleValues = toogler.reduce((acc, toggle) => {
+    const save = (updatedToggles) => {
+        const toggleValues = updatedToggles.reduce((acc, toggle) => {
             acc[toggle.name] = toggle.value ? "on" : "off";
             return acc;
         }, {});
@@ -66,7 +64,8 @@ const Features = () => {
             )
             .then(() => {
                 setSavingMessage("Settings Saved!");
-				setToggles(toogler);
+                setToggles(updatedToggles);
+				window.location.reload();
                 setTimeout(() => {
                     setIsSaving(false);
                 }, 1500);
@@ -81,64 +80,31 @@ const Features = () => {
     };
 
     const handleToggleChange = (id) => {
-        setToggler((prevToggles) => {
-			prevToggles.map((toggle) => {
-				toggle.id === id ? (toggle.value = !toggle.value) : toggle;
-			})
+        setToggles((prevToggles) => {
+            const updatedToggles = prevToggles.map((toggle) =>
+                toggle.id === id ? { ...toggle, value: !toggle.value } : toggle
+            );
+            return updatedToggles;
         });
     };
 
     const handleDisableAll = () => {
-        setToggles((prevToggles) => {
-            const updatedToggles = prevToggles.map((toggle) => ({
-                ...toggle,
-                value: false,
-            }));
-            save(updatedToggles);
-            return updatedToggles;
-        });
+        setToggles((prevToggles) =>
+            prevToggles.map((toggle) => ({ ...toggle, value: false }))
+        );
     };
 
     const handleEnableAll = () => {
-        setToggles((prevToggles) => {
-            const updatedToggles = prevToggles.map((toggle) => ({
-                ...toggle,
-                value: true,
-            }));
-            save(updatedToggles);
-            return updatedToggles;
-        });
+        setToggles((prevToggles) =>
+            prevToggles.map((toggle) => ({ ...toggle, value: true }))
+        );
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoader("Saving...");
-        
-        const toggleValues = toggles.reduce((acc, toggle) => {
-            acc[toggle.name] = toggle.value ? "on" : "off";
-            return acc;
-        }, {});
-
-        axios
-            .post(
-                url,
-                { settings: toggleValues },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-WP-Nonce": THRAILCOMMERCE.nonce,
-                    },
-                }
-            )
-            .then(() => {
-                setLoader("Saved");
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
-            })
-            .catch((error) => {
-                console.error("Error saving settings:", error);
-            });
+        save(toggles);
+        setLoader("Save Settings");
     };
 
     useEffect(() => {
@@ -146,12 +112,11 @@ const Features = () => {
         axios
             .get(`${THRAILCOMMERCE.apiurl}/get-settings`)
             .then((response) => {
-                setToggles((prevToggles) =>
-                    prevToggles.map((toggle) => ({
-                        ...toggle,
-                        value: response.data[toggle.name] === "on",
-                    }))
-                );
+                const updatedToggles = toggles.map((toggle) => ({
+                    ...toggle,
+                    value: response.data[toggle.name] === "on",
+                }));
+                setToggles(updatedToggles);
             })
             .catch((error) => {
                 console.error("Error loading settings:", error);
@@ -204,7 +169,9 @@ const Features = () => {
                                                 className="opacity-0 w-0 h-0"
                                                 checked={toggle.value}
                                                 onChange={() =>
-                                                    handleToggleChange(toggle.id)
+                                                    handleToggleChange(
+                                                        toggle.id
+                                                    )
                                                 }
                                             />
                                             <span
