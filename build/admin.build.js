@@ -349,8 +349,8 @@ const Features = () => {
   }]);
   const [toogler, setToggler] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(toggles);
   const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
-  const save = updatedToggles => {
-    const toggleValues = updatedToggles.reduce((acc, toggle) => {
+  const save = () => {
+    const toggleValues = toogler.reduce((acc, toggle) => {
       acc[toggle.name] = toggle.value ? "on" : "off";
       return acc;
     }, {});
@@ -365,6 +365,7 @@ const Features = () => {
       }
     }).then(() => {
       setSavingMessage("Settings Saved!");
+      setToggles(toogler);
       setTimeout(() => {
         setIsSaving(false);
       }, 1500);
@@ -377,13 +378,10 @@ const Features = () => {
     });
   };
   const handleToggleChange = id => {
-    setToggles(prevToggles => {
-      const updatedToggles = prevToggles.map(toggle => toggle.id === id ? {
-        ...toggle,
-        value: !toggle.value
-      } : toggle);
-      save(updatedToggles);
-      return updatedToggles;
+    setToggler(prevToggles => {
+      prevToggles.map(toggle => {
+        toggle.id === id ? toggle.value = !toggle.value : toggle;
+      });
     });
   };
   const handleDisableAll = () => {
