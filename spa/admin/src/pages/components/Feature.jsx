@@ -8,6 +8,7 @@ const Features = () => {
     const [savingMessage, setSavingMessage] = useState("Saving...");
     const [loader, setLoader] = useState("Save Settings");
 
+
     const [toggles, setToggles] = useState([
         {
             id: 1,
@@ -39,6 +40,8 @@ const Features = () => {
             value: false,
         },
     ]);
+	const [toogler, setToggler] = useState(toggles);
+	
 	const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
 
     const save = (updatedToggles) => {

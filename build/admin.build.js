@@ -347,6 +347,7 @@ const Features = () => {
     description: "Enable custom functionality 3 for more options.",
     value: false
   }]);
+  const [toogler, setToggler] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(toggles);
   const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
   const save = updatedToggles => {
     const toggleValues = updatedToggles.reduce((acc, toggle) => {
