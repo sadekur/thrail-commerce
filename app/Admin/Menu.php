@@ -46,7 +46,7 @@ class Menu {
     }
 
     public function settings_page_content() {
-        $settings = get_option( 'thrail_commerce_tips_settings', [] );
+        $settings = get_option( 'thrailcommerce-tips-settings', [] );
         $defaults = [
             'tcwt_cart'      => 'off',
             'tcwt_checkout'  => 'off',

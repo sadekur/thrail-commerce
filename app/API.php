@@ -82,8 +82,8 @@ class API {
             'add-to-cart'   => 'off',
         ];
         $settings = [];
-        foreach ($default_settings as $key => $default_value) {
-            $settings[$key] = Utility::get_option('block', 'settings', $key, $default_value);
+        foreach ( $default_settings as $key => $default_value ) {
+            $settings[$key] = Utility::get_option( 'block', 'settings', $key, $default_value );
         }
 
     
@@ -120,14 +120,14 @@ class API {
         $tips_settings = $request->get_json_params() ?? [];
         
         // Retrieve current settings and merge with new settings
-        $current_settings = get_option( 'thrail_commerce_tips_settings', [] );
-        $updated_settings = array_merge($current_settings, $tips_settings );
+        $current_settings = get_option( 'thrailcommerce-tips-settings', [] );
+        $updated_settings = array_merge( $current_settings, $tips_settings );
         
         // Save the updated settings back to the options table
-        update_option( 'thrail_commerce_tips_settings', $updated_settings );
+        update_option( 'thrailcommerce-tips-settings', $updated_settings );
         
         // Return success response
-        return rest_ensure_response('success');
+        return rest_ensure_response( 'success' );
     }
 
     public function get_tips_routes() {
@@ -142,7 +142,7 @@ class API {
         return true;
     }
     public function thrail_get_tips() {
-        $tips_settings = get_option('thrail_commerce_tips_settings', []);
+        $tips_settings = get_option('thrailcommerce-tips-settings', []);
         return rest_ensure_response($tips_settings);
     }
 }
