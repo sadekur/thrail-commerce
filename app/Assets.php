@@ -42,16 +42,16 @@ class Assets {
         // }
         $this->enqueue_common_assets();
 
-        wp_localize_script('thrail-commerce-block-script', 'THRAILCOMMERCE', [
+        wp_localize_script( 'thrail-commerce-block-script', 'THRAILCOMMERCE', [
             'activeBlocks' => get_active_blocks(),
-        ]);
+        ] );
 
-        if (!is_admin()) {
+        if ( !is_admin() ) {
             wp_enqueue_style(
                 'thrail-commerce-frontend-style',
                 THRAIL_COMMERCE_ASSETS . '/css/frontend.css',
                 [],
-                filemtime(THRAIL_COMMERCE_PATH . 'assets/css/frontend.css')
+                filemtime( THRAIL_COMMERCE_PATH . 'assets/css/frontend.css' )
             );
         }
     }
