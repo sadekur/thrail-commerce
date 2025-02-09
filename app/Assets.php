@@ -23,7 +23,7 @@ class Assets {
         );
     }
 
-    public function enqueue_block_assets() {
+    public function enqueue_block_assets_func() {
         wp_enqueue_script(
             'thrail-commerce-block-script',
             THRAIL_COMMERCE_URL . 'build/block.build.js',
