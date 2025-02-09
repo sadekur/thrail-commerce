@@ -1,5 +1,7 @@
 <?php
 namespace Thrail\Commerce;
+
+use Thrail\Commerce\Classes\Helper\Utility;
 use Thrail\Commerce\Classes\Trait\Hookable;
 
 class API {
@@ -79,7 +81,11 @@ class API {
             'accordion'     => 'off',
             'add-to-cart'   => 'off',
         ];
-        $settings = get_option( 'thrailcommerce-block-settings', $default_settings );
+        $settings = [];
+        foreach ($default_settings as $key => $default_value) {
+            $settings[$key] = Utility::get_option('block', 'settings', $key, $default_value);
+        }
+
     
         return rest_ensure_response( $settings );
     }

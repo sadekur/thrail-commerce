@@ -23,15 +23,20 @@ class Utility {
 	 *
 	 * @return mixed The value of the option if it exists, or the default value if it doesn't.
 	 */
-	public static function get_option( $menu, $submenu, $key, $default = '' ) {
-		$option = get_option( "thrailcommerce-{$menu}-{$submenu}" );
-
-		if ( ! isset( $option[ $key ] ) ) {
+	public static function get_option( $menu, $submenu, $key = null, $default = '' ) {
+		$option = get_option( "thrailcommerce-{$menu}-{$submenu}", [] );
+	
+		if ( ! is_array( $option ) ) {
 			return $default;
 		}
-
-		return $option[ $key ];
+	
+		if ( $key === null ) {
+			return array_merge( $default, $option );
+		}
+	
+		return isset( $option[$key] ) ? $option[$key] : $default;
 	}
+	
 
 	/**
 	 * Formats a date string according to WordPress settings.
