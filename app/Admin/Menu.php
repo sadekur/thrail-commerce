@@ -26,7 +26,7 @@ class Menu {
 
         $settings = get_option( 'thrail_commerce_settings', [] );
 
-        if (isset($settings['woocommerce-tips']) && $settings['woocommerce-tips'] === 'on') {
+        if ( isset( $settings['woocommerce-tips'] ) && $settings['woocommerce-tips'] === 'on' ) {
             add_submenu_page(
                 'thrail-commerce',
                 'Thrail Commerce Settings',
@@ -46,7 +46,7 @@ class Menu {
     }
 
     public function settings_page_content() {
-        $settings = get_option('thrail_commerce_tips_settings', []);
+        $settings = get_option( 'thrail_commerce_tips_settings', [] );
         $defaults = [
             'tcwt_cart'      => 'off',
             'tcwt_checkout'  => 'off',
@@ -56,7 +56,7 @@ class Menu {
             'tcwt_textcolor' => '#FFFFFF',
         ];
     
-        $settings = wp_parse_args($settings, $defaults);
+        $settings = wp_parse_args( $settings, $defaults );
         echo Utility::get_template( 'settings', 'settings', $settings );
     }  
 }
