@@ -11,7 +11,7 @@ class Utility {
 
 
 	/**
-	 * Retrieves an option from the WordPress database, formatted according to EasyCommerce settings.
+	 * Retrieves an option from the WordPress database, formatted according to Thrail Commerce settings.
 	 *
 	 * This function gets an option using a combination of the provided menu, submenu, and key.
 	 * If the option is not set, a default value is returned.
@@ -24,7 +24,7 @@ class Utility {
 	 * @return mixed The value of the option if it exists, or the default value if it doesn't.
 	 */
 	public static function get_option( $menu, $submenu, $key, $default = '' ) {
-		$option = get_option( "easycommerce-{$menu}-{$submenu}" );
+		$option = get_option( "thrail-commerce-{$menu}-{$submenu}" );
 
 		if ( ! isset( $option[ $key ] ) ) {
 			return $default;

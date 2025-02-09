@@ -123,10 +123,6 @@ class API {
         // Return success response
         return rest_ensure_response('success');
     }
-    
-    public function tips_permission() {
-        return true;
-    }
 
     public function get_tips_routes() {
 
@@ -136,7 +132,9 @@ class API {
             'permission_callback' => [ $this, 'tips_permission' ]
         ]);
     }
-
+    public function tips_permission() {
+        return true;
+    }
     public function thrail_get_tips() {
         $tips_settings = get_option('thrail_commerce_tips_settings', []);
         return rest_ensure_response($tips_settings);
