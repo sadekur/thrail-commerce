@@ -24,7 +24,7 @@ class Utility {
 	 * @return mixed The value of the option if it exists, or the default value if it doesn't.
 	 */
 	public static function get_option( $menu, $submenu, $key, $default = '' ) {
-		$option = get_option( "thrail-commerce-{$menu}-{$submenu}" );
+		$option = get_option( "thrailcommerce-{$menu}-{$submenu}" );
 
 		if ( ! isset( $option[ $key ] ) ) {
 			return $default;

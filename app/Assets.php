@@ -9,8 +9,8 @@ class Assets {
     public function __construct() {
         $this->action( 'wp_enqueue_scripts', [ $this, 'enqueue_frontend_assets' ] );
         $this->action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_assets' ] );
-        $this->action( 'enqueue_block_assets', [ $this, 'enqueue_block_assets' ] );
-        $this->action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_assets' ] );
+        $this->action( 'enqueue_block_assets', [ $this, 'enqueue_block_assets_func' ] );
+        $this->action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_assets_func' ] );
     }
 
     public function enqueue_common_assets() {

@@ -79,7 +79,7 @@ class API {
             'accordion'     => 'off',
             'add-to-cart'   => 'off',
         ];
-        $settings = get_option( 'thrail_commerce_block_settings', $default_settings );
+        $settings = get_option( 'thrailcommerce-block-settings', $default_settings );
     
         return rest_ensure_response( $settings );
     }
@@ -91,7 +91,7 @@ class API {
     public function block_register( $request ) {
         $settings = $request->get_param( 'settings' );
         if ( is_array( $settings ) ) {
-            update_option( 'thrail_commerce_block_settings', $settings );
+            update_option( 'thrailcommerce-block-settings', $settings );
         }
         return rest_ensure_response( 'success' );
     }

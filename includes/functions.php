@@ -35,7 +35,7 @@ if ( !defined('ABSPATH' ) ) {
     function get_active_blocks() {
         $blocks_dir     = THRAIL_COMMERCE_PATH . 'blocks/';
         $categories     = glob( $blocks_dir );
-        $block_settings = get_option( 'thrail_commerce_block_settings' );
+        $block_settings = get_option( 'thrailcommerce-block-settings' );
         $block_settings = maybe_unserialize( $block_settings );
 
         $active_blocks = [];
