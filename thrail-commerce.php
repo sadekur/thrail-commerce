@@ -3,7 +3,7 @@
  * Plugin Name:       Thrail Commerce
  * Plugin URI:        https://srs.com
  * Description:       A plugin Thrail Commerce for Customert.
- * Version:           1.0.0
+ * Version:           0.0.9
  * Requires at least: 5.9
  * Requires PHP:      7.2
  * Author:            SRS
@@ -33,7 +33,7 @@ final class THRAIL_COMMERCE{
 	 *
 	 * @var string
 	 */
-	const version = '1.0';
+	const version = '0.0.9';
 
 	/**
 	 * Class construcotr
