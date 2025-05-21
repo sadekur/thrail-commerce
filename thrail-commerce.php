@@ -41,7 +41,7 @@ final class THRAIL_COMMERCE{
 	private function __construct() {
 		$this->define_constants();
 
-		add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
+		add_action( 'init', [ $this, 'init_plugin' ] );
 	}
 
 	public static function init() {

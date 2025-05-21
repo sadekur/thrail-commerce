@@ -257,7 +257,7 @@ const Edit = ({ attributes, setAttributes }) => {
 					}}>
 					<div
 						onClick={() => toggleSection(index)}
-						className="thrail-commerce-accordion-header cursor-pointer py-2 mb-2 flex items-center">
+						className="thrail-commerce-accordion-header cursor-pointer py-2 mb-2 flex items-center justify-between">
 						<RichText
 							tagName="h3"
 							value={section.title}

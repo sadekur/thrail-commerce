@@ -1,5 +1,6 @@
 .thrail-commerce-accordion-header {
-	justify-content: space-between;
+	justify-content: space-between !important;
+    width: 100% !important;
 }
 .thrail-commerce-add-section {
 	color: #ffffff;
