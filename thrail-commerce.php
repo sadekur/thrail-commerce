@@ -11,7 +11,7 @@
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:        thrail-commerce
- * Require Plugin:     woocommerce
+ * Requires Plugins: woocommerce
  * Domain Path:       /languages
  *
  */
@@ -42,7 +42,7 @@ final class THRAIL_COMMERCE{
 	private function __construct() {
 		$this->define_constants();
 
-		add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
+		add_action( 'init', [ $this, 'init_plugin' ] );
 	}
 
 	public static function init() {
