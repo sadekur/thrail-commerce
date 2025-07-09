@@ -31,15 +31,6 @@ class Assets {
             time(),
             true
         );
-        // if( true || did_action( 'thrailcommerce_block/accordion' ) ) {
-            wp_enqueue_script(
-                'thrail-commerce-frontend-script',
-                THRAIL_COMMERCE_ASSETS . '/js/frontend.js',
-                ['jquery'],
-                filemtime(THRAIL_COMMERCE_PATH . 'assets/js/frontend.js'),
-                true
-            );
-        // }
         $this->enqueue_common_assets();
 
         wp_localize_script('thrail-commerce-block-script', 'THRAILCOMMERCE', [
@@ -51,7 +42,7 @@ class Assets {
                 'thrail-commerce-frontend-style',
                 THRAIL_COMMERCE_ASSETS . '/css/frontend.css',
                 [],
-                filemtime(THRAIL_COMMERCE_PATH . 'assets/css/frontend.css')
+                filemtime(THRAIL_COMMERCE_PATH . '/assets/css/frontend.css')
             );
         }
     }
@@ -59,14 +50,13 @@ class Assets {
     public function enqueue_frontend_assets() {
         wp_enqueue_script(
             'thrail-commerce-frontend-script',
-            THRAIL_COMMERCE_ASSETS . 'js/frontend.js',
+            THRAIL_COMMERCE_ASSETS . '/js/frontend.js',
             ['jquery'],
-            filemtime(THRAIL_COMMERCE_PATH . 'assets/js/frontend.js'),
+            filemtime(THRAIL_COMMERCE_PATH . '/assets/js/frontend.js'),
             true
         );
         wp_localize_script('thrail-commerce-frontend-script', 'THRAILCOMMERCE', [
             'ajaxurl' => admin_url('admin-ajax.php'),
-            'adminurl' => admin_url(),
             'nonce'   => wp_create_nonce('thrail-commerce'),
             'error'   => __('Something went wrong', 'thrail-commerce'),
         ]);
@@ -76,7 +66,7 @@ class Assets {
             'thrail-commerce-frontend-style',
             THRAIL_COMMERCE_ASSETS . '/css/frontend.css',
             [],
-            filemtime(THRAIL_COMMERCE_PATH . 'assets/css/frontend.css')
+            filemtime(THRAIL_COMMERCE_PATH . '/assets/css/frontend.css')
         );
         $this->enqueue_common_assets();
     }
@@ -86,7 +76,7 @@ class Assets {
             'thrail-commerce-admin-script',
             THRAIL_COMMERCE_ASSETS . '/js/admin.js',
             ['jquery'],
-            filemtime(THRAIL_COMMERCE_PATH . 'assets/js/admin.js'),
+            filemtime(THRAIL_COMMERCE_PATH . '/assets/js/admin.js'),
             true
         );
 
@@ -102,7 +92,7 @@ class Assets {
             'thrail-commerce-init-script',
             THRAIL_COMMERCE_ASSETS . '/js/init.js',
             [],
-            filemtime(THRAIL_COMMERCE_PATH . 'assets/js/init.js'),
+            filemtime(THRAIL_COMMERCE_PATH . '/assets/js/init.js'),
             true
         );
 
@@ -116,7 +106,6 @@ class Assets {
 
         wp_localize_script('thrail-commerce-admin-script', 'THRAILCOMMERCE', [
             'nonce'    => wp_create_nonce( 'wp_rest' ),
-            'adminurl' => admin_url(),
             'ajaxurl'  => admin_url( 'admin-ajax.php' ),
             'apiurl'   => untrailingslashit( rest_url( 'thrail/v1' ) ),
             'error'    => __( 'Something went wrong', 'thrail-commerce' ),
@@ -126,14 +115,14 @@ class Assets {
             'thrail-commerce-admin-style',
             THRAIL_COMMERCE_ASSETS . '/css/admin.css',
             [],
-            filemtime(THRAIL_COMMERCE_PATH . 'assets/css/admin.css')
+            filemtime(THRAIL_COMMERCE_PATH . '/assets/css/admin.css')
         );
 
         wp_enqueue_style(
             'thrail-commerce-init-style',
             THRAIL_COMMERCE_ASSETS . '/css/init.css',
             [],
-            filemtime(THRAIL_COMMERCE_PATH . 'assets/css/init.css')
+            filemtime(THRAIL_COMMERCE_PATH . '/assets/css/init.css')
         );
 
         wp_enqueue_style(

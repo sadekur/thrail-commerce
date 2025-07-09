@@ -67,36 +67,4 @@ jQuery(document).ready(function($) {
 			}
 		});
 	});
-	const $sections = $('.accordion-section');
-	$sections.each(function (index) {
-		const $section = $(this);
-		const $content = $section.find('.accordion-content');
-		const $icon = $section.find('.accordion-icon');
-
-		if (index === 0) {
-			$section.addClass('is-open');
-			$content.show();
-			$icon.text('-');
-		} else {
-			$content.hide();
-			$icon.text('+');
-		}
-	});
-	$('.thrail-commerce-accordion-header').on('click', function () {
-		const $section = $(this).closest('.accordion-section');
-		const $content = $section.find('.accordion-content');
-		const isOpen = $section.hasClass('is-open');
-		const $icon = $(this).find('.accordion-icon');
-
-		// Toggle open/close state
-		if (isOpen) {
-			$section.removeClass('is-open');
-			$content.slideUp(300);
-			$icon.text('+');
-		} else {
-			$section.addClass('is-open');
-			$content.slideDown(300);
-			$icon.text('-');
-		}
-	});
 });

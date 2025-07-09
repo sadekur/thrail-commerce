@@ -11,78 +11,25 @@
 	"attributes": {
 		"sections": {
 			"type": "array",
-			"default": [
-				{
-					"title": "What is Thrail Commerce?",
-					"content": "Thrail Commerce is a cutting-edge e-commerce platform designed to provide seamless shopping experiences and advanced product management tools.",
-					"isOpen": true
+			"default": [],
+			"source": "query",
+			"selector": ".accordion-section",
+			"query": {
+				"title": {
+					"type": "string",
+					"source": "text",
+					"selector": ".accordion-title"
 				},
-				{
-					"title": "How does this feature work?",
-					"content": "This feature allows users to toggle sections of content, enabling a compact and user-friendly display of information.",
-					"isOpen": true
+				"content": {
+					"type": "string",
+					"source": "html",
+					"selector": ".accordion-content"
+				},
+				"isOpen": {
+					"type": "boolean",
+					"default": false
 				}
-			]
-		},
-		"titleColor": {
-			"type": "string",
-			"default": "#0029af"
-		},
-		"titleFontSize": {
-			"type": "string",
-			"default": "20px"
-		},
-		"contentColor": {
-			"type": "string",
-			"default": "#0029af"
-		},
-		"contentFontSize": {
-			"type": "string",
-			"default": "16px"
-		},
-		"titleFontFamily": {
-			"type": "string",
-			"default": "inherit"
-		},
-		"contentFontFamily": {
-			"type": "string",
-			"default": "inherit"
-		},
-		"borderColor": {
-			"type": "string",
-			"default": "#0029af"
-		},
-		"borderSize": {
-			"type": "string",
-			"default": "1px"
-		},
-		"borderStyle": {
-			"type": "string",
-			"default": "solid"
-		},
-		"buttonColor": {
-			"type": "string",
-			"default": "#0029af"
-		},
-		"buttonFontSize": {
-			"type": "string",
-			"default": "16px"
-		},
-		"buttonFontFamily": {
-			"type": "string",
-			"default": "inherit"
-		},
-		"buttonText": {
-			"type": "string",
-			"default": "Add Section"
-		},
-		"buttonBackgroundColor": {
-			"type": "string",
-			"default": "#0029af"
-		},
-		"buttonTextColor": {
-			"type": "string",
-			"default": "#ffffff"
+			}
 		}
 	},
 	"editorScript": "file:./index.js",

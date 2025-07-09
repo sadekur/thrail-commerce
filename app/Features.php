@@ -20,12 +20,15 @@ class Features {
 
         foreach ($features as $feature_key => $feature_directory) {
             if (isset($settings[$feature_key]) && $settings[$feature_key] === 'on') {
-                $file = THRAIL_COMMERCE_PATH . "features/{$feature_directory}/{$feature_directory}.php";
+                $file = THRAIL_COMMERCE_PATH . "/features/{$feature_directory}/{$feature_directory}.php";
 
                 if (file_exists($file)) {
                     require_once $file;
                     $class_name = str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $feature_directory)));
                     $class = "\\Thrail\\Commerce\\Features\\{$class_name}";
+                    update_option('thrail_commerce_class', $class);
+
+                    // Instantiate the feature class if it exists
                     if (class_exists($class)) {
                         new $class();
                     }
