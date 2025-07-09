@@ -11,17 +11,16 @@ const Tabs = () => {
 	const tabs = ["dashboard", "feature", "blocks", "settings"];
 	return (
 		<>
-			<div>
-				{/* Tabs */}
+			<div className=''>
 				<div className='border-b border-gray-300 mb-4'>
-					<ul className='flex space-x-4'>
+					<ul className='flex items-center justify-start'>
 						{tabs.map((tab) => (
 							<li key={tab}>
 								<button
 									className={`py-2 px-4 ${
 										activeTab === tab
-											? "border-b-2 border-green-500 text-green-600"
-											: "text-gray-500"
+											? "border-b-2 border-[#0029af] text-[#0029af]"
+											: "text-[#0029af] hover:text-[#0842ff]"
 									}`}
 									onClick={() => setActiveTab(tab)}>
 									{tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -30,7 +29,6 @@ const Tabs = () => {
 						))}
 					</ul>
 				</div>
-				{/* Tab Content */}
 				<div className='mt-6'>
 					{activeTab === "dashboard" && <Dashboard />}
 					{activeTab === "feature" && <Feature />}

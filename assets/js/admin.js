@@ -1,9 +1,11 @@
-jQuery(document).ready(function($) {
-    $('#thrail-commerce-settings-form').on('submit', function(e) {
-        e.preventDefault();
+jQuery(document).ready(($) => {
+    const form = $('#thrail-commerce-settings-form');
 
-        // Gather form data
-        let formData = {
+    form.on('submit', (e) => {
+        e.preventDefault();
+        thrail_commerce_modal(true);
+
+        const formData = {
             tcwt_cart: $('input[name="tcwt_cart"]').is(':checked') ? 'on' : 'off',
             tcwt_checkout: $('input[name="tcwt_checkout"]').is(':checked') ? 'on' : 'off',
             tcwt_note: $('input[name="tcwt_note"]').is(':checked') ? 'on' : 'off',
@@ -12,22 +14,24 @@ jQuery(document).ready(function($) {
             tcwt_textcolor: $('input[name="tcwt_textcolor"]').val(),
         };
 
-        // Send request to REST API
         $.ajax({
-            url: THRAILCOMMERCE.apiurl + '/save-tips',
+            url: `${THRAILCOMMERCE.apiurl}/save-tips`,
             method: 'POST',
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('X-WP-Nonce', THRAILCOMMERCE.nonce);
-            },
-            data: JSON.stringify(formData),
             contentType: 'application/json',
-            success: function(response) {
-                alert('Settings saved successfully!');
+            data: JSON.stringify(formData),
+            beforeSend: (xhr) => xhr.setRequestHeader('X-WP-Nonce', THRAILCOMMERCE.nonce),
+            success: () => thrail_commerce_modal(false),
+            error: (error) => {
+                thrail_commerce_modal(false);
+                console.error(error);
             },
-            error: function(error) {
-                alert('Error saving settings. Please try again.');
-                console.log(error);
-            }
         });
     });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(() => {
+        document.getElementById('settings-loader').classList.add('hidden');
+        document.getElementById('settings-form').classList.remove('hidden');
+    }, 1000);
 });
