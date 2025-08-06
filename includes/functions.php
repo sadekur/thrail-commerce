@@ -33,7 +33,7 @@ if ( !defined('ABSPATH' ) ) {
      */
 	if( ! function_exists( 'get_active_blocks' ) ) :
     function get_active_blocks() {
-        $blocks_dir     = THRAIL_COMMERCE_PATH . 'spa/blocks/';
+        $blocks_dir     = THRAIL_COMMERCE_PATH . 'blocks/';
         $categories     = glob( $blocks_dir );
         $block_settings = get_option('thrail_commerce_block_settings');
         $block_settings = maybe_unserialize($block_settings);
@@ -41,7 +41,7 @@ if ( !defined('ABSPATH' ) ) {
         $active_blocks = [];
 
         foreach ($categories as $category) {
-            $blocks = glob($category . '/*', GLOB_ONLYDIR);
+            $blocks = glob( rtrim( $category, '/' ) . '/*', GLOB_ONLYDIR );
 
             foreach ($blocks as $block) {
                 $block_name = basename($block);

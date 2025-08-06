@@ -18,18 +18,18 @@ class Blocks {
     }
 
     public function blocks_register() {
-        $blocks_dir     = THRAIL_COMMERCE_PATH . 'spa/blocks/';
-        $categories     = glob($blocks_dir); // Fetch directories
+        $blocks_dir     = THRAIL_COMMERCE_PATH . 'blocks/';
+        $categories     = glob( $blocks_dir ); // Fetch directories
         $block_settings = get_option('thrail_commerce_block_settings');
         $block_settings = maybe_unserialize($block_settings);
 
         $active_blocks = [];
 
         foreach ($categories as $category) {
-            $category_name = basename($category);
-            $blocks = glob($category . '/*', GLOB_ONLYDIR);
+            $category_name = basename( $category );
+            $blocks = glob( rtrim( $category, '/' ) . '/*', GLOB_ONLYDIR );
 
-            foreach ($blocks as $block) {
+            foreach ( $blocks as $block ) {
                 $block_name = basename($block);
                 $block_option_key = "{$block_name}";
 
