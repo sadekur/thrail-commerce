@@ -1,5 +1,4 @@
 <?php
-use Thrail\Commerce\Classes\Helper\Utility;
 // Exit if accessed directly
 if ( !defined('ABSPATH' ) ) {
 	exit;
@@ -36,17 +35,19 @@ if ( !defined('ABSPATH' ) ) {
     function get_active_blocks() {
         $blocks_dir     = THRAIL_COMMERCE_PATH . 'blocks/';
         $categories     = glob( $blocks_dir );
+        $block_settings = get_option('thrail_commerce_block_settings');
+        $block_settings = maybe_unserialize($block_settings);
 
         $active_blocks = [];
 
-        foreach ( $categories as $category ) {
-            $blocks = glob( $category . '/*', GLOB_ONLYDIR );
+        foreach ($categories as $category) {
+            $blocks = glob( rtrim( $category, '/' ) . '/*', GLOB_ONLYDIR );
 
-            foreach ( $blocks as $block ) {
-                $block_name   = basename( $block );
-                $block_status = Utility::get_option( 'block', 'settings', $block_name, 'off' );
+            foreach ($blocks as $block) {
+                $block_name = basename($block);
+                $block_option_key = "{$block_name}";
 
-                if ( $block_status === 'on') {
+                if (isset($block_settings[$block_option_key]) && $block_settings[$block_option_key] === 'on') {
                     $active_blocks[] = $block_name;
                 }
             }

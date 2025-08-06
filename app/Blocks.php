@@ -27,7 +27,7 @@ class Blocks {
 
         foreach ( $categories as $category ) {
             $category_name = basename( $category );
-            $blocks        = glob( $category . '/*', GLOB_ONLYDIR );
+            $blocks = glob( rtrim( $category, '/' ) . '/*', GLOB_ONLYDIR );
 
             foreach ( $blocks as $block ) {
                 $block_name       = basename( $block );
