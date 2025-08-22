@@ -9,12 +9,15 @@ class Blocks {
     public $categories = [];
 
     public function __construct() {
+        $this->action( 'init', [ $this, 'set_categories' ] );
+        $this->filter( 'init', [ $this, 'blocks_register' ] );
+        $this->filter( 'block_categories_all', [ $this, 'add_custom_categories' ] );
+    }
+
+    public function set_categories() {
         $this->categories = [
             'product' => __( 'Thrail - Commerce', 'thrail-commerce' ),
         ];
-
-        $this->filter( 'init', [ $this, 'blocks_register' ] );
-        $this->filter( 'block_categories_all', [ $this, 'add_custom_categories' ] );
     }
 
     public function blocks_register() {

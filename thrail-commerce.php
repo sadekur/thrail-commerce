@@ -3,7 +3,7 @@
  * Plugin Name:       Thrail Commerce
  * Plugin URI:        https://srs.com
  * Description:       A plugin Thrail Commerce for Customert.
- * Version:           0.0.9
+ * Version:           1.0.0
  * Requires at least: 5.9
  * Requires PHP:      7.2
  * Author:            SRS
@@ -11,7 +11,6 @@
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:        thrail-commerce
- * Requires Plugins: woocommerce
  * Domain Path:       /languages
  *
  */
@@ -34,7 +33,7 @@ final class THRAIL_COMMERCE{
 	 *
 	 * @var string
 	 */
-	const version = '0.0.9';
+	const version = '1.0';
 
 	/**
 	 * Class construcotr
@@ -42,7 +41,7 @@ final class THRAIL_COMMERCE{
 	private function __construct() {
 		$this->define_constants();
 
-		add_action( 'init', [ $this, 'init_plugin' ] );
+		add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
 	}
 
 	public static function init() {
