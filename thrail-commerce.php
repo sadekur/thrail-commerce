@@ -6,12 +6,16 @@
  * Version:           1.0.0
  * Requires at least: 5.9
  * Requires PHP:      7.2
- * Author:            SRS
+ * Author:            Sadekur Rahman
  * Author URI:        https://srs.com
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:        thrail-commerce
- * Domain Path:       /languages
+ * Domain Path: /languages
+ * Tested up to: 6.9
+ * WC requires at least: 5.0
+ * WC tested up to: 10.4.3
+ * Requires Plugins: woocommerce
  *
  */
 

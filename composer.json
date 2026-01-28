@@ -9,7 +9,10 @@
 			"email": "shadekur.rahman60@gmail.com"
 		}
 	],
-	"require": {},
+	 "require": {
+        "php": ">=7.4",
+        "wp-cli/wp-cli": "^2.5"
+    },
 	"autoload": {
 		"psr-4": {
 			"Thrail\\Commerce\\": "app/",
