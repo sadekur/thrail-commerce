@@ -38,6 +38,13 @@ const Features = () => {
             description: "Enable custom functionality 3 for more options.",
             value: false,
         },
+        {
+            id: 5,
+            label: " Stock Threshold for WooCommerce",
+            name: "stock-threshold-for-wc",
+            description: "Enable custom functionality 4 for more options.",
+            value: false,
+        },
     ]);
 
     const url = `${THRAILCOMMERCE.apiurl}/post-settings`;

@@ -16,6 +16,7 @@ class Features {
             'woocommerce-faq'               => 'woocommerce-faq',
             'woocommerce-product_barcode'   => 'woocommerce-product-barcode',
             'buy-button-for-woocommerce'    => 'buy-button-for-woocommerce',
+            'stock-threshold-for-wc'        => 'stock-threshold-for-wc',
         ];
 
         foreach ($features as $feature_key => $feature_directory) {
