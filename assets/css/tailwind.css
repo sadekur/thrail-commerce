@@ -2,3 +2,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* WordPress admin compatibility tweaks */
+@layer base {
+  #wpwrap h1,
+  #wpwrap h2,
+  #wpwrap h3,
+  #wpwrap h4,
+  #wpwrap h5,
+  #wpwrap h6 {
+    font-size: inherit;
+    font-weight: inherit;
+    margin: inherit;
+    color: inherit;
+  }
+}
+
+.wp-list-table.widefat.table-view-list.posts,
+.wp-list-table.widefat.table-view-list.pages {
+  position: unset !important;
+  @apply static;
+}
+.theme-browser .theme .theme-name {
+    height: unset !important;
+}
