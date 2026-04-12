@@ -35,3 +35,40 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('settings-form').classList.remove('hidden');
     }, 1000);
 });
+
+jQuery(document).ready(function ($) {
+
+    function isThrailCommerceScreen() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('page') === 'thrail-commerce';
+    }
+
+    const $menu = $('#adminmenu li.toplevel_page_thrail-commerce');
+
+    function updateActiveMenu() {
+        if (!isThrailCommerceScreen()) return;
+
+        $menu.find('.wp-submenu li').removeClass('current');
+
+        const hash = window.location.hash || '';
+
+        if (hash && hash !== '#/') {
+            // Highlight the matching submenu (e.g. Stock Threshold)
+            $menu.find('a[href*="' + hash + '"]').closest('li').addClass('current');
+        } else {
+            // No hash = main Dashboard page is active
+            $menu.find('a[href="admin.php?page=thrail-commerce"]').closest('li').addClass('current');
+        }
+    }
+
+    // Clicking the top-level menu link while already on the page → go to main page
+    $(document).on('click', '#adminmenu a[href="admin.php?page=thrail-commerce"]', function (e) {
+        if (!isThrailCommerceScreen()) return;
+        e.preventDefault();
+        window.location.hash = '';
+        updateActiveMenu();
+    });
+
+    updateActiveMenu();
+    $(window).on('hashchange', updateActiveMenu);
+});

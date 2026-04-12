@@ -9,7 +9,6 @@ class Menu {
     use Hookable;
 
     function __construct() {
-        // Hook into the admin_menu action
         $this->action( 'admin_menu', [ $this, 'add_admin_menu' ] );
     }
 
@@ -24,34 +23,43 @@ class Menu {
             20
         );
 
-         add_submenu_page(
+        add_submenu_page(
+            'thrail-commerce',
+            __( 'Dashboard', 'thrail-commerce' ),
+            __( 'Dashboard', 'thrail-commerce' ),
+            'manage_options',
+            'thrail-commerce',
+            [ $this, 'admin_page_content' ]
+        );
+
+        add_submenu_page(
             'thrail-commerce',
             __( 'Stock Threshold', 'thrail-commerce' ),
             __( 'Stock Threshold', 'thrail-commerce' ),
             'manage_options',
             'thrail-commerce#/stock-threshold',
-            [ $this, 'render_main_page' ]
+            [ $this, 'admin_page_content' ]
         );
 
         $settings = get_option( 'thrail_commerce_settings', [] );
-
         if ( isset( $settings['woocommerce-tips'] ) && $settings['woocommerce-tips'] === 'on' ) {
             add_submenu_page(
                 'thrail-commerce',
-                'Thrail Commerce Settings',
-                'Settings',
+                'Thrail Commerce Tips Settings',
+                'Tips Settings',
                 'manage_options',
                 'thrail-commerce-tip-settings',
                 [ $this, 'settings_page_content' ]
             );
         }
     }
+
     public function admin_page_content() {
-    ?>
+        ?>
         <div class="wrap">
             <div id="thrail_commerce_render"></div>
         </div>
-    <?php
+        <?php
     }
 
     public function settings_page_content() {
@@ -64,8 +72,7 @@ class Menu {
             'tcwt_btntext'   => 'Add Donation',
             'tcwt_textcolor' => '#FFFFFF',
         ];
-    
         $settings = wp_parse_args( $settings, $defaults );
         echo Utility::get_template( 'settings', 'settings', $settings );
-    }  
+    }
 }
