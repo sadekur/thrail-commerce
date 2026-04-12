@@ -6,9 +6,9 @@ import Blocks from "./components/Blocks";
 import Settings from "./components/Settings";
 
 const Tabs = () => {
-	const [activeTab, setActiveTab] = useState("dashboard");
+	const [activeTab, setActiveTab] = useState("feature");
 
-	const tabs = ["dashboard", "feature", "blocks", "settings"];
+	const tabs = ["feature", "blocks", "settings"];
 	return (
 		<>
 			<div className=''>
@@ -30,7 +30,7 @@ const Tabs = () => {
 					</ul>
 				</div>
 				<div className='mt-6'>
-					{activeTab === "dashboard" && <Dashboard />}
+					{/* {activeTab === "dashboard" && <Dashboard />} */}
 					{activeTab === "feature" && <Feature />}
 					{activeTab === "blocks" && <Blocks />}
 					{activeTab === "settings" && <Settings />}

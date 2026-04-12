@@ -24,6 +24,15 @@ class Menu {
             20
         );
 
+         add_submenu_page(
+            'thrail-commerce',
+            __( 'Stock Threshold', 'thrail-commerce' ),
+            __( 'Stock Threshold', 'thrail-commerce' ),
+            'manage_options',
+            'thrail-commerce#/stock-threshold',
+            [ $this, 'render_main_page' ]
+        );
+
         $settings = get_option( 'thrail_commerce_settings', [] );
 
         if ( isset( $settings['woocommerce-tips'] ) && $settings['woocommerce-tips'] === 'on' ) {

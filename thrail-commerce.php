@@ -10,11 +10,11 @@
  * Author URI:        https://srs.com
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:        thrail-commerce
- * Domain Path: /languages
- * Tested up to: 6.9
+ * Text Domain:       thrail-commerce
+ * Domain Path: 	  /languages
+ * Tested up to: 	  6.9
  * WC requires at least: 5.0
- * Requires Plugins: woocommerce
+ * Requires Plugins:  woocommerce
  *
  */
 
