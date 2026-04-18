@@ -118,11 +118,12 @@ const StockThreshold = () => {
                             </p>
                             <div className="mt-4">
                                 
-                                   <a href="admin.php?page=thrail-commerce"
+                                   <button
+                                    onClick={() => window.location.hash = ""}
                                     className="inline-flex items-center px-4 py-2 bg-[#0029af] rounded-md text-sm text-white font-semibold hover:bg-[#0842ff]"
                                 >
                                     Go to Features Page
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
