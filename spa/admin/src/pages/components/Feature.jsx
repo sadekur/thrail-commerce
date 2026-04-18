@@ -1,22 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CommonHeader from "../../../common/CommonHeader";
+import SkeletonCard from "../../../common/Skeletons/SkeletonCard";
 
-// Skeleton card component
-const SkeletonCard = () => (
-    <div className="p-4 bg-white shadow-md rounded-lg border border-gray-200 animate-pulse">
-        <div className="flex flex-col h-full">
-            <div className="mb-auto">
-                <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                <div className="h-3 bg-gray-100 rounded w-full"></div>
-                <div className="h-3 bg-gray-100 rounded w-5/6 mt-1"></div>
-            </div>
-            <div className="mt-auto flex justify-end">
-                <div className="w-12 h-5 bg-gray-200 rounded-full mt-4"></div>
-            </div>
-        </div>
-    </div>
-);
 
 const Features = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -87,14 +73,11 @@ const Features = () => {
             .then(() => {
                 setSavingMessage("Settings Saved!");
                 setToggles(updatedToggles);
-
-                // ✅ Update in-memory settings so other pages can read without reload
                 if (!window.THRAILCOMMERCE.settings_data) {
                     window.THRAILCOMMERCE.settings_data = {};
                 }
                 Object.assign(window.THRAILCOMMERCE.settings_data, toggleValues);
 
-                // ✅ Notify other components (StockThreshold, jQuery menu)
                 window.dispatchEvent(
                     new CustomEvent("thrailSettingsUpdated", { detail: toggleValues })
                 );
@@ -151,7 +134,6 @@ const Features = () => {
                 }));
                 setToggles(updatedToggles);
 
-                // ✅ Sync initial settings into window object
                 if (!window.THRAILCOMMERCE.settings_data) {
                     window.THRAILCOMMERCE.settings_data = {};
                 }
@@ -181,7 +163,6 @@ const Features = () => {
             ) : (
                 <form id="work-settings-form" onSubmit={handleSubmit}>
                     <div className="mt-4 grid grid-cols-4 md:grid-cols-4 sm:grid-cols-1 gap-6">
-                        {/* ✅ Show skeleton cards while saving, real cards otherwise */}
                         {isSaving
                             ? Array.from({ length: toggles.length }).map((_, i) => <SkeletonCard key={i} />)
                             : toggles.map((toggle) => (
