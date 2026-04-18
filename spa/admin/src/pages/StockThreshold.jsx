@@ -7,8 +7,19 @@ const StockThreshold = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
     const [savingMessage, setSavingMessage] = useState("Saving...");
-    const [threshold, setThreshold] = useState(5);
-    const [enabled, setEnabled] = useState(false);
+    const [formData, setFormData] = useState({
+        low_threshold: 5,
+        low_increase: 40,
+
+        medium_threshold: 20,
+        medium_increase: 20,
+
+        high_threshold: 100,
+        high_decrease: 15,
+
+        enable_message: false,
+        customer_message: "High demand – price adjusted based on availability",
+    });
     const [isFeatureEnabled, setIsFeatureEnabled] = useState(false);
 
     const url = `${THRAILCOMMERCE.apiurl}/save-stock-threshold`;
@@ -20,21 +31,34 @@ const StockThreshold = () => {
 
         if (featureEnabled) {
             setIsLoading(true);
-            axios
-                .get(`${THRAILCOMMERCE.apiurl}/get-stock-threshold`)
-                .then((response) => {
-                    setThreshold(response.data.threshold || 5);
-                    setEnabled(response.data.enabled === "on");
-                })
-                .catch((error) => {
-                    console.error("Error loading stock threshold:", error);
-                })
-                .finally(() => {
-                    setIsLoading(false);
+            axios.get(`${THRAILCOMMERCE.apiurl}/get-stock-threshold`)
+            .then((response) => {
+                const data = response.data;
+
+                setFormData({
+                    low_threshold: data.low_threshold,
+                    low_increase: data.low_increase,
+
+                    medium_threshold: data.medium_threshold,
+                    medium_increase: data.medium_increase,
+
+                    high_threshold: data.high_threshold,
+                    high_decrease: data.high_decrease,
+
+                    enable_message: data.enable_message === "on",
+                    customer_message: data.customer_message,
                 });
+            })
         } else {
             setIsLoading(false);
         }
+    };
+
+    const handleChange = (key, value) => {
+        setFormData(prev => ({
+            ...prev,
+            [key]: value
+        }));
     };
 
     useEffect(() => {
@@ -71,26 +95,28 @@ const StockThreshold = () => {
         setIsSaving(true);
         setSavingMessage("Saving...");
 
-        axios
-            .post(
-                url,
-                { threshold, enabled: enabled ? "on" : "off" },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-WP-Nonce": THRAILCOMMERCE.nonce,
-                    },
-                }
-            )
-            .then(() => {
-                setSavingMessage("Settings Saved!");
-                setTimeout(() => setIsSaving(false), 1500);
-            })
-            .catch((error) => {
-                console.error("Error saving stock threshold:", error);
-                setSavingMessage("Error saving settings");
-                setTimeout(() => setIsSaving(false), 1500);
-            });
+        axios.post(
+            url,
+            {
+                ...formData,
+                enable_message: formData.enable_message ? "on" : "off",
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-WP-Nonce": THRAILCOMMERCE.nonce,
+                },
+            }
+        )
+        .then(() => {
+            setSavingMessage("Settings Saved!");
+            setTimeout(() => setIsSaving(false), 1500);
+        })
+        .catch((error) => {
+            console.error("Error saving stock threshold:", error);
+            setSavingMessage("Error saving settings");
+            setTimeout(() => setIsSaving(false), 1500);
+        });
     };
 
     if (isLoading) {
