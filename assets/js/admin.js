@@ -45,23 +45,32 @@ jQuery(document).ready(function ($) {
 
     const $menu = $('#adminmenu li.toplevel_page_thrail-commerce');
 
+    function getStockThresholdItem() {
+        return $menu.find('a[href*="#/stock-threshold"]').closest('li');
+    }
+
     function updateActiveMenu() {
         if (!isThrailCommerceScreen()) return;
-
         $menu.find('.wp-submenu li').removeClass('current');
-
         const hash = window.location.hash || '';
-
         if (hash && hash !== '#/') {
-            // Highlight the matching submenu (e.g. Stock Threshold)
             $menu.find('a[href*="' + hash + '"]').closest('li').addClass('current');
         } else {
-            // No hash = main Dashboard page is active
             $menu.find('a[href="admin.php?page=thrail-commerce"]').closest('li').addClass('current');
         }
     }
 
-    // Clicking the top-level menu link while already on the page → go to main page
+    // ✅ React fires this after saving Features — update submenu visibility without reload
+    window.addEventListener('thrailSettingsUpdated', function (e) {
+        const settings = e.detail || {};
+        const stockEnabled = settings['stock-threshold-for-wc'] === 'on';
+        if (stockEnabled) {
+            getStockThresholdItem().show();
+        } else {
+            getStockThresholdItem().hide();
+        }
+    });
+
     $(document).on('click', '#adminmenu a[href="admin.php?page=thrail-commerce"]', function (e) {
         if (!isThrailCommerceScreen()) return;
         e.preventDefault();
