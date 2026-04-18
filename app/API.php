@@ -3,6 +3,7 @@ namespace Thrail\Commerce;
 
 use Thrail\Commerce\Classes\Helper\Utility;
 use Thrail\Commerce\Classes\Trait\Hookable;
+use Thrail\Commerce\API\Stock_Threshold as Stock;
 
 class API {
     use Hookable;
@@ -15,6 +16,7 @@ class API {
         $this->features_rest_route();
         $this->block_register_routes();
         $this->tips_routes();
+        $this->stock_threshold_routes();
     }
 
     public function features_rest_route() {
@@ -117,6 +119,20 @@ class API {
             'methods' => 'GET',
             'callback' => [ $this, 'thrail_get_tips' ],
             'permission_callback' => [ $this, 'tips_permission' ]
+        ]);
+    }
+
+    public function stock_threshold_routes() {
+        $this->register_route( '/save-stock-threshold', [
+            'methods' => 'POST',
+            'callback' => [ new Stock(), 'save_stock_threshold' ],
+            'permission_callback' => [ new Stock(), 'stock_threshold_permission' ]
+        ]);
+
+        $this->register_route( '/get-stock-threshold', [
+            'methods' => 'GET',
+            'callback' => [ new Stock(), 'get_stock_threshold' ],
+            'permission_callback' => [ new Stock(), 'stock_threshold_permission' ]
         ]);
     }
 
