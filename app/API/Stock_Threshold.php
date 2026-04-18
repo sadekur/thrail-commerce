@@ -52,7 +52,11 @@ class Stock_Threshold {
         return rest_ensure_response( array_merge( $defaults, $data ) );
     }
 
-    public function stock_threshold_permission() {
+    public function stock_threshold_permission( $request ) {
+        // $nonce = $request->get_header( 'x_wp_nonce' );
+        // if ( $nonce && !wp_verify_nonce( $nonce, 'thrail_commerce_nonce' ) ) {
+        //     return false;
+        // }
         return current_user_can( 'manage_options' );
     }
 }

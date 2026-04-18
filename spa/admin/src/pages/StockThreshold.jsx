@@ -31,7 +31,11 @@ const StockThreshold = () => {
 
         if (featureEnabled) {
             setIsLoading(true);
-            axios.get(`${THRAILCOMMERCE.apiurl}/get-stock-threshold`)
+            axios.get(`${THRAILCOMMERCE.apiurl}/get-stock-threshold`, {
+                headers: {
+                    "X-WP-Nonce": THRAILCOMMERCE.nonce,
+                },
+            })
             .then((response) => {
                 const data = response.data;
 
@@ -74,8 +78,20 @@ const StockThreshold = () => {
                 axios
                     .get(`${THRAILCOMMERCE.apiurl}/get-stock-threshold`)
                     .then((response) => {
-                        setThreshold(response.data.threshold || 5);
-                        setEnabled(response.data.enabled === "on");
+                        const data = response.data;
+                        setFormData({
+                            low_threshold: data.low_threshold,
+                            low_increase: data.low_increase,
+
+                            medium_threshold: data.medium_threshold,
+                            medium_increase: data.medium_increase,
+
+                            high_threshold: data.high_threshold,
+                            high_decrease: data.high_decrease,
+
+                            enable_message: data.enable_message === "on",
+                            customer_message: data.customer_message,
+                        });
                     })
                     .catch((error) => {
                         console.error("Error loading stock threshold:", error);
@@ -174,14 +190,29 @@ const StockThreshold = () => {
                         </label>
                         <input
                             type="number"
-                            value={threshold}
-                            onChange={(e) => setThreshold(parseInt(e.target.value) || 0)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0029af]"
-                            min="0"
+                            value={formData.low_threshold}
+                            onChange={(e) => handleChange('low_threshold', parseInt(e.target.value) || 0)}
                         />
-                        <p className="mt-1 text-sm text-gray-500">
-                            Products with stock at or below this value will be flagged.
-                        </p>
+
+                        <input
+                            type="number"
+                            value={formData.medium_threshold}
+                            onChange={(e) => handleChange('medium_threshold', parseInt(e.target.value) || 0)}
+                        />
+                        <input
+                            type="number"
+                            value={formData.high_threshold}
+                            onChange={(e) => handleChange('high_threshold', parseInt(e.target.value) || 0)}
+                        />
+                        <input
+                            type="checkbox"
+                            checked={formData.enable_message}
+                            onChange={(e) => handleChange('enable_message', e.target.checked)}
+                        />
+                        <textarea
+                            value={formData.customer_message}
+                            onChange={(e) => handleChange('customer_message', e.target.value)}
+                        />
                     </div>
 
                     <div className="mt-6">
