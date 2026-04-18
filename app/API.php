@@ -12,13 +12,12 @@ class API {
     }
 
     public function register_routes() {
-        $this->create_rest_routes();
+        $this->features_rest_route();
         $this->block_register_routes();
-        $this->save_tips_routes();
-        $this->get_tips_routes();
+        $this->tips_routes();
     }
 
-    public function create_rest_routes() {
+    public function features_rest_route() {
         $this->register_route( '/get-settings', [
             'methods' => 'GET',
             'callback' => [ $this, 'get_settings' ],
@@ -107,10 +106,16 @@ class API {
     }
 
     //Post Tips
-    public function save_tips_routes() {
+    public function tips_routes() {
         $this->register_route( '/save-tips', [
             'methods' => 'POST',
             'callback' => [ $this, 'thrail_save_tips' ],
+            'permission_callback' => [ $this, 'tips_permission' ]
+        ]);
+
+        $this->register_route( '/get-tips', [
+            'methods' => 'GET',
+            'callback' => [ $this, 'thrail_get_tips' ],
             'permission_callback' => [ $this, 'tips_permission' ]
         ]);
     }
@@ -130,14 +135,6 @@ class API {
         return rest_ensure_response( 'success' );
     }
 
-    public function get_tips_routes() {
-
-        $this->register_route( '/get-tips', [
-            'methods' => 'GET',
-            'callback' => [ $this, 'thrail_get_tips' ],
-            'permission_callback' => [ $this, 'tips_permission' ]
-        ]);
-    }
     public function tips_permission() {
         return true;
     }
