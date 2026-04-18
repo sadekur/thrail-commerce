@@ -4,27 +4,7 @@ import CommonHeader from "../../common/CommonHeader";
 import SettingSkeleton from "../../common/Skeletons/SettingSkalaton";
 import FieldRow from "../../common/FieldRow";
 import NumberField from "../../common/NumberField";
-
-
-/* ─────────────────────────────────────────────
-   Checkbox field + helper
-───────────────────────────────────────────── */
-const CheckboxField = ({ checked, onChange, label, helper }) => (
-    <>
-        <label className="flex items-center gap-2 cursor-pointer">
-            <input
-                type="checkbox"
-                checked={checked}
-                onChange={onChange}
-                className="w-4 h-4 accent-blue-600 cursor-pointer flex-shrink-0"
-            />
-            <span className="text-sm text-gray-800">{label}</span>
-        </label>
-        {helper && (
-            <p className="mt-1.5 text-xs text-gray-500 italic">{helper}</p>
-        )}
-    </>
-);
+import CheckboxField from "../../common/CheckboxField";
 
 /* ─────────────────────────────────────────────
    Thin section divider
@@ -203,18 +183,7 @@ const StockThreshold = () => {
 
             {/* Form card */}
             <form onSubmit={handleSave} className="bg-white border border-gray-200 rounded-md shadow-sm mb-6">
-
-                {/* Enable Dynamic Pricing */}
-                {/* <FieldRow label="Enable Dynamic Pricing">
-                    <CheckboxField
-                        checked={formData.enable_dynamic_pricing}
-                        onChange={(e) => handleChange("enable_dynamic_pricing", e.target.checked)}
-                        label="Check this box to enable dynamic stock-based pricing"
-                    />
-                </FieldRow> */}
-
                 <Divider />
-
                 {/* Low Stock Threshold */}
                 <FieldRow label="Low Stock Threshold">
                     <NumberField
@@ -330,7 +299,6 @@ const StockThreshold = () => {
                     ))}
                 </ul>
             </div>
-
         </div>
     );
 };
