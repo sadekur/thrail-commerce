@@ -53,6 +53,9 @@ const StockThreshold = () => {
                     customer_message: data.customer_message,
                 });
             })
+            .finally(() => {
+                setIsLoading(false);
+            })
         } else {
             setIsLoading(false);
         }
