@@ -140,8 +140,6 @@ const StockThreshold = () => {
                 </div>
             )}
 
-            {/* <CommonHeader title="Stock Threshold Settings" /> */}
-
             <form onSubmit={handleSave} className="mt-4">
                 <div className="p-6 bg-white shadow-md rounded-lg border border-gray-200">
                     <div className="mb-4">
