@@ -146,26 +146,10 @@ const StockThreshold = () => {
                 </div>
             )}
 
-            <CommonHeader title="Stock Threshold Settings" />
+            {/* <CommonHeader title="Stock Threshold Settings" /> */}
 
             <form onSubmit={handleSave} className="mt-4">
                 <div className="p-6 bg-white shadow-md rounded-lg border border-gray-200">
-                    <div className="mb-4">
-                        <label className="flex items-center cursor-pointer">
-                            <div className="relative">
-                                <input
-                                    type="checkbox"
-                                    className="hidden"
-                                    checked={enabled}
-                                    onChange={() => setEnabled(!enabled)}
-                                />
-                                <div className={`block w-14 h-8 rounded-full ${enabled ? "bg-[#0029af]" : "bg-[#867c7c]"}`}></div>
-                                <div className={`absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition-transform ${enabled ? "transform translate-x-6" : ""}`}></div>
-                            </div>
-                            <div className="ml-3 text-gray-700 font-medium">Enable Stock Threshold</div>
-                        </label>
-                    </div>
-
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                             Stock Threshold Value
