@@ -1,5 +1,5 @@
-const thrail_commerce_modal = (show = true) => {
-	const modal = document.getElementById("thrail-commerce-modal");
+const commerce_kit_modal = (show = true) => {
+	const modal = document.getElementById("commerce-kit-modal");
 	if (show) {
 		modal.style.display = "";
 	} else {

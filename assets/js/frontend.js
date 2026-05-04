@@ -2,18 +2,18 @@ jQuery(document).ready(function($) {
 
 	/*Using AJAX*/
 
-	// $('#thrailOptinForm').submit(function(event) {
+	// $('#commerceKitOptinForm').submit(function(event) {
 	// 	event.preventDefault();
 
 	// 	var name = $("#name").val();
 	// 	var email = $("#email").val();
-	// 	var nonce = THRAIL.nonce;
+	// 	var nonce = COMMERCEKIT.nonce;
 
 	// 	$.ajax({
-	// 		url: THRAIL.ajaxurl,
+	// 		url: COMMERCEKIT.ajaxurl,
 	// 		method: "POST",
 	// 		data: {
-	// 			action: 'thrail_form',
+	// 			action: 'commerce_kit_form',
 	// 			name: name,
 	// 			email: email,
 	// 			nonce: nonce
@@ -28,35 +28,40 @@ jQuery(document).ready(function($) {
 	// 		},
 	// 		error: function(response) {
 	// 			console.log(response);
+	// 			if (response.responseJSON && response.responseJSON.message) {
+	// 				alert(response.responseJSON.message);
+	// 			} else {
+	// 				alert('Failed to submit form.');
+	// 			}
 	// 		}
 	// 	});
 	// });
 
 	/*Using Reast API*/
-	$('#thrailOptinForm').submit(function(event) {
-		event.preventDefault();
+	$('#commerceKitOptinForm').submit(function(event) {
+ 		event.preventDefault();
 
-		var name = $("#name").val();
-		var email = $("#email").val();
-		var loader = $('#formLoader');
+ 		var name = $("#name").val();
+ 		var email = $("#email").val();
+ 		var loader = $('#formLoader');
 
-		loader.show();
+ 		loader.show();
 
-		$.ajax({
-			url: THRAIL.resturl,
-			method: "POST",
-			data: {
+ 		$.ajax({
+ 			url: COMMERCEKIT.resturl,
+ 			method: "POST",
+ 			data: {
 				name: name,
 				email: email
-			},
-			beforeSend: function(xhr) {
-				xhr.setRequestHeader('nonce', THRAIL.nonce);
-			},
-			success: function(response) {
+ 			},
+ 			beforeSend: function(xhr) {
+				xhr.setRequestHeader('nonce', COMMERCEKIT.nonce);
+ 			},
+ 			success: function(response) {
 				alert(response.message);
 				loader.hide();
-			},
-			error: function(response) {
+ 			},
+ 			error: function(response) {
 				console.log(response);
 				if (response.responseJSON && response.responseJSON.message) {
 					alert(response.responseJSON.message);
@@ -64,8 +69,42 @@ jQuery(document).ready(function($) {
 					alert('Failed to submit form.');
 				}
 				loader.hide();
-			}
-		});
+ 			}
+ 		});
+	});
+	const $sections = $('.accordion-section');
+	$sections.each(function (index) {
+		const $section = $(this);
+		const $content = $section.find('.accordion-content');
+		const $icon = $section.find('.accordion-icon');
+
+		if (index === 0) {
+			$section.addClass('is-open');
+			$content.show();
+			$icon.text('-');
+		} else {
+			$content.hide();
+			$icon.text('+');
+		}
+	});
+	$('.commerce-kit-accordion-header').on('click', function () {
+		const $section = $(this).closest('.accordion-section');
+		const $content = $section.find('.accordion-content');
+		const isOpen = $section.hasClass('is-open');
+		const $icon = $(this).find('.accordion-icon');
+
+		// Toggle open/close state
+		if (isOpen) {
+			$section.removeClass('is-open');
+			$content.slideUp(300);
+			$icon.text('+');
+		} else {
+			$section.addClass('is-open');
+			$content.slideDown(300);
+			$icon.text('-');
+		}
+	});
+});
 	});
 	const $sections = $('.accordion-section');
 	$sections.each(function (index) {

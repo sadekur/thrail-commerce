@@ -43,9 +43,7 @@
 .commerce-kit-control-button {
 	gap: 8px;
 }
-.thrail-modal-save {
-	position: fixed;
-}
+/* line 46 */ .commerce-kit-modal-save { position: fixed; }
 .thail-commerce-header {
 	display: flex;
 	justify-content: space-between;

@@ -5,7 +5,7 @@
 
     //     var data = $(this).serialize();
 
-    //     $.post(THRAIL.ajaxurl, data, function(response) {
+    //     $.post(COMMERCEKIT.ajaxurl, data, function(response) {
     //         if (response.success) {
     //             console.log(response.success);
     //         } else {
@@ -13,7 +13,7 @@
     //         }
     //     })
     //     .fail(function() {
-    //         alert(THRAIL.error);
+    //         alert(COMMERCEKIT.error);
     //     })
 
     // });
