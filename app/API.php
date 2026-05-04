@@ -1,9 +1,9 @@
 <?php
-namespace Thrail\Commerce;
+namespace CommerceKit\Commerce;
 
-use Thrail\Commerce\Classes\Helper\Utility;
-use Thrail\Commerce\Classes\Trait\Hookable;
-use Thrail\Commerce\API\Stock_Threshold as Stock;
+use CommerceKit\Commerce\Classes\Helper\Utility;
+use CommerceKit\Commerce\Classes\Trait\Hookable;
+use CommerceKit\Commerce\API\Stock_Threshold as Stock;
 
 class API {
     use Hookable;
@@ -40,7 +40,7 @@ class API {
             'woocommerce-product-barcode'   => 'off',
             'buy-button-for-woocommerce'    => 'off',
         ];
-        $settings = get_option( 'thrail_commerce_settings', $default_settings );
+        $settings = get_option( 'commerce_kit_settings', $default_settings );
     
         return rest_ensure_response( $settings );
     }
@@ -52,7 +52,7 @@ class API {
     public function save_settings( $request ) {
         $settings = $request->get_param( 'settings' );
         if ( is_array( $settings ) ) {
-            update_option( 'thrail_commerce_settings', $settings );
+            update_option( 'commerce_kit_settings', $settings );
         }
         return rest_ensure_response( 'success' );
     }
@@ -98,7 +98,7 @@ class API {
     public function block_register( $request ) {
         $settings = $request->get_param( 'settings' );
         if ( is_array( $settings ) ) {
-            update_option( 'thrailcommerce-block-settings', $settings );
+            update_option( 'commercekit-block-settings', $settings );
         }
         return rest_ensure_response( 'success' );
     }
@@ -111,13 +111,13 @@ class API {
     public function tips_routes() {
         $this->register_route( '/save-tips', [
             'methods' => 'POST',
-            'callback' => [ $this, 'thrail_save_tips' ],
+            'callback' => [ $this, 'commerce_kit_save_tips' ],
             'permission_callback' => [ $this, 'tips_permission' ]
         ]);
 
         $this->register_route( '/get-tips', [
             'methods' => 'GET',
-            'callback' => [ $this, 'thrail_get_tips' ],
+            'callback' => [ $this, 'commerce_kit_get_tips' ],
             'permission_callback' => [ $this, 'tips_permission' ]
         ]);
     }
@@ -136,16 +136,16 @@ class API {
         ]);
     }
 
-    public function thrail_save_tips( $request ) {
+    public function commerce_kit_save_tips( $request ) {
         // Get the JSON parameters from the request
         $tips_settings = $request->get_json_params() ?? [];
         
         // Retrieve current settings and merge with new settings
-        $current_settings = get_option( 'thrailcommerce-tips-settings', [] );
+        $current_settings = get_option( 'commercekit-tips-settings', [] );
         $updated_settings = array_merge( $current_settings, $tips_settings );
         
         // Save the updated settings back to the options table
-        update_option( 'thrailcommerce-tips-settings', $updated_settings );
+        update_option( 'commercekit-tips-settings', $updated_settings );
         
         // Return success response
         return rest_ensure_response( 'success' );
@@ -154,8 +154,8 @@ class API {
     public function tips_permission() {
         return true;
     }
-    public function thrail_get_tips() {
-        $tips_settings = get_option('thrailcommerce-tips-settings', []);
+    public function commerce_kit_get_tips() {
+        $tips_settings = get_option('commercekit-tips-settings', []);
         return rest_ensure_response($tips_settings);
     }
 }

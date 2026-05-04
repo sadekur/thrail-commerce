@@ -1,6 +1,6 @@
 <?php
-namespace Thrail\Commerce;
-use Thrail\Commerce\Classes\Trait\Hookable;
+namespace CommerceKit\Commerce;
+use CommerceKit\Commerce\Classes\Trait\Hookable;
 
 class Features {
     use Hookable;
@@ -10,7 +10,7 @@ class Features {
     }
 
     public function features_register() {
-        $settings = get_option('thrail_commerce_settings', []);
+        $settings = get_option('commerce_kit_settings', []);
         $features = [
             'woocommerce-tips'              => 'woocommerce-tips',
             'woocommerce-faq'               => 'woocommerce-faq',
@@ -21,12 +21,12 @@ class Features {
 
         foreach ($features as $feature_key => $feature_directory) {
             if (isset($settings[$feature_key]) && $settings[$feature_key] === 'on') {
-                $file = THRAIL_COMMERCE_PATH . "features/{$feature_directory}/{$feature_directory}.php";
+                $file = COMMERCE_KIT_PATH . "features/{$feature_directory}/{$feature_directory}.php";
 
                 if (file_exists($file)) {
                     require_once $file;
                     $class_name = str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $feature_directory)));
-                    $class = "\\Thrail\\Commerce\\Features\\{$class_name}";
+                    $class = "\\CommerceKit\\Commerce\\Features\\{$class_name}";
                     if (class_exists($class)) {
                         new $class();
                     }
