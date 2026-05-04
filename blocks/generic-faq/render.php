@@ -1,9 +1,9 @@
 <?php
 if ( ! function_exists( 'render_generic_faq_block' ) ) {
     function render_generic_faq_block( $attributes ) {
-        update_option( 'sadsadsdsds', $attributes );
+        update_option( 'commerce_kit_faq_attributes', $attributes );
         $questions = [
-            [ 'question' => 'What is Thrail Commerce?', 'answer' => 'Thrail Commerce is a plugin...' ],
+            [ 'question' => 'What is CommerceKit?', 'answer' => 'CommerceKit is a WooCommerce enhancement plugin...' ],
             [ 'question' => 'How to use this FAQ?', 'answer' => 'Just add it to any page...' ],
         ];
         ?>

@@ -1,7 +1,7 @@
 <?php
 function render_variant_faq_block( $attributes ) {
     $questions = [
-        [ 'question' => 'What is Thrail Commerce?', 'answer' => 'Thrail Commerce is a plugin...' ],
+        [ 'question' => 'What is CommerceKit?', 'answer' => 'CommerceKit is a WooCommerce enhancement plugin...' ],
         [ 'question' => 'How to use this FAQ?', 'answer' => 'Just add it to any page...' ],
     ];
     ?>

@@ -1,7 +1,7 @@
 <?php
-namespace Thrail\Commerce;
+namespace CommerceKit\Commerce;
 
-use Thrail\Commerce\Classes\Trait\Hookable;
+use CommerceKit\Commerce\Classes\Trait\Hookable;
 
 class Blocks {
     use Hookable;
@@ -16,14 +16,14 @@ class Blocks {
 
     public function set_categories() {
         $this->categories = [
-            'product' => __( 'Thrail - Commerce', 'thrail-commerce' ),
+            'product' => __( 'CommerceKit - WooCommerce', 'commerce-kit' ),
         ];
     }
 
     public function blocks_register() {
-        $blocks_dir     = THRAIL_COMMERCE_PATH . 'blocks/';
+        $blocks_dir     = COMMERCE_KIT_PATH . 'blocks/';
         $categories     = glob( $blocks_dir ); // Fetch directories
-        $block_settings = get_option('thrail_commerce_block_settings');
+        $block_settings = get_option('commerce_kit_block_settings');
         $block_settings = maybe_unserialize($block_settings);
 
         $active_blocks = [];
@@ -45,7 +45,7 @@ class Blocks {
         }
 
         // Pass the list of active blocks to JavaScript
-        wp_localize_script( 'thrail-commerce-block-script', 'activeBlocks', $active_blocks );
+        wp_localize_script( 'commerce-kit-block-script', 'activeBlocks', $active_blocks );
     }
 
     /**
@@ -59,7 +59,7 @@ class Blocks {
 
     //     foreach ($this->categories as $id => $label) {
     //         $new_categories[] = [
-    //             'slug' => "thrail-commerce-{$id}",
+    //             'slug' => "commerce-kit-{$id}",
     //             'title' => $label,
     //         ];
     //     }
@@ -70,7 +70,7 @@ class Blocks {
     public function add_custom_categories( $categories ) {
         foreach ( $this->categories as $id => $label ) {
             array_unshift( $categories, [
-                'slug' => "thrail-commerce-{$id}",
+                'slug' => "commerce-kit-{$id}",
                 'title' => $label,
             ] );
         }

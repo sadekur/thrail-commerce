@@ -10,14 +10,14 @@ $titleFontFamily        = $attributes[ 'titleFontFamily' ] ?? 'inherit';
 $contentColor           = $attributes[ 'contentColor' ] ?? '#000';
 $contentFontSize        = $attributes[ 'contentFontSize' ] ?? '14px';
 $contentFontFamily      = $attributes[ 'contentFontFamily' ] ?? 'inherit';
-// do_action( 'thrailcommerce_block/accordion' )
+// do_action( 'commercekit_block/accordion' )
 ?>
-<div class="thrail-commerce-accordion">
+<div class="commerce-kit-accordion">
     <?php foreach ($sections as $index => $section): ?>
         <div 
             class="accordion-section <?= $section['isOpen'] ? 'is-open' : '' ?>" 
             style="border: <?= esc_attr($borderSize) ?> <?= esc_attr($borderStyle) ?> <?= esc_attr($borderColor) ?>; margin-bottom: 10px; padding: 10px;">
-            <div class="thrail-commerce-accordion-header flex"
+            <div class="commerce-kit-accordion-header flex"
                 style="cursor: pointer; color: <?= esc_attr($titleColor) ?>; font-size: <?= esc_attr($titleFontSize) ?>; font-family: <?= esc_attr($titleFontFamily) ?>;"
                 data-index="<?= esc_attr($index) ?>">
                 <h3><?= esc_html($section['title']) ?></h3>
