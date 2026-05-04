@@ -1,4 +1,4 @@
-#thrail-commerce-modal {
+#commerce-kit-modal {
 	position: fixed;
 	background: #c8c8c859;
 	top: 0;
@@ -11,9 +11,9 @@
 	justify-content: center;
 	align-items: center;
 }
-.wp-admin #thrail-commerce-modal {
+.wp-admin #commerce-kit-modal {
 	left: 160px;
 }
-#thrail-commerce-modal-loader {
+#commerce-kit-modal-loader {
 	position: absolute;
 }

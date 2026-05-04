@@ -1,9 +1,9 @@
 jQuery(document).ready(($) => {
-    const form = $('#thrail-commerce-settings-form');
+    const form = $('#commerce-kit-settings-form');
 
     form.on('submit', (e) => {
         e.preventDefault();
-        thrail_commerce_modal(true);
+        commerce_kit_modal(true);
 
         const formData = {
             tcwt_cart: $('input[name="tcwt_cart"]').is(':checked') ? 'on' : 'off',
@@ -15,14 +15,14 @@ jQuery(document).ready(($) => {
         };
 
         $.ajax({
-            url: `${THRAILCOMMERCE.apiurl}/save-tips`,
+            url: `${COMMERCEKIT.apiurl}/save-tips`,
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData),
-            beforeSend: (xhr) => xhr.setRequestHeader('X-WP-Nonce', THRAILCOMMERCE.nonce),
-            success: () => thrail_commerce_modal(false),
+            beforeSend: (xhr) => xhr.setRequestHeader('X-WP-Nonce', COMMERCEKIT.nonce),
+            success: () => commerce_kit_modal(false),
             error: (error) => {
-                thrail_commerce_modal(false);
+                commerce_kit_modal(false);
                 console.error(error);
             },
         });
@@ -38,30 +38,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
 jQuery(document).ready(function ($) {
 
-    function isThrailCommerceScreen() {
+    function isCommerceKitScreen() {
         const params = new URLSearchParams(window.location.search);
-        return params.get('page') === 'thrail-commerce';
+        return params.get('page') === 'commerce-kit';
     }
 
-    const $menu = $('#adminmenu li.toplevel_page_thrail-commerce');
+    const $menu = $('#adminmenu li.toplevel_page_commerce-kit');
 
     function getStockThresholdItem() {
         return $menu.find('a[href*="#/stock-threshold"]').closest('li');
     }
 
     function updateActiveMenu() {
-        if (!isThrailCommerceScreen()) return;
+        if (!isCommerceKitScreen()) return;
         $menu.find('.wp-submenu li').removeClass('current');
         const hash = window.location.hash || '';
         if (hash && hash !== '#/') {
             $menu.find('a[href*="' + hash + '"]').closest('li').addClass('current');
         } else {
-            $menu.find('a[href="admin.php?page=thrail-commerce"]').closest('li').addClass('current');
+            $menu.find('a[href="admin.php?page=commerce-kit"]').closest('li').addClass('current');
         }
     }
 
     // ✅ React fires this after saving Features — update submenu visibility without reload
-    window.addEventListener('thrailSettingsUpdated', function (e) {
+    window.addEventListener('commerceKitSettingsUpdated', function (e) {
         const settings = e.detail || {};
         const stockEnabled = settings['stock-threshold-for-wc'] === 'on';
         if (stockEnabled) {
@@ -71,8 +71,8 @@ jQuery(document).ready(function ($) {
         }
     });
 
-    $(document).on('click', '#adminmenu a[href="admin.php?page=thrail-commerce"]', function (e) {
-        if (!isThrailCommerceScreen()) return;
+    $(document).on('click', '#adminmenu a[href="admin.php?page=commerce-kit"]', function (e) {
+        if (!isCommerceKitScreen()) return;
         e.preventDefault();
         window.location.hash = '';
         updateActiveMenu();
