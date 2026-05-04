@@ -1,7 +1,7 @@
 <?php
-namespace Thrail\Commerce\API;
+namespace CommerceKit\Commerce\API;
 
-use Thrail\Commerce\Classes\Helper\Utility;
+use CommerceKit\Commerce\Classes\Helper\Utility;
 
 class Stock_Threshold {
 
@@ -23,7 +23,7 @@ class Stock_Threshold {
             'customer_message'     => sanitize_text_field($params['customer_message'] ?? 'High demand – price adjusted based on availability'),
         ];
 
-        update_option( 'thrail_commerce_stock_threshold', $data );
+        update_option( 'commerce_kit_stock_threshold', $data );
 
         return rest_ensure_response([
             'success' => true,
@@ -47,14 +47,14 @@ class Stock_Threshold {
             'customer_message'     => 'High demand – price adjusted based on availability',
         ];
 
-        $data = get_option('thrail_commerce_stock_threshold', []);
+        $data = get_option('commerce_kit_stock_threshold', []);
 
         return rest_ensure_response( array_merge( $defaults, $data ) );
     }
 
     public function stock_threshold_permission( $request ) {
         // $nonce = $request->get_header( 'x_wp_nonce' );
-        // if ( $nonce && !wp_verify_nonce( $nonce, 'thrail_commerce_nonce' ) ) {
+        // if ( $nonce && !wp_verify_nonce( $nonce, 'commerce_kit_nonce' ) ) {
         //     return false;
         // }
         return current_user_can( 'manage_options' );
