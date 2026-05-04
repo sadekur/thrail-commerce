@@ -98,7 +98,7 @@
             },
             "time": "2025-05-06T16:15:37+00:00",
             "type": "library",
-            "installation-source": "dist",
+            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Mustache": "src/"
@@ -154,7 +154,7 @@
                     "dev-master": "0.5.x-dev"
                 }
             },
-            "installation-source": "dist",
+            "installation-source": "source",
             "autoload": {
                 "files": [
                     "includes/functions.php"
@@ -291,7 +291,7 @@
                     "dev-main": "2.12.x-dev"
                 }
             },
-            "installation-source": "dist",
+            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "WP_CLI\\": "php/"
