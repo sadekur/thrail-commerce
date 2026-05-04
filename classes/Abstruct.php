@@ -1,5 +1,5 @@
 <?php
-namespace Thrail\Commerce\Classes;
+namespace CommerceKit\Commerce\Classes;
 
 class Abstruct {
 	

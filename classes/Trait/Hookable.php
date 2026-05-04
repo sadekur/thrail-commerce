@@ -1,8 +1,8 @@
 <?php
-namespace Thrail\Commerce\Classes\Trait;
+namespace CommerceKit\Commerce\Classes\Trait;
 
 trait Hookable {
-    public $namespace = 'thrail/v1'; // Define the default namespace
+    public $namespace = 'commerce-kit/v1'; // Define the default namespace
     /**
      * Add a WordPress action hook.
      *
