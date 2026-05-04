@@ -1,6 +1,7 @@
 vendor/
 node_modules/
 build/
+.md
 composer.lock
 package-lock.json
 .phpunit.cache/
