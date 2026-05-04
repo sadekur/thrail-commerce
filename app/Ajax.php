@@ -1,5 +1,5 @@
 <?php
-namespace Thrail\Commerce;
+namespace CommerceKit\Commerce;
 
 class Ajax {
 

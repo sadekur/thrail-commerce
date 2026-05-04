@@ -1,13 +1,13 @@
 <?php
-    namespace Thrail\Commerce;
-    use Thrail\Commerce\Classes\Trait\Hookable;
+    namespace CommerceKit\Commerce;
+    use CommerceKit\Commerce\Classes\Trait\Hookable;
 
     /**
      * Frontend handler class
      */
     class Frontend {
         use Hookable;
-        protected $settings_option_name = 'thrail_commerce_settings';
+        protected $settings_option_name = 'commerce_kit_settings';
 
         /**
          * Initialize the class

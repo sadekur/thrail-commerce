@@ -1,6 +1,6 @@
 <?php
 
-namespace Thrail\Commerce;
+namespace CommerceKit\Commerce;
 
 /**
  * The admin class
