@@ -1,7 +1,7 @@
 {
-	"name": "thrail-commerce",
+	"name": "commerce-kit",
 	"version": "1.0.0",
-	"description": "",
+	"description": "WooCommerce enhancement toolkit",
 	"private": true,
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",

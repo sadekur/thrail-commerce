@@ -1,6 +1,6 @@
 {
-	"name": "thrail/commerce",
-	"description": "A plugin for Woocommerce",
+	"name": "commerce-kit/commerce",
+	"description": "A WooCommerce enhancement toolkit",
 	"type": "wordpress-plugin",
 	"license": "GPLv2",
 	"authors": [
@@ -15,8 +15,8 @@
     },
 	"autoload": {
 		"psr-4": {
-			"Thrail\\Commerce\\": "app/",
-			"Thrail\\Commerce\\Classes\\": "classes/"
+			"CommerceKit\\Commerce\\": "app/",
+			"CommerceKit\\Commerce\\Classes\\": "classes/"
 		},
 		"files": [
 			"includes/functions.php"
