@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once __DIR__ . '/vendor/autoload.php';
 // require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
-// register_activation_hook(__FILE__, 'thrail_crm_activate');
+// register_activation_hook(__FILE__, 'commerce_kit_activate');
 
 /**
  * The main plugin class

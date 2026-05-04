@@ -14,7 +14,7 @@ WordPress plugin for WooCommerce. Requires PHP 7.4+, WooCommerce active.
 
 ### PHP
 
-- Main entry: `thrail-commerce.php` (plugin bootstrap)
+- Main entry: `commercekit.php` (plugin bootstrap)
 - PSR-4: `CommerceKit\Commerce\` → `app/`, `CommerceKit\Commerce\Classes\` → `classes/`
 - Hookable trait at `classes/Trait/Hookable.php` — use `$this->action()` / `$this->filter()` instead of `add_action` / `add_filter`
 - Features in `features/` load conditionally based on `commerce_kit_settings` option

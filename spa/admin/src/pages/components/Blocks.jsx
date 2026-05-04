@@ -131,7 +131,7 @@ const Blocks = () => {
 		<div className='relative'>
 			{/* Save Overlay */}
 			{isSaving && (
-				<div className='thrail-modal-save inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center'>
+				<div className='commerce-kit-modal-save inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center'>
 					<div className='text-white font-semibold text-lg'>
 						{savingMessage}
 					</div>

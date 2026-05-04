@@ -155,7 +155,7 @@ class Utility {
 	 * @param array  $args Optional. An associative array of variables to pass to the template file.
 	 */
     public static function get_template( $template_name, $path, $data = [] ) {
-        $template_path = THRAIL_COMMERCE_PATH . 'app/settings/' . $template_name . '.php';
+        $template_path = COMMERCE_KIT_PATH . 'app/settings/' . $template_name . '.php';
         print_r($template_path);
 
         if ( file_exists( $template_path ) ) {
