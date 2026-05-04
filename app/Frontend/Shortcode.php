@@ -1,6 +1,6 @@
 <?php
 
-namespace Thrail\Commerce\Frontend;
+namespace CommerceKit\Commerce\Frontend;
 
 class Shortcode {
 

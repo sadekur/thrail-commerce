@@ -1,6 +1,6 @@
 <?php
-namespace Thrail\Commerce\Common;
-use Thrail\Commerce\Classes\Trait\Hookable;
+namespace CommerceKit\Commerce\Common;
+use CommerceKit\Commerce\Classes\Trait\Hookable;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -18,8 +18,8 @@ class Init {
 
 	public function modal() {
 		echo '
-		<div id="thrail-commerce-modal" style="display: none">
-			<img id="thrail-commerce-modal-loader" src="' . esc_attr( THRAIL_COMMERCE_ASSETS . '/img/loader.gif' ) . '" />
+		<div id="commerce-kit-modal" style="display: none">
+			<img id="commerce-kit-modal-loader" src="' . esc_attr( COMMERCE_KIT_ASSETS . '/img/loader.gif' ) . '" />
 		</div>';
 	}
 

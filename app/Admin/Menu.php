@@ -1,9 +1,9 @@
 <?php
 
-namespace Thrail\Commerce\Admin;
+namespace CommerceKit\Commerce\Admin;
 
-use Thrail\Commerce\Classes\Trait\Hookable;
-use Thrail\Commerce\Classes\Helper\Utility;
+use CommerceKit\Commerce\Classes\Trait\Hookable;
+use CommerceKit\Commerce\Classes\Helper\Utility;
 
 class Menu {
     use Hookable;
@@ -14,41 +14,41 @@ class Menu {
 
     public function add_admin_menu() {
         add_menu_page(
-            'Thrail Commerce',
-            'Thrail Commerce',
+            'CommerceKit',
+            'CommerceKit',
             'manage_options',
-            'thrail-commerce',
+            'commerce-kit',
             [ $this, 'admin_page_content' ],
             'dashicons-admin-generic',
             20
         );
 
         add_submenu_page(
-            'thrail-commerce',
-            __( 'Dashboard', 'thrail-commerce' ),
-            __( 'Dashboard', 'thrail-commerce' ),
+            'commerce-kit',
+            __( 'Dashboard', 'commerce-kit' ),
+            __( 'Dashboard', 'commerce-kit' ),
             'manage_options',
-            'thrail-commerce',
+            'commerce-kit',
             [ $this, 'admin_page_content' ]
         );
 
         add_submenu_page(
-            'thrail-commerce',
-            __( 'Stock Threshold', 'thrail-commerce' ),
-            __( 'Stock Threshold', 'thrail-commerce' ),
+            'commerce-kit',
+            __( 'Stock Threshold', 'commerce-kit' ),
+            __( 'Stock Threshold', 'commerce-kit' ),
             'manage_options',
-            'thrail-commerce#/stock-threshold',
+            'commerce-kit#/stock-threshold',
             [ $this, 'admin_page_content' ]
         );
 
-        $settings = get_option( 'thrail_commerce_settings', [] );
+        $settings = get_option( 'commerce_kit_settings', [] );
         if ( isset( $settings['woocommerce-tips'] ) && $settings['woocommerce-tips'] === 'on' ) {
             add_submenu_page(
-                'thrail-commerce',
-                'Thrail Commerce Tips Settings',
+                'commerce-kit',
+                'CommerceKit Tips Settings',
                 'Tips Settings',
                 'manage_options',
-                'thrail-commerce-tip-settings',
+                'commerce-kit-tip-settings',
                 [ $this, 'settings_page_content' ]
             );
         }
@@ -57,13 +57,13 @@ class Menu {
     public function admin_page_content() {
         ?>
         <div class="wrap">
-            <div id="thrail_commerce_render"></div>
+            <div id="commerce_kit_render"></div>
         </div>
         <?php
     }
 
     public function settings_page_content() {
-        $settings = get_option( 'thrailcommerce-tips-settings', [] );
+        $settings = get_option( 'commercekit-tips-settings', [] );
         $defaults = [
             'tcwt_cart'      => 'off',
             'tcwt_checkout'  => 'off',

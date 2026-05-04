@@ -1,5 +1,5 @@
 <?php
-namespace Thrail\Commerce;
+namespace CommerceKit\Commerce;
 
 class Email {
 	function __construct() {
