@@ -1,0 +1,35 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "commerce-kit/category-products-slider",
+	"title": "Category Products Slider",
+	"category": "commerce-kit-product",
+	"icon": "slides",
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"categoryId": {
+			"type": "number",
+			"default": 0
+		},
+		"title": {
+			"type": "string",
+			"default": "Category Products"
+		},
+		"productLimit": {
+			"type": "number",
+			"default": 10
+		},
+		"autoplay": {
+			"type": "boolean",
+			"default": true
+		},
+		"autoplaySpeed": {
+			"type": "number",
+			"default": 3000
+		}
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}
