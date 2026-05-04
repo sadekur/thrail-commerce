@@ -166,6 +166,6 @@ class Utility {
             return ob_get_clean();
         }
 
-        return '<p>' . esc_html__('Template not found!', 'thrail-commerce') . '</p>';
+        return '<p>' . esc_html__('Template not found!', 'commerce-kit') . '</p>';
     }
 }

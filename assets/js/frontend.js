@@ -121,7 +121,7 @@ jQuery(document).ready(function($) {
 			$icon.text('+');
 		}
 	});
-	$('.thrail-commerce-accordion-header').on('click', function () {
+	$('.commerce-kit-accordion-header').on('click', function () {
 		const $section = $(this).closest('.accordion-section');
 		const $content = $section.find('.accordion-content');
 		const isOpen = $section.hasClass('is-open');
