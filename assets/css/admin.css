@@ -114,7 +114,7 @@
 .commerce-kit-control-button {
 	gap: 8px;
 }
-.thail-commerce-disable-all {
+.commerce-kit-disable-all {
 	padding: 0.5rem 1rem;
     background-color: #6b7280;
     border: 1px solid #6b7280;
@@ -124,10 +124,10 @@
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     transition: all 0.2s ease-in-out; 
 }
-.thail-commerce-disable-all:hover {
+.commerce-kit-disable-all:hover {
     background-color: #ef4444;
 }
-.thail-commerce-enable-all {
+.commerce-kit-enable-all {
     padding: 0.5rem 1rem;
     background-color: #0029af;
     border: 1px solid #6b7280;
@@ -136,9 +136,9 @@
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
-.thail-commerce-enable-all:hover {
+.commerce-kit-enable-all:hover {
     background-color: #0842ff;
 }
-.thail-commerce-control-button {
+.commerce-kit-control-button {
 	gap: 8px;
 }
