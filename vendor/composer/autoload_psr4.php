@@ -6,8 +6,8 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Thrail\\Commerce\\Classes\\' => array($baseDir . '/classes'),
-    'Thrail\\Commerce\\' => array($baseDir . '/app'),
     'Symfony\\Component\\Finder\\' => array($vendorDir . '/symfony/finder'),
     'Mustangostang\\' => array($vendorDir . '/wp-cli/mustangostang-spyc/src'),
+    'CommerceKit\\Commerce\\Classes\\' => array($baseDir . '/classes'),
+    'CommerceKit\\Commerce\\' => array($baseDir . '/app'),
 );

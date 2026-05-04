@@ -8,5 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     '3937806105cc8e221b8fa8db5b70d2f2' => $vendorDir . '/wp-cli/mustangostang-spyc/includes/functions.php',
     'be01b9b16925dcb22165c40b46681ac6' => $vendorDir . '/wp-cli/php-cli-tools/lib/cli/cli.php',
-    '56ed7829ffc71853dd4d3555e2260b2a' => $baseDir . '/includes/functions.php',
+    'e0c5596663315724a2a4b19bdd8cdda2' => $baseDir . '/includes/functions.php',
 );

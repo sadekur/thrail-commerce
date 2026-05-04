@@ -9,15 +9,10 @@ class ComposerStaticInit9a6ce668eb50616623a97601be75aa04
     public static $files = array (
         '3937806105cc8e221b8fa8db5b70d2f2' => __DIR__ . '/..' . '/wp-cli/mustangostang-spyc/includes/functions.php',
         'be01b9b16925dcb22165c40b46681ac6' => __DIR__ . '/..' . '/wp-cli/php-cli-tools/lib/cli/cli.php',
-        '56ed7829ffc71853dd4d3555e2260b2a' => __DIR__ . '/../..' . '/includes/functions.php',
+        'e0c5596663315724a2a4b19bdd8cdda2' => __DIR__ . '/../..' . '/includes/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'T' => 
-        array (
-            'Thrail\\Commerce\\Classes\\' => 24,
-            'Thrail\\Commerce\\' => 16,
-        ),
         'S' => 
         array (
             'Symfony\\Component\\Finder\\' => 25,
@@ -26,17 +21,14 @@ class ComposerStaticInit9a6ce668eb50616623a97601be75aa04
         array (
             'Mustangostang\\' => 14,
         ),
+        'C' => 
+        array (
+            'CommerceKit\\Commerce\\Classes\\' => 29,
+            'CommerceKit\\Commerce\\' => 21,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Thrail\\Commerce\\Classes\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/classes',
-        ),
-        'Thrail\\Commerce\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/app',
-        ),
         'Symfony\\Component\\Finder\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/finder',
@@ -44,6 +36,14 @@ class ComposerStaticInit9a6ce668eb50616623a97601be75aa04
         'Mustangostang\\' => 
         array (
             0 => __DIR__ . '/..' . '/wp-cli/mustangostang-spyc/src',
+        ),
+        'CommerceKit\\Commerce\\Classes\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/classes',
+        ),
+        'CommerceKit\\Commerce\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app',
         ),
     );
 
