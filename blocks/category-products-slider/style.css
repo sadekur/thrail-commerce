@@ -1,0 +1,22 @@
+.commerce-kit-category-slider {
+	position: relative;
+	overflow: hidden;
+}
+
+.commerce-kit-category-slider .slider-track {
+	display: flex;
+	transition: transform 0.5s ease-in-out;
+}
+
+.commerce-kit-category-slider .slider-slide {
+	flex-shrink: 0;
+}
+
+.commerce-kit-category-slider button:hover {
+	background-color: #f3f4f6;
+}
+
+.commerce-kit-category-slider button:focus {
+	outline: 2px solid #3b82f6;
+	outline-offset: 2px;
+}
