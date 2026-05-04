@@ -1,6 +1,6 @@
 <?php
-namespace Thrail\Commerce\Features;
-use Thrail\Commerce\Classes\Trait\Hookable;
+namespace CommerceKit\Commerce\Features;
+use CommerceKit\Commerce\Classes\Trait\Hookable;
 
 class WoocommerceTips {
 

@@ -1,6 +1,6 @@
 <?php
-namespace Thrail\Commerce\Features;
-use Thrail\Commerce\Classes\Trait\Hookable;
+namespace CommerceKit\Commerce\Features;
+use CommerceKit\Commerce\Classes\Trait\Hookable;
 
 class BuyButtonForWoocommerce {
     use Hookable;
@@ -8,7 +8,7 @@ class BuyButtonForWoocommerce {
     public function __construct() {
         // Register hooks and shortcodes.
         $this->filter('woocommerce_add_to_cart_redirect', [ $this, 'handle_add_to_cart_redirect' ], 10, 1);
-        $this->filter('add_to_cart_validation', [ $this, 'validate_add_to_cart' ]);
+        $this->filter('woocommerce_add_to_cart_validation', [ $this, 'validate_add_to_cart' ]);
         $this->add_shortcode('buy_button', [ $this, 'buy_button_handler' ]);
     }
 
