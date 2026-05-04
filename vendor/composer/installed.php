@@ -1,6 +1,6 @@
 <?php return array(
     'root' => array(
-        'name' => 'thrail/commerce',
+        'name' => 'commerce-kit/commerce',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
         'reference' => '8e5419bc05c7f9f4ff315a40b16c377d242561bd',
@@ -25,7 +25,7 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'thrail/commerce' => array(
+        'commerce-kit/commerce' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
             'reference' => '8e5419bc05c7f9f4ff315a40b16c377d242561bd',
