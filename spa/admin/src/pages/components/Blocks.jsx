@@ -3,7 +3,7 @@ import axios from "axios";
 import CommonHeader from "../../../common/CommonHeader";
 
 const Blocks = () => {
-	const url = `${THRAILCOMMERCE.apiurl}/block-register-save`;
+	const url = `${COMMERCEKIT.apiurl}/block-register-save`;
 	const [isLoading, setIsLoading] = useState(true);
 	const [isSaving, setIsSaving] = useState(false);
 	const [savingMessage, setSavingMessage] = useState("Saving...");
@@ -56,7 +56,7 @@ const Blocks = () => {
 				{
 					headers: {
 						"Content-Type": "application/json",
-						"X-WP-Nonce": THRAILCOMMERCE.nonce,
+						"X-WP-Nonce": COMMERCEKIT.nonce,
 					},
 				}
 			)
@@ -110,7 +110,7 @@ const Blocks = () => {
 	useEffect(() => {
 		setIsLoading(true);
 		axios
-			.get(`${THRAILCOMMERCE.apiurl}/get-block-register`)
+			.get(`${COMMERCEKIT.apiurl}/get-block-register`)
 			.then((response) => {
 				setToggles((prevToggles) =>
 					prevToggles.map((toggle) => ({

@@ -48,7 +48,7 @@ const Features = () => {
         },
     ]);
 
-    const url = `${THRAILCOMMERCE.apiurl}/post-settings`;
+    const url = `${COMMERCEKIT.apiurl}/post-settings`;
 
     const save = (updatedToggles) => {
         const toggleValues = updatedToggles.reduce((acc, toggle) => {
@@ -66,20 +66,20 @@ const Features = () => {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        "X-WP-Nonce": THRAILCOMMERCE.nonce,
+                        "X-WP-Nonce": COMMERCEKIT.nonce,
                     },
                 }
             )
             .then(() => {
                 setSavingMessage("Settings Saved!");
                 setToggles(updatedToggles);
-                if (!window.THRAILCOMMERCE.settings_data) {
-                    window.THRAILCOMMERCE.settings_data = {};
+                if (!window.COMMERCEKIT.settings_data) {
+                    window.COMMERCEKIT.settings_data = {};
                 }
-                Object.assign(window.THRAILCOMMERCE.settings_data, toggleValues);
+                Object.assign(window.COMMERCEKIT.settings_data, toggleValues);
 
                 window.dispatchEvent(
-                    new CustomEvent("thrailSettingsUpdated", { detail: toggleValues })
+                    new CustomEvent("commerceKitSettingsUpdated", { detail: toggleValues })
                 );
 
                 setTimeout(() => {
@@ -126,7 +126,7 @@ const Features = () => {
     useEffect(() => {
         setIsLoading(true);
         axios
-            .get(`${THRAILCOMMERCE.apiurl}/get-settings`)
+            .get(`${COMMERCEKIT.apiurl}/get-settings`)
             .then((response) => {
                 const updatedToggles = toggles.map((toggle) => ({
                     ...toggle,
@@ -134,10 +134,10 @@ const Features = () => {
                 }));
                 setToggles(updatedToggles);
 
-                if (!window.THRAILCOMMERCE.settings_data) {
-                    window.THRAILCOMMERCE.settings_data = {};
+                if (!window.COMMERCEKIT.settings_data) {
+                    window.COMMERCEKIT.settings_data = {};
                 }
-                Object.assign(window.THRAILCOMMERCE.settings_data, response.data);
+                Object.assign(window.COMMERCEKIT.settings_data, response.data);
             })
             .catch((error) => {
                 console.error("Error loading settings:", error);
@@ -156,7 +156,7 @@ const Features = () => {
             />
 
             {isLoading ? (
-                // Initial load skeleton
+                // Inital load skeleton
                 <div className="mt-4 grid grid-cols-4 md:grid-cols-4 sm:grid-cols-1 gap-6">
                     {Array.from({ length: 5 }).map((_, i) => <SkeletonCard key={i} />)}
                 </div>

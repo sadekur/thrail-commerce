@@ -37,7 +37,7 @@ const App = () => {
     return <div>{renderPage()}</div>;
 };
 
-const rootElement = document.getElementById("thrail_commerce_render");
+const rootElement = document.getElementById("commerce_kit_render");
 if (rootElement) {
     ReactDOM.createRoot(rootElement).render(<App />);
 }
