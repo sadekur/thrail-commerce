@@ -1,9 +1,9 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "thrail-commerce/accordion",
+	"name": "commerce-kit/accordion",
 	"title": "Accordion",
-	"category": "thrail-commerce-product",
+	"category": "commerce-kit-product",
 	"icon": "list-view",
 	"supports": {
 		"html": false
@@ -13,8 +13,8 @@
 			"type": "array",
 			"default": [
 				{
-					"title": "What is Thrail Commerce?",
-					"content": "Thrail Commerce is a cutting-edge e-commerce platform designed to provide seamless shopping experiences and advanced product management tools.",
+					"title": "What is CommerceKit?",
+					"content": "CommerceKit is a WooCommerce enhancement toolkit designed to provide seamless shopping experiences and advanced product management tools.",
 					"isOpen": true
 				},
 				{

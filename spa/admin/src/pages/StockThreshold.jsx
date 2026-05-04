@@ -12,9 +12,9 @@ import { WarningIcon } from "../../common/Svgs";
 ───────────────────────────────────────────── */
 const Divider = () => <div className="border-t border-gray-100" />;
 
-/* ═════════════════════════════════════════════
+/* ══════════════════════════════════════════
    Main component
-═════════════════════════════════════════════ */
+══════════════════════════════════════════ */
 const StockThreshold = () => {
     const [isLoading, setIsLoading]             = useState(true);
     const [isSaving, setIsSaving]               = useState(false);
@@ -37,7 +37,7 @@ const StockThreshold = () => {
         customer_message: "High demand – price adjusted based on availability",
     });
 
-    const url = `${THRAILCOMMERCE.apiurl}/save-stock-threshold`;
+    const url = `${COMMERCEKIT.apiurl}/save-stock-threshold`;
 
     const handleChange = (key, value) =>
         setFormData((prev) => ({ ...prev, [key]: value }));
@@ -56,16 +56,16 @@ const StockThreshold = () => {
         });
 
     const checkFeatureAndLoad = () => {
-        const settingsData   = window.THRAILCOMMERCE?.settings_data || {};
+        const settingsData   = window.COMMERCEKIT?.settings_data || {};
         const featureEnabled = settingsData["stock-threshold-for-wc"] === "on";
         setIsFeatureEnabled(featureEnabled);
 
         if (featureEnabled) {
             setIsLoading(true);
             axios
-                .get(`${THRAILCOMMERCE.apiurl}/get-stock-threshold`, {
-                    headers: { "X-WP-Nonce": THRAILCOMMERCE.nonce },
-                })
+                .get(`${COMMERCEKIT.apiurl}/get-stock-threshold`, {
+                        headers: { "X-WP-Nonce": COMMERCEKIT.nonce },
+                    })
                 .then((r) => applyResponse(r.data))
                 .finally(() => setIsLoading(false));
         } else {
@@ -84,18 +84,18 @@ const StockThreshold = () => {
             if (featureEnabled) {
                 setIsLoading(true);
                 axios
-                    .get(`${THRAILCOMMERCE.apiurl}/get-stock-threshold`, {
-                        headers: { "X-WP-Nonce": THRAILCOMMERCE.nonce },
-                    })
+                    .get(`${COMMERCEKIT.apiurl}/get-stock-threshold`, {
+                            headers: { "X-WP-Nonce": COMMERCEKIT.nonce },
+                        })
                     .then((r) => applyResponse(r.data))
                     .catch((err) => console.error("Error loading stock threshold:", err))
                     .finally(() => setIsLoading(false));
             }
         };
 
-        window.addEventListener("thrailSettingsUpdated", handleSettingsUpdate);
+        window.addEventListener("commerceKitSettingsUpdated", handleSettingsUpdate);
         return () =>
-            window.removeEventListener("thrailSettingsUpdated", handleSettingsUpdate);
+            window.removeEventListener("commerceKitSettingsUpdated", handleSettingsUpdate);
     }, []);
 
     const handleSave = (e) => {
@@ -114,7 +114,7 @@ const StockThreshold = () => {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        "X-WP-Nonce":   THRAILCOMMERCE.nonce,
+                        "X-WP-Nonce":   COMMERCEKIT.nonce,
                     },
                 }
             )
@@ -169,8 +169,8 @@ const StockThreshold = () => {
             {/* Saving overlay */}
             {isSaving && (
                 <div className="thrail-modal-save inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-                    <div className="text-white font-semibold text-lg">{savingMessage}</div>
-                </div>
+                        <div className="text-white font-semibold text-lg">{savingMessage}</div>
+                    </div>
             )}
 
             {/* Page header */}

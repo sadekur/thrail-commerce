@@ -62,7 +62,7 @@ const Edit = ({ attributes, setAttributes }) => {
 			);
 			updateSections(updatedSections);
 		} else {
-			alert(__("You cannot remove the last section.", "thrail-commerce"));
+			alert(__("You cannot remove the last section.", "commerce-kit"));
 		}
 	};
 
@@ -71,10 +71,10 @@ const Edit = ({ attributes, setAttributes }) => {
 			<InspectorControls>
 				<Panel>
 					<PanelBody
-						title={__("Accordion Settings", "thrail-commerce")}
+						title={__("Accordion Settings", "commerce-kit")}
 						initialOpen={true}>
 						<TextControl
-							label={__("Border Color", "thrail-commerce")}
+							label={__("Border Color", "commerce-kit")}
 							value={borderColor}
 							type="color"
 							onChange={(value) =>
@@ -82,7 +82,7 @@ const Edit = ({ attributes, setAttributes }) => {
 							}
 						/>
 						<TextControl
-							label={__("Border Size (px)", "thrail-commerce")}
+							label={__("Border Size (px)", "commerce-kit")}
 							value={parseInt(borderSize, 10)}
 							type="number"
 							onChange={(value) =>
@@ -90,27 +90,27 @@ const Edit = ({ attributes, setAttributes }) => {
 							}
 						/>
 						<SelectControl
-							label={__("Border Style", "thrail-commerce")}
+							label={__("Border Style", "commerce-kit")}
 							value={borderStyle}
 							options={[
 								{
-									label: __("Solid", "thrail-commerce"),
+									label: __("Solid", "commerce-kit"),
 									value: "solid",
 								},
 								{
-									label: __("Dashed", "thrail-commerce"),
+									label: __("Dashed", "commerce-kit"),
 									value: "dashed",
 								},
 								{
-									label: __("Dotted", "thrail-commerce"),
+									label: __("Dotted", "commerce-kit"),
 									value: "dotted",
 								},
 								{
-									label: __("Double", "thrail-commerce"),
+									label: __("Double", "commerce-kit"),
 									value: "double",
 								},
 								{
-									label: __("None", "thrail-commerce"),
+									label: __("None", "commerce-kit"),
 									value: "none",
 								},
 							]}
@@ -119,7 +119,7 @@ const Edit = ({ attributes, setAttributes }) => {
 							}
 						/>
 						<TextControl
-							label={__("Title Color", "thrail-commerce")}
+							label={__("Title Color", "commerce-kit")}
 							value={titleColor}
 							type="color"
 							onChange={(value) =>
@@ -129,7 +129,7 @@ const Edit = ({ attributes, setAttributes }) => {
 						<TextControl
 							label={__(
 								"Title Font Size (px)",
-								"thrail-commerce"
+								"commerce-kit"
 							)}
 							value={parseInt(titleFontSize, 10)}
 							type="number"
@@ -138,7 +138,7 @@ const Edit = ({ attributes, setAttributes }) => {
 							}
 						/>
 						<SelectControl
-							label={__("Title Font Family", "thrail-commerce")}
+							label={__("Title Font Family", "commerce-kit")}
 							value={titleFontFamily}
 							options={[
 								{ label: "Default", value: "inherit" },
@@ -154,7 +154,7 @@ const Edit = ({ attributes, setAttributes }) => {
 							}
 						/>
 						<TextControl
-							label={__("Content Color", "thrail-commerce")}
+							label={__("Content Color", "commerce-kit")}
 							value={contentColor}
 							type="color"
 							onChange={(value) =>
@@ -164,7 +164,7 @@ const Edit = ({ attributes, setAttributes }) => {
 						<TextControl
 							label={__(
 								"Content Font Size (px)",
-								"thrail-commerce"
+								"commerce-kit"
 							)}
 							value={parseInt(contentFontSize, 10)}
 							type="number"
@@ -173,7 +173,7 @@ const Edit = ({ attributes, setAttributes }) => {
 							}
 						/>
 						<SelectControl
-							label={__("Content Font Family", "thrail-commerce")}
+							label={__("Content Font Family", "commerce-kit")}
 							value={contentFontFamily}
 							options={[
 								{ label: "Default", value: "inherit" },
@@ -192,7 +192,7 @@ const Edit = ({ attributes, setAttributes }) => {
 						<TextControl
 							label={__(
 								"Button Background Color",
-								"thrail-commerce"
+								"commerce-kit"
 							)}
 							value={buttonBackgroundColor}
 							type="color"
@@ -201,7 +201,7 @@ const Edit = ({ attributes, setAttributes }) => {
 							}
 						/>
 						<TextControl
-							label={__("Button Text Color", "thrail-commerce")}
+							label={__("Button Text Color", "commerce-kit")}
 							value={buttonTextColor}
 							type="color"
 							onChange={(value) =>
@@ -211,7 +211,7 @@ const Edit = ({ attributes, setAttributes }) => {
 						<TextControl
 							label={__(
 								"Button Font Size (px)",
-								"thrail-commerce"
+								"commerce-kit"
 							)}
 							value={parseInt(buttonFontSize, 10)}
 							type="number"
@@ -220,7 +220,7 @@ const Edit = ({ attributes, setAttributes }) => {
 							}
 						/>
 						<SelectControl
-							label={__("Button Font Family", "thrail-commerce")}
+							label={__("Button Font Family", "commerce-kit")}
 							value={buttonFontFamily}
 							options={[
 								{ label: "Default", value: "inherit" },
@@ -236,7 +236,7 @@ const Edit = ({ attributes, setAttributes }) => {
 							}
 						/>
 						<TextControl
-							label={__("Button Text", "thrail-commerce")}
+							label={__("Button Text", "commerce-kit")}
 							value={buttonText}
 							onChange={(value) =>
 								setAttributes({ buttonText: value })
@@ -257,7 +257,7 @@ const Edit = ({ attributes, setAttributes }) => {
 					}}>
 					<div
 						onClick={() => toggleSection(index)}
-						className="thrail-commerce-accordion-header cursor-pointer py-2 mb-2 flex items-center">
+						className="commerce-kit-accordion-header cursor-pointer py-2 mb-2 flex items-center">
 						<RichText
 							tagName="h3"
 							value={section.title}
@@ -266,7 +266,7 @@ const Edit = ({ attributes, setAttributes }) => {
 							}
 							placeholder={__(
 								"Enter title...",
-								"thrail-commerce"
+								"commerce-kit"
 							)}
 							style={{
 								color: titleColor,
@@ -289,7 +289,7 @@ const Edit = ({ attributes, setAttributes }) => {
 								}
 								placeholder={__(
 									"Enter content...",
-									"thrail-commerce"
+									"commerce-kit"
 								)}
 								className="text-gray-800 p-2 rounded bg-white"
 								style={{
@@ -305,13 +305,13 @@ const Edit = ({ attributes, setAttributes }) => {
 						onClick={() => removeSection(index)}
 						className="mt-2"
 						disabled={attributes.sections.length === 1}>
-						{__("Remove Section", "thrail-commerce")}
+						{__("Remove Section", "commerce-kit")}
 					</Button>
 				</div>
 			))}
 			<button
 				onClick={addSection}
-				className="thrail-commerce-add-section mt-4 p-2"
+				className="commerce-kit-add-section mt-4 p-2"
 				style={{
 					backgroundColor: buttonBackgroundColor,
 					color: buttonTextColor,

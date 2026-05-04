@@ -1,6 +1,6 @@
 const requireContext = require.context(".", true, /\.(js|jsx|tsx)$/);
 // requireContext.keys().forEach(requireContext);
-const activeBlocks = window.THRAILCOMMERCE.activeBlocks || [];
+const activeBlocks = window.COMMERCEKIT.activeBlocks || [];
 
 // Function to check if a path matches any active block
 const isActiveBlock = (path) => {

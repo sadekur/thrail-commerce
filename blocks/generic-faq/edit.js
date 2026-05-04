@@ -7,7 +7,7 @@ export default function Edit() {
 
     return (
         <div {...blockProps}>
-            <h3>{__('FAQ Block (Editor View)', 'thrail-commerce')}</h3>
+            <h3>{__('FAQ Block (Editor View)', 'commerce-kit')}</h3>
         </div>
     );
 }
