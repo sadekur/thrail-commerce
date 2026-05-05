@@ -173,8 +173,6 @@ const StockThreshold = () => {
                     </div>
             )}
 
-            {/* Page header */}
-            <CommonHeader title="StockAdaptix Pricing for WooCommerce" />
             <div className="mt-1 mb-5">
                 <p className="text-sm font-semibold text-gray-700">Pricing Configuration</p>
                 <p className="text-sm text-gray-500">Configure how stock levels affect product pricing.</p>
