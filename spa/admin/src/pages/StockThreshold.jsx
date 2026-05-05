@@ -16,11 +16,11 @@ const Divider = () => <div className="border-t border-gray-100" />;
    Main component
 ══════════════════════════════════════════ */
 const StockThreshold = () => {
-const [isLoading, setIsLoading]             = useState(true);
-const [isSaving, setIsSaving]               = useState(false);
-const [savingMessage, setSavingMessage]     = useState("Saving...");
-const [isFeatureEnabled, setIsFeatureEnabled] = useState(false);
-const [showHowItWorks, setShowHowItWorks] = useState(false);
+    const [isLoading, setIsLoading]             = useState(true);
+    const [isSaving, setIsSaving]               = useState(false);
+    const [savingMessage, setSavingMessage]     = useState("Saving...");
+    const [isFeatureEnabled, setIsFeatureEnabled] = useState(false);
+    const [showHowItWorks, setShowHowItWorks] = useState(false);
 
     const [formData, setFormData] = useState({
         enable_dynamic_pricing: false,
@@ -135,7 +135,7 @@ const [showHowItWorks, setShowHowItWorks] = useState(false);
 
     if (!isFeatureEnabled) {
         return (
-            <div className="relative space-y-6">
+            <div className="relative space-y-6 max-w-4xl">
                 <CommonHeader title="StockAdaptix – Inventory-Based Dynamic Pricing" />
                 <div className="mt-6 p-8 bg-yellow-50 border-l-4 border-yellow-400 rounded-lg">
                     <div className="flex">
@@ -149,12 +149,12 @@ const [showHowItWorks, setShowHowItWorks] = useState(false);
                                 <strong>"Stock Threshold for WooCommerce"</strong> from the Features page first.
                             </p>
                              <div className="mt-4">
-                                 <button
-                                     onClick={() => (window.location.hash = "")}
-                                     className="inline-flex items-center px-4 py-2 bg-[#0029af] rounded-md text-sm text-white font-semibold hover:bg-[#0842ff] transition-colors duration-150"
-                                 >
-                                     Go to Features Page
-                                 </button>
+                                  <button
+                                      onClick={() => (window.location.hash = "")}
+                                      className="inline-flex items-center px-4 py-2 bg-blue-700 rounded-md text-sm text-white font-semibold hover:bg-blue-800 transition-colors duration-150"
+                                  >
+                                      Go to Features Page
+                                  </button>
                              </div>
                         </div>
                     </div>
@@ -271,17 +271,15 @@ const [showHowItWorks, setShowHowItWorks] = useState(false);
 
                 {/* Customer Message */}
                 <FieldRow label="Customer Message">
-                    <>
-                        <input
-                            type="text"
-                            value={formData.customer_message}
-                            onChange={(e) => handleChange("customer_message", e.target.value)}
-                            className="w-full px-3 py-1.5 text-sm text-gray-800 bg-white border border-gray-400 rounded shadow-inner focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
-                        />
-                        <p className="mt-1.5 text-xs text-gray-500 italic">
-                            Message shown to customers when prices are adjusted (default: "High demand – price adjusted based on availability")
-                        </p>
-                    </>
+                     <textarea
+                         value={formData.customer_message}
+                         onChange={(e) => handleChange("customer_message", e.target.value)}
+                         rows={2}
+                         className="w-full px-3 py-1.5 text-sm text-gray-800 bg-white border border-gray-400 rounded shadow-inner focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 resize-none"
+                     />
+                     <p className="mt-1.5 text-xs text-gray-500 italic">
+                         Message shown to customers when prices are adjusted (default: "High demand – price adjusted based on availability")
+                     </p>
                 </FieldRow>
 
                 {/* Save button */}
