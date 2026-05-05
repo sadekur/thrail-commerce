@@ -10,11 +10,6 @@
 .commerce-kit-modal-save {
 	position: fixed;
 }
-.commerce-kit-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
 .commerce-kit-disable-all {
 	padding: 0.5rem 1rem;
     background-color: #6b7280;

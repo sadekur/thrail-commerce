@@ -2,7 +2,7 @@ import React from "react";
 
 const CommonHeader = ({ title, onDisableAll, onEnableAll }) => {
 	return (
-		<div className='commerce-kit-header bg-white py-3 px-4 rounded-lg shadow-md'>
+		<div className='commerce-kit-header bg-white !py-8 px-4 rounded-lg shadow-md'>
 			<h1 className='text-xl font-bold text-[#0029af]'>{title}</h1>
 			<div className='commerce-kit-control-button flex'>
 				<button
