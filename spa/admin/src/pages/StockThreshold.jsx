@@ -6,10 +6,6 @@ import { WarningIcon } from "../../common/Svgs";
 import Pill from "../../../common/Pill";
 
 
-
-/* ─────────────────────────────────────────────
-   Section header component
-───────────────────────────────────────────── */
 const SectionHeader = ({ icon, title, color, description }) => {
   const bgMap = {
     red: "bg-red-500/5 border-b-red-500/20",
