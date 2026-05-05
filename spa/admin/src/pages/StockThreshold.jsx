@@ -37,7 +37,7 @@ const StockThreshold = () => {
         customer_message: "High demand – price adjusted based on availability",
     });
 
-    const url = `${COMMERCEKIT.apiurl}/commerce-kit/v1/save-stock-threshold`;
+    const url = `${COMMERCEKIT.apiurl}save-stock-threshold`;
 
     const handleChange = (key, value) =>
         setFormData((prev) => ({ ...prev, [key]: value }));
