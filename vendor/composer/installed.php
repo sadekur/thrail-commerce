@@ -3,7 +3,7 @@
         'name' => 'commerce-kit/commerce',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'b0338e266026fbd696b676e2e00b470a63301d6f',
+        'reference' => '2a9360417fa36aa9a95a481ea782c2769b979dfb',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'commerce-kit/commerce' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'b0338e266026fbd696b676e2e00b470a63301d6f',
+            'reference' => '2a9360417fa36aa9a95a481ea782c2769b979dfb',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
