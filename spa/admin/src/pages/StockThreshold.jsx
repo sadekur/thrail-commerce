@@ -176,7 +176,7 @@ const StockThreshold = () => {
                 )}
 
             <div className="mb-6">
-                <p className="text-sm font-semibold text-gray-700">StockAdaptix Pricing Rules</p>
+                <p className="text-5xl font-semibold text-gray-700">StockAdaptix Pricing Rules</p>
                 <p className="text-sm text-gray-500">Configure how stock levels affect product pricing.</p>
             </div>
 
