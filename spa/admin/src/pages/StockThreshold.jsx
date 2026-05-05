@@ -4,6 +4,7 @@ import CommonHeader from "../../common/CommonHeader";
 import SettingSkeleton from "../../common/Skeletons/SettingSkalaton";
 import { WarningIcon } from "../../common/Svgs";
 import Pill from "../../common/Pill";
+import SectionHeader from "../../common/SectionHeader";
 
 
 /* ─────────────────────────────────────────────
