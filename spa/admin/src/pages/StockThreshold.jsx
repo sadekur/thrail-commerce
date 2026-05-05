@@ -37,7 +37,7 @@ const StockThreshold = () => {
         customer_message: "High demand – price adjusted based on availability",
     });
 
-    const url = `${COMMERCEKIT.apiurl}/save-stock-threshold`;
+    const url = `${COMMERCEKIT.apiurl}/commerce-kit/v1/save-stock-threshold`;
 
     const handleChange = (key, value) =>
         setFormData((prev) => ({ ...prev, [key]: value }));
@@ -63,7 +63,7 @@ const StockThreshold = () => {
         if (featureEnabled) {
             setIsLoading(true);
             axios
-                .get(`${COMMERCEKIT.apiurl}/get-stock-threshold`, {
+                .get(`${COMMERCEKIT.apiurl}/commerce-kit/v1/get-stock-threshold`, {
                         headers: { "X-WP-Nonce": COMMERCEKIT.nonce },
                     })
                 .then((r) => applyResponse(r.data))
@@ -84,7 +84,7 @@ const StockThreshold = () => {
             if (featureEnabled) {
                 setIsLoading(true);
                 axios
-                    .get(`${COMMERCEKIT.apiurl}/get-stock-threshold`, {
+                    .get(`${COMMERCEKIT.apiurl}/commerce-kit/v1/get-stock-threshold`, {
                             headers: { "X-WP-Nonce": COMMERCEKIT.nonce },
                         })
                     .then((r) => applyResponse(r.data))
@@ -135,7 +135,7 @@ const StockThreshold = () => {
     if (!isFeatureEnabled) {
         return (
             <div className="relative">
-                <CommonHeader title="Stock Threshold Settings" />
+                <CommonHeader title="StockAdaptix – Inventory-Based Dynamic Pricing" />
                 <div className="mt-6 p-8 bg-yellow-50 border-l-4 border-yellow-400 rounded-lg">
                     <div className="flex">
                         <div className="flex-shrink-0">
@@ -164,22 +164,30 @@ const StockThreshold = () => {
 
     /* ── main render ── */
     return (
-        <div className="relative">
+            <div className="relative">
+                <CommonHeader title="StockAdaptix – Inventory-Based Dynamic Pricing" />
 
-            {/* Saving overlay */}
-            {isSaving && (
-                <div className="commerce-kit-modal-save inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-                        <div className="text-white font-semibold text-lg">{savingMessage}</div>
-                    </div>
-            )}
+                {/* Saving overlay */}
+                {isSaving && (
+                    <div className="commerce-kit-modal-save inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+                            <div className="text-white font-semibold text-lg">{savingMessage}</div>
+                        </div>
+                )}
 
             <div className="mt-1 mb-5">
-                <p className="text-sm font-semibold text-gray-700">Pricing Configuration</p>
+                <p className="text-sm font-semibold text-gray-700">StockAdaptix Pricing Rules</p>
                 <p className="text-sm text-gray-500">Configure how stock levels affect product pricing.</p>
             </div>
 
             {/* Form card */}
             <form onSubmit={handleSave} className="bg-white border border-gray-200 rounded-md shadow-sm mb-6">
+                <FieldRow label="Enable StockAdaptix">
+                    <CheckboxField
+                        checked={formData.enable_dynamic_pricing}
+                        onChange={(e) => handleChange("enable_dynamic_pricing", e.target.checked)}
+                        label="Enable inventory-based dynamic pricing adjustments"
+                    />
+                </FieldRow>
                 <Divider />
                 {/* Low Stock Threshold */}
                 <FieldRow label="Low Stock Threshold">
