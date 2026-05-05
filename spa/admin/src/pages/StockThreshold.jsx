@@ -50,7 +50,7 @@ const StockThreshold = () => {
     if (featureEnabled) {
       setIsLoading(true);
       axios
-        .get(`${COMMERCEKIT.apiurl}get-stock-threshold`, {
+        .get(`${COMMERCEKIT.apiurl}/get-stock-threshold`, {
           headers: { "X-WP-Nonce": COMMERCEKIT.nonce },
         })
         .then((r) => applyResponse(r.data))
