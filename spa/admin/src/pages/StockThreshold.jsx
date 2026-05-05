@@ -3,7 +3,7 @@ import axios from "axios";
 import CommonHeader from "../../common/CommonHeader";
 import SettingSkeleton from "../../common/Skeletons/SettingSkalaton";
 import { WarningIcon } from "../../common/Svgs";
-import Pill from "../../../common/Pill";
+import Pill from "../../common/Pill";
 
 
 const SectionHeader = ({ icon, title, color, description }) => {
