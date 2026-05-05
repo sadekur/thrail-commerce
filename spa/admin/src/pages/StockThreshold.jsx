@@ -313,7 +313,6 @@ const StockThreshold = () => {
   /* ── main render ── */
   return (
     <div style={{ maxWidth: 760, fontFamily: "'Inter', system-ui, sans-serif" }}>
-      <CommonHeader title="StockAdaptix – Inventory-Based Dynamic Pricing" />
 
       {/* Page title row */}
       <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", margin: "24px 0 20px" }}>
