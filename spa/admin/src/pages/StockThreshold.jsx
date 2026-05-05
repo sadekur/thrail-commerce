@@ -8,10 +8,6 @@ import SectionHeader from "../../common/SectionHeader";
 import InputRow from "../../common/InputRow";
 import Toggle from "../../common/Toggle";
 
-
-/* ══════════════════════════════════════════
-   Main component
-══════════════════════════════════════════ */
 const StockThreshold = () => {
   const [isLoading, setIsLoading]               = useState(true);
   const [isSaving, setIsSaving]                 = useState(false);
