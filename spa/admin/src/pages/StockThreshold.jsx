@@ -88,7 +88,7 @@ const StockThreshold = () => {
     customer_message: "High demand – price adjusted based on availability",
   });
 
-  const url = `${COMMERCEKIT.apiurl}/save-stock-threshold`;
+  const url = `${COMMERCEKIT.apiurl}shold`;
   const handleChange = (key, value) => setFormData((prev) => ({ ...prev, [key]: value }));
 
   const applyResponse = (data) =>
@@ -111,7 +111,7 @@ const StockThreshold = () => {
     if (featureEnabled) {
       setIsLoading(true);
       axios
-        .get(`${COMMERCEKIT.apiurl}/commerce-kit/v1/get-stock-threshold`, {
+        .get(`${COMMERCEKIT.apiurl}/get-stock-threshold`, {
           headers: { "X-WP-Nonce": COMMERCEKIT.nonce },
         })
         .then((r) => applyResponse(r.data))
