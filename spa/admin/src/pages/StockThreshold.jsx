@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CommonHeader from "../../common/CommonHeader";
 import SettingSkeleton from "../../common/Skeletons/SettingSkalaton";
-import { WarningIcon } from "../../common/Svgs";
+import { SaveButtonIcon, WarningIcon } from "../../common/Svgs";
 
 /* ── Badge pill ── */
 const Pill = ({ label, className }) => (
@@ -401,10 +401,7 @@ const StockThreshold = () => {
           >
             {isSaving ? (
               <>
-                <svg className="w-3.5 h-3.5 animate-spin" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="3" strokeOpacity="0.3" />
-                  <path d="M12 2a10 10 0 0 1 10 10" stroke="white" strokeWidth="3" strokeLinecap="round" />
-                </svg>
+                {SaveButtonIcon}
                 Saving…
               </>
             ) : (
