@@ -4,14 +4,6 @@ import CommonHeader from "../../common/CommonHeader";
 import SettingSkeleton from "../../common/Skeletons/SettingSkalaton";
 import { SaveButtonIcon, SaveChangesIcon, WarningIcon } from "../../common/Svgs";
 
-/* ── Badge pill ── */
-const Pill = ({ label, className }) => (
-  <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold tracking-widest uppercase border ${className}`}>
-    <span className="w-1.5 h-1.5 rounded-full bg-current opacity-80" />
-    {label}
-  </span>
-);
-
 /* ── Section header ── */
 const SectionHeader = ({ icon, title, description, headerClass, pillClass }) => (
   <div className={`flex items-center gap-3 px-6 py-4 border-b ${headerClass}`}>
