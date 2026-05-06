@@ -294,7 +294,6 @@ const StockThreshold = () => {
               </>
             ) : (
               <>
-                {SaveChangesIcon}
                 Save Changes
               </>
             )}
