@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import CommonHeader from "../../common/CommonHeader";
 import SettingSkeleton from "../../common/Skeletons/SettingSkalaton";
 import { SaveButtonIcon, SaveChangesIcon, WarningIcon } from "../../common/Svgs";
 import Toggle from "../common/Toggle";
@@ -30,7 +29,6 @@ const StockThreshold = () => {
   const [showHowItWorks, setShowHowItWorks]     = useState(false);
 
   const [formData, setFormData] = useState({
-    enable_dynamic_pricing: false,
     low_threshold:    5,
     low_increase:     40,
     medium_threshold: 20,
@@ -46,7 +44,6 @@ const StockThreshold = () => {
 
   const applyResponse = (data) =>
     setFormData({
-      enable_dynamic_pricing: data.enable_dynamic_pricing === "on",
       low_threshold:    data.low_threshold,
       low_increase:     data.low_increase,
       medium_threshold: data.medium_threshold,
@@ -104,8 +101,7 @@ const StockThreshold = () => {
         url,
         {
           ...formData,
-          enable_dynamic_pricing: formData.enable_dynamic_pricing ? "on" : "off",
-          enable_message:         formData.enable_message         ? "on" : "off",
+          enable_message: formData.enable_message ? "on" : "off",
         },
         { headers: { "Content-Type": "application/json", "X-WP-Nonce": COMMERCEKIT.nonce } }
       )
@@ -128,7 +124,6 @@ const StockThreshold = () => {
   if (!isFeatureEnabled) {
     return (
       <div className="max-w-2xl">
-        <CommonHeader title="StockAdaptix – Inventory-Based Dynamic Pricing" />
         <div className="mt-6 flex gap-4 p-6 bg-yellow-50 border border-yellow-300 border-l-4 border-l-yellow-500 rounded-xl">
           <WarningIcon className="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
           <div>
@@ -153,38 +148,6 @@ const StockThreshold = () => {
   return (
     <div className="max-w-3xl">
 
-      <CommonHeader title="StockAdaptix – Inventory-Based Dynamic Pricing" />
-
-      {/* ── Page title row ── */}
-      <div className="flex items-end justify-between mt-6 mb-5">
-        <div>
-          <h2 className="m-0 text-[22px] font-extrabold text-gray-800 tracking-tight">
-            StockAdaptix Pricing Rules
-          </h2>
-          <p className="m-0 mt-1 text-[13px] text-gray-500">
-            Configure how inventory levels automatically adjust product pricing.
-          </p>
-        </div>
-
-        {/* Live status badge */}
-        <div className="flex items-center gap-2 flex-shrink-0">
-          <span
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              formData.enable_dynamic_pricing
-                ? "bg-green-500 ring-2 ring-green-200"
-                : "bg-gray-300"
-            }`}
-          />
-          <span
-            className={`text-xs font-semibold transition-colors duration-300 ${
-              formData.enable_dynamic_pricing ? "text-green-600" : "text-gray-400"
-            }`}
-          >
-            {formData.enable_dynamic_pricing ? "Active" : "Inactive"}
-          </span>
-        </div>
-      </div>
-
       {/* ── Save toast ── */}
       {saveStatus && (
         <div
@@ -205,36 +168,8 @@ const StockThreshold = () => {
 
       <form onSubmit={handleSave} className="space-y-4">
 
-        {/* ── Master enable card ── */}
-        <div
-          className={`bg-white rounded-xl overflow-hidden shadow-sm border transition-colors duration-200 ${
-            formData.enable_dynamic_pricing
-              ? "border-blue-300 ring-1 ring-blue-100"
-              : "border-gray-200"
-          }`}
-        >
-          <div className="flex items-center justify-between px-6 py-4">
-            <div>
-              <p className="m-0 text-sm font-bold text-gray-800">Enable StockAdaptix</p>
-              <p className="m-0 mt-0.5 text-xs text-gray-500">
-                Activate inventory-based dynamic pricing adjustments across your store
-              </p>
-            </div>
-            <Toggle
-              checked={formData.enable_dynamic_pricing}
-              onChange={(e) => handleChange("enable_dynamic_pricing", e.target.checked)}
-            />
-          </div>
-        </div>
-
         {/* ── Pricing rules card ── */}
-        <div
-          className={`bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition-opacity duration-200 ${
-            formData.enable_dynamic_pricing
-              ? "opacity-100 pointer-events-auto"
-              : "opacity-50 pointer-events-none"
-          }`}
-        >
+        <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200">
           {/* Low Stock */}
           <SectionHeader
             icon="🔴"
