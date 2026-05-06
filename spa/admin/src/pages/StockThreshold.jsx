@@ -7,19 +7,14 @@ import SectionHeader from "../../common/SectionHeader";
 import InputRow from "../../common/InputRow";
 import Toggle from "../../common/Toggle";
 
-
-/* ══════════════════════════════════════════
-   Main component
-══════════════════════════════════════════ */
 const StockThreshold = () => {
-  const [isLoading, setIsLoading]               = useState(true);
-  const [isSaving, setIsSaving]                 = useState(false);
-  const [saveStatus, setSaveStatus]             = useState(null); // null | "success" | "error"
+  const [isLoading, setIsLoading]           = useState(true);
+  const [isSaving, setIsSaving]             = useState(false);
+  const [saveStatus, setSaveStatus]         = useState(null);
   const [isFeatureEnabled, setIsFeatureEnabled] = useState(false);
-  const [showHowItWorks, setShowHowItWorks]     = useState(false);
+  const [showHowItWorks, setShowHowItWorks] = useState(false);
 
   const [formData, setFormData] = useState({
-    enable_dynamic_pricing: false,
     low_threshold:    5,
     low_increase:     40,
     medium_threshold: 20,
@@ -35,7 +30,6 @@ const StockThreshold = () => {
 
   const applyResponse = (data) =>
     setFormData({
-      enable_dynamic_pricing: data.enable_dynamic_pricing === "on",
       low_threshold:    data.low_threshold,
       low_increase:     data.low_increase,
       medium_threshold: data.medium_threshold,
@@ -93,8 +87,7 @@ const StockThreshold = () => {
         url,
         {
           ...formData,
-          enable_dynamic_pricing: formData.enable_dynamic_pricing ? "on" : "off",
-          enable_message:         formData.enable_message         ? "on" : "off",
+          enable_message: formData.enable_message ? "on" : "off",
         },
         { headers: { "Content-Type": "application/json", "X-WP-Nonce": COMMERCEKIT.nonce } }
       )
@@ -111,7 +104,6 @@ const StockThreshold = () => {
       });
   };
 
-  /* ── early returns ── */
   if (isLoading) return <SettingSkeleton />;
 
   if (!isFeatureEnabled) {
@@ -122,9 +114,8 @@ const StockThreshold = () => {
           <WarningIcon className="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
           <div>
             <p className="m-0 text-[15px] font-bold text-yellow-900">Feature Not Enabled</p>
-            <p className="mt-1.5 mb-4 m-0 text-[13px] text-yellow-800 leading-relaxed">
-              The Stock Threshold feature is currently disabled. Please enable{" "}
-              <strong>"Stock Threshold for WooCommerce"</strong> from the Features page first.
+            <p className="mt-1.5 mb-4 text-[13px] text-yellow-800 leading-relaxed">
+              Enable <strong>"Stock Threshold for WooCommerce"</strong> from Features page first.
             </p>
             <button
               onClick={() => (window.location.hash = "")}
@@ -138,43 +129,18 @@ const StockThreshold = () => {
     );
   }
 
-  /* ── main render ── */
   return (
     <div className="max-w-3xl">
-
       <CommonHeader title="StockAdaptix – Inventory-Based Dynamic Pricing" />
 
-      {/* ── Page title row ── */}
       <div className="flex items-end justify-between mt-6 mb-5">
         <div>
           <h2 className="m-0 text-[22px] font-extrabold text-gray-800 tracking-tight">
             StockAdaptix Pricing Rules
           </h2>
-          <p className="m-0 mt-1 text-[13px] text-gray-500">
-            Configure how inventory levels automatically adjust product pricing.
-          </p>
-        </div>
-
-        {/* Live status badge */}
-        <div className="flex items-center gap-2 flex-shrink-0">
-          <span
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              formData.enable_dynamic_pricing
-                ? "bg-green-500 ring-2 ring-green-200"
-                : "bg-gray-300"
-            }`}
-          />
-          <span
-            className={`text-xs font-semibold transition-colors duration-300 ${
-              formData.enable_dynamic_pricing ? "text-green-600" : "text-gray-400"
-            }`}
-          >
-            {formData.enable_dynamic_pricing ? "Active" : "Inactive"}
-          </span>
         </div>
       </div>
 
-      {/* ── Save toast ── */}
       {saveStatus && (
         <div
           className={`flex items-center gap-2.5 px-4 py-2.5 mb-4 rounded-xl text-[13px] font-semibold border ${
@@ -187,48 +153,18 @@ const StockThreshold = () => {
             {saveStatus === "success" ? "✓" : "✕"}
           </span>
           {saveStatus === "success"
-            ? "Settings saved successfully."
-            : "Error saving settings. Please try again."}
+            ? "Settings saved."
+            : "Error saving. Try again."}
         </div>
       )}
 
       <form onSubmit={handleSave} className="space-y-4">
 
-        {/* ── Master enable card ── */}
-        <div
-          className={`bg-white rounded-xl overflow-hidden shadow-sm border transition-colors duration-200 ${
-            formData.enable_dynamic_pricing
-              ? "border-blue-300 ring-1 ring-blue-100"
-              : "border-gray-200"
-          }`}
-        >
-          <div className="flex items-center justify-between px-6 py-4">
-            <div>
-              <p className="m-0 text-sm font-bold text-gray-800">Enable StockAdaptix</p>
-              <p className="m-0 mt-0.5 text-xs text-gray-500">
-                Activate inventory-based dynamic pricing adjustments across your store
-              </p>
-            </div>
-            <Toggle
-              checked={formData.enable_dynamic_pricing}
-              onChange={(e) => handleChange("enable_dynamic_pricing", e.target.checked)}
-            />
-          </div>
-        </div>
-
-        {/* ── Pricing rules card ── */}
-        <div
-          className={`bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition-opacity duration-200 ${
-            formData.enable_dynamic_pricing
-              ? "opacity-100 pointer-events-auto"
-              : "opacity-50 pointer-events-none"
-          }`}
-        >
-          {/* Low Stock */}
+        {/* Low Stock */}
+        <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200">
           <SectionHeader
             icon="🔴"
             title="Low Stock Rules"
-            description="Increase price when inventory is scarce"
             headerClass="bg-red-50 border-red-100"
             pillClass="text-red-600 bg-red-50 border-red-200"
           />
@@ -236,21 +172,22 @@ const StockThreshold = () => {
             label="Low Stock Threshold"
             value={formData.low_threshold}
             onChange={(e) => handleChange("low_threshold", parseInt(e.target.value) || 0)}
-            helper="Items at or below this count = low stock"
+            helper="Items at or below = low stock"
           />
           <InputRow
             label="Price Increase"
             value={formData.low_increase}
             onChange={(e) => handleChange("low_increase", parseFloat(e.target.value) || 0)}
             suffix="%"
-            helper="% added to base price when stock is low"
+            helper="% added to base price"
           />
+        </div>
 
-          {/* Medium Stock */}
+        {/* Medium Stock */}
+        <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200">
           <SectionHeader
             icon="🟡"
             title="Medium Stock Rules"
-            description="Slight increase for moderate inventory levels"
             headerClass="bg-amber-50 border-amber-100"
             pillClass="text-amber-600 bg-amber-50 border-amber-200"
           />
@@ -258,21 +195,22 @@ const StockThreshold = () => {
             label="Medium Stock Threshold"
             value={formData.medium_threshold}
             onChange={(e) => handleChange("medium_threshold", parseInt(e.target.value) || 0)}
-            helper="Items at or below this count = medium stock"
+            helper="Items at or below = medium stock"
           />
           <InputRow
             label="Price Increase"
             value={formData.medium_increase}
             onChange={(e) => handleChange("medium_increase", parseFloat(e.target.value) || 0)}
             suffix="%"
-            helper="% added to base price when stock is medium"
+            helper="% added to base price"
           />
+        </div>
 
-          {/* High Stock */}
+        {/* High Stock */}
+        <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200">
           <SectionHeader
             icon="🟢"
             title="High Stock Rules"
-            description="Decrease price to move excess inventory faster"
             headerClass="bg-green-50 border-green-100"
             pillClass="text-green-600 bg-green-50 border-green-200"
           />
@@ -280,34 +218,28 @@ const StockThreshold = () => {
             label="High Stock Threshold"
             value={formData.high_threshold}
             onChange={(e) => handleChange("high_threshold", parseInt(e.target.value) || 0)}
-            helper="Items at or above this count = high stock"
+            helper="Items at or above = high stock"
           />
           <InputRow
             label="Price Decrease"
             value={formData.high_decrease}
             onChange={(e) => handleChange("high_decrease", parseFloat(e.target.value) || 0)}
             suffix="%"
-            helper="% subtracted from base price when stock is high"
+            helper="% subtracted from base price"
           />
         </div>
 
-        {/* ── Customer message card ── */}
+        {/* Customer Message */}
         <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200">
-          {/* Header row */}
           <div className="flex items-center justify-between px-6 py-3.5 bg-gray-50 border-b border-gray-100">
             <div>
               <p className="m-0 text-[13px] font-bold text-gray-800">💬 Customer Message</p>
-              <p className="m-0 mt-0.5 text-[11px] text-gray-500">
-                Notify shoppers when pricing has been adjusted
-              </p>
             </div>
             <Toggle
               checked={formData.enable_message}
               onChange={(e) => handleChange("enable_message", e.target.checked)}
             />
           </div>
-
-          {/* Textarea body */}
           <div
             className={`px-6 py-4 transition-opacity duration-200 ${
               formData.enable_message
@@ -325,12 +257,12 @@ const StockThreshold = () => {
               className="w-full px-3.5 py-2.5 text-[13px] text-gray-800 bg-gray-50 border border-gray-200 rounded-lg resize-none font-sans leading-relaxed focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors duration-150"
             />
             <p className="m-0 mt-1.5 text-[11px] text-gray-400">
-              Shown to customers when dynamic pricing is applied on product pages.
+              Shown on product pages when dynamic pricing applied.
             </p>
           </div>
         </div>
 
-        {/* ── Save button row ── */}
+        {/* Save */}
         <div className="flex items-center gap-3 pt-1">
           <button
             type="submit"
@@ -342,22 +274,16 @@ const StockThreshold = () => {
             }`}
           >
             {isSaving ? (
-              <>
-                {SaveButtonIcon}
-                Saving…
-              </>
+              <>{SaveButtonIcon} Saving…</>
             ) : (
-              <>
-                {SaveChangesIcon}
-                Save Changes
-              </>
+              <>{SaveChangesIcon} Save Changes</>
             )}
           </button>
-          <span className="text-xs text-gray-400">Changes are applied immediately after saving.</span>
+          <span className="text-xs text-gray-400">Applied immediately after saving.</span>
         </div>
       </form>
 
-      {/* ── How It Works accordion ── */}
+      {/* How It Works */}
       <div className="mt-6 bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 max-w-lg">
         <button
           type="button"
@@ -365,8 +291,7 @@ const StockThreshold = () => {
           className="w-full flex items-center justify-between px-5 py-3.5 bg-transparent border-none cursor-pointer text-[13px] font-bold text-gray-700 hover:bg-gray-50 transition-colors duration-150 focus:outline-none"
         >
           <span className="flex items-center gap-2">
-            <span>📖</span>
-            How It Works
+            <span>📖</span> How It Works
           </span>
           <svg
             className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${showHowItWorks ? "rotate-180" : "rotate-0"}`}
@@ -384,39 +309,22 @@ const StockThreshold = () => {
         {showHowItWorks && (
           <div className="px-5 pb-5 flex flex-col gap-2">
             {[
-              {
-                icon: "🔴",
-                text: "Stock ≤ Low Threshold → price increases by Low %",
-                className: "bg-red-50 border-red-100 text-red-800",
-              },
-              {
-                icon: "🟡",
-                text: "Stock ≤ Medium Threshold → price increases by Medium %",
-                className: "bg-amber-50 border-amber-100 text-amber-800",
-              },
-              {
-                icon: "🟢",
-                text: "Stock ≥ High Threshold → price decreases by High %",
-                className: "bg-green-50 border-green-100 text-green-800",
-              },
-              {
-                icon: "⚪",
-                text: "Otherwise → normal base price applies",
-                className: "bg-gray-50 border-gray-100 text-gray-600",
-              },
-            ].map(({ icon, text, className }) => (
+              { icon: "🔴", text: "Stock ≤ Low Threshold → price +Low %",    cls: "bg-red-50 border-red-100 text-red-800"     },
+              { icon: "🟡", text: "Stock ≤ Medium Threshold → price +Medium %", cls: "bg-amber-50 border-amber-100 text-amber-800" },
+              { icon: "🟢", text: "Stock ≥ High Threshold → price −High %",   cls: "bg-green-50 border-green-100 text-green-800" },
+              { icon: "⚪", text: "Otherwise → base price",                    cls: "bg-gray-50 border-gray-100 text-gray-600"    },
+            ].map(({ icon, text, cls }) => (
               <div
                 key={text}
-                className={`flex items-start gap-2.5 px-3 py-2.5 rounded-lg border text-[12px] leading-relaxed ${className}`}
+                className={`flex items-start gap-2.5 px-3 py-2.5 rounded-lg border text-[12px] leading-relaxed ${cls}`}
               >
-                <span className="flex-shrink-0 leading-relaxed">{icon}</span>
+                <span className="flex-shrink-0">{icon}</span>
                 <span>{text}</span>
               </div>
             ))}
           </div>
         )}
       </div>
-
     </div>
   );
 };
