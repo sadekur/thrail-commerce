@@ -5,6 +5,7 @@ import SettingSkeleton from "../../common/Skeletons/SettingSkalaton";
 import { SaveButtonIcon, SaveChangesIcon, WarningIcon } from "../../common/Svgs";
 import SectionHeader from "../../common/SectionHeader";
 import InputRow from "../../common/InputRow";
+import Toggle from "../../common/Toggle";
 
 
 /* ══════════════════════════════════════════
