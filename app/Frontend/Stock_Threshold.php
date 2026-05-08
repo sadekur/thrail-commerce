@@ -60,7 +60,6 @@ class Stock_Threshold {
             return;
         }
 
-        // Check per-product enable toggle
         $product_enabled = $product->get_meta( '_commercekit_stock_threshold_enabled', true );
         if ( $product_enabled === 'no' ) {
             return;
