@@ -137,7 +137,7 @@ class API {
     }
 
     public function commerce_kit_save_tips( $request ) {
-        // Get the JSON parameters from the request
+
         $tips_settings = $request->get_json_params() ?? [];
         
         // Retrieve current settings and merge with new settings
