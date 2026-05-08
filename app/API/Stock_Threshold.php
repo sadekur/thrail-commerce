@@ -10,17 +10,17 @@ class Stock_Threshold {
         $params = $request->get_json_params();
 
         $data = [
-            'low_threshold'        => intval($params['low_threshold'] ?? 5),
-            'low_increase'         => floatval($params['low_increase'] ?? 40),
+            'low_threshold'        => intval( $params['low_threshold'] ?? 5 ),
+            'low_increase'         => floatval( $params['low_increase'] ?? 40 ),
 
-            'medium_threshold'     => intval($params['medium_threshold'] ?? 20),
-            'medium_increase'      => floatval($params['medium_increase'] ?? 20),
+            'medium_threshold'     => intval( $params['medium_threshold'] ?? 20 ),
+            'medium_increase'      => floatval( $params['medium_increase'] ?? 20 ),
 
-            'high_threshold'       => intval($params['high_threshold'] ?? 100),
-            'high_decrease'        => floatval($params['high_decrease'] ?? 15),
+            'high_threshold'       => intval( $params['high_threshold'] ?? 100 ),
+            'high_decrease'        => floatval( $params['high_decrease'] ?? 15 ),
 
             'enable_message'       => ($params['enable_message'] ?? 'off') === 'on' ? 'on' : 'off',
-            'customer_message'     => sanitize_text_field($params['customer_message'] ?? 'High demand – price adjusted based on availability'),
+            'customer_message'     => sanitize_text_field( $params['customer_message'] ?? 'High demand – price adjusted based on availability' ),
         ];
 
         update_option( 'commerce_kit_stock_threshold', $data );
