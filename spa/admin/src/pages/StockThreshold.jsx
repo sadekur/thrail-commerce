@@ -20,7 +20,7 @@ const SectionHeader = ({ icon, title, description, headerClass, pillClass }) => 
 const StockThreshold = () => {
   const [isLoading, setIsLoading]               = useState(true);
   const [isSaving, setIsSaving]                 = useState(false);
-  const [saveStatus, setSaveStatus]             = useState(null); // null | "success" | "error"
+  const [saveStatus, setSaveStatus]             = useState(null);
   const [isFeatureEnabled, setIsFeatureEnabled] = useState(false);
   const [showHowItWorks, setShowHowItWorks]     = useState(false);
 
