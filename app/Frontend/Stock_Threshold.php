@@ -31,9 +31,6 @@ class Stock_Threshold {
         }
     }
 
-    public function test() {
-        echo "<h1>Test Stock srs</h1>";
-    }
 
     /**
      * Get stock threshold settings with defaults
