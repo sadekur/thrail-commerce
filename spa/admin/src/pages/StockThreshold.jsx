@@ -6,7 +6,6 @@ import Toggle from "../common/Toggle";
 import Pill from "../common/Pill";
 import NumberField from "../common/NumberField";
 
-/* ── Section header ── */
 const SectionHeader = ({ icon, title, description, headerClass, pillClass }) => (
   <div className={`flex items-center gap-3 px-6 py-4 border-b ${headerClass}`}>
     <span className="text-xl leading-none select-none">{icon}</span>
