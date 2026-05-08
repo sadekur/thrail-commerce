@@ -92,7 +92,6 @@ class Stock_Threshold {
         }
 
         if ( $is_adjusted ) {
-            // Use custom message override if set, else global message
             $custom_message = $product->get_meta( '_commercekit_stock_threshold_message', true );
             $message = ! empty( $custom_message ) ? $custom_message : $stock_settings['customer_message'];
 
