@@ -24,7 +24,8 @@ class Stock_Threshold {
         if ( $this->feature_enabled ) {
             $this->stock_settings = $this->get_stock_settings();
 
-            $this->action( 'woocommerce_after_single_product_price', [ $this, 'display_stock_message' ] );
+            // Use woocommerce_single_product_summary at priority 25 (after price at 20)
+            $this->action( 'woocommerce_single_product_summary', [ $this, 'display_stock_message' ], 25 );
 
             $this->action( 'woocommerce_before_calculate_totals', [ $this, 'adjust_cart_prices' ], 10, 1 );
         }
