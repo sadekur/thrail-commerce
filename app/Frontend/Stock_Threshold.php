@@ -136,7 +136,7 @@ class Stock_Threshold {
 
             $adjusted_price = $base_price;
 
-            // Apply pricing rules (low takes precedence over medium)
+            // Apply pricing rules
             if ( $stock_quantity <= $stock_settings['low_threshold'] ) {
                 $increase_percent = $stock_settings['low_increase'];
                 $adjusted_price = $base_price * ( 1 + ( $increase_percent / 100 ) );
