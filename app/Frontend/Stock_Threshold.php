@@ -18,7 +18,6 @@ class Stock_Threshold {
      */
     public function __construct() {
         $settings = get_option( $this->settings_option_name, [] );
-        $this->action( 'wp_head', [ $this, 'test' ] );
         
         $this->feature_enabled = isset( $settings['stock-threshold-for-wc'] ) && $settings['stock-threshold-for-wc'] === 'on';
 
