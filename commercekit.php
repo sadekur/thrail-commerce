@@ -91,8 +91,10 @@ final class COMMERCE_KIT{
 
 		if ( is_admin() ) {
 			new CommerceKit\Commerce\Admin();
+			new CommerceKit\Commerce\Product_Stock_Threshold();
 		} else {
 			new CommerceKit\Commerce\Frontend\Shortcode();
+			new CommerceKit\Commerce\Frontend\Stock_Threshold();
 		}
 
 	}
