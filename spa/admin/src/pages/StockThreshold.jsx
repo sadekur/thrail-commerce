@@ -5,17 +5,8 @@ import { SaveButtonIcon, SaveChangesIcon, WarningIcon } from "../../common/Svgs"
 import Toggle from "../common/Toggle";
 import Pill from "../common/Pill";
 import NumberField from "../common/NumberField";
+import SectionHeader from "../../common/SectionHeader";
 
-const SectionHeader = ({ icon, title, description, headerClass, pillClass }) => (
-  <div className={`flex items-center gap-3 px-6 py-4 border-b ${headerClass}`}>
-    <span className="text-xl leading-none select-none">{icon}</span>
-    <div className="flex-1 min-w-0">
-      <p className="m-0 text-[13px] font-bold text-gray-800 tracking-wide">{title}</p>
-      <p className="m-0 mt-0.5 text-[11px] text-gray-500">{description}</p>
-    </div>
-    <Pill label={title.split(" ")[0]} className={pillClass} />
-  </div>
-);
 
 const StockThreshold = () => {
   const [isLoading, setIsLoading]               = useState(true);
