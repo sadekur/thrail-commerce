@@ -83,7 +83,6 @@ class Stock_Threshold {
 
         $is_adjusted = false;
 
-        // Check if price adjustment applies
         if ( $stock_quantity <= $stock_settings['low_threshold'] ) {
             $is_adjusted = true;
         } elseif ( $stock_quantity <= $stock_settings['medium_threshold'] ) {
