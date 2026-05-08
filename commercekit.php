@@ -92,7 +92,7 @@ final class COMMERCE_KIT{
 		if ( is_admin() ) {
 			new CommerceKit\Commerce\Admin();
 		} else {
-			new CommerceKit\Commerce\Frontend();
+			new CommerceKit\Commerce\Frontend\Shortcode();
 		}
 
 	}
