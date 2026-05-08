@@ -3,9 +3,6 @@ namespace CommerceKit\Commerce\Frontend;
 
 use CommerceKit\Commerce\Classes\Trait\Hookable;
 
-/**
- * Frontend handler for stock threshold functionality
- */
 class Stock_Threshold {
     use Hookable;
 
