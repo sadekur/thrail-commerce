@@ -47,7 +47,7 @@ class Stock_Threshold {
             'customer_message'     => 'High demand – price adjusted based on availability',
         ];
 
-        $data = get_option('commerce_kit_stock_threshold', []);
+        $data = get_option( 'commerce_kit_stock_threshold', [] );
 
         return rest_ensure_response( array_merge( $defaults, $data ) );
     }
