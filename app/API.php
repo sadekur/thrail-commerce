@@ -139,12 +139,8 @@ class API {
     public function commerce_kit_save_tips( $request ) {
 
         $tips_settings = $request->get_json_params() ?? [];
-        
-        // Retrieve current settings and merge with new settings
         $current_settings = get_option( 'commercekit-tips-settings', [] );
         $updated_settings = array_merge( $current_settings, $tips_settings );
-        
-        // Save the updated settings back to the options table
         update_option( 'commercekit-tips-settings', $updated_settings );
         
         // Return success response
