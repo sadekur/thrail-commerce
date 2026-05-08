@@ -17,9 +17,6 @@ const SectionHeader = ({ icon, title, description, headerClass, pillClass }) => 
   </div>
 );
 
-/* ══════════════════════════════════════════
-   Main component
-══════════════════════════════════════════ */
 const StockThreshold = () => {
   const [isLoading, setIsLoading]               = useState(true);
   const [isSaving, setIsSaving]                 = useState(false);
