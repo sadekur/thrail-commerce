@@ -27,7 +27,6 @@ class Stock_Threshold {
 
             $this->action( 'woocommerce_after_single_product_price', [ $this, 'display_stock_message' ] );
 
-            // Adjust cart item prices based on stock thresholds
             $this->action( 'woocommerce_before_calculate_totals', [ $this, 'adjust_cart_prices' ], 10, 1 );
         }
     }
