@@ -25,7 +25,6 @@ class Stock_Threshold {
         if ( $this->feature_enabled ) {
             $this->stock_settings = $this->get_stock_settings();
 
-            // Display custom message on single product page after price
             $this->action( 'woocommerce_after_single_product_price', [ $this, 'display_stock_message' ] );
 
             // Adjust cart item prices based on stock thresholds
