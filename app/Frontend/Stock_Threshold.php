@@ -147,8 +147,6 @@ class Stock_Threshold {
                 $decrease_percent = $stock_settings['high_decrease'];
                 $adjusted_price = $base_price * ( 1 - ( $decrease_percent / 100 ) );
             }
-
-            // Set adjusted price to cart item
             $product->set_price( $adjusted_price );
         }
     }
