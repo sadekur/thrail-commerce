@@ -67,7 +67,6 @@ class Stock_Threshold {
 
         $stock_settings = $this->stock_settings;
 
-        // Check if message display is enabled globally
         if ( $stock_settings['enable_message'] !== 'on' ) {
             return;
         }
