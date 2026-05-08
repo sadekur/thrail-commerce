@@ -60,11 +60,6 @@ class Stock_Threshold {
             return;
         }
 
-        $product_enabled = $product->get_meta( '_commercekit_stock_threshold_enabled', true );
-        if ( $product_enabled === 'no' ) {
-            return;
-        }
-
         $stock_settings = $this->stock_settings;
 
         if ( $stock_settings['enable_message'] !== 'on' ) {
@@ -92,12 +87,9 @@ class Stock_Threshold {
         }
 
         if ( $is_adjusted ) {
-            $custom_message = $product->get_meta( '_commercekit_stock_threshold_message', true );
-            $message = ! empty( $custom_message ) ? $custom_message : $stock_settings['customer_message'];
-
             printf(
                 '<p class="commercekit-stock-message">%s</p>',
-                esc_html( $message )
+                esc_html( $stock_settings['customer_message'] )
             );
         }
     }
@@ -115,12 +107,6 @@ class Stock_Threshold {
         foreach ( $cart->get_cart() as $cart_item ) {
             $product = $cart_item['data'];
             if ( ! is_a( $product, 'WC_Product' ) ) {
-                continue;
-            }
-
-            // Check per-product enable toggle
-            $product_enabled = $product->get_meta( '_commercekit_stock_threshold_enabled', true );
-            if ( $product_enabled === 'no' ) {
                 continue;
             }
 
