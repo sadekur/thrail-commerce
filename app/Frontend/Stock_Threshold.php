@@ -48,7 +48,7 @@ class Stock_Threshold {
     }
 
     /**
-     * Display custom message on single product page after price
+     * Display custom message
      */
     public function display_stock_message() {
         global $product;
