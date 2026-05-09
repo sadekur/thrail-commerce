@@ -19,7 +19,7 @@ class Stock_Threshold {
             'high_threshold'       => intval( $params['high_threshold'] ?? 100 ),
             'high_decrease'        => floatval( $params['high_decrease'] ?? 15 ),
 
-            'enable_message'       => ($params['enable_message'] ?? 'off') === 'on' ? 'on' : 'off',
+            'enable_message'       => ( $params['enable_message'] ?? 'off' ) === 'on' ? 'on' : 'off',
             'customer_message'     => sanitize_text_field( $params['customer_message'] ?? 'High demand – price adjusted based on availability' ),
         ];
 
