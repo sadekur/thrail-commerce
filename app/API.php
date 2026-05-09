@@ -122,7 +122,7 @@ class API {
         ]);
     }
 
-    public function stock_threshold_routes() {
+public function stock_threshold_routes() {
         $this->register_route( '/save-stock-threshold', [
             'methods' => 'POST',
             'callback' => [ new Stock(), 'save_stock_threshold' ],

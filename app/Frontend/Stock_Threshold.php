@@ -9,10 +9,8 @@ class Stock_Threshold {
     protected $settings_option_name = 'commerce_kit_settings';
     protected $feature_enabled     = false;
     protected $stock_settings     = [];
+    private static $in_cart_adjustment = false;
 
-    /**
-     * Initialize the class
-     */
     public function __construct() {
         $settings = get_option( $this->settings_option_name, [] );
         
@@ -23,14 +21,11 @@ class Stock_Threshold {
 
             $this->action( 'woocommerce_single_product_summary', [ $this, 'display_stock_message' ], 25 );
 
-            $this->action( 'woocommerce_before_calculate_totals', [ $this, 'adjust_cart_prices' ], 10, 1 );
+            $this->filter( 'woocommerce_product_get_price', [ $this, 'get_adjusted_price' ], 10, 2 );
+            // $this->action( 'woocommerce_before_calculate_totals', [ $this, 'adjust_cart_prices' ], 10, 1 );
         }
     }
 
-
-    /**
-     * Get stock threshold settings with defaults
-     */
     private function get_stock_settings() {
         $defaults = [
             'low_threshold'    => 5,
@@ -47,9 +42,6 @@ class Stock_Threshold {
         return array_merge( $defaults, $saved );
     }
 
-    /**
-     * Display custom message
-     */
     public function display_stock_message() {
         global $product;
 
@@ -91,13 +83,48 @@ class Stock_Threshold {
         }
     }
 
-    /**
-     * Adjust cart item prices based on stock thresholds
-     */
+    public function get_adjusted_price( $price, $product ) {
+        if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
+            return $price;
+        }
+
+        if ( ! is_a( $product, 'WC_Product' ) ) {
+            return $price;
+        }
+
+        if ( self::$in_cart_adjustment ) {
+            return $price;
+        }
+
+        $stock_quantity = $product->get_stock_quantity();
+        if ( is_null( $stock_quantity ) ) {
+            return $price;
+        }
+
+        if ( empty( $price ) ) {
+            return $price;
+        }
+
+        $stock_settings = $this->stock_settings;
+        $adjusted_price = $price;
+
+        if ( $stock_quantity <= $stock_settings['low_threshold'] ) {
+            $adjusted_price = $price * ( 1 + ( $stock_settings['low_increase'] / 100 ) );
+        } elseif ( $stock_quantity <= $stock_settings['medium_threshold'] ) {
+            $adjusted_price = $price * ( 1 + ( $stock_settings['medium_increase'] / 100 ) );
+        } elseif ( $stock_quantity >= $stock_settings['high_threshold'] ) {
+            $adjusted_price = $price * ( 1 - ( $stock_settings['high_decrease'] / 100 ) );
+        }
+
+        return $adjusted_price;
+    }
+
     public function adjust_cart_prices( $cart ) {
         if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
             return;
         }
+
+        self::$in_cart_adjustment = true;
 
         $stock_settings = $this->stock_settings;
 
@@ -119,7 +146,6 @@ class Stock_Threshold {
 
             $adjusted_price = $base_price;
 
-            // Apply pricing rules
             if ( $stock_quantity <= $stock_settings['low_threshold'] ) {
                 $increase_percent = $stock_settings['low_increase'];
                 $adjusted_price = $base_price * ( 1 + ( $increase_percent / 100 ) );
@@ -132,5 +158,7 @@ class Stock_Threshold {
             }
             $product->set_price( $adjusted_price );
         }
+
+        self::$in_cart_adjustment = false;
     }
 }

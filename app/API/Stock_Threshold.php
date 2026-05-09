@@ -53,10 +53,10 @@ class Stock_Threshold {
     }
 
     public function stock_threshold_permission( $request ) {
-        // $nonce = $request->get_header( 'x_wp_nonce' );
-        // if ( $nonce && !wp_verify_nonce( $nonce, 'commerce_kit_nonce' ) ) {
-        //     return false;
-        // }
-        return current_user_can( 'manage_options' );
-    }
+            // $nonce = $request->get_header( 'x_wp_nonce' );
+            // if ( $nonce && !wp_verify_nonce( $nonce, 'commerce_kit_nonce' ) ) {
+            //     return false;
+            // }
+            return current_user_can( 'manage_options' );
+        }
 }
