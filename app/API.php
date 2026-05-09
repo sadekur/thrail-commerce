@@ -142,8 +142,6 @@ public function stock_threshold_routes() {
         $current_settings = get_option( 'commercekit-tips-settings', [] );
         $updated_settings = array_merge( $current_settings, $tips_settings );
         update_option( 'commercekit-tips-settings', $updated_settings );
-        
-        // Return success response
         return rest_ensure_response( 'success' );
     }
 
