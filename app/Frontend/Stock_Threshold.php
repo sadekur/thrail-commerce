@@ -6,10 +6,10 @@ use CommerceKit\Commerce\Classes\Trait\Hookable;
 class Stock_Threshold {
     use Hookable;
 
-    protected $settings_option_name = 'commerce_kit_settings';
-    protected $feature_enabled     = false;
-    protected $stock_settings     = [];
-    private static $in_cart_adjustment = false;
+    protected $settings_option_name     = 'commerce_kit_settings';
+    protected $feature_enabled          = false;
+    protected $stock_settings           = [];
+    private static $in_cart_adjustment  = false;
 
     public function __construct() {
         $settings = get_option( $this->settings_option_name, [] );
