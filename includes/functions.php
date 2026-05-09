@@ -6,24 +6,23 @@ if ( !defined('ABSPATH' ) ) {
 /**
  * Function to set up the database table for CommerceKit
  */
-// if( ! function_exists( 'commerce_kit_activate' ) ) :
-// 	function commerce_kit_activate() {
-// 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-// 		global $wpdb;
-// 		$table_name = $wpdb->prefix . 'commerce_kit_leads';
-// 		$charset_collate = $wpdb->get_charset_collate();
-//
-// 		$sql = "CREATE TABLE $table_name (
-// 			id mediumint(9) NOT NULL AUTO_INCREMENT,
-// 			name tinytext NOT NULL,
-// 			email text NOT NULL,
-// 			time datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
-// 			PRIMARY KEY  (id)
-// 		) $charset_collate;";
-//
-// 		dbDelta($sql);
-// 	}
-// endif;
+if( ! function_exists( 'commerce_kit_activate' ) ) :
+	function get_stock_settings() {
+        $defaults = [
+            'low_threshold'    => 5,
+            'low_increase'     => 40,
+            'medium_threshold' => 20,
+            'medium_increase'  => 20,
+            'high_threshold'   => 100,
+            'high_decrease'    => 15,
+            'enable_message'   => 'off',
+            'customer_message' => 'High demand – price adjusted based on availability',
+        ];
+
+        $saved = get_option( 'commerce_kit_stock_threshold', [] );
+        return array_merge( $defaults, $saved );
+    }
+endif;
 
 
     /**
