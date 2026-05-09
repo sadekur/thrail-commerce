@@ -102,47 +102,4 @@ class Stock_Threshold {
 
         return $adjusted_price;
     }
-
-    public function adjust_cart_prices( $cart ) {
-        if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
-            return;
-        }
-
-        self::$in_cart_adjustment = true;
-
-        $stock_settings = $this->stock_settings;
-
-        foreach ( $cart->get_cart() as $cart_item ) {
-            $product = $cart_item['data'];
-            if ( ! is_a( $product, 'WC_Product' ) ) {
-                continue;
-            }
-
-            $stock_quantity = $product->get_stock_quantity();
-            if ( is_null( $stock_quantity ) ) {
-                continue;
-            }
-
-            $base_price = $product->get_price();
-            if ( empty( $base_price ) ) {
-                continue;
-            }
-
-            $adjusted_price = $base_price;
-
-            if ( $stock_quantity <= $stock_settings['low_threshold'] ) {
-                $increase_percent = $stock_settings['low_increase'];
-                $adjusted_price = $base_price * ( 1 + ( $increase_percent / 100 ) );
-            } elseif ( $stock_quantity <= $stock_settings['medium_threshold'] ) {
-                $increase_percent = $stock_settings['medium_increase'];
-                $adjusted_price = $base_price * ( 1 + ( $increase_percent / 100 ) );
-            } elseif ( $stock_quantity >= $stock_settings['high_threshold'] ) {
-                $decrease_percent = $stock_settings['high_decrease'];
-                $adjusted_price = $base_price * ( 1 - ( $decrease_percent / 100 ) );
-            }
-            $product->set_price( $adjusted_price );
-        }
-
-        self::$in_cart_adjustment = false;
-    }
 }
