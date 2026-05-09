@@ -17,7 +17,7 @@ class Stock_Threshold {
         $this->feature_enabled = isset( $settings['stock-threshold-for-wc'] ) && $settings['stock-threshold-for-wc'] === 'on';
 
         if ( $this->feature_enabled ) {
-            $this->stock_settings = $this->get_stock_settings();
+            $this->stock_settings = commercekit_get_stock_settings();
 
             $this->action( 'woocommerce_single_product_summary', [ $this, 'display_stock_message' ], 25 );
 
@@ -25,7 +25,6 @@ class Stock_Threshold {
             // $this->action( 'woocommerce_before_calculate_totals', [ $this, 'adjust_cart_prices' ], 10, 1 );
         }
     }
-
 
     public function display_stock_message() {
         global $product;
