@@ -149,7 +149,7 @@ public function stock_threshold_routes() {
         return true;
     }
     public function commerce_kit_get_tips() {
-        $tips_settings = get_option('commercekit-tips-settings', []);
-        return rest_ensure_response($tips_settings);
+        $tips_settings = get_option( 'commercekit-tips-settings', [] );
+        return rest_ensure_response( $tips_settings );
     }
 }
