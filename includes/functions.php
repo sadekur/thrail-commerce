@@ -6,8 +6,8 @@ if ( !defined('ABSPATH' ) ) {
 /**
  * Function to set up the database table for CommerceKit
  */
-if( ! function_exists( 'commerce_kit_activate' ) ) :
-	function get_stock_settings() {
+if( ! function_exists( 'commercekit_get_stock_settings' ) ) :
+	function commercekit_get_stock_settings() {
         $defaults = [
             'low_threshold'    => 5,
             'low_increase'     => 40,
