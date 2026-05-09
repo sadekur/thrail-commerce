@@ -26,21 +26,6 @@ class Stock_Threshold {
         }
     }
 
-    private function get_stock_settings() {
-        $defaults = [
-            'low_threshold'    => 5,
-            'low_increase'     => 40,
-            'medium_threshold' => 20,
-            'medium_increase'  => 20,
-            'high_threshold'   => 100,
-            'high_decrease'    => 15,
-            'enable_message'   => 'off',
-            'customer_message' => 'High demand – price adjusted based on availability',
-        ];
-
-        $saved = get_option( 'commerce_kit_stock_threshold', [] );
-        return array_merge( $defaults, $saved );
-    }
 
     public function display_stock_message() {
         global $product;
