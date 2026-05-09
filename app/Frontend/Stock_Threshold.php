@@ -22,7 +22,6 @@ class Stock_Threshold {
             $this->action( 'woocommerce_single_product_summary', [ $this, 'display_stock_message' ], 25 );
 
             $this->filter( 'woocommerce_product_get_price', [ $this, 'get_adjusted_price' ], 10, 2 );
-            // $this->action( 'woocommerce_before_calculate_totals', [ $this, 'adjust_cart_prices' ], 10, 1 );
         }
     }
 
