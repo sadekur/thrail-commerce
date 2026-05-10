@@ -134,6 +134,12 @@ class API {
             'callback' => [ new Stock(), 'get_stock_threshold' ],
             'permission_callback' => [ new Stock(), 'stock_threshold_permission' ]
         ]);
+
+        $this->register_route( '/get-variation-stock', [
+            'methods' => 'GET',
+            'callback' => [ new Stock(), 'get_variation_stock' ],
+            'permission_callback' => [ new Stock(), 'variation_stock_permission' ]
+        ]);
     }
 
     public function commerce_kit_save_tips( $request ) {

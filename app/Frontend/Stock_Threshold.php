@@ -57,6 +57,8 @@ class Stock_Threshold {
             return;
         }
 
+        $product = $this->get_variation_product( $product );
+
         $stock_quantity = $product->get_stock_quantity();
         if ( is_null( $stock_quantity ) || empty( $product->get_price() ) ) {
             return;
@@ -72,6 +74,43 @@ class Stock_Threshold {
         }
     }
 
+    /**
+     * Get the variation product if selected, otherwise return the original product.
+     */
+    private function get_variation_product( $product ) {
+        if ( is_a( $product, 'WC_Product_Variation' ) ) {
+            return $product;
+        }
+
+        if ( is_a( $product, 'WC_Product_Variable' ) ) {
+            $variation_id = isset( $_REQUEST['variation_id'] ) ? absint( $_REQUEST['variation_id'] ) : 0;
+            if ( $variation_id > 0 ) {
+                $variation = wc_get_product( $variation_id );
+                if ( $variation && is_a( $variation, 'WC_Product_Variation' ) ) {
+                    return $variation;
+                }
+            }
+
+            if ( class_exists( 'WC_Product_Variable' ) ) {
+                $available_variations = $product->get_available_variations();
+                if ( ! empty( $available_variations ) ) {
+                    usort( $available_variations, function( $a, $b ) {
+                        return ( $a['variation_id'] ?? 0 ) - ( $b['variation_id'] ?? 0 );
+                    } );
+                    $first_variation_id = $available_variations[0]['variation_id'] ?? 0;
+                    if ( $first_variation_id > 0 ) {
+                        $variation = wc_get_product( $first_variation_id );
+                        if ( $variation ) {
+                            return $variation;
+                        }
+                    }
+                }
+            }
+        }
+
+        return $product;
+    }
+
     public function get_adjusted_price( $price, $product ) {
         if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
             return $price;
@@ -84,6 +123,8 @@ class Stock_Threshold {
         if ( self::$in_cart_adjustment ) {
             return $price;
         }
+
+        $product = $this->get_variation_product( $product );
 
         $stock_quantity = $product->get_stock_quantity();
         if ( is_null( $stock_quantity ) || empty( $price ) ) {

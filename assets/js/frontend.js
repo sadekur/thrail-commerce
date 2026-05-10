@@ -1,41 +1,27 @@
 jQuery(document).ready(function($) {
 
-	/*Using AJAX*/
+	/* Stock Threshold - Variable Product Variation Change */
+	$(document).on('show_variation', '.single_variation_wrap', function(event, variation) {
+		if (variation && variation.variation_id) {
+			$.ajax({
+				url: COMMERCEKIT.resturl + '/get-variation-stock?variation_id=' + variation.variation_id,
+				method: 'GET',
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader('X-WP-Nonce', COMMERCEKIT.nonce);
+				},
+				success: function(response) {
+					if (response.message) {
+						$('.commercekit-stock-message').remove();
+						$('.single_variation_wrap').after('<p class="commercekit-stock-message">' + response.message + '</p>');
+					}
+				}
+			});
+		}
+	});
 
-	// $('#commerceKitOptinForm').submit(function(event) {
-	// 	event.preventDefault();
-
-	// 	var name = $("#name").val();
-	// 	var email = $("#email").val();
-	// 	var nonce = COMMERCEKIT.nonce;
-
-	// 	$.ajax({
-	// 		url: COMMERCEKIT.ajaxurl,
-	// 		method: "POST",
-	// 		data: {
-	// 			action: 'commerce_kit_form',
-	// 			name: name,
-	// 			email: email,
-	// 			nonce: nonce
-	// 		},
-	// 		dataType: 'JSON',
-	// 		success: function(response) {
-	// 			 if(response.success) {
-	// 				alert(response.data.message);
-	// 			} else {
-	// 				alert(response.data.message);
-	// 			}
-	// 		},
-	// 		error: function(response) {
-	// 			console.log(response);
-	// 			if (response.responseJSON && response.responseJSON.message) {
-	// 				alert(response.responseJSON.message);
-	// 			} else {
-	// 				alert('Failed to submit form.');
-	// 			}
-	// 		}
-	// 	});
-	// });
+	$(document).on('hide_variation', '.single_variation_wrap', function() {
+		$('.commercekit-stock-message').remove();
+	});
 
 	/*Using Reast API*/
 	$('#commerceKitOptinForm').submit(function(event) {
