@@ -23,7 +23,6 @@ class Stock_Threshold {
 
             $this->filter( 'woocommerce_product_get_price', [ $this, 'get_adjusted_price' ], 10, 2 );
 
-            // Show message under product name in checkout order table
             $this->filter( 'woocommerce_cart_item_name', [ $this, 'append_stock_message_to_cart_item_name' ], 10, 3 );
 
             $this->action( 'woocommerce_order_item_meta_start', [ $this, 'display_checkout_stock_message' ], 10, 4 );
