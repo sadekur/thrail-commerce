@@ -48,20 +48,20 @@ class Stock_Threshold {
             return;
         }
 
-        $is_adjusted = false;
+        $customer_message = '';
 
         if ( $stock_quantity <= $stock_settings['low_threshold'] ) {
-            $is_adjusted = true;
+            $customer_message = $stock_settings['low_customer_message'];
         } elseif ( $stock_quantity <= $stock_settings['medium_threshold'] ) {
-            $is_adjusted = true;
+            $customer_message = $stock_settings['medium_customer_message'];
         } elseif ( $stock_quantity >= $stock_settings['high_threshold'] ) {
-            $is_adjusted = true;
+            $customer_message = $stock_settings['high_customer_message'];
         }
 
-        if ( $is_adjusted ) {
+        if ( ! empty( $customer_message ) ) {
             printf(
                 '<p class="commercekit-stock-message">%s</p>',
-                esc_html( $stock_settings['customer_message'] )
+                esc_html( $customer_message )
             );
         }
     }

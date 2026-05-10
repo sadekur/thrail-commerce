@@ -23,7 +23,9 @@ const StockThreshold = () => {
     high_threshold:   100,
     high_decrease:    15,
     enable_message:   false,
-    customer_message: "High demand – price adjusted based on availability",
+    low_customer_message:    "Low stock - high demand item",
+    medium_customer_message: "Medium stock - price adjusted",
+    high_customer_message:   "High stock - clearance price",
   });
 
   const url = `${COMMERCEKIT.apiurl}/save-stock-threshold`;
@@ -38,7 +40,9 @@ const StockThreshold = () => {
       high_threshold:   data.high_threshold,
       high_decrease:    data.high_decrease,
       enable_message:   data.enable_message === "on",
-      customer_message: data.customer_message,
+      low_customer_message:    data.low_customer_message || "Low stock - high demand item",
+      medium_customer_message: data.medium_customer_message || "Medium stock - price adjusted",
+      high_customer_message:   data.high_customer_message || "High stock - clearance price",
     });
 
   const checkFeatureAndLoad = () => {
@@ -229,9 +233,9 @@ const StockThreshold = () => {
           {/* Header row */}
           <div className="flex items-center justify-between px-6 py-3.5 bg-gray-50 border-b border-gray-100">
             <div>
-              <p className="m-0 text-[13px] font-bold text-gray-800">💬 Customer Message</p>
+              <p className="m-0 text-[13px] font-bold text-gray-800">💬 Customer Messages</p>
               <p className="m-0 mt-0.5 text-[11px] text-gray-500">
-                Notify shoppers when pricing has been adjusted
+                Notify shoppers when pricing has been adjusted (per stock level)
               </p>
             </div>
             <Toggle
@@ -248,17 +252,46 @@ const StockThreshold = () => {
                 : "opacity-40 pointer-events-none"
             }`}
           >
-            <label className="block mb-2 text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
-              Message Text
-            </label>
-            <textarea
-              value={formData.customer_message}
-              onChange={(e) => handleChange("customer_message", e.target.value)}
-              rows={2}
-              className="w-full px-3.5 py-2.5 text-[13px] text-gray-800 bg-gray-50 border border-gray-200 rounded-lg resize-none font-sans leading-relaxed focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors duration-150"
-            />
-            <p className="m-0 mt-1.5 text-[11px] text-gray-400">
-              Shown to customers when dynamic pricing is applied on product pages.
+            {/* Low Stock Message */}
+            <div className="mb-4">
+              <label className="block mb-2 text-[11px] font-semibold text-red-600 uppercase tracking-wider">
+                🔴 Low Stock Message
+              </label>
+              <textarea
+                value={formData.low_customer_message}
+                onChange={(e) => handleChange("low_customer_message", e.target.value)}
+                rows={2}
+                className="w-full px-3.5 py-2.5 text-[13px] text-gray-800 bg-red-50 border border-red-200 rounded-lg resize-none font-sans leading-relaxed focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-150"
+              />
+            </div>
+
+            {/* Medium Stock Message */}
+            <div className="mb-4">
+              <label className="block mb-2 text-[11px] font-semibold text-amber-600 uppercase tracking-wider">
+                🟡 Medium Stock Message
+              </label>
+              <textarea
+                value={formData.medium_customer_message}
+                onChange={(e) => handleChange("medium_customer_message", e.target.value)}
+                rows={2}
+                className="w-full px-3.5 py-2.5 text-[13px] text-gray-800 bg-amber-50 border border-amber-200 rounded-lg resize-none font-sans leading-relaxed focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors duration-150"
+              />
+            </div>
+
+            {/* High Stock Message */}
+            <div>
+              <label className="block mb-2 text-[11px] font-semibold text-green-600 uppercase tracking-wider">
+                🟢 High Stock Message
+              </label>
+              <textarea
+                value={formData.high_customer_message}
+                onChange={(e) => handleChange("high_customer_message", e.target.value)}
+                rows={2}
+                className="w-full px-3.5 py-2.5 text-[13px] text-gray-800 bg-green-50 border border-green-200 rounded-lg resize-none font-sans leading-relaxed focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-colors duration-150"
+              />
+            </div>
+            <p className="m-0 mt-3 text-[11px] text-gray-400">
+              Each message shows when its corresponding stock level triggers price adjustment on product pages.
             </p>
           </div>
         </div>

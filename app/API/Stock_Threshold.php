@@ -20,7 +20,9 @@ class Stock_Threshold {
             'high_decrease'        => floatval( $params['high_decrease'] ?? 15 ),
 
             'enable_message'       => ( $params['enable_message'] ?? 'off' ) === 'on' ? 'on' : 'off',
-            'customer_message'     => sanitize_text_field( $params['customer_message'] ?? 'High demand – price adjusted based on availability' ),
+            'low_customer_message'    => sanitize_text_field( $params['low_customer_message'] ?? 'Low stock - high demand item' ),
+            'medium_customer_message' => sanitize_text_field( $params['medium_customer_message'] ?? 'Medium stock - price adjusted' ),
+            'high_customer_message'   => sanitize_text_field( $params['high_customer_message'] ?? 'High stock - clearance price' ),
         ];
 
         update_option( 'commerce_kit_stock_threshold', $data );
@@ -44,7 +46,9 @@ class Stock_Threshold {
             'high_decrease'        => 15,
 
             'enable_message'       => 'off',
-            'customer_message'     => 'High demand – price adjusted based on availability',
+            'low_customer_message'    => 'Low stock - high demand item',
+            'medium_customer_message' => 'Medium stock - price adjusted',
+            'high_customer_message'   => 'High stock - clearance price',
         ];
 
         $data = get_option( 'commerce_kit_stock_threshold', [] );

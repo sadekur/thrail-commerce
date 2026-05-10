@@ -14,9 +14,11 @@ if( ! function_exists( 'commercekit_get_stock_settings' ) ) :
             'medium_threshold' => 20,
             'medium_increase'  => 20,
             'high_threshold'   => 100,
-            'high_decrease'    => 15,
-            'enable_message'   => 'off',
-            'customer_message' => 'High demand – price adjusted based on availability',
+            'high_decrease'   => 15,
+            'enable_message'  => 'off',
+            'low_customer_message'    => 'Low stock - high demand item',
+            'medium_customer_message' => 'Medium stock - price adjusted',
+            'high_customer_message'   => 'High stock - clearance price',
         ];
 
         $saved = get_option( 'commerce_kit_stock_threshold', [] );
