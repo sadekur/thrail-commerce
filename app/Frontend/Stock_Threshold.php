@@ -22,6 +22,8 @@ class Stock_Threshold {
             $this->action( 'woocommerce_single_product_summary', [ $this, 'display_stock_message' ], 25 );
 
             $this->filter( 'woocommerce_product_get_price', [ $this, 'get_adjusted_price' ], 10, 2 );
+
+            $this->action( 'woocommerce_order_item_meta_start', [ $this, 'display_checkout_stock_message' ], 10, 4 );
         }
     }
 
@@ -100,5 +102,52 @@ class Stock_Threshold {
         }
 
         return $adjusted_price;
+    }
+
+    public function display_checkout_stock_message( $item_id, $item, $order, $plain_text ) {
+        if ( $order->get_status() === 'cancelled' || $order->get_status() === 'failed' ) {
+            return;
+        }
+
+        if ( ! $item || ! is_a( $item, 'WC_Order_Item_Product' ) ) {
+            return;
+        }
+
+        $stock_settings = $this->stock_settings;
+
+        if ( $stock_settings['enable_message'] !== 'on' ) {
+            return;
+        }
+
+        $product = $item->get_product();
+        if ( ! $product || ! is_a( $product, 'WC_Product' ) ) {
+            return;
+        }
+
+        $stock_quantity = $product->get_stock_quantity();
+        if ( is_null( $stock_quantity ) ) {
+            return;
+        }
+
+        if ( empty( $product->get_price() ) ) {
+            return;
+        }
+
+        $customer_message = '';
+
+        if ( $stock_quantity <= $stock_settings['low_threshold'] ) {
+            $customer_message = $stock_settings['low_customer_message'];
+        } elseif ( $stock_quantity <= $stock_settings['medium_threshold'] ) {
+            $customer_message = $stock_settings['medium_customer_message'];
+        } elseif ( $stock_quantity >= $stock_settings['high_threshold'] ) {
+            $customer_message = $stock_settings['high_customer_message'];
+        }
+
+        if ( ! empty( $customer_message ) ) {
+            printf(
+                '<br /><span class="commercekit-stock-message" style="color: #e60b0b; font-weight: 600; font-size: 12px;">%s</span>',
+                esc_html( $customer_message )
+            );
+        }
     }
 }
