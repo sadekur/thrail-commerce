@@ -24,6 +24,8 @@ class Stock_Threshold {
             $this->filter( 'woocommerce_product_get_price', [ $this, 'get_adjusted_price' ], 10, 2 );
 
             $this->action( 'woocommerce_order_item_meta_start', [ $this, 'display_checkout_stock_message' ], 10, 4 );
+
+            $this->action( 'woocommerce_review_order_after_cart_contents', [ $this, 'display_checkout_review_stock_message' ], 10 );
         }
     }
 
@@ -148,6 +150,68 @@ class Stock_Threshold {
                 '<br /><span class="commercekit-stock-message" style="color: #e60b0b; font-weight: 600; font-size: 12px;">%s</span>',
                 esc_html( $customer_message )
             );
+        }
+    }
+
+    public function display_checkout_review_stock_message() {
+        $stock_settings = $this->stock_settings;
+
+        if ( $stock_settings['enable_message'] !== 'on' ) {
+            return;
+        }
+
+        $cart = WC()->cart;
+        if ( ! $cart ) {
+            return;
+        }
+
+        $messages_by_product = [];
+
+        foreach ( $cart->get_cart() as $cart_item ) {
+            $product = $cart_item['data'];
+            if ( ! $product || ! is_a( $product, 'WC_Product' ) ) {
+                continue;
+            }
+
+            $stock_quantity = $product->get_stock_quantity();
+            if ( is_null( $stock_quantity ) ) {
+                continue;
+            }
+
+            if ( empty( $product->get_price() ) ) {
+                continue;
+            }
+
+            $customer_message = '';
+
+            if ( $stock_quantity <= $stock_settings['low_threshold'] ) {
+                $customer_message = $stock_settings['low_customer_message'];
+            } elseif ( $stock_quantity <= $stock_settings['medium_threshold'] ) {
+                $customer_message = $stock_settings['medium_customer_message'];
+            } elseif ( $stock_quantity >= $stock_settings['high_threshold'] ) {
+                $customer_message = $stock_settings['high_customer_message'];
+            }
+
+            if ( ! empty( $customer_message ) ) {
+                $product_id = $product->get_id();
+                if ( ! isset( $messages_by_product[ $product_id ] ) ) {
+                    $messages_by_product[ $product_id ] = [
+                        'name'    => $product->get_name(),
+                        'message' => $customer_message,
+                    ];
+                }
+            }
+        }
+
+        if ( ! empty( $messages_by_product ) ) {
+            echo '<div class="commercekit-checkout-messages" style="margin-bottom: 15px;">';
+            foreach ( $messages_by_product as $product_info ) {
+                printf(
+                    '<p class="commercekit-stock-message" style="color: #e60b0b; font-weight: 600; font-size: 12px; margin: 5px 0;">%s</p>',
+                    esc_html( $product_info['message'] )
+                );
+            }
+            echo '</div>';
         }
     }
 }
