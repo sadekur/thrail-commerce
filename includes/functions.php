@@ -42,8 +42,8 @@ endif;
         foreach ( $categories as $category ) {
             $blocks = glob( rtrim( $category, '/' ) . '/*', GLOB_ONLYDIR );
 
-            foreach ($blocks as $block) {
-                $block_name = basename($block);
+            foreach ( $blocks as $block ) {
+                $block_name = basename( $block );
                 $block_option_key = "{$block_name}";
 
                 if (isset($block_settings[$block_option_key]) && $block_settings[$block_option_key] === 'on') {
