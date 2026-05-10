@@ -39,7 +39,7 @@ endif;
 
         $active_blocks = [];
 
-        foreach ($categories as $category) {
+        foreach ( $categories as $category ) {
             $blocks = glob( rtrim( $category, '/' ) . '/*', GLOB_ONLYDIR );
 
             foreach ($blocks as $block) {
