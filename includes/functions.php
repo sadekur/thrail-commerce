@@ -46,7 +46,7 @@ endif;
                 $block_name = basename( $block );
                 $block_option_key = "{$block_name}";
 
-                if (isset($block_settings[$block_option_key]) && $block_settings[$block_option_key] === 'on') {
+                if ( isset( $block_settings[$block_option_key] ) && $block_settings[$block_option_key] === 'on' ) {
                     $active_blocks[] = $block_name;
                 }
             }
