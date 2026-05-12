@@ -41,7 +41,7 @@
                     </tr>
 
                     <tr class="border-b">
-                        <th class="py-4 px-2 font-medium"><?php esc_html_e('Donation Note', 'commerce-kit'); ?></th>
+                        <th class="py-4 px-2 font-medium"><?php esc_html_e( 'Donation Note', 'commerce-kit' ); ?></th>
                         <td class="py-4 px-2">
                             <label class="relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" class="sr-only peer" name="tcwt_note" value="on" <?php checked($tcwt_note, 'on'); ?>>
