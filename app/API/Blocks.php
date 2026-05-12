@@ -23,4 +23,12 @@ class Blocks {
     
         return rest_ensure_response( $settings );
     }
+
+    public function block_register( $request ) {
+        $settings = $request->get_param( 'settings' );
+        if ( is_array( $settings ) ) {
+            update_option( 'commercekit-block-settings', $settings );
+        }
+        return rest_ensure_response( 'success' );
+    }
 }
