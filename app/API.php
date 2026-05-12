@@ -64,10 +64,6 @@ class API {
         return rest_ensure_response( $settings );
     }
 
-    public function get_block_register_permission() {
-        return true;
-    }
-
     public function block_register( $request ) {
         $settings = $request->get_param( 'settings' );
         if ( is_array( $settings ) ) {
