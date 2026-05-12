@@ -49,14 +49,6 @@ class API {
         ]);
     }
 
-    public function block_register( $request ) {
-        $settings = $request->get_param( 'settings' );
-        if ( is_array( $settings ) ) {
-            update_option( 'commercekit-block-settings', $settings );
-        }
-        return rest_ensure_response( 'success' );
-    }
-
     // public function block_register_permission() {
     //     return current_user_can( 'manage_options' );
     // }
