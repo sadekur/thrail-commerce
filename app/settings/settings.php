@@ -1,5 +1,5 @@
 <div class="p-6">
-    <h2 class="text-2xl font-semibold mb-4"><?php esc_html_e('WooCommerce Tip Settings', 'commerce-kit'); ?></h2>
+    <h2 class="text-2xl font-semibold mb-4"><?php esc_html_e( 'WooCommerce Tip Settings', 'commerce-kit' ); ?></h2>
 
     <!-- Loader -->
     <div id="settings-loader" class="animate-pulse p-6 bg-white shadow rounded-lg">
