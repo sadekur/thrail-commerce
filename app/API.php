@@ -58,13 +58,13 @@ class API {
     public function tips_routes() {
         $this->register_route( '/save-tips', [
             'methods' => 'POST',
-            'callback' => [ $this, 'commerce_kit_save_tips' ],
+            'callback' => [ new Tips(), 'commerce_kit_save_tips' ],
             'permission_callback' => [ new Tips(), 'tips_permission' ]
         ]);
 
         $this->register_route( '/get-tips', [
             'methods' => 'GET',
-            'callback' => [ $this, 'commerce_kit_get_tips' ],
+            'callback' => [ new Tips(), 'commerce_kit_get_tips' ],
             'permission_callback' => [ new Tips(), 'tips_permission' ]
         ]);
     }
