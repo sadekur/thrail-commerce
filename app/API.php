@@ -38,13 +38,13 @@ class API {
     public function block_register_routes() {
         $this->register_route( '/get-block-register', [
             'methods' => 'GET',
-            'callback' => [ $this, 'get_block_register' ],
+            'callback' => [ new Blocks(), 'get_block_register' ],
             'permission_callback' => [ new Blocks(), 'get_block_register_permission' ]
         ]);
 
         $this->register_route( '/block-register-save', [
             'methods' => 'POST',
-            'callback' => [ $this, 'block_register' ],
+            'callback' => [ new Blocks(), 'block_register' ],
             'permission_callback' => [ $this, 'block_register_permission' ]
         ]);
     }
