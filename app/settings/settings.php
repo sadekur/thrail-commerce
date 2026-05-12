@@ -54,8 +54,8 @@
                     <tr class="border-b">
                         <th class="py-4 px-2 font-medium"><?php esc_html_e( 'Button Color', 'commerce-kit' ); ?></th>
                         <td class="py-4 px-2">
-                            <input type="color" name="tcwt_btncolor" class="w-10 h-10 p-1 rounded border border-gray-300 cursor-pointer" value=<?php echo esc_attr($tcwt_btncolor); ?>>
-                            <p class="text-sm text-gray-500 mt-1"><?php esc_html_e('Select donation button color.', 'commerce-kit'); ?></p>
+                            <input type="color" name="tcwt_btncolor" class="w-10 h-10 p-1 rounded border border-gray-300 cursor-pointer" value=<?php echo esc_attr( $tcwt_btncolor ); ?>>
+                            <p class="text-sm text-gray-500 mt-1"><?php esc_html_e( 'Select donation button color.', 'commerce-kit' ); ?></p>
                         </td>
                     </tr>
 
