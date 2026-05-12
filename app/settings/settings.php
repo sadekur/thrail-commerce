@@ -76,7 +76,7 @@
                     </tr>
                 </tbody>
             </table>
-            <button type="submit" class="mt-6 bg-blue-600 text-white py-2 px-4 rounded-lg shadow hover:bg-blue-700"><?php esc_html_e('Save Settings', 'commerce-kit'); ?></button>
+            <button type="submit" class="mt-6 bg-blue-600 text-white py-2 px-4 rounded-lg shadow hover:bg-blue-700"><?php esc_html_e( 'Save Settings', 'commerce-kit' ); ?></button>
         </form>
     </div>
 </div>
