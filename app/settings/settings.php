@@ -27,7 +27,7 @@
                         </td>
                     </tr>
                     <tr class="border-b">
-                        <th class="py-4 px-2 font-medium"><?php esc_html_e('Add on Checkout Page', 'commerce-kit'); ?></th>
+                        <th class="py-4 px-2 font-medium"><?php esc_html_e( 'Add on Checkout Page', 'commerce-kit' ); ?></th>
                         <td class="py-4 px-2">
                             <label class="relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" class="sr-only peer" name="tcwt_checkout" value="on" <?php checked($tcwt_checkout, 'on'); ?>>
