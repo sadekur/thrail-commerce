@@ -23,23 +23,15 @@ class API {
     public function features_rest_route() {
         $this->register_route( '/get-settings', [
             'methods' => 'GET',
-            'callback' => [ $this, 'get_settings' ],
+            'callback' => [ new Settings(), 'get_settings' ],
             'permission_callback' => [ new Settings(), 'get_settings_permission' ]
         ]);
 
         $this->register_route( '/post-settings', [
             'methods' => 'POST',
-            'callback' => [ $this, 'save_settings' ],
+            'callback' => [ new Settings(), 'save_settings' ],
             'permission_callback' => [ new Settings(), 'save_settings_permission' ]
         ]);
-    }
-
-    public function save_settings( $request ) {
-        $settings = $request->get_param( 'settings' );
-        if ( is_array( $settings ) ) {
-            update_option( 'commerce_kit_settings', $settings );
-        }
-        return rest_ensure_response( 'success' );
     }
 
     public function block_register_routes() {
