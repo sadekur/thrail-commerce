@@ -39,13 +39,13 @@ class API {
         $this->register_route( '/get-block-register', [
             'methods' => 'GET',
             'callback' => [ new Blocks(), 'get_block_register' ],
-            'permission_callback' => [ new Blocks(), 'get_block_register_permission' ]
+            'permission_callback' => [ new Blocks(), 'block_register_permission' ]
         ]);
 
         $this->register_route( '/block-register-save', [
             'methods' => 'POST',
             'callback' => [ new Blocks(), 'block_register' ],
-            'permission_callback' => [ $this, 'block_register_permission' ]
+            'permission_callback' => [ new Blocks(), 'block_register_permission' ]
         ]);
     }
 
@@ -73,9 +73,9 @@ class API {
         return rest_ensure_response( 'success' );
     }
 
-    public function block_register_permission() {
-        return current_user_can( 'manage_options' );
-    }
+    // public function block_register_permission() {
+    //     return current_user_can( 'manage_options' );
+    // }
 
     //Post Tips
     public function tips_routes() {
