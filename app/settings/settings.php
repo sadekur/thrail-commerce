@@ -17,12 +17,12 @@
                         <th class="py-4 px-2 font-medium"><?php esc_html_e( 'Add on Cart Page', 'commerce-kit' ); ?></th>
                         <td class="py-4 px-2">
                             <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" class="sr-only peer" name="tcwt_cart" value="on" <?php checked($tcwt_cart, 'on'); ?>>
+                                <input type="checkbox" class="sr-only peer" name="tcwt_cart" value="on" <?php checked( $tcwt_cart, 'on' ); ?>>
                                 <div class="w-11 h-6 bg-gray-200 rounded-full peer-focus:ring-4 peer-focus:ring-blue-300 peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
                             </label>
-                            <p class="text-sm text-gray-500 mt-1"><?php esc_html_e('Enable to display donation on the cart page.', 'commerce-kit'); ?></p>
+                            <p class="text-sm text-gray-500 mt-1"><?php esc_html_e( 'Enable to display donation on the cart page.', 'commerce-kit' ); ?></p>
                             <p class="text-sm text-gray-500">
-                                <strong><?php esc_html_e('Note: ', 'commerce-kit'); ?></strong><?php esc_html_e('When using WooCommerce blocks on the cart page, use the Woo donations block. For more details ', 'commerce-kit'); ?><a href="https://youtube.com" target="_blank" class="text-blue-600 underline"><?php esc_html_e('watch the video', 'commerce-kit'); ?></a>.
+                                <strong><?php esc_html_e( 'Note: ', 'commerce-kit' ); ?></strong><?php esc_html_e( 'When using WooCommerce blocks on the cart page, use the Woo donations block. For more details ', 'commerce-kit' ); ?><a href="https://youtube.com" target="_blank" class="text-blue-600 underline"><?php esc_html_e( 'watch the video', 'commerce-kit' ); ?></a>.
                             </p>
                         </td>
                     </tr>
