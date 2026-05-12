@@ -60,10 +60,10 @@
                     </tr>
 
                     <tr class="border-b">
-                        <th class="py-4 px-2 font-medium"><?php esc_html_e('Button Text', 'commerce-kit'); ?></th>
+                        <th class="py-4 px-2 font-medium"><?php esc_html_e( 'Button Text', 'commerce-kit' ); ?></th>
                         <td class="py-4 px-2">
-                            <input type="text" name="tcwt_btntext" class="w-4/12 border border-gray-300 p-2 rounded"value="<?php echo esc_attr($tcwt_btntext); ?>">
-                            <p class="text-sm text-gray-500 mt-1"><?php esc_html_e('Enter donation button text.', 'commerce-kit'); ?></p>
+                            <input type="text" name="tcwt_btntext" class="w-4/12 border border-gray-300 p-2 rounded"value="<?php echo esc_attr( $tcwt_btntext ); ?>">
+                            <p class="text-sm text-gray-500 mt-1"><?php esc_html_e( 'Enter donation button text.', 'commerce-kit' ); ?></p>
                         </td>
                     </tr>
 
