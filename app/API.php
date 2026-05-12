@@ -5,6 +5,7 @@ use CommerceKit\Commerce\Classes\Helper\Utility;
 use CommerceKit\Commerce\Classes\Trait\Hookable;
 use CommerceKit\Commerce\API\Stock_Threshold as Stock;
 use CommerceKit\Commerce\API\Settings;
+use CommerceKit\Commerce\API\Blocks;
 
 class API {
     use Hookable;
@@ -38,7 +39,7 @@ class API {
         $this->register_route( '/get-block-register', [
             'methods' => 'GET',
             'callback' => [ $this, 'get_block_register' ],
-            'permission_callback' => [ $this, 'get_block_register_permission' ]
+            'permission_callback' => [ new Blocks(), 'get_block_register_permission' ]
         ]);
 
         $this->register_route( '/block-register-save', [
