@@ -6,6 +6,7 @@ use CommerceKit\Commerce\Classes\Trait\Hookable;
 use CommerceKit\Commerce\API\Stock_Threshold as Stock;
 use CommerceKit\Commerce\API\Settings;
 use CommerceKit\Commerce\API\Blocks;
+use CommerceKit\Commerce\API\Tips;
 
 class API {
     use Hookable;
@@ -58,13 +59,13 @@ class API {
         $this->register_route( '/save-tips', [
             'methods' => 'POST',
             'callback' => [ $this, 'commerce_kit_save_tips' ],
-            'permission_callback' => [ $this, 'tips_permission' ]
+            'permission_callback' => [ new Tips(), 'tips_permission' ]
         ]);
 
         $this->register_route( '/get-tips', [
             'methods' => 'GET',
             'callback' => [ $this, 'commerce_kit_get_tips' ],
-            'permission_callback' => [ $this, 'tips_permission' ]
+            'permission_callback' => [ new Tips(), 'tips_permission' ]
         ]);
     }
 
