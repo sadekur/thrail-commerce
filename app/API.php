@@ -34,18 +34,6 @@ class API {
         ]);
     }
 
-    public function get_settings() {
-        $default_settings = [
-            'woocommerce-tips'              => 'off',
-            'woocommerce-faq'               => 'off',
-            'woocommerce-product-barcode'   => 'off',
-            'buy-button-for-woocommerce'    => 'off',
-        ];
-        $settings = get_option( 'commerce_kit_settings', $default_settings );
-    
-        return rest_ensure_response( $settings );
-    }
-
     public function save_settings( $request ) {
         $settings = $request->get_param( 'settings' );
         if ( is_array( $settings ) ) {
