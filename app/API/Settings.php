@@ -15,6 +15,15 @@ class Settings {
         return rest_ensure_response( $settings );
     }
 
+    public function save_settings( $request ) {
+        $settings = $request->get_param( 'settings' );
+        if ( is_array( $settings ) ) {
+            update_option( 'commerce_kit_settings', $settings );
+        }
+        return rest_ensure_response( 'success' );
+    }
+
+
     public function get_settings_permission() {
         return true;
     }
