@@ -4,6 +4,7 @@ namespace CommerceKit\Commerce;
 use CommerceKit\Commerce\Classes\Helper\Utility;
 use CommerceKit\Commerce\Classes\Trait\Hookable;
 use CommerceKit\Commerce\API\Stock_Threshold as Stock;
+use CommerceKit\Commerce\API\Settings;
 
 class API {
     use Hookable;
@@ -23,13 +24,13 @@ class API {
         $this->register_route( '/get-settings', [
             'methods' => 'GET',
             'callback' => [ $this, 'get_settings' ],
-            'permission_callback' => [ $this, 'get_settings_permission' ]
+            'permission_callback' => [ new Settings(), 'get_settings_permission' ]
         ]);
 
         $this->register_route( '/post-settings', [
             'methods' => 'POST',
             'callback' => [ $this, 'save_settings' ],
-            'permission_callback' => [ $this, 'save_settings_permission' ]
+            'permission_callback' => [ new Settings(), 'save_settings_permission' ]
         ]);
     }
 
@@ -45,20 +46,12 @@ class API {
         return rest_ensure_response( $settings );
     }
 
-    public function get_settings_permission() {
-        return true;
-    }
-
     public function save_settings( $request ) {
         $settings = $request->get_param( 'settings' );
         if ( is_array( $settings ) ) {
             update_option( 'commerce_kit_settings', $settings );
         }
         return rest_ensure_response( 'success' );
-    }
-
-    public function save_settings_permission() {
-        return current_user_can( 'manage_options' );
     }
 
     public function block_register_routes() {
