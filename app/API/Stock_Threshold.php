@@ -36,11 +36,11 @@ class Stock_Threshold {
     public function get_stock_threshold() {
 
         $defaults = [
-            'low_threshold'        => 5,
-            'low_increase'         => 40,
+            'low_threshold'             => 5,
+            'low_increase'              => 40,
 
-            'medium_threshold'     => 20,
-            'medium_increase'      => 20,
+            'medium_threshold'          => 20,
+            'medium_increase'           => 20,
 
             'high_threshold'            => 100,
             'high_decrease'             => 15,
