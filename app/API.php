@@ -50,10 +50,6 @@ class API {
         ]);
     }
 
-    // public function block_register_permission() {
-    //     return current_user_can( 'manage_options' );
-    // }
-
     //Post Tips
     public function tips_routes() {
         $this->register_route( '/save-tips', [
