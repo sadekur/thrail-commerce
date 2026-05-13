@@ -60,6 +60,8 @@ class API {
             'permission_callback' => [ new Tips(), 'tips_permission' ]
         ]);
 
+        // Register REST API routes for stock
+
         $this->register_route( '/save-stock-threshold', [
             'methods' => 'POST',
             'callback' => [ new Stock(), 'save_stock_threshold' ],
