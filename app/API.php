@@ -51,10 +51,7 @@ class API {
             'callback' => [ new Tips(), 'commerce_kit_get_tips' ],
             'permission_callback' => [ new Tips(), 'tips_permission' ]
         ]);
-    }
 
-
-    public function stock_threshold_routes() {
         $this->register_route( '/save-stock-threshold', [
             'methods' => 'POST',
             'callback' => [ new Stock(), 'save_stock_threshold' ],
@@ -72,5 +69,9 @@ class API {
             'callback' => [ new Stock(), 'get_variation_stock' ],
             'permission_callback' => [ new Stock(), 'variation_stock_permission' ]
         ]);
+    }
+
+    public function stock_threshold_routes() {
+        
     }
 }
