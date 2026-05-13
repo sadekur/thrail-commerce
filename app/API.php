@@ -39,10 +39,8 @@ class API {
             'callback' => [ new Blocks(), 'block_register' ],
             'permission_callback' => [ new Blocks(), 'block_register_permission' ]
         ]);
-    }
 
-    public function tips_routes() {
-        $this->register_route( '/save-tips', [
+                $this->register_route( '/save-tips', [
             'methods' => 'POST',
             'callback' => [ new Tips(), 'commerce_kit_save_tips' ],
             'permission_callback' => [ new Tips(), 'tips_permission' ]
@@ -54,6 +52,7 @@ class API {
             'permission_callback' => [ new Tips(), 'tips_permission' ]
         ]);
     }
+
 
     public function stock_threshold_routes() {
         $this->register_route( '/save-stock-threshold', [
