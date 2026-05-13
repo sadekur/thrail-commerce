@@ -16,13 +16,6 @@ class API {
     }
 
     public function register_routes() {
-        $this->features_rest_route();
-        $this->block_register_routes();
-        $this->tips_routes();
-        $this->stock_threshold_routes();
-    }
-
-    public function features_rest_route() {
         $this->register_route( '/get-settings', [
             'methods' => 'GET',
             'callback' => [ new Settings(), 'get_settings' ],
@@ -34,6 +27,10 @@ class API {
             'callback' => [ new Settings(), 'save_settings' ],
             'permission_callback' => [ new Settings(), 'save_settings_permission' ]
         ]);
+    }
+
+    public function features_rest_route() {
+        
     }
 
     public function block_register_routes() {
