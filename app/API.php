@@ -27,9 +27,7 @@ class API {
             'callback' => [ new Settings(), 'save_settings' ],
             'permission_callback' => [ new Settings(), 'save_settings_permission' ]
         ]);
-    }
 
-    public function block_register_routes() {
         $this->register_route( '/get-block-register', [
             'methods' => 'GET',
             'callback' => [ new Blocks(), 'get_block_register' ],
@@ -41,6 +39,10 @@ class API {
             'callback' => [ new Blocks(), 'block_register' ],
             'permission_callback' => [ new Blocks(), 'block_register_permission' ]
         ]);
+    }
+
+    public function block_register_routes() {
+        
     }
 
     public function tips_routes() {
