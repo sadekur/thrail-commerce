@@ -70,8 +70,4 @@ class API {
             'permission_callback' => [ new Stock(), 'variation_stock_permission' ]
         ]);
     }
-
-    public function stock_threshold_routes() {
-        
-    }
 }
