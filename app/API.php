@@ -46,6 +46,8 @@ class API {
             'permission_callback' => [ new Blocks(), 'block_register_permission' ]
         ]);
 
+        // Register REST API routes for tips
+
         $this->register_route( '/save-tips', [
             'methods' => 'POST',
             'callback' => [ new Tips(), 'commerce_kit_save_tips' ],
