@@ -74,6 +74,8 @@ class API {
             'permission_callback' => [ new Stock(), 'stock_threshold_permission' ]
         ]);
 
+        // Register REST API route for variation stock
+
         $this->register_route( '/get-variation-stock', [
             'methods' => 'GET',
             'callback' => [ new Stock(), 'get_variation_stock' ],
