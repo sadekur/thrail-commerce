@@ -41,10 +41,6 @@ class API {
         ]);
     }
 
-    public function block_register_routes() {
-        
-    }
-
     public function tips_routes() {
         $this->register_route( '/save-tips', [
             'methods' => 'POST',
