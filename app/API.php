@@ -12,11 +12,12 @@ class API {
     use Hookable;
 
     public function __construct() {
+        
         $this->action( 'rest_api_init', [ $this, 'register_routes' ] );
     }
 
     public function register_routes() {
-        
+
         $this->register_route( '/get-settings', [
             'methods' => 'GET',
             'callback' => [ new Settings(), 'get_settings' ],
