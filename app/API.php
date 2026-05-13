@@ -16,6 +16,7 @@ class API {
     }
 
     public function register_routes() {
+        
         $this->register_route( '/get-settings', [
             'methods' => 'GET',
             'callback' => [ new Settings(), 'get_settings' ],
@@ -40,7 +41,7 @@ class API {
             'permission_callback' => [ new Blocks(), 'block_register_permission' ]
         ]);
 
-                $this->register_route( '/save-tips', [
+        $this->register_route( '/save-tips', [
             'methods' => 'POST',
             'callback' => [ new Tips(), 'commerce_kit_save_tips' ],
             'permission_callback' => [ new Tips(), 'tips_permission' ]
