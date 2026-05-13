@@ -29,10 +29,6 @@ class API {
         ]);
     }
 
-    public function features_rest_route() {
-        
-    }
-
     public function block_register_routes() {
         $this->register_route( '/get-block-register', [
             'methods' => 'GET',
