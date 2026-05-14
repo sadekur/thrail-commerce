@@ -112,10 +112,11 @@ const Blocks = () => {
 		axios
 			.get(`${COMMERCEKIT.apiurl}/get-block-register`)
 			.then((response) => {
+				const data = response.data || {};
 				setToggles((prevToggles) =>
 					prevToggles.map((toggle) => ({
 						...toggle,
-						value: response.data[toggle.name] === "on",
+						value: data[toggle.name] === "on",
 					}))
 				);
 			})
