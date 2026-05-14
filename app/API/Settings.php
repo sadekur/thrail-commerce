@@ -9,6 +9,7 @@ class Settings {
             'woocommerce-faq'               => 'off',
             'woocommerce-product-barcode'   => 'off',
             'buy-button-for-woocommerce'    => 'off',
+            'stock-threshold-for-wc'        => 'off',
         ];
         $settings = get_option( 'commerce_kit_settings', $default_settings );
     
