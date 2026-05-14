@@ -123,6 +123,43 @@ class Stock_Threshold {
         return $product;
     }
 
+    /**
+     * Adjusts individual variation prices inside WooCommerce's cached price-range array.
+     * Filter: woocommerce_variation_prices_price ($price, $variation, $parent_product)
+     */
+    public function adjust_variation_price_in_range( $price, $variation, $product ) {
+        if ( empty( $price ) ) {
+            return $price;
+        }
+
+        $stock_quantity = $variation->get_stock_quantity();
+        if ( is_null( $stock_quantity ) ) {
+            return $price;
+        }
+
+        $s = $this->stock_settings;
+
+        if ( $stock_quantity <= $s['low_threshold'] ) {
+            return $price * ( 1 + $s['low_increase'] / 100 );
+        } elseif ( $stock_quantity <= $s['medium_threshold'] ) {
+            return $price * ( 1 + $s['medium_increase'] / 100 );
+        } elseif ( $stock_quantity >= $s['high_threshold'] ) {
+            return $price * ( 1 - $s['high_decrease'] / 100 );
+        }
+
+        return $price;
+    }
+
+    /**
+     * Adds a hash of the current stock settings to WooCommerce's price-range transient key
+     * so the cached range is busted whenever threshold settings change.
+     * Filter: woocommerce_get_variation_prices_hash
+     */
+    public function add_settings_to_prices_hash( $hash, $product, $for_display ) {
+        $hash[] = md5( serialize( $this->stock_settings ) );
+        return $hash;
+    }
+
     public function get_adjusted_price( $price, $product ) {
         if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
             return $price;
