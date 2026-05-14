@@ -1,11 +1,11 @@
 <?php
 namespace CommerceKit\Commerce\API;
 
-use CommerceKit\Commerce\Classes\Trait\Hookable;
+use CommerceKit\Commerce\Classes\Helper\Utility;
 
 class Blocks {
-    public function get_block_register_permission() {
-        return true;
+    public function block_register_permission() {
+        return current_user_can( 'manage_options' );
     }
 
     public function get_block_register() {
