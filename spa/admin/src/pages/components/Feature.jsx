@@ -82,10 +82,10 @@ const Features = () => {
                     new CustomEvent("commerceKitSettingsUpdated", { detail: toggleValues })
                 );
 
+                // Reload after a short delay so the PHP-rendered sidebar menu updates
                 setTimeout(() => {
-                    setIsSaving(false);
-                    setLoader("Save Settings");
-                }, 1500);
+                    window.location.reload();
+                }, 1000);
             })
             .catch((error) => {
                 console.error("Error saving settings:", error);
