@@ -110,7 +110,7 @@ class Assets {
         wp_enqueue_script(
             'commerce-kit-menu-script',
             COMMERCE_KIT_URL . 'build/admin.build.js',
-            [],
+            ['commerce-kit-admin-script'],
             time(),
             true
         );

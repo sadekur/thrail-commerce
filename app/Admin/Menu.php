@@ -32,16 +32,19 @@ class Menu {
             [ $this, 'admin_page_content' ]
         );
 
-        add_submenu_page(
-            'commerce-kit',
-            __( 'Stock Threshold', 'commerce-kit' ),
-            __( 'Stock Threshold', 'commerce-kit' ),
-            'manage_options',
-            'commerce-kit#/stock-threshold',
-            [ $this, 'admin_page_content' ]
-        );
-
         $settings = get_option( 'commerce_kit_settings', [] );
+
+        if ( isset( $settings['stock-threshold-for-wc'] ) && $settings['stock-threshold-for-wc'] === 'on' ) {
+            add_submenu_page(
+                'commerce-kit',
+                __( 'Stock Threshold', 'commerce-kit' ),
+                __( 'Stock Threshold', 'commerce-kit' ),
+                'manage_options',
+                'commerce-kit#/stock-threshold',
+                [ $this, 'admin_page_content' ]
+            );
+        }
+
         if ( isset( $settings['woocommerce-tips'] ) && $settings['woocommerce-tips'] === 'on' ) {
             add_submenu_page(
                 'commerce-kit',
