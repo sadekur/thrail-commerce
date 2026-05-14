@@ -21,7 +21,14 @@ class Stock_Threshold {
 
             $this->action( 'woocommerce_single_product_summary', [ $this, 'display_stock_message' ], 25 );
 
+            // Price adjustment for simple products and variation objects (cart, order, AJAX variation fetch)
             $this->filter( 'woocommerce_product_get_price', [ $this, 'get_adjusted_price' ], 10, 2 );
+
+            // Price adjustment for variable product price range (cached transient computation)
+            $this->filter( 'woocommerce_variation_prices_price', [ $this, 'adjust_variation_price_in_range' ], 10, 3 );
+
+            // Include stock settings in the price-range cache key so it busts when settings change
+            $this->filter( 'woocommerce_get_variation_prices_hash', [ $this, 'add_settings_to_prices_hash' ], 10, 3 );
 
             $this->filter( 'woocommerce_cart_item_name', [ $this, 'append_stock_message_to_cart_item_name' ], 10, 3 );
 
