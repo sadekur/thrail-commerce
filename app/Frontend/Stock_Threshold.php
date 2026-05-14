@@ -64,8 +64,13 @@ class Stock_Threshold {
             return;
         }
 
-        $product = $this->get_variation_product( $product );
+        // Variable products: output a hidden placeholder; JS populates it on variation select
+        if ( $product->is_type( 'variable' ) ) {
+            echo '<p class="commercekit-stock-message" style="display:none"></p>';
+            return;
+        }
 
+        // Simple / other single products: render message server-side
         $stock_quantity = $product->get_stock_quantity();
         if ( is_null( $stock_quantity ) || empty( $product->get_price() ) ) {
             return;
