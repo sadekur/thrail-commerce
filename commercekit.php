@@ -7,7 +7,7 @@
  * Requires at least: 5.9
  * Requires PHP:      7.2
  * Author:            Sadekur Rahman
- * Author URI:        https://srs.com
+ * Author URI:        https://sadekurrahman.net
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       commerce-kit
