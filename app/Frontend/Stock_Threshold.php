@@ -62,8 +62,6 @@ class Stock_Threshold {
             echo '<p class="commercekit-stock-message" style="display:none"></p>';
             return;
         }
-
-        // Simple / other single products: render message server-side
         $stock_quantity = $product->get_stock_quantity();
         if ( is_null( $stock_quantity ) || empty( $product->get_price() ) ) {
             return;
