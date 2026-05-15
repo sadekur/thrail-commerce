@@ -20,8 +20,6 @@ class Stock_Threshold {
             $this->stock_settings = commercekit_get_stock_settings();
 
             $this->action( 'woocommerce_single_product_summary', [ $this, 'display_stock_message' ], 25 );
-
-            // Price adjustment for simple products and variation objects (cart, order, AJAX variation fetch)
             $this->filter( 'woocommerce_product_get_price', [ $this, 'get_adjusted_price' ], 10, 2 );
 
             // Price adjustment for variable product price range (cached transient computation)
