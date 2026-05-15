@@ -22,7 +22,6 @@ class Stock_Threshold {
             $this->action( 'woocommerce_single_product_summary', [ $this, 'display_stock_message' ], 25 );
             $this->filter( 'woocommerce_product_get_price', [ $this, 'get_adjusted_price' ], 10, 2 );
 
-            // Price adjustment for variable product price range (cached transient computation)
             $this->filter( 'woocommerce_variation_prices_price', [ $this, 'adjust_variation_price_in_range' ], 10, 3 );
 
             // Include stock settings in the price-range cache key so it busts when settings change
