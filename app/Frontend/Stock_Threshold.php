@@ -58,8 +58,6 @@ class Stock_Threshold {
         if ( $this->stock_settings['enable_message'] !== 'on' ) {
             return;
         }
-
-        // Variable products: output a hidden placeholder; JS populates it on variation select
         if ( $product->is_type( 'variable' ) ) {
             echo '<p class="commercekit-stock-message" style="display:none"></p>';
             return;
