@@ -12,30 +12,116 @@ class StockThresholdForWc {
         $this->stock_settings = commercekit_get_stock_settings();
 
         $this->action( 'woocommerce_single_product_summary', [ $this, 'display_stock_message' ], 25 );
-        $this->filter( 'woocommerce_product_get_price', [ $this, 'get_adjusted_price' ], 10, 2 );
-
-        $this->filter( 'woocommerce_variation_prices_price', [ $this, 'adjust_variation_price_in_range' ], 10, 3 );
-        $this->filter( 'woocommerce_get_variation_prices_hash', [ $this, 'add_settings_to_prices_hash' ], 10, 3 );
-
-        $this->filter( 'woocommerce_cart_item_name', [ $this, 'append_stock_message_to_cart_item_name' ], 10, 3 );
-
-        $this->action( 'woocommerce_order_item_meta_start', [ $this, 'display_checkout_stock_message' ], 10, 4 );
+        $this->filter( 'woocommerce_product_get_price',        [ $this, 'get_adjusted_price' ], 10, 2 );
+        $this->filter( 'woocommerce_variation_prices_price',   [ $this, 'adjust_variation_price_in_range' ], 10, 3 );
+        $this->filter( 'woocommerce_get_variation_prices_hash',[ $this, 'add_settings_to_prices_hash' ], 10, 3 );
+        $this->filter( 'woocommerce_cart_item_name',           [ $this, 'append_stock_message_to_cart_item_name' ], 10, 3 );
+        $this->action( 'woocommerce_order_item_meta_start',    [ $this, 'display_checkout_stock_message' ], 10, 4 );
     }
 
+    /**
+     * Core threshold math — shared by all price-adjustment methods.
+     */
+    private function apply_threshold( $price, $stock_quantity ) {
+        $s = $this->stock_settings;
+
+        if ( $stock_quantity <= $s['low_threshold'] ) {
+            return $price * ( 1 + $s['low_increase'] / 100 );
+        }
+        if ( $stock_quantity <= $s['medium_threshold'] ) {
+            return $price * ( 1 + $s['medium_increase'] / 100 );
+        }
+        if ( $stock_quantity >= $s['high_threshold'] ) {
+            return $price * ( 1 - $s['high_decrease'] / 100 );
+        }
+
+        return $price;
+    }
+
+    /**
+     * Resolve the customer-facing message for a given stock quantity.
+     */
     private function get_stock_message( $stock_quantity ) {
         $s = $this->stock_settings;
 
         if ( $stock_quantity <= $s['low_threshold'] ) {
             return $s['low_customer_message'] ?? '';
-        } elseif ( $stock_quantity <= $s['medium_threshold'] ) {
+        }
+        if ( $stock_quantity <= $s['medium_threshold'] ) {
             return $s['medium_customer_message'] ?? '';
-        } elseif ( $stock_quantity >= $s['high_threshold'] ) {
+        }
+        if ( $stock_quantity >= $s['high_threshold'] ) {
             return $s['high_customer_message'] ?? '';
         }
 
         return '';
     }
 
+    /**
+     * Adjust individual product price (simple products and variation cart items).
+     * Variable product parents are intentionally skipped — their per-variation
+     * prices are handled by adjust_variation_price_in_range().
+     *
+     * Filter: woocommerce_product_get_price
+     */
+    public function get_adjusted_price( $price, $product ) {
+        if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
+            return $price;
+        }
+
+        if ( empty( $price ) ) {
+            return $price;
+        }
+
+        // Skip variable parents — adjust_variation_price_in_range handles them.
+        if ( $product->is_type( 'variable' ) ) {
+            return $price;
+        }
+
+        $stock_quantity = $product->get_stock_quantity();
+        if ( is_null( $stock_quantity ) ) {
+            return $price;
+        }
+
+        return $this->apply_threshold( $price, $stock_quantity );
+    }
+
+    /**
+     * Adjust each variation's price inside WooCommerce's cached price-range array.
+     * This drives the "£x – £y" range shown before a variation is selected.
+     *
+     * Filter: woocommerce_variation_prices_price
+     */
+    public function adjust_variation_price_in_range( $price, $variation, $product ) {
+        if ( empty( $price ) ) {
+            return $price;
+        }
+
+        $stock_quantity = $variation->get_stock_quantity();
+        if ( is_null( $stock_quantity ) ) {
+            return $price;
+        }
+
+        return $this->apply_threshold( $price, $stock_quantity );
+    }
+
+    /**
+     * Bust WooCommerce's cached variation price-range transient whenever
+     * threshold settings change.
+     *
+     * Filter: woocommerce_get_variation_prices_hash
+     */
+    public function add_settings_to_prices_hash( $hash, $product, $for_display ) {
+        $hash[] = md5( serialize( $this->stock_settings ) );
+        return $hash;
+    }
+
+    /**
+     * Show stock message on the single product page.
+     * Variable products render an empty hidden placeholder filled by JS.
+     *
+     * Action: woocommerce_single_product_summary (priority 25)
+     */
     public function display_stock_message() {
         global $product;
 
@@ -53,112 +139,21 @@ class StockThresholdForWc {
         }
 
         $stock_quantity = $product->get_stock_quantity();
-        if ( is_null( $stock_quantity ) || empty( $product->get_price() ) ) {
+        if ( is_null( $stock_quantity ) ) {
             return;
         }
 
         $message = $this->get_stock_message( $stock_quantity );
-
         if ( ! empty( $message ) ) {
-            printf(
-                '<p class="commercekit-stock-message">%s</p>',
-                esc_html( $message )
-            );
+            printf( '<p class="commercekit-stock-message">%s</p>', esc_html( $message ) );
         }
     }
 
-    private function get_variation_product( $product ) {
-        if ( is_a( $product, 'WC_Product_Variation' ) ) {
-            return $product;
-        }
-
-        if ( is_a( $product, 'WC_Product_Variable' ) ) {
-            $variation_id = isset( $_REQUEST['variation_id'] ) ? absint( $_REQUEST['variation_id'] ) : 0;
-            if ( $variation_id > 0 ) {
-                $variation = wc_get_product( $variation_id );
-                if ( $variation && is_a( $variation, 'WC_Product_Variation' ) ) {
-                    return $variation;
-                }
-            }
-
-            if ( class_exists( 'WC_Product_Variable' ) ) {
-                $available_variations = $product->get_available_variations();
-                if ( ! empty( $available_variations ) ) {
-                    usort( $available_variations, function( $a, $b ) {
-                        return ( $a['variation_id'] ?? 0 ) - ( $b['variation_id'] ?? 0 );
-                    } );
-                    $first_variation_id = $available_variations[0]['variation_id'] ?? 0;
-                    if ( $first_variation_id > 0 ) {
-                        $variation = wc_get_product( $first_variation_id );
-                        if ( $variation ) {
-                            return $variation;
-                        }
-                    }
-                }
-            }
-        }
-
-        return $product;
-    }
-
-    public function adjust_variation_price_in_range( $price, $variation, $product ) {
-        if ( empty( $price ) ) {
-            return $price;
-        }
-
-        $stock_quantity = $variation->get_stock_quantity();
-        if ( is_null( $stock_quantity ) ) {
-            return $price;
-        }
-
-        $s = $this->stock_settings;
-
-        if ( $stock_quantity <= $s['low_threshold'] ) {
-            return $price * ( 1 + $s['low_increase'] / 100 );
-        } elseif ( $stock_quantity <= $s['medium_threshold'] ) {
-            return $price * ( 1 + $s['medium_increase'] / 100 );
-        } elseif ( $stock_quantity >= $s['high_threshold'] ) {
-            return $price * ( 1 - $s['high_decrease'] / 100 );
-        }
-
-        return $price;
-    }
-
-    public function add_settings_to_prices_hash( $hash, $product, $for_display ) {
-        $hash[] = md5( serialize( $this->stock_settings ) );
-        return $hash;
-    }
-
-    public function get_adjusted_price( $price, $product ) {
-        if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
-            return $price;
-        }
-
-        if ( ! is_a( $product, 'WC_Product' ) ) {
-            return $price;
-        }
-
-        $product = $this->get_variation_product( $product );
-
-        $stock_quantity = $product->get_stock_quantity();
-        if ( is_null( $stock_quantity ) || empty( $price ) ) {
-            return $price;
-        }
-
-        $s              = $this->stock_settings;
-        $adjusted_price = $price;
-
-        if ( $stock_quantity <= $s['low_threshold'] ) {
-            $adjusted_price = $price * ( 1 + ( $s['low_increase'] / 100 ) );
-        } elseif ( $stock_quantity <= $s['medium_threshold'] ) {
-            $adjusted_price = $price * ( 1 + ( $s['medium_increase'] / 100 ) );
-        } elseif ( $stock_quantity >= $s['high_threshold'] ) {
-            $adjusted_price = $price * ( 1 - ( $s['high_decrease'] / 100 ) );
-        }
-
-        return $adjusted_price;
-    }
-
+    /**
+     * Append stock message under the product name in the checkout order summary.
+     *
+     * Filter: woocommerce_cart_item_name
+     */
     public function append_stock_message_to_cart_item_name( $name, $cart_item, $cart_item_key ) {
         if ( ! is_checkout() ) {
             return $name;
@@ -174,12 +169,11 @@ class StockThresholdForWc {
         }
 
         $stock_quantity = $product->get_stock_quantity();
-        if ( is_null( $stock_quantity ) || empty( $product->get_price() ) ) {
+        if ( is_null( $stock_quantity ) ) {
             return $name;
         }
 
         $message = $this->get_stock_message( $stock_quantity );
-
         if ( ! empty( $message ) ) {
             $name .= sprintf(
                 '<br><span class="commercekit-stock-message" style="color:#e60b0b;font-weight:600;font-size:12px;display:block;margin-top:3px;">%s</span>',
@@ -190,8 +184,13 @@ class StockThresholdForWc {
         return $name;
     }
 
+    /**
+     * Show stock message on the Thank You / Order detail page.
+     *
+     * Action: woocommerce_order_item_meta_start
+     */
     public function display_checkout_stock_message( $item_id, $item, $order, $plain_text ) {
-        if ( $order->get_status() === 'cancelled' || $order->get_status() === 'failed' ) {
+        if ( in_array( $order->get_status(), [ 'cancelled', 'failed' ], true ) ) {
             return;
         }
 
@@ -209,12 +208,11 @@ class StockThresholdForWc {
         }
 
         $stock_quantity = $product->get_stock_quantity();
-        if ( is_null( $stock_quantity ) || empty( $product->get_price() ) ) {
+        if ( is_null( $stock_quantity ) ) {
             return;
         }
 
         $message = $this->get_stock_message( $stock_quantity );
-
         if ( ! empty( $message ) ) {
             printf(
                 '<br /><span class="commercekit-stock-message" style="color:#e60b0b;font-weight:600;font-size:12px;display:block;margin-top:3px;">%s</span>',
