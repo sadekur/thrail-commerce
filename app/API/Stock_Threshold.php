@@ -16,7 +16,7 @@ class Stock_Threshold {
             'medium_threshold'     => intval( $params['medium_threshold'] ?? 20 ),
             'medium_increase'      => floatval( $params['medium_increase'] ?? 20 ),
 
-            'high_threshold'       => intval( $params['high_threshold'] ?? 100 ),
+            'high_threshold'          => intval( $params['high_threshold'] ?? 100 ),
             'high_decrease'           => floatval( $params['high_decrease'] ?? 15 ),
 
             'enable_message'          => ( $params['enable_message'] ?? 'off' ) === 'on' ? 'on' : 'off',
