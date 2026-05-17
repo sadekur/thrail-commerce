@@ -122,13 +122,13 @@ class Assets {
             'apiurl'        => untrailingslashit( rest_url( 'commerce-kit/v1' ) ),
             'settings_data' => get_option( 'commerce_kit_settings', [] ),
             'error'         => __( 'Something went wrong', 'commerce-kit' ),
-        ]);
+        ] );
 
         wp_enqueue_style(
             'commerce-kit-admin-style',
             COMMERCE_KIT_ASSETS . '/css/admin.css',
             [],
-            filemtime(COMMERCE_KIT_PATH . 'assets/css/admin.css')
+            filemtime( COMMERCE_KIT_PATH . 'assets/css/admin.css' )
         );
 
         wp_enqueue_style(
