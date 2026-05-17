@@ -6,8 +6,7 @@ use CommerceKit\Commerce\Classes\Trait\Hookable;
 class StockThresholdForWc {
     use Hookable;
 
-    protected $stock_settings          = [];
-    private static $in_cart_adjustment = false;
+    protected $stock_settings = [];
 
     public function __construct() {
         $this->stock_settings = commercekit_get_stock_settings();
