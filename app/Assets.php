@@ -87,7 +87,7 @@ class Assets {
             'commerce-kit-admin-script',
             COMMERCE_KIT_ASSETS . '/js/admin.js',
             ['jquery'],
-            filemtime(COMMERCE_KIT_PATH . 'assets/js/admin.js'),
+            filemtime( COMMERCE_KIT_PATH . 'assets/js/admin.js' ),
             true
         );
 
