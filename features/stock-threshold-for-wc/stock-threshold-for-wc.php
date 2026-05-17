@@ -61,7 +61,58 @@ class StockThresholdForWc {
     }
 
     /**
-     * Adjust individual product price (simple products and variation cart items).
+     * Sets adjusted prices directly on cart item objects before WooCommerce sums totals.
+     * Uses get_price('edit') to read the raw DB price (bypasses woocommerce_product_get_price)
+     * so there is no double-adjustment when calculate_totals() later calls get_price().
+     * original_cart_prices is intentionally NOT reset between calls so a second
+     * woocommerce_before_calculate_totals fire in the same request always uses the
+     * true pre-adjustment price.
+     *
+     * Action: woocommerce_before_calculate_totals
+     */
+    public function adjust_cart_item_prices( $cart ) {
+        if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
+            return;
+        }
+
+        $this->adjusted_cart_items = [];
+
+        foreach ( $cart->get_cart() as $cart_item ) {
+            $product = $cart_item['data'];
+            if ( ! $product || ! is_a( $product, 'WC_Product' ) ) {
+                continue;
+            }
+            if ( $product->is_type( 'variable' ) ) {
+                continue;
+            }
+
+            $stock_quantity = $product->get_stock_quantity();
+            if ( is_null( $stock_quantity ) ) {
+                continue;
+            }
+
+            $id = $product->get_id();
+
+            // Store the raw DB price once; reuse it on every subsequent recalculation
+            // so the threshold is never applied on top of an already-adjusted price.
+            if ( ! isset( $this->original_cart_prices[ $id ] ) ) {
+                $this->original_cart_prices[ $id ] = (float) $product->get_price( 'edit' );
+            }
+
+            $raw_price = $this->original_cart_prices[ $id ];
+            if ( empty( $raw_price ) ) {
+                continue;
+            }
+
+            $product->set_price( $this->apply_threshold( $raw_price, $stock_quantity ) );
+            $this->adjusted_cart_items[ $id ] = true;
+        }
+    }
+
+    /**
+     * Adjust individual product price for the single product page.
+     * Skips products already priced by adjust_cart_item_prices() so that
+     * woocommerce_product_get_price never double-adjusts during calculate_totals().
      * Variable product parents are intentionally skipped — their per-variation
      * prices are handled by adjust_variation_price_in_range().
      *
@@ -78,6 +129,12 @@ class StockThresholdForWc {
 
         // Skip variable parents — adjust_variation_price_in_range handles them.
         if ( $product->is_type( 'variable' ) ) {
+            return $price;
+        }
+
+        // Already set directly in adjust_cart_item_prices(); returning $price here
+        // means calculate_totals() uses the value from set_price() as-is.
+        if ( isset( $this->adjusted_cart_items[ $product->get_id() ] ) ) {
             return $price;
         }
 
