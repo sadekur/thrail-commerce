@@ -15,6 +15,6 @@ class Helper {
             return ob_get_clean();
         }
 
-        return '<p>' . esc_html__('Template not found!', 'commerce-kit') . '</p>';
+        return '<p>' . esc_html__( 'Template not found!', 'commerce-kit' ) . '</p>';
     }
 }
