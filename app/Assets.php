@@ -49,7 +49,7 @@ class Assets {
     public function enqueue_frontend_assets() {
         wp_enqueue_script(
             'commerce-kit-frontend-script',
-            COMMERCE_KIT_ASSETS . 'js/frontend.js',
+            COMMERCE_KIT_ASSETS . '/js/frontend.js',
             [ 'jquery' ],
             filemtime( COMMERCE_KIT_PATH . 'assets/js/frontend.js' ),
             true
