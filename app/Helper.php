@@ -5,7 +5,7 @@ class Helper {
     public static function get_template( $template_name, $path, $data = [] ) {
         $template_path = plugin_dir_path( __FILE__ ) . $path . '/' . $template_name . '.php';
 
-        if (file_exists($template_path)) {
+        if ( file_exists( $template_path ) ) {
             // Extract data to variables
             extract($data);
 
