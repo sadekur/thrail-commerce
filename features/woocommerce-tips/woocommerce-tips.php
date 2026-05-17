@@ -55,7 +55,7 @@ class WoocommerceTips {
         $settings = $this->get_settings();
 
         // Determine context: Cart or Checkout
-        if (is_cart() && $settings['tcwt_cart'] === 'on') {
+        if ( is_cart() && $settings['tcwt_cart'] === 'on' ) {
             $this->render_tips_form($settings);
         } elseif (is_checkout() && $settings['tcwt_checkout'] === 'on') {
             $this->render_tips_form($settings);
