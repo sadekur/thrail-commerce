@@ -11,7 +11,7 @@ class Stock_Threshold {
 
         $data = [
             'low_threshold'        => intval( $params['low_threshold'] ?? 5 ),
-            'low_increase'         => floatval( $params['low_increase'] ?? 40 ),
+            'low_increase'            => floatval( $params['low_increase'] ?? 40 ),
 
             'medium_threshold'        => intval( $params['medium_threshold'] ?? 20 ),
             'medium_increase'         => floatval( $params['medium_increase'] ?? 20 ),
