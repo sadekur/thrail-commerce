@@ -25,7 +25,7 @@ class Features {
 
                 if ( file_exists ( $file ) ) {
                     require_once $file;
-                    $class_name = str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $feature_directory)));
+                    $class_name = str_replace( ' ', '', ucwords( str_replace( ['-', '_'], ' ', $feature_directory ) ) );
                     $class = "\\CommerceKit\\Commerce\\Features\\{$class_name}";
                     if (class_exists($class)) {
                         new $class();
