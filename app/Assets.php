@@ -69,7 +69,7 @@ class Assets {
             'adminurl' => admin_url(),
             'resturl' => untrailingslashit( rest_url( 'commerce-kit/v1' ) ),
             'nonce'   => wp_create_nonce( 'commerce-kit' ),
-            'error'   => __('Something went wrong', 'commerce-kit'),
+            'error'   => __( 'Something went wrong', 'commerce-kit' ),
         ]);
 
         // Enqueue frontend styles
