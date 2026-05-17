@@ -103,7 +103,7 @@ class Assets {
             'commerce-kit-init-script',
             COMMERCE_KIT_ASSETS . '/js/init.js',
             [],
-            filemtime(COMMERCE_KIT_PATH . 'assets/js/init.js'),
+            filemtime( COMMERCE_KIT_PATH . 'assets/js/init.js' ),
             true
         );
 
