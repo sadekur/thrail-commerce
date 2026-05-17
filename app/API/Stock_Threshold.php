@@ -10,7 +10,7 @@ class Stock_Threshold {
         $params = $request->get_json_params();
 
         $data = [
-            'low_threshold'        => intval( $params['low_threshold'] ?? 5 ),
+            'low_threshold'           => intval( $params['low_threshold'] ?? 5 ),
             'low_increase'            => floatval( $params['low_increase'] ?? 40 ),
 
             'medium_threshold'        => intval( $params['medium_threshold'] ?? 20 ),
