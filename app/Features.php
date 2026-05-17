@@ -10,7 +10,7 @@ class Features {
     }
 
     public function features_register() {
-        $settings = get_option('commerce_kit_settings', []);
+        $settings = get_option( 'commerce_kit_settings', [] );
         $features = [
             'woocommerce-tips'              => 'woocommerce-tips',
             'woocommerce-faq'               => 'woocommerce-faq',
