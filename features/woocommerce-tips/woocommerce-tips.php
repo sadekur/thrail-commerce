@@ -31,7 +31,7 @@ class WoocommerceTips {
      *
      * @param array $settings Plugin settings
      */
-    public function render_tips_form(array $settings) {
+    public function render_tips_form( array $settings ) {
         ?>
         <div class="bg-gray-100 p-4 rounded shadow-md">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="tip_amount">
