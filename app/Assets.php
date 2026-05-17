@@ -77,7 +77,7 @@ class Assets {
             'commerce-kit-frontend-style',
             COMMERCE_KIT_ASSETS . '/css/frontend.css',
             [],
-            filemtime(COMMERCE_KIT_PATH . 'assets/css/frontend.css')
+            filemtime( COMMERCE_KIT_PATH . 'assets/css/frontend.css' )
         );
         $this->enqueue_common_assets();
     }
