@@ -42,7 +42,7 @@ class WoocommerceTips {
                 placeholder="Enter your tip amount">
             <button type="submit" class="mt-4 px-4 py-2 rounded text-white" 
                 style="background-color: <?php echo esc_attr( $settings['tcwt_btncolor'] ); ?>; color: <?php echo esc_attr($settings['tcwt_textcolor']); ?>;">
-                <?php echo esc_html($settings['tcwt_btntext']); ?>
+                <?php echo esc_html( $settings['tcwt_btntext'] ); ?>
             </button>
         </div>
         <?php
