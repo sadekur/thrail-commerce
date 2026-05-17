@@ -22,7 +22,7 @@ class WoocommerceTips {
             'tcwt_checkout' => get_option( 'tcwt_checkout', 'off' ),
             'tcwt_btncolor' => get_option( 'tcwt_btncolor', '#b12d0b' ),
             'tcwt_btntext' => get_option( 'tcwt_btntext', 'Submit Tip' ),
-            'tcwt_textcolor' => get_option('tcwt_textcolor', '#0300d1'),
+            'tcwt_textcolor' => get_option( 'tcwt_textcolor', '#0300d1' ),
         ];
     }
 
