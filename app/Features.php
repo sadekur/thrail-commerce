@@ -23,7 +23,7 @@ class Features {
             if ( isset( $settings[$feature_key] ) && $settings[$feature_key] === 'on' ) {
                 $file = COMMERCE_KIT_PATH . "features/{$feature_directory}/{$feature_directory}.php";
 
-                if ( file_exists ($file ) ) {
+                if ( file_exists ( $file ) ) {
                     require_once $file;
                     $class_name = str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $feature_directory)));
                     $class = "\\CommerceKit\\Commerce\\Features\\{$class_name}";
