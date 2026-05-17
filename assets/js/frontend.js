@@ -12,9 +12,6 @@ jQuery(document).ready(function($) {
 			url: COMMERCEKIT.resturl + '/get-variation-stock',
 			method: 'GET',
 			data: { variation_id: variation.variation_id },
-			beforeSend: function(xhr) {
-				xhr.setRequestHeader('X-WP-Nonce', COMMERCEKIT.nonce);
-			},
 			success: function(response) {
 				if (response && response.message && response.message.length > 0) {
 					$msg.text(response.message).show();
