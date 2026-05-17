@@ -61,10 +61,10 @@ class Assets {
             'commerce-kit-frontend-script',
             COMMERCE_KIT_ASSETS . 'js/frontend.js',
             ['jquery'],
-            filemtime(COMMERCE_KIT_PATH . 'assets/js/frontend.js'),
+            filemtime( COMMERCE_KIT_PATH . 'assets/js/frontend.js' ),
             true
         );
-        wp_localize_script('commerce-kit-frontend-script', 'COMMERCEKIT', [
+        wp_localize_script( 'commerce-kit-frontend-script', 'COMMERCEKIT', [
             'ajaxurl' => admin_url('admin-ajax.php'),
             'adminurl' => admin_url(),
             'resturl' => untrailingslashit( rest_url( 'commerce-kit/v1' ) ),
