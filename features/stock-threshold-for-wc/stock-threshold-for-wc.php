@@ -6,17 +6,20 @@ use CommerceKit\Commerce\Classes\Trait\Hookable;
 class StockThresholdForWc {
     use Hookable;
 
-    protected $stock_settings = [];
+    protected $stock_settings      = [];
+    protected $adjusted_cart_items = [];   // product_id => true, set by adjust_cart_item_prices
+    protected $original_cart_prices = [];  // product_id => raw price, prevents compound re-adjustment
 
     public function __construct() {
         $this->stock_settings = commercekit_get_stock_settings();
 
-        $this->action( 'woocommerce_single_product_summary', [ $this, 'display_stock_message' ], 25 );
-        $this->filter( 'woocommerce_product_get_price',        [ $this, 'get_adjusted_price' ], 10, 2 );
-        $this->filter( 'woocommerce_variation_prices_price',   [ $this, 'adjust_variation_price_in_range' ], 10, 3 );
-        $this->filter( 'woocommerce_get_variation_prices_hash',[ $this, 'add_settings_to_prices_hash' ], 10, 3 );
-        $this->filter( 'woocommerce_cart_item_name',           [ $this, 'append_stock_message_to_cart_item_name' ], 10, 3 );
-        $this->action( 'woocommerce_order_item_meta_start',    [ $this, 'display_checkout_stock_message' ], 10, 4 );
+        $this->action( 'woocommerce_single_product_summary',    [ $this, 'display_stock_message' ], 25 );
+        $this->action( 'woocommerce_before_calculate_totals',   [ $this, 'adjust_cart_item_prices' ], 10, 1 );
+        $this->filter( 'woocommerce_product_get_price',         [ $this, 'get_adjusted_price' ], 10, 2 );
+        $this->filter( 'woocommerce_variation_prices_price',    [ $this, 'adjust_variation_price_in_range' ], 10, 3 );
+        $this->filter( 'woocommerce_get_variation_prices_hash', [ $this, 'add_settings_to_prices_hash' ], 10, 3 );
+        $this->filter( 'woocommerce_cart_item_name',            [ $this, 'append_stock_message_to_cart_item_name' ], 10, 3 );
+        $this->action( 'woocommerce_order_item_meta_start',     [ $this, 'display_checkout_stock_message' ], 10, 4 );
     }
 
     /**
