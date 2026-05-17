@@ -135,7 +135,7 @@ class Assets {
             'commerce-kit-init-style',
             COMMERCE_KIT_ASSETS . '/css/init.css',
             [],
-            filemtime(COMMERCE_KIT_PATH . 'assets/css/init.css')
+            filemtime( COMMERCE_KIT_PATH . 'assets/css/init.css' )
         );
 
         wp_enqueue_style(
