@@ -7,10 +7,9 @@ class Assets {
     use Hookable;
 
     public function __construct() {
-        $this->action( 'wp_enqueue_scripts', [ $this, 'enqueue_frontend_assets' ] );
-        $this->action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_assets' ] );
-        $this->action( 'enqueue_block_assets', [ $this, 'enqueue_block_assets_func' ] );
-        $this->action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_assets_func' ] );
+        $this->action( 'wp_enqueue_scripts',          [ $this, 'enqueue_frontend_assets' ] );
+        $this->action( 'admin_enqueue_scripts',       [ $this, 'enqueue_admin_assets' ] );
+        $this->action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets_func' ] );
     }
 
     public function enqueue_common_assets() {
@@ -23,44 +22,35 @@ class Assets {
         );
     }
 
-    public function enqueue_block_assets_func() {
+    /**
+     * Fires only inside the block editor.
+     * Loads block registration JS (registerBlockType) and editor dependencies.
+     * Must never run on the frontend — wp-editor pulls in heartbeat/autosave
+     * which interferes with WooCommerce cart session management.
+     */
+    public function enqueue_block_editor_assets_func() {
         wp_enqueue_script(
             'commerce-kit-block-script',
             COMMERCE_KIT_URL . 'build/block.build.js',
-            ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-block-editor'],
+            [ 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-block-editor' ],
             time(),
             true
         );
-        // if( true || did_action( 'commercekit_block/accordion' ) ) {
-            wp_enqueue_script(
-                'commerce-kit-frontend-script',
-                COMMERCE_KIT_ASSETS . '/js/frontend.js',
-                ['jquery'],
-                filemtime(COMMERCE_KIT_PATH . 'assets/js/frontend.js'),
-                true
-            );
-        // }
-        $this->enqueue_common_assets();
-
         wp_localize_script( 'commerce-kit-block-script', 'COMMERCEKIT', [
             'activeBlocks' => get_active_blocks(),
         ] );
-
-        if ( !is_admin() ) {
-            wp_enqueue_style(
-                'commerce-kit-frontend-style',
-                COMMERCE_KIT_ASSETS . '/css/frontend.css',
-                [],
-                filemtime( COMMERCE_KIT_PATH . 'assets/css/frontend.css' )
-            );
-        }
+        $this->enqueue_common_assets();
     }
 
+    /**
+     * Fires on every frontend page.
+     * Loads accordion/variation JS and styles needed for frontend block rendering.
+     */
     public function enqueue_frontend_assets() {
         wp_enqueue_script(
             'commerce-kit-frontend-script',
             COMMERCE_KIT_ASSETS . 'js/frontend.js',
-            ['jquery'],
+            [ 'jquery' ],
             filemtime( COMMERCE_KIT_PATH . 'assets/js/frontend.js' ),
             true
         );
@@ -70,9 +60,8 @@ class Assets {
             'resturl' => untrailingslashit( rest_url( 'commerce-kit/v1' ) ),
             'nonce'   => wp_create_nonce( 'commerce-kit' ),
             'error'   => __( 'Something went wrong', 'commerce-kit' ),
-        ]);
+        ] );
 
-        // Enqueue frontend styles
         wp_enqueue_style(
             'commerce-kit-frontend-style',
             COMMERCE_KIT_ASSETS . '/css/frontend.css',
@@ -82,11 +71,15 @@ class Assets {
         $this->enqueue_common_assets();
     }
 
+    /**
+     * Fires on every admin page (including the block editor).
+     * Block editor additionally gets enqueue_block_editor_assets_func via its own hook.
+     */
     public function enqueue_admin_assets() {
         wp_enqueue_script(
             'commerce-kit-admin-script',
             COMMERCE_KIT_ASSETS . '/js/admin.js',
-            ['jquery'],
+            [ 'jquery' ],
             filemtime( COMMERCE_KIT_PATH . 'assets/js/admin.js' ),
             true
         );
@@ -94,7 +87,7 @@ class Assets {
         wp_enqueue_script(
             'commerce-kit-block-script',
             COMMERCE_KIT_URL . 'build/block.build.js',
-            ['wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor'],
+            [ 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ],
             time(),
             true
         );
@@ -110,7 +103,7 @@ class Assets {
         wp_enqueue_script(
             'commerce-kit-menu-script',
             COMMERCE_KIT_URL . 'build/admin.build.js',
-            ['commerce-kit-admin-script'],
+            [ 'commerce-kit-admin-script' ],
             time(),
             true
         );
