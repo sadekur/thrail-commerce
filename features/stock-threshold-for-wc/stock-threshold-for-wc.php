@@ -138,10 +138,6 @@ class StockThresholdForWc {
             return $price;
         }
 
-        if ( self::$in_cart_adjustment ) {
-            return $price;
-        }
-
         $product = $this->get_variation_product( $product );
 
         $stock_quantity = $product->get_stock_quantity();
