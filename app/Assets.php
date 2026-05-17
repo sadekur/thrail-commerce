@@ -115,7 +115,7 @@ class Assets {
             true
         );
 
-        wp_localize_script('commerce-kit-admin-script', 'COMMERCEKIT', [
+        wp_localize_script( 'commerce-kit-admin-script', 'COMMERCEKIT', [
             'nonce'         => wp_create_nonce( 'wp_rest' ),
             'adminurl'      => admin_url(),
             'ajaxurl'       => admin_url( 'admin-ajax.php' ),
