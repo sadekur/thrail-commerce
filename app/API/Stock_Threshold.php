@@ -17,9 +17,9 @@ class Stock_Threshold {
             'medium_increase'      => floatval( $params['medium_increase'] ?? 20 ),
 
             'high_threshold'       => intval( $params['high_threshold'] ?? 100 ),
-            'high_decrease'        => floatval( $params['high_decrease'] ?? 15 ),
+            'high_decrease'           => floatval( $params['high_decrease'] ?? 15 ),
 
-            'enable_message'       => ( $params['enable_message'] ?? 'off' ) === 'on' ? 'on' : 'off',
+            'enable_message'          => ( $params['enable_message'] ?? 'off' ) === 'on' ? 'on' : 'off',
             'low_customer_message'    => sanitize_text_field( $params['low_customer_message'] ?? 'Low stock - high demand item' ),
             'medium_customer_message' => sanitize_text_field( $params['medium_customer_message'] ?? 'Medium stock - price adjusted' ),
             'high_customer_message'   => sanitize_text_field( $params['high_customer_message'] ?? 'High stock - clearance price' ),
