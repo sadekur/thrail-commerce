@@ -19,8 +19,7 @@ class StockThresholdForWc {
         $this->filter( 'woocommerce_variation_prices_price',    [ $this, 'adjust_variation_price_in_range' ], 10, 3 );
         $this->filter( 'woocommerce_get_variation_prices_hash', [ $this, 'add_settings_to_prices_hash' ], 10, 3 );
         $this->filter( 'woocommerce_cart_item_name',            [ $this, 'append_stock_message_to_cart_item_name' ], 10, 3 );
-        $this->action( 'woocommerce_checkout_cart_item_quantity', [ $this, 'append_checkout_stock_message' ], 10, 3 );
-        $this->action( 'woocommerce_order_item_meta_start',     [ $this, 'display_order_item_stock_message' ], 10, 4 );
+        $this->action( 'woocommerce_order_item_meta_start',     [ $this, 'display_checkout_stock_message' ], 10, 4 );
     }
 
     /**
