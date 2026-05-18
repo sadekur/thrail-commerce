@@ -210,12 +210,12 @@ class StockThresholdForWc {
     }
 
     /**
-     * Append stock message under the product name in the checkout order summary.
+     * Append highlighted stock message under the product name in the cart and checkout order summary.
      *
      * Filter: woocommerce_cart_item_name
      */
     public function append_stock_message_to_cart_item_name( $name, $cart_item, $cart_item_key ) {
-        if ( ! is_checkout() ) {
+        if ( ! is_cart() && ! is_checkout() ) {
             return $name;
         }
 
@@ -236,7 +236,7 @@ class StockThresholdForWc {
         $message = $this->get_stock_message( $stock_quantity );
         if ( ! empty( $message ) ) {
             $name .= sprintf(
-                '<br><span class="commercekit-stock-message" style="color:#e60b0b;font-weight:600;font-size:12px;display:block;margin-top:3px;">%s</span>',
+                '<br><span class="commercekit-stock-message">%s</span>',
                 esc_html( $message )
             );
         }
