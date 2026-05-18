@@ -4,26 +4,114 @@ import Tabs from "./pages/Tabs";
 import StockThreshold from "./pages/StockThreshold";
 import TipSettings from "./pages/TipSettings";
 
+// Add an entry here whenever a new feature gets its own submenu page.
+// key   = commerce_kit_settings feature key
+// value = CSS attribute selector that matches the submenu <a> element
+const FEATURE_SUBMENUS = {
+    "stock-threshold-for-wc": 'a[href*="#/stock-threshold"]',
+    "woocommerce-tips":        'a[href*="#/commerce-kit-tip-settings"]',
+};
+
+const isCommerceKitScreen = () =>
+    new URLSearchParams(window.location.search).get("page") === "commerce-kit";
+
 const App = () => {
     const [currentPage, setCurrentPage] = useState("");
 
+    // ── 1. Hash routing ──────────────────────────────────────────────────────
     useEffect(() => {
-        const handleHashChange = () => {
+        const onHashChange = () => {
             const hash = window.location.hash.replace("#", "") || "";
             setCurrentPage(hash);
         };
-
-        window.addEventListener("hashchange", handleHashChange);
-        handleHashChange();
-
-        return () => window.removeEventListener("hashchange", handleHashChange);
+        window.addEventListener("hashchange", onHashChange);
+        onHashChange(); // run immediately on mount
+        return () => window.removeEventListener("hashchange", onHashChange);
     }, []);
 
+    // ── 2. Sidebar submenu visibility ────────────────────────────────────────
+    // Runs once on mount. Hides/shows feature-gated submenus based on saved
+    // settings and re-syncs whenever Feature.jsx dispatches the update event.
+    useEffect(() => {
+        const menu = document.querySelector(
+            "#adminmenu li.toplevel_page_commerce-kit"
+        );
+        if (!menu) return;
+
+        const syncSubmenus = (settings) => {
+            Object.keys(FEATURE_SUBMENUS).forEach((featureKey) => {
+                const anchor = menu.querySelector(FEATURE_SUBMENUS[featureKey]);
+                if (!anchor) return;
+                const li = anchor.closest("li");
+                if (!li) return;
+                li.style.display = settings[featureKey] === "on" ? "" : "none";
+            });
+        };
+
+        // Initial sync from PHP-localized COMMERCEKIT.settings_data
+        syncSubmenus(
+            (window.COMMERCEKIT && window.COMMERCEKIT.settings_data) || {}
+        );
+
+        // Re-sync every time features are saved (dispatched by Feature.jsx)
+        const onSettingsUpdated = (e) => syncSubmenus(e.detail || {});
+        window.addEventListener("commerceKitSettingsUpdated", onSettingsUpdated);
+        return () =>
+            window.removeEventListener("commerceKitSettingsUpdated", onSettingsUpdated);
+    }, []);
+
+    // ── 3. Sidebar active-item highlight ────────────────────────────────────
+    // Runs on every hash/page change to keep the .current class in sync.
+    useEffect(() => {
+        if (!isCommerceKitScreen()) return;
+        const menu = document.querySelector(
+            "#adminmenu li.toplevel_page_commerce-kit"
+        );
+        if (!menu) return;
+
+        // Clear all current highlights first
+        menu.querySelectorAll(".wp-submenu li").forEach((li) =>
+            li.classList.remove("current")
+        );
+
+        const hash = window.location.hash; // e.g. "#/stock-threshold"
+        if (hash && hash !== "#/") {
+            const anchor = menu.querySelector(`a[href*="${hash}"]`);
+            anchor?.closest("li")?.classList.add("current");
+        } else {
+            // No hash → highlight the top-level Dashboard item
+            const anchor = menu.querySelector(
+                'a[href="admin.php?page=commerce-kit"]'
+            );
+            anchor?.closest("li")?.classList.add("current");
+        }
+    }, [currentPage]);
+
+    // ── 4. Sidebar Dashboard-link click handler ──────────────────────────────
+    // Prevents a full page reload when clicking the Dashboard menu item while
+    // already on the CommerceKit screen — just resets the hash instead.
+    useEffect(() => {
+        if (!isCommerceKitScreen()) return;
+        const anchor = document.querySelector(
+            '#adminmenu a[href="admin.php?page=commerce-kit"]'
+        );
+        if (!anchor) return;
+
+        const onClick = (e) => {
+            e.preventDefault();
+            window.location.hash = "";
+            setCurrentPage("");
+        };
+        anchor.addEventListener("click", onClick);
+        return () => anchor.removeEventListener("click", onClick);
+    }, []);
+
+    // ── Page renderer ────────────────────────────────────────────────────────
     const renderPage = () => {
         switch (currentPage) {
             case "":
             case "/":
-                return <Tabs />;          // tabs live here, fully internal
+                return <Tabs />;
             case "/stock-threshold":
                 return <StockThreshold />;
             case "/commerce-kit-tip-settings":
@@ -31,7 +119,9 @@ const App = () => {
             default:
                 return (
                     <div className="p-8">
-                        <h2 className="text-2xl font-bold text-red-600">404 - Page not found</h2>
+                        <h2 className="text-2xl font-bold text-red-600">
+                            404 - Page not found
+                        </h2>
                     </div>
                 );
         }
