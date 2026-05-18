@@ -26,6 +26,8 @@ const App = () => {
                 return <Tabs />;          // tabs live here, fully internal
             case "/stock-threshold":
                 return <StockThreshold />;
+            case "/commerce-kit-tip-settings":
+                return <TipSettings />;
             default:
                 return (
                     <div className="p-8">
