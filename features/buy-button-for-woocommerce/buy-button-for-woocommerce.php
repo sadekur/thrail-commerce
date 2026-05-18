@@ -8,7 +8,7 @@ class BuyButtonForWoocommerce {
     public function __construct() {
         // Register hooks and shortcodes.
         $this->filter('woocommerce_add_to_cart_redirect', [ $this, 'handle_add_to_cart_redirect' ], 10, 1);
-        $this->filter('woocommerce_add_to_cart_validation', [ $this, 'validate_add_to_cart' ]);
+        $this->filter('woocommerce_add_to_cart_validation', [ $this, 'validate_add_to_cart' ], 10, 3);
         $this->add_shortcode('buy_button', [ $this, 'buy_button_handler' ]);
     }
 
