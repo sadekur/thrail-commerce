@@ -73,18 +73,20 @@ const Features = () => {
             .then(() => {
                 setSavingMessage("Settings Saved!");
                 setToggles(updatedToggles);
+
                 if (!window.COMMERCEKIT.settings_data) {
                     window.COMMERCEKIT.settings_data = {};
                 }
                 Object.assign(window.COMMERCEKIT.settings_data, toggleValues);
 
+                // Notify admin.js to show/hide sidebar submenus without a page reload.
                 window.dispatchEvent(
                     new CustomEvent("commerceKitSettingsUpdated", { detail: toggleValues })
                 );
 
-                // Reload after a short delay so the PHP-rendered sidebar menu updates
                 setTimeout(() => {
-                    window.location.reload();
+                    setIsSaving(false);
+                    setLoader("Save Settings");
                 }, 1000);
             })
             .catch((error) => {

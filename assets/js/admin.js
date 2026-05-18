@@ -45,9 +45,31 @@ jQuery(document).ready(function ($) {
 
     const $menu = $('#adminmenu li.toplevel_page_commerce-kit');
 
-    function getStockThresholdItem() {
-        return $menu.find('a[href*="#/stock-threshold"]').closest('li');
+    // Map every feature key that owns a submenu to a selector for that submenu's <li>.
+    // Add new entries here whenever a new feature gets its own submenu page.
+    const featureSubmenus = {
+        'stock-threshold-for-wc': 'a[href*="#/stock-threshold"]',
+        'woocommerce-tips':        'a[href*="commerce-kit-tip-settings"]',
+    };
+
+    function syncSubmenus(settings) {
+        Object.keys(featureSubmenus).forEach(function (featureKey) {
+            var $item = $menu.find(featureSubmenus[featureKey]).closest('li');
+            if (settings[featureKey] === 'on') {
+                $item.show();
+            } else {
+                $item.hide();
+            }
+        });
     }
+
+    // Sync submenu visibility as soon as the page is ready using the PHP-localized data.
+    syncSubmenus((window.COMMERCEKIT && window.COMMERCEKIT.settings_data) ? window.COMMERCEKIT.settings_data : {});
+
+    // React dispatches this event after every feature save — no reload needed.
+    window.addEventListener('commerceKitSettingsUpdated', function (e) {
+        syncSubmenus(e.detail || {});
+    });
 
     function updateActiveMenu() {
         if (!isCommerceKitScreen()) return;
@@ -59,17 +81,6 @@ jQuery(document).ready(function ($) {
             $menu.find('a[href="admin.php?page=commerce-kit"]').closest('li').addClass('current');
         }
     }
-
-    // ✅ React fires this after saving Features — update submenu visibility without reload
-    window.addEventListener('commerceKitSettingsUpdated', function (e) {
-        const settings = e.detail || {};
-        const stockEnabled = settings['stock-threshold-for-wc'] === 'on';
-        if (stockEnabled) {
-            getStockThresholdItem().show();
-        } else {
-            getStockThresholdItem().hide();
-        }
-    });
 
     $(document).on('click', '#adminmenu a[href="admin.php?page=commerce-kit"]', function (e) {
         if (!isCommerceKitScreen()) return;
