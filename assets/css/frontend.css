@@ -46,3 +46,32 @@
     background-color: rgba(255, 255, 255, 0.8);
     z-index: 9999;
 }
+
+/* ── Stock Threshold – highlighted message badge ── */
+p.commercekit-stock-message {
+    display: block;
+    background: #fff0f0;
+    border: 1px solid #ffb3b3;
+    border-left: 4px solid #e60b0b;
+    color: #c0392b;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 8px 14px;
+    border-radius: 4px;
+    margin: 10px 0 0;
+    line-height: 1.5;
+}
+
+span.commercekit-stock-message {
+    display: inline-block;
+    background: #fff0f0;
+    border: 1px solid #ffb3b3;
+    border-left: 3px solid #e60b0b;
+    color: #c0392b;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-top: 5px;
+    line-height: 1.4;
+}
