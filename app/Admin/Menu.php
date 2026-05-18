@@ -48,8 +48,8 @@ class Menu {
             'CommerceKit Tips Settings',
             'Tips Settings',
             'manage_options',
-            'commerce-kit-tip-settings',
-            [ $this, 'settings_page_content' ]
+            'commerce-kit#/commerce-kit-tip-settings',
+            [ $this, 'admin_page_content' ]
         );
     }
 
