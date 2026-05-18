@@ -11,7 +11,7 @@ jQuery(document).ready(function ($) {
     // Add new entries here whenever a new feature gets its own submenu page.
     const featureSubmenus = {
         'stock-threshold-for-wc': 'a[href*="#/stock-threshold"]',
-        'woocommerce-tips':        'a[href*="commerce-kit-tip-settings"]',
+        'woocommerce-tips':        'a[href*="#/commerce-kit-tip-settings"]',
     };
 
     function syncSubmenus(settings) {
