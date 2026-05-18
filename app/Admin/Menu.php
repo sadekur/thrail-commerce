@@ -3,7 +3,6 @@
 namespace CommerceKit\Commerce\Admin;
 
 use CommerceKit\Commerce\Classes\Trait\Hookable;
-use CommerceKit\Commerce\Classes\Helper\Utility;
 
 class Menu {
     use Hookable;
