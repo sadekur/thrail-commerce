@@ -211,11 +211,19 @@ class StockThresholdForWc {
 
     /**
      * Append highlighted stock message under the product name in the cart and checkout order summary.
+     * Also fires during WooCommerce Blocks Store API requests (REST_REQUEST), which is how the
+     * Blocks-based checkout fetches cart item names — is_checkout() returns false in that context.
      *
      * Filter: woocommerce_cart_item_name
      */
     public function append_stock_message_to_cart_item_name( $name, $cart_item, $cart_item_key ) {
-        if ( ! is_cart() && ! is_checkout() ) {
+        $is_store_api = defined( 'REST_REQUEST' ) && REST_REQUEST;
+
+        if ( ! is_cart() && ! is_checkout() && ! $is_store_api ) {
+            return $name;
+        }
+
+        if ( is_admin() && ! $is_store_api ) {
             return $name;
         }
 
