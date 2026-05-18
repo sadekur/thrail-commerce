@@ -32,29 +32,25 @@ class Menu {
             [ $this, 'admin_page_content' ]
         );
 
-        $settings = get_option( 'commerce_kit_settings', [] );
+        // Always register all feature submenus — JS hides/shows them based on saved settings
+        // without requiring a page reload when features are toggled from the React UI.
+        add_submenu_page(
+            'commerce-kit',
+            __( 'Stock Threshold', 'commerce-kit' ),
+            __( 'Stock Threshold', 'commerce-kit' ),
+            'manage_options',
+            'commerce-kit#/stock-threshold',
+            [ $this, 'admin_page_content' ]
+        );
 
-        if ( isset( $settings['stock-threshold-for-wc'] ) && $settings['stock-threshold-for-wc'] === 'on' ) {
-            add_submenu_page(
-                'commerce-kit',
-                __( 'Stock Threshold', 'commerce-kit' ),
-                __( 'Stock Threshold', 'commerce-kit' ),
-                'manage_options',
-                'commerce-kit#/stock-threshold',
-                [ $this, 'admin_page_content' ]
-            );
-        }
-
-        if ( isset( $settings['woocommerce-tips'] ) && $settings['woocommerce-tips'] === 'on' ) {
-            add_submenu_page(
-                'commerce-kit',
-                'CommerceKit Tips Settings',
-                'Tips Settings',
-                'manage_options',
-                'commerce-kit-tip-settings',
-                [ $this, 'settings_page_content' ]
-            );
-        }
+        add_submenu_page(
+            'commerce-kit',
+            'CommerceKit Tips Settings',
+            'Tips Settings',
+            'manage_options',
+            'commerce-kit-tip-settings',
+            [ $this, 'settings_page_content' ]
+        );
     }
 
     public function admin_page_content() {
