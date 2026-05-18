@@ -61,17 +61,4 @@ class Menu {
         <?php
     }
 
-    public function settings_page_content() {
-        $settings = get_option( 'commercekit-tips-settings', [] );
-        $defaults = [
-            'tcwt_cart'      => 'off',
-            'tcwt_checkout'  => 'off',
-            'tcwt_note'      => 'off',
-            'tcwt_btncolor'  => '#289dcc',
-            'tcwt_btntext'   => 'Add Donation',
-            'tcwt_textcolor' => '#FFFFFF',
-        ];
-        $settings = wp_parse_args( $settings, $defaults );
-        echo Utility::get_template( 'settings', 'settings', $settings );
-    }
 }
