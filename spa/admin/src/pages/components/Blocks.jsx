@@ -12,31 +12,30 @@ const Blocks = () => {
 	const [toggles, setToggles] = useState([
 		{
 			id: 1,
-			label: "Generic Faq",
-			name: "generic-faq",
-			description:
-				"Enable the footer hook to show additional content in the footer.",
+			label: "Accordion",
+			name: "accordion",
+			description: "Collapsible accordion sections with full styling control.",
 			value: false,
 		},
 		{
 			id: 2,
-			label: "Variant Faq",
-			name: "variant-faq",
-			description: "Enable custom functionality 1 for advanced features.",
+			label: "Category Products Slider",
+			name: "category-products-slider",
+			description: "Sliding product carousel filtered by WooCommerce category.",
 			value: false,
 		},
 		{
 			id: 3,
-			label: "Accordion",
-			name: "accordion",
-			description: "Enable custom functionality 2 for more options.",
+			label: "Generic FAQ",
+			name: "generic-faq",
+			description: "Display a list of frequently asked questions.",
 			value: false,
 		},
 		{
 			id: 4,
-			label: "Add To Cart",
-			name: "add-to-cart",
-			description: "Enable custom functionality 3 for more options.",
+			label: "Variant FAQ",
+			name: "variant-faq",
+			description: "FAQ block with variant-specific question support.",
 			value: false,
 		},
 	]);
