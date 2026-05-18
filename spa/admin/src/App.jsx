@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import Tabs from "./pages/Tabs";               // main page with tabs
-import StockThreshold from "./pages/StockThreshold"; // separate page
+import Tabs from "./pages/Tabs";
+import StockThreshold from "./pages/StockThreshold";
+import TipSettings from "./pages/TipSettings";
 
 const App = () => {
     const [currentPage, setCurrentPage] = useState("");
