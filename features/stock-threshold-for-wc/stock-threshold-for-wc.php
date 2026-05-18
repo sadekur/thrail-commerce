@@ -275,7 +275,7 @@ class StockThresholdForWc {
         $message = $this->get_stock_message( $stock_quantity );
         if ( ! empty( $message ) ) {
             printf(
-                '<br /><span class="commercekit-stock-message" style="color:#e60b0b;font-weight:600;font-size:12px;display:block;margin-top:3px;">%s</span>',
+                '<span class="commercekit-stock-message" style="display:block;margin-top:5px;">%s</span>',
                 esc_html( $message )
             );
         }
